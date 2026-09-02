@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UK–Russia escalation — merged timeline audit, Feb–Sep 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Heebo:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#0f1419;
+    --surface:#161d25;
+    --rule:rgba(148,163,184,0.16);
+    --text:#e3e9ef;
+    --muted:#7f8fa0;
+    --faint:#5a6774;
+    --green:#4a9e74;
+    --red:#c0605a;
+    --yellow:#e0b64a;
+    --sans:'DM Sans',ui-sans-serif,system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--base);color:var(--text);
+    font-family:var(--sans);line-height:1.5;
+    padding:22px 20px 80px;
+  }
+  body[dir="rtl"]{font-family:'Heebo',var(--sans)}
+  .wrap{max-width:760px;margin:0 auto}
+
+  /* --- language toggle --- */
+  .langbar{display:flex;justify-content:flex-end;direction:ltr;margin-bottom:18px}
+  .toggle{
+    display:inline-flex;border:1px solid var(--rule);border-radius:3px;
+    background:var(--surface);overflow:hidden;
+  }
+  .toggle button{
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    background:transparent;border:0;color:var(--faint);
+    padding:7px 13px;cursor:pointer;transition:color .15s,background .15s;
+  }
+  .toggle button:nth-child(2){font-family:'Heebo',var(--sans);letter-spacing:0;font-size:12.5px}
+  .toggle button:hover{color:var(--text)}
+  .toggle button[aria-pressed="true"]{background:rgba(148,163,184,0.11);color:var(--text)}
+
+  header{border-bottom:1px solid var(--rule);padding-bottom:24px;margin-bottom:8px}
+  .eyebrow{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--faint);margin:0 0 12px;
+  }
+  h1{
+    font-size:clamp(26px,6vw,38px);line-height:1.08;margin:0 0 12px;
+    font-weight:700;letter-spacing:-0.02em;
+  }
+  .standfirst{color:var(--muted);font-size:15px;margin:0;max-width:56ch}
+
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 4px}
+  .legend.forms{margin-top:10px}
+  .key{
+    display:flex;align-items:flex-start;gap:9px;flex:1 1 240px;
+    background:var(--surface);border:1px solid var(--rule);
+    border-radius:3px;padding:11px 13px;
+  }
+  .legend.forms .key{flex:1 1 180px;padding:10px 13px}
+  .key .swatch{width:11px;height:11px;border-radius:50%;margin-top:4px;flex:none}
+  .key .flag{
+    width:17px;height:17px;border-radius:50%;overflow:hidden;flex:none;
+    margin-top:2px;border:1px solid var(--rule);background:var(--base);
+  }
+  .key .flag svg{display:block;width:100%;height:100%}
+  .key b{display:block;font-size:13px;font-weight:500}
+  .key .count{font-family:var(--mono);font-style:normal;color:var(--faint);font-size:11px}
+  .key span.d{display:block;font-size:11.5px;color:var(--muted);line-height:1.4}
+
+  /* --- compression panel --- */
+  .panel{
+    background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+    padding:16px 16px 14px;margin:14px 0 34px;
+  }
+  .panel h3{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--faint);margin:0 0 12px;font-weight:500;
+  }
+  .stats{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:12px}
+  .stat .n{font-family:var(--mono);font-size:23px;font-weight:700;display:block;line-height:1}
+  .stat .n .u{font-size:13px}
+  .stat .l{font-size:11.5px;color:var(--muted);display:block;margin-top:5px}
+  .panel p{font-size:12.5px;color:var(--muted);margin:0;line-height:1.55}
+  .panel p + p{margin-top:8px}
+  .panel b{color:var(--muted);font-weight:500}
+
+  /* --- timeline --- */
+  .timeline{position:relative;padding-left:26px}
+  .timeline:before{
+    content:"";position:absolute;left:6px;top:6px;bottom:6px;width:1px;
+    background:linear-gradient(180deg,transparent,var(--rule) 6%,var(--rule) 94%,transparent);
+  }
+
+  .row{position:relative;padding:0 0 0 4px}
+  /* flag = who acted; ring colour = the grading */
+  .dot{
+    position:absolute;left:-28px;top:2px;width:18px;height:18px;
+    border-radius:50%;overflow:hidden;background:var(--base);
+    border:2px solid var(--base);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .dot svg{display:block;width:100%;height:100%}
+  .row.r .dot{box-shadow:0 0 0 2px var(--red)}
+  .row.g .dot{box-shadow:0 0 0 2px var(--green)}
+  .row:hover .dot{transform:scale(1.16)}
+  .row.r:hover .dot{box-shadow:0 0 0 2px var(--red),0 0 0 7px rgba(192,96,90,.14)}
+  .row.g:hover .dot{box-shadow:0 0 0 2px var(--green),0 0 0 7px rgba(74,158,116,.14)}
+
+  time{
+    font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+    color:var(--yellow);display:block;margin-bottom:3px;
+  }
+  time .abs{
+    opacity:.62;padding-left:8px;margin-left:6px;
+    border-left:1px solid rgba(224,182,74,0.32);
+  }
+  body[dir="rtl"] time .abs{
+    padding-left:0;margin-left:0;border-left:0;
+    padding-right:8px;margin-right:6px;border-right:1px solid rgba(224,182,74,0.32);
+  }
+  .side{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+    border:1px solid var(--rule);border-radius:2px;
+    padding:1px 5px 1.5px;margin-right:9px;color:var(--faint);
+    display:inline-block;position:relative;top:-1px;
+  }
+  body[dir="rtl"] .side{
+    margin-right:0;margin-left:9px;letter-spacing:0;
+    font-family:'Heebo',var(--sans);font-size:10.5px;
+  }
+  .row h2{font-size:15.5px;font-weight:500;margin:0 0 4px;line-height:1.35}
+  .why{font-size:12.5px;color:var(--muted);margin:0 0 6px;line-height:1.5}
+  .srcs{display:flex;flex-wrap:wrap;align-items:center;gap:0}
+  .src{
+    font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--faint);text-decoration:none;border-bottom:1px solid transparent;
+    transition:color .15s, border-color .15s;
+  }
+  .src:hover{color:var(--text);border-bottom-color:var(--rule)}
+  .src.missing{color:#6b5b45}
+  .sep{color:var(--rule);font-size:10px;padding:0 8px}
+  body[dir="rtl"] .src{letter-spacing:0}
+
+  /* --- gap segments --- */
+  .gap{position:relative;display:flex;align-items:center;margin:0;padding:0 0 0 4px}
+  .gap .bar{
+    position:absolute;left:-20px;top:0;bottom:0;width:1px;
+    background:repeating-linear-gradient(180deg,var(--rule) 0 3px,transparent 3px 7px);
+  }
+  .gap .days{
+    display:inline-flex;align-items:center;gap:5px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    padding:3.5px 11px;border-radius:999px;
+    border:1px solid;white-space:nowrap;
+    transition:transform .18s ease;
+  }
+  .gap:hover .days{transform:translateX(3px)}
+  body[dir="rtl"] .gap:hover .days{transform:translateX(-3px)}
+
+  /* --- horizontal band overview --- */
+  .overview{
+    width:min(1200px, calc(100vw - 36px));
+    margin:0 0 34px;margin-left:50%;transform:translateX(-50%);
+  }
+  .overview > h3{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--faint);margin:0 0 4px;font-weight:500;
+  }
+  .overview > p.note{font-size:11.5px;color:var(--muted);margin:0 0 13px;max-width:70ch}
+  .bands{display:flex;flex-wrap:nowrap;gap:8px;align-items:stretch}
+  .band{
+    flex:1 1 0;min-width:0;display:flex;flex-direction:column;
+    background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:11px 11px 6px;
+  }
+  .band .meter{height:3px;border-radius:2px;background:rgba(148,163,184,.13);overflow:hidden;margin-bottom:10px}
+  .band .meter i{display:block;height:100%;background:var(--yellow);opacity:.75}
+  .band .num{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--faint)}
+  .band h4{font-size:12.5px;font-weight:500;margin:4px 0 4px;line-height:1.25;overflow-wrap:break-word}
+  .band .def{font-size:10.5px;color:var(--muted);line-height:1.4;margin:0 0 9px}
+  .band .meta{
+    font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:var(--faint);line-height:1.5;
+    border-top:1px solid var(--rule);padding-top:7px;margin-bottom:4px;
+  }
+  body[dir="rtl"] .band .meta,body[dir="rtl"] .band .num{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:10.5px}
+  .ev{display:flex;gap:6px;align-items:flex-start;padding:4px 0;border-top:1px solid rgba(148,163,184,0.07)}
+  .ev:first-of-type{border-top:0}
+  .ev .m{
+    width:12px;height:12px;border-radius:50%;overflow:hidden;flex:none;margin-top:2px;
+    border:1px solid var(--base);background:var(--base);
+  }
+  .ev .m svg{display:block;width:100%;height:100%}
+  .ev.r .m{box-shadow:0 0 0 1.5px var(--red)}
+  .ev.g .m{box-shadow:0 0 0 1.5px var(--green)}
+  .ev .t{font-size:11px;line-height:1.3;min-width:0;overflow-wrap:break-word}
+  .ev .d{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--yellow);opacity:.7;display:block;margin-top:1px}
+  body[dir="rtl"] .ev .d{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:10px}
+
+  @media (max-width:640px){
+    .bands{flex-wrap:wrap}
+    .band{flex:1 1 calc(50% - 4px);min-width:calc(50% - 4px)}
+  }
+
+  footer{
+    margin-top:44px;padding-top:20px;border-top:1px solid var(--rule);
+    font-size:11.5px;color:var(--faint);line-height:1.6;
+  }
+  footer b{color:var(--muted);font-weight:500}
+
+  /* --- RTL --- */
+  body[dir="rtl"] .timeline{padding-left:0;padding-right:26px}
+  body[dir="rtl"] .timeline:before{left:auto;right:6px}
+  body[dir="rtl"] .row{padding:0 4px 0 0}
+  body[dir="rtl"] .dot{left:auto;right:-28px}
+  body[dir="rtl"] .gap{padding:0 4px 0 0}
+  body[dir="rtl"] .gap .bar{left:auto;right:-20px}
+  body[dir="rtl"] h1{letter-spacing:0;line-height:1.16}
+  body[dir="rtl"] .eyebrow,
+  body[dir="rtl"] .panel h3{letter-spacing:.06em}
+  body[dir="rtl"] time{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11.5px}
+  body[dir="rtl"] .gap .days{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11px}
+  body[dir="rtl"] .stat .n,
+  body[dir="rtl"] .key .count{direction:ltr;display:inline-block}
+  body[dir="rtl"] .stat .n{display:block}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important}
+  }
+</style>
+</head>
+<body dir="ltr">
+<div class="wrap">
+
+  <div class="langbar">
+    <div class="toggle" role="group" aria-label="Language">
+      <button id="btn-en" aria-pressed="true">EN</button>
+      <button id="btn-he" aria-pressed="false">עברית</button>
+    </div>
+  </div>
+
+  <header>
+    <p class="eyebrow" id="eyebrow"></p>
+    <h1 id="title"></h1>
+    <p class="standfirst" id="standfirst"></p>
+  </header>
+
+  <div class="legend">
+    <div class="key">
+      <span class="swatch" style="background:var(--red)"></span>
+      <span><b id="k1"></b><span class="d" id="k1d"></span></span>
+    </div>
+    <div class="key">
+      <span class="swatch" style="background:var(--green)"></span>
+      <span><b id="k2"></b><span class="d" id="k2d"></span></span>
+    </div>
+  </div>
+
+  <div class="legend forms">
+    <div class="key">
+      <span class="flag" id="fl1"></span>
+      <span><b id="f1"></b><span class="d" id="f1d"></span></span>
+    </div>
+    <div class="key">
+      <span class="flag" id="fl2"></span>
+      <span><b id="f2"></b><span class="d" id="f2d"></span></span>
+    </div>
+    <div class="key">
+      <span class="flag" id="fl3"></span>
+      <span><b id="f3"></b><span class="d" id="f3d"></span></span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 id="panelTitle"></h3>
+    <div class="stats">
+      <div class="stat"><span class="n" style="color:var(--faint)">11.5<span class="u" id="u1"></span></span><span class="l" id="s1"></span></div>
+      <div class="stat"><span class="n" style="color:var(--red)">1.8<span class="u" id="u2"></span></span><span class="l" id="s2"></span></div>
+      <div class="stat"><span class="n" style="color:var(--faint)">34 → 0</span><span class="l" id="s3"></span></div>
+      <div class="stat"><span class="n" style="color:var(--faint)">17 / 9 / 2</span><span class="l" id="s4"></span></div>
+    </div>
+    <p id="p0"></p>
+    <p id="p1"></p>
+    <p id="p2"></p>
+  </div>
+
+  <section class="overview">
+    <h3 id="ovTitle"></h3>
+    <p class="note" id="ovNote"></p>
+    <div class="bands" id="bands"></div>
+  </section>
+
+  <div class="timeline" id="tl"></div>
+
+  <footer id="foot"></footer>
+
+</div>
+
+<script>
+const T = {
+  en: {
+    dir:"ltr", lang:"en",
+    eyebrow:"Open-source audit · Feb – Sep 2026 · merged set",
+    title:"UK–Russia escalation:<br>twenty-eight dated events, both sides",
+    standfirst:"The British and Russian sets placed on one spine. Colour codes whether an event sits on the UK–Russia thread; the flag inside each marker codes who acted. The dashed intervals show the elapsed time between one event and the next.",
+    k1:'Direct link <em class="count">· 20</em>',
+    k1d:"Names Britain, or acts against British ships, staff, territory or equipment.",
+    k2:'No direct link <em class="count">· 8</em>',
+    k2d:"Documented driver lies elsewhere — Ukraine broadly, NATO, Washington, or domestic. Any British connection is inferred, not stated.",
+    f1:'British or western act <em class="count">· 9</em>', f1d:"Union flag.",
+    f2:'Russian act or statement <em class="count">· 17</em>', f2d:"Russian tricolour.",
+    f3:'Third party <em class="count">· 2</em>', f3d:"Both rows are American.",
+    panelTitle:"Interval compression",
+    unit:" d",
+    s1:"Mean gap, Feb → 15 Aug", s2:"Mean gap, 15 Aug → 2 Sep",
+    s3:"Longest to shortest interval", s4:"Russian / British / third-party rows",
+    p0:"<b>One rule, both sides.</b> The two source sets graded on different definitions. The merged set applies the stricter, target-based rule throughout. No row changed grade under it.",
+    p1:"<b>Read the compression with care.</b> Part of it is method. Early rows are month-level estimates; late rows are statements logged the day they were made. Attention rose after 15 August, and the observation rate with it.",
+    p2:"<b>What the merge adds.</b> Reply time — from 15 August, eight of eleven rows are Russian, and each British move draws a response within two days. Target — threats name objects in Ukraine until 23 August, on British soil from the 24th. Rank — a former diplomat on the 25th, the foreign ministry on the 27th, Putin on 2 September.",
+    foot:"<b>Merging two colour schemes.</b> The British set coded for a link to the escalation thesis; the Russian set coded for whether a signal named Britain. Those are not the same question. This set uses the second, narrower rule throughout, which is the one that can be checked against a source rather than against a hypothesis.<br><br><b>Flag and ring.</b> The two encode different things and should be read separately: the flag is which side acted, the ring colour is the grading. The Union flag is drawn in simplified form at this size — the diagonal counterchange is not rendered. Neither is a claim about causation between adjacent rows.<br><br><b>Interval scale.</b> Gap heights use a square-root scale — a 34-day gap is drawn about six times the height of a 1-day gap, not thirty-four times. Without it the short intervals would be invisible. The day count inside each badge is exact.<br><br><b>Badge fill.</b> The fill of each interval badge runs inverse to its length: anything two days or under is full red, and longer gaps fade toward the page's slate grey. It encodes the same number as the label, so it adds emphasis rather than information.<br><br><b>Same-day intervals.</b> Two intervals are zero days and are badged as such. Ordering within a day follows the reporting, not a verified clock.<br><br><b>Approximate dates.</b> Three rows are dated to the month or to \u201caround\u201d a day (marked ~). Intervals touching them are approximate and marked as such. The ambassador's departure, carried as approximate in the earlier set, is now dated to 21 July on the Guardian's account.<br><br><b>Two rows dated to disclosure, not to the act.</b> The submarine operation ran for over a month before 9 April and sits on the day Britain revealed it. The drone strikes run the other way: dated to February, with the August disclosure logged as its own row. The two cannot be compared without that in mind.<br><br><b>Date conflicts, unresolved.</b> The Fedorov remark: CBS dates it 25 August, the Independent to around the 24th. The CIA trip: the Guardian says Tuesday, others Wednesday. The embassy warning: logged 17 August, carried by Reuters on the 18th. The Sarmat launch: Defense News 12 May, GlobalSecurity 13 May.<br><br><b>One unsourced row.</b> The 6 August defence talks have no online report found; the row is marked rather than linked to something adjacent.<br><br><b>Two candidates dropped.</b> A reported North Korean missile strike on Kyiv (19–20 Aug) and a GRU-signature explosive drone found near a Ukrainian cargo aircraft in Germany (27 Aug) were each carried by a single outlet at second hand. Neither is in the timeline.<br><br><b>Counter-signals are graded the same way.</b> On 1 September Moscow calls the ambassador's departure routine and says a successor is coming, which cuts against the reading placed on the 23 August row. It still codes red, because the rule asks whether Britain is the named object of a signal, not whether the signal points up or down. A red row is not on its own evidence of escalation.<br><br><b>Window.</b> Both sides run the full February–September window. The earlier trimmed Russian window, and the selection-effect note attached to it, do not carry over to these figures.",
+    dayUnit:"d", sameDay:"same day", gapWord:"Gap",
+    months:["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],
+    ovTitle:"Four bands, by how directly Britain is named",
+    ovNote:"A third axis, and the only one on this page that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — not how alarming its content is. That is why an unannounced nuclear exercise and an American trip to Moscow both sit in the first band. Flag and ring keep their meanings.",
+    metaFmt:(n,r,rng)=>n+" rows &nbsp;·&nbsp; "+rng+"<br>"+r,
+    bands:[
+      {name:"Britain not named", def:"Background, structural, or deliberately concealed. Britain is not the object."},
+      {name:"Britain named, routine", def:"Diplomatic and naval friction, inside the ordinary run of statecraft."},
+      {name:"A consequence is stated", def:"Britain is warned it will pay, but nothing specific is named as the thing at risk."},
+      {name:"A target is named", def:"The object that could be struck is specified — and it is on British soil."}
+    ],
+    sides:{uk:"UK", ru:"RU", ot:"US"},
+    ago:(n,soft)=>n===0?"today":n===1?"yesterday":(soft?"~":"")+n+"d ago"
+  },
+  he: {
+    dir:"rtl", lang:"he",
+    eyebrow:"בדיקת מקורות גלויים · פברואר–ספטמבר 2026 · מערך ממוזג",
+    title:"הסלמה בין בריטניה לרוסיה:<br>עשרים ושמונה אירועים, שני הצדדים",
+    standfirst:"המערך הבריטי והמערך הרוסי על ציר אחד. הצבע מסמן אם האירוע יושב על ציר בריטניה–רוסיה; הדגל שבתוך הסימן מסמן מי פעל. המרווחים המקווקווים מציגים את הזמן שחלף בין אירוע אחד למשנהו.",
+    k1:'קשר ישיר <em class="count">· 20</em>',
+    k1d:"נוקב בשם בריטניה, או פועל נגד כלי שיט, אנשי סגל, שטח או ציוד בריטיים.",
+    k2:'אין קשר ישיר <em class="count">· 8</em>',
+    k2d:"הגורם המתועד נמצא במקום אחר — אוקראינה בכללותה, נאט\u201dו, וושינגטון או זירה פנימית. כל קשר בריטי הוא הסקה ולא אמירה.",
+    f1:'מהלך בריטי או מערבי <em class="count">· 9</em>', f1d:"דגל בריטניה.",
+    f2:'מהלך או הצהרה רוסיים <em class="count">· 17</em>', f2d:"דגל רוסיה.",
+    f3:'צד שלישי <em class="count">· 2</em>', f3d:"שתי השורות אמריקאיות.",
+    panelTitle:"התכווצות המרווחים",
+    unit:" ימים",
+    s1:"מרווח ממוצע, פברואר → 15 באוגוסט", s2:"מרווח ממוצע, 15 באוגוסט – 2 בספטמבר",
+    s3:"מהמרווח הארוך ביותר לקצר ביותר", s4:"שורות רוסיות / בריטיות / צד שלישי",
+    p0:"<b>כלל אחד, לשני הצדדים.</b> שני המערכים המקוריים דירגו לפי הגדרות שונות. המערך הממוזג מחיל את הכלל המחמיר יותר, זה שמבוסס על המטרה, על כל השורות — ואף שורה לא שינתה דירוג.",
+    p1:"<b>יש לקרוא את ההתכווצות בזהירות.</b> חלק ממנה נובע מהשיטה. הרשומות המוקדמות הן הערכות ברמת החודש; המאוחרות הן הצהרות שנרשמו ביום שנאמרו. תשומת הלב עלתה אחרי 15 באוגוסט, ואיתה שיעור התצפיות.",
+    p2:"<b>מה שהמיזוג מוסיף.</b> זמן תגובה — מ-15 באוגוסט שמונה מאחת־עשרה השורות רוסיות, וכל מהלך בריטי מושך תגובה בתוך יומיים. מטרה — האיומים נוקבים ביעדים באוקראינה עד 23 באוגוסט, ועל אדמת בריטניה מה-24. דרג — דיפלומט לשעבר ב-25, משרד החוץ ב-27, פוטין ב-2 בספטמבר.",
+    foot:"<b>מיזוג שתי סכמות צבע.</b> המערך הבריטי סימן לפי קשר לתזת ההסלמה; המערך הרוסי סימן לפי השאלה אם האיתות נוקב בשם בריטניה. אלה אינן אותה שאלה. המערך הזה משתמש בכלל השני, הצר יותר, לכל אורכו — זה שניתן לבדיקה מול מקור ולא מול השערה.<br><br><b>הדגל והטבעת.</b> השניים מקודדים דברים שונים ויש לקרוא אותם בנפרד: הדגל הוא הצד שפעל, צבע הטבעת הוא הדירוג. דגל בריטניה מצויר בגרסה מפושטת בגודל הזה — הקו האלכסוני המוסט אינו מיוצג. אף אחד מהם אינו טענה על סיבתיות בין שורות סמוכות.<br><br><b>קנה המידה של המרווחים.</b> גובה המרווחים מבוסס על שורש ריבועי — מרווח של 34 יום מצויר בגובה של פי שישה בערך ממרווח של יום אחד, ולא פי שלושים וארבעה. בלעדיו המרווחים הקצרים היו נעלמים. מספר הימים בתוך כל תג מדויק.<br><br><b>מילוי התגים.</b> מילוי כל תג מרווח פועל הפוך לאורכו: כל מרווח של יומיים או פחות מוצג באדום מלא, ומרווחים ארוכים יותר דוהים לעבר האפור־כחלחל של הדף. הוא מקודד בדיוק את אותו מספר שמופיע בתווית, ולכן הוא מוסיף הדגשה ולא מידע.<br><br><b>מרווחים של אותו יום.</b> שני מרווחים הם אפס ימים ומסומנים ככאלה. הסדר בתוך יום נקבע לפי הדיווח ולא לפי שעון מאומת.<br><br><b>תאריכים משוערים.</b> שלוש שורות מתוארכות לרמת החודש או ל\u201dבערך\u201d יום מסוים (מסומן ~). מרווחים הנוגעים בהן משוערים ומסומנים ככאלה. עזיבת השגריר, שנשאה סימון משוער במערך הקודם, מתוארכת כעת ל-21 ביולי לפי הגרדיאן.<br><br><b>שתי שורות מתוארכות לחשיפה ולא למעשה.</b> מבצע הצוללות נמשך למעלה מחודש לפני 9 באפריל, והשורה יושבת על היום שבו בריטניה חשפה אותו. תקיפות המזל\u201dטים פועלות בכיוון ההפוך: מתוארכות לפברואר, כשהחשיפה של אוגוסט נרשמת כשורה נפרדת. אי אפשר להשוות ביניהן בלי לזכור זאת.<br><br><b>סתירות תאריכים שלא יושבו.</b> אמירת פדורוב: CBS מתארך ל-25 באוגוסט, האינדיפנדנט לסביבות ה-24. ביקור ראש ה-CIA: הגרדיאן אומר יום שלישי, אחרים יום רביעי. אזהרת השגרירות: נרשמה ב-17 באוגוסט, רויטרס פרסמה ב-18. שיגור הסרמט: Defense News ב-12 במאי, GlobalSecurity ב-13 במאי.<br><br><b>שורה אחת ללא מקור.</b> לשיחות ההגנה של 6 באוגוסט לא נמצא דיווח מקוון; השורה מסומנת ככזו ולא מקושרת למקור סמוך.<br><br><b>שני מועמדים הוסרו.</b> דיווח על תקיפת קייב בטילים צפון־קוריאניים (19–20 באוגוסט) ורחפן נפץ בחתימת GRU שנמצא ליד מטוס מטען אוקראיני בגרמניה (27 באוגוסט) הופיעו כל אחד בכלי תקשורת יחיד וממקור משני. שניהם אינם בציר הזמן.<br><br><b>איתותים נגדיים מדורגים באותה שיטה.</b> ב-1 בספטמבר מוסקבה מכנה את עזיבת השגריר שגרתית ומודיעה שמחליף בדרך, דבר הסותר את הקריאה שהוצמדה לשורה של 23 באוגוסט. השורה עדיין מסומנת באדום, משום שהכלל שואל אם בריטניה היא מושא האיתות ולא אם האיתות מצביע כלפי מעלה או מטה. שורה אדומה אינה כשלעצמה ראיה להסלמה.<br><br><b>חלון הזמן.</b> שני הצדדים פרוסים על חלון פברואר–ספטמבר המלא. החלון הרוסי המקוצר הקודם, וההערה על אפקט הבחירה שנלוותה אליו, אינם חלים על הנתונים כאן.",
+    dayUnit:" ימים", sameDay:"אותו יום", gapWord:"פער",
+    months:["ינו׳","פבר׳","מרץ","אפר׳","מאי","יוני","יולי","אוג׳","ספט׳","אוק׳","נוב׳","דצמ׳"],
+    ovTitle:"ארבע רמות, לפי מידת הישירות שבה בריטניה נקובה",
+    ovNote:"ציר שלישי, והיחיד בדף הזה שהוא שיפוט ולא עובדה מתועדת. המבחן הוא עד כמה בריטניה היא במפורש מושא האיתות — לא עד כמה תוכנו מדאיג. לכן תרגיל גרעיני ללא הודעה וביקור אמריקאי במוסקבה יושבים שניהם ברמה הראשונה. הדגל והטבעת שומרים על משמעותם.",
+    metaFmt:(n,r,rng)=>n+" שורות &nbsp;·&nbsp; "+rng+"<br>"+r,
+    bands:[
+      {name:"בריטניה אינה נקובה", def:"רקע, מהלך מבני, או פעולה שהוסתרה בכוונה. בריטניה אינה המושא."},
+      {name:"בריטניה נקובה, שגרתי", def:"חיכוך דיפלומטי וימי, בתוך ההתנהלות המדינית הרגילה."},
+      {name:"נאמרת השלכה", def:"בריטניה מוזהרת שתשלם מחיר, אך לא ננקב דבר מסוים כמה שנמצא בסיכון."},
+      {name:"ננקבת מטרה", def:"המושא שעלול להיות מותקף מצוין במפורש — והוא על אדמת בריטניה."}
+    ],
+    sides:{uk:"בריטניה", ru:"רוסיה", ot:"ארה\u201db"},
+    ago:(n,soft)=>n===0?"היום":n===1?"אתמול":(!soft&&n===2)?"לפני יומיים":"לפני "+(soft?"~":"")+n+" ימים"
+  }
+};
+
+const EVENTS = [
+  { date:"2026-02-01", approx:true, side:"uk", rag:"r",
+    band:1,
+    sources:[{url:"https://www.aljazeera.com/news/2026/8/18/why-is-russia-threatening-uk-with-consequences-over-ukraine-drones", label:"Al Jazeera"}],
+    en:{ label:"~FEB 2026",
+      short:"Drone strikes begin",
+      title:"UK-made drones begin striking Russian refineries",
+      why:"Volgograd and Yaroslavl. Dated to the activity; the disclosure is logged separately on 15 August." },
+    he:{ label:"~פברואר 2026",
+      short:"תקיפות מזל”טים מתחילות",
+      title:"מזל\u201dטים מתוצרת בריטניה מתחילים לתקוף בתי זיקוק רוסיים",
+      why:"וולגוגרד ויארוסלב. מתוארך לפעילות עצמה; החשיפה נרשמת בנפרד ב-15 באוגוסט." } },
+
+  { date:"2026-02-05", side:"ot", rag:"g",
+    band:1,
+    sources:[{url:"https://www.armscontrol.org/act/2026-03/news/new-start-expires-us-urges-modernized-treaty", label:"Arms Control Assoc."}],
+    en:{ label:"5 FEB 2026",
+      short:"New START lapses",
+      title:"New START expires with no successor",
+      why:"The last binding cap on US and Russian strategic warheads lapses, with no negotiation under way. Lavrov tells parliament on 11 February that Russia will hold to the numerical limits only for as long as Washington does. The driver is American, not British." },
+    he:{ label:"5 בפברואר 2026",
+      short:"START החדשה פוקעת",
+      title:"אמנת START החדשה פוקעת ללא הסכם ממשיך",
+      why:"התקרה המחייבת האחרונה על ראשי נפץ אסטרטגיים אמריקאיים ורוסיים פוקעת, ללא משא ומתן על הסכם חדש. לברוב מודיע לפרלמנט ב-11 בפברואר שרוסיה תשמור על המגבלות הכמותיות רק כל עוד וושינגטון עושה זאת. הגורם הוא אמריקאי, לא בריטי." } },
+
+  { date:"2026-02-17", side:"ru", rag:"g",
+    band:1,
+    sources:[{url:"https://www.rferl.org/a/russian-oreshnik-nuclear-capable-missile-belarus/33693310.html", label:"RFE/RL"}],
+    en:{ label:"17 FEB 2026",
+      short:"Oreshnik site defended",
+      title:"Air defences ring the suspected Oreshnik site in Belarus",
+      why:"Planet Labs imagery shows six air-defence and electronic-warfare positions around the former Krychev-6 airfield near Krychau, close to the Russian border. Moscow and Minsk said in December that the nuclear-capable missile was on combat duty in Belarus but never named a location. The reach is European, not specifically British." },
+    he:{ label:"17 בפברואר 2026",
+      short:"אתר האורשניק מוגן",
+      title:"סוללות הגנה אווירית מקיפות את אתר האורשניק המשוער בבלארוס",
+      why:"תצלומי Planet Labs מראים שישה מערכי הגנה אווירית ולוחמה אלקטרונית סביב שדה התעופה לשעבר קריצ׳ב-6 ליד קריצ׳או, סמוך לגבול הרוסי. מוסקבה ומינסק הודיעו בדצמבר שהטיל בעל היכולת הגרעינית הוצב בכוננות בבלארוס, אך מעולם לא נקבו במיקום. הטווח אירופי, לא בריטי במיוחד." } },
+
+  { date:"2026-03-15", approx:true, side:"ru", rag:"g",
+    band:1,
+    sources:[{url:"https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-august-1-2026", label:"ISW"}],
+    en:{ label:"~MID-MAR 2026",
+      short:"Offensive opens",
+      title:"The spring–summer offensive opens",
+      why:"ISW dates the start to mid-March; there is no announcement to anchor it. By July the monthly rate of advance had not meaningfully changed from February — roughly 1.2 km² a day, against 456 km² taken in July 2025. Effort up, ground gained flat." },
+    he:{ label:"~אמצע מרץ 2026",
+      short:"המתקפה נפתחת",
+      title:"מתקפת האביב–קיץ נפתחת",
+      why:"ISW מתארך את הפתיחה לאמצע מרץ; אין הודעה רשמית לעגן אותה. עד יולי קצב ההתקדמות החודשי לא השתנה משמעותית לעומת פברואר — כ-1.2 קמ\u201dר ליום, לעומת 456 קמ\u201dר שנכבשו ביולי 2025. המאמץ עלה, השטח שנכבש נותר שטוח." } },
+
+  { date:"2026-03-30", side:"ru", rag:"r",
+    band:2,
+    sources:[{url:"https://www.themoscowtimes.com/2026/03/30/russia-expels-british-diplomat-over-alleged-economic-espionage-a92371", label:"Moscow Times"}],
+    en:{ label:"30 MAR 2026",
+      short:"Diplomat expelled",
+      title:"Russia expels a British diplomat and summons the chargé d'affaires",
+      why:"The FSB accuses second secretary Albertus Janse van Rensburg of espionage and gives him two weeks. Russian state TV calls him the sixteenth British diplomat expelled in two years. Moscow had already expelled one in January; London revoked Russian accreditations in February and again on 29 April." },
+    he:{ label:"30 במרץ 2026",
+      short:"דיפלומט מגורש",
+      title:"רוסיה מגרשת דיפלומט בריטי ומזמנת את הממונה על העסקים",
+      why:"ה-FSB מאשים את המזכיר השני אלברטוס ינסה ואן רנסבורג בריגול ונותן לו שבועיים. הטלוויזיה הממלכתית הרוסית מכנה אותו הדיפלומט הבריטי השישה־עשר שגורש בתוך שנתיים. מוסקבה כבר גירשה אחד בינואר; לונדון ביטלה אקרדיטציות רוסיות בפברואר ושוב ב-29 באפריל." } },
+
+  { date:"2026-04-09", side:"ru", rag:"r",
+    band:2,
+    sources:[{url:"https://www.aljazeera.com/amp/news/2026/4/9/uk-says-three-russian-submarines-tracked-during-covert-operation", label:"Al Jazeera"}],
+    en:{ label:"9 APR 2026",
+      short:"Submarine op exposed",
+      title:"Month-long submarine operation over UK and Norwegian cables exposed",
+      why:"Healey reveals an Akula-class attack submarine and two GUGI deep-sea vessels spent over a month in and around British waters — inside the exclusive economic zone, outside the territorial sea. He calls the Akula a likely decoy for the two survey boats. Norway confirms its part. The Russian embassy in London calls the account neither credible nor verifiable. Dated to disclosure; the activity ran through February and March." },
+    he:{ label:"9 באפריל 2026",
+      short:"מבצע צוללות נחשף",
+      title:"נחשף מבצע צוללות בן חודש מעל כבלים בריטיים ונורווגיים",
+      why:"הילי חושף שצוללת תקיפה מדגם אקולה ושתי צוללות מחקר עמוק של GUGI שהו למעלה מחודש במים בריטיים ובסביבתם — בתוך האזור הכלכלי הבלעדי, מחוץ למים הטריטוריאליים. הוא מכנה את האקולה הסחה סבירה לטובת שתי צוללות הסקר. נורווגיה מאשרת את חלקה. שגרירות רוסיה בלונדון מכנה את התיאור בלתי אמין ובלתי ניתן לאימות. מתוארך לחשיפה; הפעילות עצמה נמשכה לאורך פברואר ומרץ." } },
+
+  { date:"2026-04-15", side:"uk", rag:"r",
+    band:2,
+    sources:[{url:"https://www.gov.uk/government/news/uk-announces-biggest-ever-drone-package-for-ukraine-to-push-back-putin", label:"GOV.UK"}],
+    en:{ label:"15 APR 2026",
+      short:"£752m drone package",
+      title:"£752m package: at least 120,000 drones for Ukraine",
+      why:"Announced by the MoD ahead of the 34th Ukraine Defence Contact Group. Includes long-range strike drones. No Russian response is logged in this set within the following month." },
+    he:{ label:"15 באפריל 2026",
+      short:"חבילת מזל”טים בת 752 מ׳",
+      title:"חבילה של 752 מיליון ליש\u201dט: לפחות 120,000 מזל\u201dטים לאוקראינה",
+      why:"הוכרזה על ידי משרד ההגנה הבריטי לקראת המפגש ה-34 של קבוצת הקשר להגנת אוקראינה. כוללת מזל\u201dטי תקיפה ארוכי טווח. במערך הזה לא נרשמה תגובה רוסית בחודש שלאחר מכן." } },
+
+  { date:"2026-04-30", side:"uk", rag:"g",
+    band:1,
+    sources:[{url:"https://www.mi5.gov.uk/uk-national-terrorism-threat-level-raised-to-severe", label:"MI5"}],
+    en:{ label:"30 APR 2026",
+      short:"Threat level SEVERE",
+      title:"Terror threat level raised to SEVERE",
+      why:"JTAC assessment, SUBSTANTIAL → SEVERE. No Russia link given." },
+    he:{ label:"30 באפריל 2026",
+      short:"רמת איום SEVERE",
+      title:"רמת איום הטרור מועלית ל-SEVERE",
+      why:"הערכת JTAC, מ-SUBSTANTIAL ל-SEVERE. לא צוין קשר לרוסיה." } },
+
+  { date:"2026-05-13", side:"ru", rag:"g",
+    band:1,
+    sources:[{url:"https://www.globalsecurity.org/wmd/ops/putin-2026-05.htm", label:"GlobalSecurity"}],
+    en:{ label:"13 MAY 2026",
+      short:"Sarmat test launch",
+      title:"Sarmat test launch; Poseidon and Burevestnik declared near-ready",
+      why:"Three signature strategic systems placed in a single news cycle, three months after New START lapsed. Note a date conflict: Defense News places the Sarmat launch on 12 May, GlobalSecurity on 13 May. Putin has claimed Sarmat serial production three times since 2022 with one clean flight test on the public record." },
+    he:{ label:"13 במאי 2026",
+      short:"ניסוי שיגור סרמט",
+      title:"שיגור ניסוי של סרמט; פוסידון ובורביסטניק מוכרזים כמעט מוכנים",
+      why:"שלוש מערכות אסטרטגיות מובילות מוצגות במחזור חדשותי אחד, שלושה חודשים אחרי פקיעת START החדשה. שימו לב לסתירה בתאריכים: Defense News מציב את שיגור הסרמט ב-12 במאי, GlobalSecurity ב-13 במאי. פוטין הכריז על ייצור סדרתי של סרמט שלוש פעמים מאז 2022, עם ניסוי טיסה תקין אחד בלבד בתיעוד הפומבי." } },
+
+  { date:"2026-05-19", side:"ru", rag:"g",
+    band:1,
+    sources:[{url:"https://www.defensenews.com/global/europe/2026/05/20/russia-launches-unannounced-nuclear-exercise-including-belarusian-launch-sites/", label:"Defense News"}],
+    en:{ label:"19 MAY 2026",
+      short:"Unannounced nuclear drill",
+      title:"Unannounced nuclear exercise, with Belarusian units integrated",
+      why:"Around 65,000 personnel over three days. Minsk announces a parallel drill the day before, in which its own units practise preparing nuclear munitions from unprepared positions on Belarusian soil. The absence of notice is itself the message." },
+    he:{ label:"19 במאי 2026",
+      short:"תרגיל גרעיני ללא הודעה",
+      title:"תרגיל גרעיני ללא הודעה מוקדמת, בשילוב יחידות בלארוסיות",
+      why:"כ-65,000 אנשי צבא על פני שלושה ימים. מינסק מכריזה יום קודם על תרגיל מקביל שבו יחידותיה מתאמנות בהכנת אמצעי לחימה גרעיניים מעמדות לא מוכנות על אדמת בלארוס. היעדר ההודעה המוקדמת הוא עצמו המסר." } },
+
+  { date:"2026-06-01", approx:true, side:"uk", rag:"r",
+    band:1,
+    sources:[{url:"https://ukdefencejournal.org.uk/britain-brushes-off-threats-from-russia/", label:"UK Defence Journal"}],
+    en:{ label:"JUN 2026",
+      short:"Deep strikes intensify",
+      title:"Moscow-area deep strikes intensify",
+      why:"Month-level dating only." },
+    he:{ label:"יוני 2026",
+      short:"תקיפות עומק מתגברות",
+      title:"תקיפות העומק באזור מוסקבה מתגברות",
+      why:"תיארוך ברמת החודש בלבד." } },
+
+  { date:"2026-06-16", side:"ru", rag:"r",
+    band:2,
+    sources:[{url:"https://www.navylookout.com/russian-frigate-rfs-admiral-grigorovich-fires-warning-shots-at-a-british-yacht/", label:"Navy Lookout"}],
+    en:{ label:"16 JUN 2026",
+      short:"Warning shots, Channel",
+      title:"Russian frigate fires warning shots near a British yacht in the Channel",
+      why:"The Admiral Grigorovich uses horn signals, flares and four or five small-arms rounds as the yacht Bright Future closes in fog, 20 nautical miles south of the Isle of Wight and inside the UK's economic zone. Accounts of the distance differ: the crew says about 500 yards, the Russian MoD says 150 metres. Britain had boarded the sanctioned tanker Smyrtos two days earlier." },
+    he:{ label:"16 ביוני 2026",
+      short:"יריות אזהרה בתעלה",
+      title:"פריגטה רוסית יורה יריות אזהרה ליד יאכטה בריטית בתעלה",
+      why:"האדמירל גריגורוביץ׳ משתמש בצפירות, נורי תאורה וארבע-חמש יריות מנשק קל כשהיאכטה Bright Future מתקרבת בערפל, 20 מייל ימי מדרום לאי וייט ובתוך האזור הכלכלי הבריטי. הגרסאות על המרחק חלוקות: הצוות מדבר על כ-500 יארד, משרד ההגנה הרוסי על 150 מטר. בריטניה עלתה על המכלית המסונקצת Smyrtos יומיים קודם לכן." } },
+
+  { date:"2026-07-20", side:"ru", rag:"r",
+    band:2,
+    sources:[{url:"https://maritime-executive.com/article/royal-navy-monitors-increased-russian-activity-in-uk-waters-in-2026", label:"Maritime Executive"}],
+    en:{ label:"20 JUL 2026",
+      short:"Gunnery off UK coast",
+      title:"Russian frigate holds gunnery firings off the UK and French coasts",
+      why:"The Neustrashimy fires roughly twenty rounds from its 100mm and 30mm guns just outside British and French territorial waters, having notified the Royal Navy first. HMS Tyne watches from five nautical miles. Russian naval activity in UK waters is running about a quarter above the same period last year." },
+    he:{ label:"20 ביולי 2026",
+      short:"אימוני ירי מול החוף",
+      title:"פריגטה רוסית מקיימת אימוני ירי מול חופי בריטניה וצרפת",
+      why:"הניוסטראשימי יורה כעשרים פגזים מתותחי 100 ו-30 מ\u201dמ ממש מחוץ למים הטריטוריאליים הבריטיים והצרפתיים, לאחר שהודיעה מראש לצי המלכותי. HMS Tyne צופה ממרחק חמישה מיילים ימיים. הפעילות הימית הרוסית במים בריטיים גבוהה בכרבע לעומת אותה תקופה אשתקד." } },
+
+  { date:"2026-07-21", side:"ru", rag:"r",
+    band:2,
+    sources:[
+      {url:"https://www.theguardian.com/world/2026/aug/23/russia-withdraws-ambassador-uk-kremlin-pressure-ukraine-andrey-kelin", label:"Guardian"},
+      {url:"https://www.gbnews.com/news/world/russian-ambassador-withdrawn-vladimir-putin-andrey-kelin", label:"GB News"}],
+    en:{ label:"21 JUL 2026",
+      short:"Ambassador leaves London",
+      title:"Ambassador Andrey Kelin leaves London after seven years",
+      why:"The Guardian dates the departure to 21 July, firming up what the earlier set carried as approximate. It was flagged internally on 11 June, so it predates both the jammer transfer and the drone disclosure. Britain still has an ambassador in Moscow; the asymmetry is the signal, not the exit." },
+    he:{ label:"21 ביולי 2026",
+      short:"השגריר עוזב את לונדון",
+      title:"השגריר אנדריי קלין עוזב את לונדון אחרי שבע שנים",
+      why:"הגרדיאן מתארך את העזיבה ל-21 ביולי, ומהדק את מה שנשא סימון משוער במערך הקודם. הדבר סומן פנימית כבר ב-11 ביוני, כך שהוא מקדים גם את העברת המשבשים וגם את חשיפת המזל\u201dטים. לבריטניה עדיין יש שגריר במוסקבה; האסימטריה היא האות, לא העזיבה." } },
+
+  { date:"2026-07-27", side:"uk", rag:"r",
+    band:2,
+    sources:[{url:"https://ukrainetoday.org/uk-to-protect-ukraines-attack-drones-with-signal-jammers/", label:"Telegraph (synd.)"}],
+    en:{ label:"27 JUL 2026",
+      short:"Jammer IP transferred",
+      title:"Burnham transfers Stone Cloak jammer IP to Ukraine",
+      why:"First major foreign policy act, one week into office. Britain takes battlefield telemetry back into Project Brakestop. No Russian response is logged in this set in the weeks that follow." },
+    he:{ label:"27 ביולי 2026",
+      short:"זכויות המשבשים מועברות",
+      title:"ברנהאם מעביר לאוקראינה את זכויות הקניין הרוחני של Stone Cloak",
+      why:"המהלך המדיני המשמעותי הראשון שלו, שבוע לתוך הכהונה. בריטניה מקבלת בחזרה טלמטריה משדה הקרב לטובת פרויקט Brakestop. במערך הזה לא נרשמה תגובה רוסית בשבועות שלאחר מכן." } },
+
+  { date:"2026-08-06", side:"uk", rag:"r",
+    band:2,
+    sources:[{url:null, label:"No online source found", labelHe:"לא נמצא מקור מקוון"}],
+    en:{ label:"6 AUG 2026",
+      short:"UK–Ukraine defence talks",
+      title:"UK–Ukraine defence talks",
+      why:"Air defence, counter-drone, Ukrainian drone production." },
+    he:{ label:"6 באוגוסט 2026",
+      short:"שיחות הגנה בריטניה–אוקראינה",
+      title:"שיחות הגנה בין בריטניה לאוקראינה",
+      why:"הגנה אווירית, לוחמה נגד מזל\u201dטים, ומימון ייצור מזל\u201dטים אוקראיני." } },
+
+  { date:"2026-08-14", side:"uk", rag:"g",
+    band:1,
+    sources:[{url:"https://www.gov.uk/government/news/emergency-alert-to-be-sent-to-england-and-wales-as-government-steps-up-wildfire-response-with-funding-military-support-and-bbq-ban", label:"GOV.UK"}],
+    en:{ label:"14 AUG 2026",
+      short:"Wildfire alert",
+      title:"National wildfire emergency alert, England and Wales",
+      why:"Roughly 25 hours before the Times story, not one." },
+    he:{ label:"14 באוגוסט 2026",
+      short:"התרעת שריפות",
+      title:"התרעת חירום ארצית לשריפות, אנגליה וויילס",
+      why:"כ-25 שעות לפני הכתבה בטיימס, לא שעה אחת." } },
+
+  { date:"2026-08-15", side:"uk", rag:"r",
+    band:3,
+    sources:[{url:"https://www.aljazeera.com/news/2026/8/18/why-is-russia-threatening-uk-with-consequences-over-ukraine-drones", label:"Al Jazeera"}],
+    en:{ label:"15 AUG 2026",
+      short:"Campaign disclosed",
+      title:"Sunday Times reveals the six-month strike campaign",
+      why:"Six months of UK-made drone strikes on Russian refineries, disclosed retroactively. The first British move in this set to draw a Russian response inside a week." },
+    he:{ label:"15 באוגוסט 2026",
+      short:"המערכה נחשפת",
+      title:"הסאנדיי טיימס חושף את שישה חודשי התקיפות",
+      why:"שישה חודשים של תקיפות מזל\u201dטים מתוצרת בריטניה על בתי זיקוק רוסיים, שנחשפו בדיעבד. המהלך הבריטי הראשון במערך הזה שמושך תגובה רוסית בתוך שבוע." } },
+
+  { date:"2026-08-17", side:"ru", rag:"r",
+    band:3,
+    sources:[
+      {url:"https://www.reuters.com/world/uk/russia-warns-britain-consequences-supplying-drones-ukraine-2026-08-18/", label:"Reuters"},
+      {url:"https://meduza.io/en/feature/2026/08/19/moscow-says-britain-will-have-to-answer-for-the-uk-made-drones-hitting-russian-refineries", label:"Meduza"}],
+    en:{ label:"17 AUG 2026",
+      short:"Embassy warns of a price",
+      title:"The London embassy warns Britain of consequences",
+      why:"Two days after the disclosure, the embassy says the price Britain pays will rise the longer it keeps supplying the drones. Burnham replies that Britain is not a fair-weather friend. Reuters carried the statement on 18 August; the row sits on the earlier date." },
+    he:{ label:"17 באוגוסט 2026",
+      short:"השגרירות מזהירה ממחיר",
+      title:"השגרירות בלונדון מזהירה את בריטניה מפני השלכות",
+      why:"יומיים אחרי החשיפה, השגרירות מודיעה שהמחיר שבריטניה תשלם יעלה ככל שתמשיך לספק את המזל\u201dטים. ברנהאם משיב שבריטניה אינה ידידה של ימי שמש בלבד. רויטרס פרסמה את ההצהרה ב-18 באוגוסט; השורה יושבת על התאריך המוקדם יותר." } },
+
+  { date:"2026-08-23", side:"ru", rag:"r",
+    band:3,
+    sources:[
+      {url:"https://www.theguardian.com/world/2026/aug/23/russia-withdraws-ambassador-uk-kremlin-pressure-ukraine-andrey-kelin", label:"Guardian"},
+      {url:"https://www.gbnews.com/news/world/russian-ambassador-withdrawn-vladimir-putin-andrey-kelin", label:"GB News"}],
+    en:{ label:"23 AUG 2026",
+      short:"No ambassador named",
+      title:"Moscow leaves the London embassy without an ambassador",
+      why:"No successor to Kelin is named; only a chargé d'affaires remains. Moscow describes relations as unprecedentedly low and attributes that to London's initiative, accusing Britain of choosing a \u201cpath of confrontation\u201d, with dialogue offered only if it reconsiders its policy. On 1 September Moscow reframes this as a routine end of posting; both accounts are logged." },
+    he:{ label:"23 באוגוסט 2026",
+      short:"לא ממונה שגריר",
+      title:"מוסקבה משאירה את השגרירות בלונדון ללא שגריר",
+      why:"לא ממונה מחליף לקלין; נותר רק ממונה על העסקים. מוסקבה מתארת את היחסים כנמוכים מאי פעם ותולה זאת ביוזמת לונדון, ומאשימה את בריטניה בבחירה ב\u201dנתיב של עימות\u201d, כשדיאלוג מוצע רק אם תשקול מחדש את מדיניותה. ב-1 בספטמבר מוסקבה ממסגרת זאת מחדש כסיום כהונה שגרתי; שתי הגרסאות נרשמות." } },
+
+  { date:"2026-08-24", side:"uk", rag:"r",
+    band:3,
+    sources:[
+      {url:"https://www.bbc.com/news/articles/clyqypkrzq5o", label:"BBC"},
+      {url:"https://www.pravda.com.ua/eng/news/2026/08/27/8050577/", label:"Ukrainska Pravda"}],
+    en:{ label:"24 AUG 2026",
+      short:"Storm Shadow tech to Kyiv",
+      title:"Storm Shadow production technology handed to Kyiv",
+      why:"Burnham, on his first overseas trip as prime minister, agrees that MBDA may declassify the British component data so Ukraine can build the missile itself. France follows with SCALP. Further pressure on the shadow fleet is announced alongside. The weapons are not expected to be operational before 2027." },
+    he:{ label:"24 באוגוסט 2026",
+      short:"טכנולוגיית Storm Shadow לקייב",
+      title:"טכנולוגיית הייצור של Storm Shadow נמסרת לקייב",
+      why:"ברנהאם, בנסיעתו הראשונה לחו\u201dל כראש ממשלה, מסכים ש-MBDA תוכל להסיר את הסיווג מנתוני הרכיבים הבריטיים כדי שאוקראינה תייצר את הטיל בעצמה. צרפת עוקבת עם SCALP. במקביל מוכרז לחץ נוסף על צי הצללים. הטילים אינם צפויים להיות מבצעיים לפני 2027." } },
+
+  { date:"2026-08-24", side:"ru", rag:"r",
+    band:3,
+    sources:[{url:"https://www.independent.co.uk/news/uk/home-news/andy-burnham-ukraine-dmitry-peskov-kremlin-russia-b3038192.html", label:"Independent"}],
+    en:{ label:"24 AUG 2026",
+      short:"“Participating in the war”",
+      title:"The Kremlin says Britain is participating in the war",
+      why:"Peskov says sharing the blueprints adds fuel to the fire. Lavrov casts British missile assistance as participation in the war, with all the consequences that follow from it. The response lands the same day as the announcement — the shortest reply interval in the set." },
+    he:{ label:"24 באוגוסט 2026",
+      short:"”משתתפת במלחמה”",
+      title:"הקרמלין: בריטניה משתתפת במלחמה",
+      why:"פסקוב אומר ששיתוף השרטוטים מוסיף שמן למדורה. לברוב מציג את הסיוע הבריטי בטילים כהשתתפות במלחמה, על כל המשתמע מכך. התגובה מגיעה באותו יום עצמו של ההכרזה — מרווח התגובה הקצר ביותר במערך." } },
+
+  { date:"2026-08-25", side:"ru", rag:"r",
+    band:4,
+    sources:[
+      {url:"https://www.independent.co.uk/news/uk/home-news/andy-burnham-russia-volodymyr-zelensky-ukraine-kremlin-b3038552.html", label:"Independent"},
+      {url:"https://www.cbsnews.com/news/ukraine-war-russia-uk-threat-drone-factories-attacks-unknown-sources/", label:"CBS News"}],
+    en:{ label:"25 AUG 2026",
+      short:"UK factories not ruled out",
+      title:"A Kremlin adviser will not rule out strikes on UK drone factories",
+      why:"Andrei Fedorov, a former senior Russian diplomat, declines to exclude a semi-military strike on British plants making drones and missile components — not by Russia, he says, but from unknown sources. The deniability is the point. It is the first threat in this set whose object sits on British soil. CBS dates the remark to the 25th and the Independent to around the 24th; on the earlier dating it falls on the same day as the Kyiv announcement rather than after it." },
+    he:{ label:"25 באוגוסט 2026",
+      short:"מפעלים בריטיים לא נשללים",
+      title:"יועץ לקרמלין אינו שולל תקיפות על מפעלי מזל\u201dטים בריטיים",
+      why:"אנדריי פדורוב, דיפלומט רוסי בכיר לשעבר, מסרב לשלול תקיפה \u201dחצי-צבאית\u201d על מפעלים בריטיים המייצרים מזל\u201dטים ורכיבי טילים — לא בידי רוסיה, לדבריו, אלא ממקורות לא ידועים. ההכחשה האפשרית היא כל העניין. זהו האיום הראשון במערך שמטרתו נמצאת על אדמת בריטניה. CBS מתארך את האמירה ל-25 והאינדיפנדנט לסביבות ה-24; לפי התיארוך המוקדם היא נופלת באותו יום של ההכרזה בקייב ולא אחריו." } },
+
+  { date:"2026-08-25", side:"ot", rag:"g",
+    band:1,
+    sources:[
+      {url:"https://www.theguardian.com/world/2026/aug/27/britain-ukraine-war-russia", label:"Guardian"},
+      {url:"https://www.fitsnews.com/2026/08/27/playing-with-fire-russia-warns-great-britain-over-ukraine/", label:"FITSNews (2nd-hand)", labelHe:"FITSNews (מקור משני)"}],
+    en:{ label:"25 AUG 2026",
+      short:"CIA director in Moscow",
+      title:"CIA director makes an unannounced visit to Moscow",
+      why:"Reported as following a US assessment that Russia may be preparing to test NATO with a limited assault on an allied state, probably in the Baltic. Peskov dismisses that reporting as scare material. The documented driver is American, not British — graded green on that basis. Note a date conflict: the Guardian places the trip on Tuesday, other outlets on Wednesday." },
+    he:{ label:"25 באוגוסט 2026",
+      short:"ראש ה-CIA במוסקבה",
+      title:"ראש ה-CIA מבקר במוסקבה ללא הודעה מוקדמת",
+      why:"מדווח כבא בעקבות הערכה אמריקאית שרוסיה עשויה להתכונן לבחון את נאט\u201dו בתקיפה מוגבלת על מדינה בעלת ברית, ככל הנראה בבלטיים. פסקוב דוחה את הדיווח כחומר הפחדה. הגורם המתועד הוא אמריקאי ולא בריטי — ומכאן הסימון הירוק. שימו לב לסתירה בתאריכים: הגרדיאן מציב את הנסיעה ביום שלישי, כלי תקשורת אחרים ביום רביעי." } },
+
+  { date:"2026-08-26", side:"ru", rag:"r",
+    band:3,
+    sources:[{url:"https://meduza.io/en/feature/2026/08/26/kremlin-sources-tell-bloomberg-that-putin-is-preparing-to-escalate-the-war-in-ukraine-a-growing-number-of-russian-officials-believe-that-could-eventually-mean-a-tactical-nuclear-weapon", label:"Meduza / Bloomberg"}],
+    en:{ label:"26 AUG 2026",
+      short:"Escalation signalled",
+      title:"Kremlin sources say the talks are dead and escalation is coming",
+      why:"Three people close to the Kremlin describe heavier ballistic strikes on Kyiv, including the city centre. The line that matters for this timeline: Moscow increasingly treats Ukrainian strikes as attacks by NATO states, on the grounds that those states supply the weapons and the intelligence. Anonymous sourcing, one originating outlet." },
+    he:{ label:"26 באוגוסט 2026",
+      short:"הסלמה מסומנת",
+      title:"מקורות בקרמלין: השיחות מתות וההסלמה בדרך",
+      why:"שלושה גורמים המקורבים לקרמלין מתארים תקיפות בליסטיות כבדות יותר על קייב, כולל מרכז העיר. המשפט המהותי לציר הזמן הזה: מוסקבה מתייחסת יותר ויותר לתקיפות אוקראיניות כאל תקיפות של מדינות נאט\u201dו, בטענה שאותן מדינות מספקות את הנשק ואת המודיעין. מקורות אנונימיים, כלי תקשורת מקורי אחד." } },
+
+  { date:"2026-08-27", side:"ru", rag:"r",
+    band:4,
+    sources:[
+      {url:"https://www.reuters.com/world/europe/russia-says-it-could-strike-uk-military-targets-response-ukrainian-strikes-using-2026-08-27/", label:"Reuters"},
+      {url:"https://www.theguardian.com/world/2026/aug/27/britain-ukraine-war-russia", label:"Guardian"}],
+    en:{ label:"27 AUG 2026",
+      short:"British military targets",
+      title:"Zakharova: British military targets could be struck",
+      why:"At the foreign ministry briefing: British installations and equipment \u201cin Ukraine and beyond its borders\u201d could be targeted, and London is one step from legal complicity in what she calls terrorism. Moscow separately says Britain is playing with fire. Reuters assesses it as the strongest warning Russia has issued to Britain. The MoD replies that Britain stands shoulder to shoulder with Ukraine." },
+    he:{ label:"27 באוגוסט 2026",
+      short:"מטרות צבאיות בריטיות",
+      title:"זכרובה: מטרות צבאיות בריטיות עלולות להיות מותקפות",
+      why:"בתדריך משרד החוץ: מתקנים וציוד בריטיים \u201dבאוקראינה ומחוץ לגבולותיה\u201d עלולים להפוך למטרות, ולונדון נמצאת צעד אחד מהיותה שותפה משפטית למה שהיא מכנה טרור. במקביל מוסקבה אומרת שבריטניה משחקת באש. רויטרס מעריכה שזו האזהרה החריפה ביותר שרוסיה הפנתה לבריטניה. משרד ההגנה הבריטי משיב שבריטניה עומדת כתף אל כתף עם אוקראינה." } },
+
+  { date:"2026-09-01", side:"ru", rag:"r",
+    band:2,
+    sources:[{url:"https://www.straitstimes.com/world/europe/russia-at-dire-point-in-ties-with-uk-says-it-will-name-new-ambassador-when-ready", label:"Reuters (via Straits Times)", labelHe:"\u05e8\u05d5\u05d9\u05d8\u05e8\u05e1 (\u05d3\u05e8\u05da Straits Times)"}],
+    en:{ label:"1 SEP 2026",
+      short:"Departure called routine",
+      title:"Moscow says the ambassador's departure was routine",
+      why:"Zakharova says Kelin's posting ended as scheduled and a successor will be named when Putin is ready, telling a reporter to \u201ccalm down\u201d about the idea of a formal downgrade. A chargé d'affaires is running the embassy. She describes relations with Britain as at a dire point in the same breath. This cuts against the reading placed on the 23 August row, and is logged for that reason." },
+    he:{ label:"1 בספטמבר 2026",
+      short:"העזיבה מוגדרת שגרתית",
+      title:"מוסקבה: עזיבת השגריר הייתה שגרתית",
+      why:"זכרובה אומרת שכהונתו של קלין הסתיימה כמתוכנן ושמחליף ימונה כשפוטין יהיה מוכן, ומורה לכתב \u201d\u05dc\u05d4\u05d9\u05e8\u05d2\u05e2\u201d בנוגע לרעיון של הורדת דרג רשמית. ממונה על העסקים מנהל את השגרירות. באותה נשימה היא מתארת את היחסים עם בריטניה כנמצאים בנקודה קשה. הדבר סותר את הקריאה שהוצמדה לשורה של 23 באוגוסט, ונרשם דווקא משום כך." } },
+
+  { date:"2026-09-02", side:"ru", rag:"r",
+    band:4,
+    sources:[
+      {url:"https://www.independent.co.uk/news/world/europe/ukraine-russia-war-live-putin-zelensky-uk-germany-b3043169.html", label:"Independent"},
+      {url:"https://tass.com/politics/2180923", label:"TASS (state)", labelHe:"TASS (\u05de\u05de\u05dc\u05db\u05ea\u05d9)"}],
+    en:{ label:"2 SEP 2026",
+      short:"Putin will not rule out",
+      title:"Putin will not rule out strikes on British-linked sites",
+      why:"Speaking in Bishkek, Putin declines to rule out strikes on British military or weapons-production sites, calling the question a military secret, and says any military facility in Ukraine — British ones included — is a legitimate target. Two distinct claims: the second asserts something about Ukraine, the first only refuses to deny. What changes here is the rank of the speaker rather than the target — a former diplomat on 25 August, the foreign ministry on the 27th, the president on the 2nd." },
+    he:{ label:"2 בספטמבר 2026",
+      short:"פוטין אינו שולל",
+      title:"פוטין אינו שולל תקיפות באתרים הקשורים לבריטניה",
+      why:"בהתבטאות בבישקק, פוטין נמנע מלשלול תקיפות על אתרים צבאיים או מפעלי נשק בריטיים, מכנה את השאלה סוד צבאי, ואומר שכל מתקן צבאי באוקראינה — כולל בריטי — הוא מטרה לגיטימית. שתי טענות נפרדות: השנייה קובעת משהו לגבי אוקראינה, הראשונה רק מסרבת להכחיש. מה שמשתנה כאן הוא דרגת הדובר ולא המטרה — דיפלומט לשעבר ב-25 באוגוסט, משרד החוץ ב-27, והנשיא ב-2 בספטמבר." } },
+];
+
+const FLAGS = {
+  uk: '<svg viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<rect width="60" height="30" fill="#012169"/>'
+    + '<path d="M0 0 60 30M60 0 0 30" stroke="#fff" stroke-width="7"/>'
+    + '<path d="M0 0 60 30M60 0 0 30" stroke="#C8102E" stroke-width="3.5"/>'
+    + '<path d="M30 0V30M0 15H60" stroke="#fff" stroke-width="11"/>'
+    + '<path d="M30 0V30M0 15H60" stroke="#C8102E" stroke-width="6.5"/></svg>',
+  ru: '<svg viewBox="0 0 9 6" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<rect width="9" height="6" fill="#f5f5f5"/>'
+    + '<rect y="2" width="9" height="2" fill="#0039A6"/>'
+    + '<rect y="4" width="9" height="2" fill="#D52B1E"/></svg>',
+  ot: '<svg viewBox="0 0 39 20" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<rect width="39" height="20" fill="#f5f5f5"/>'
+    + '<g fill="#B22234"><rect width="39" height="1.54"/><rect y="3.08" width="39" height="1.54"/>'
+    + '<rect y="6.15" width="39" height="1.54"/><rect y="9.23" width="39" height="1.54"/>'
+    + '<rect y="12.31" width="39" height="1.54"/><rect y="15.38" width="39" height="1.54"/>'
+    + '<rect y="18.46" width="39" height="1.54"/></g>'
+    + '<rect width="15.6" height="10.77" fill="#3C3B6E"/></svg>'
+};
+
+const DAY = 86400000;
+const tl = document.getElementById("tl");
+
+function daysAgo(iso){
+  const now = new Date(); now.setHours(0,0,0,0);
+  return Math.round((now - new Date(iso)) / DAY);
+}
+
+function lerpHex(a, b, t){
+  const p = h => [1,3,5].map(i => parseInt(h.substr(i,2),16));
+  const [r1,g1,b1] = p(a), [r2,g2,b2] = p(b);
+  const m = (x,y) => Math.round(x + (y - x) * t);
+  return "rgb(" + m(r1,r2) + "," + m(g1,g2) + "," + m(b1,b2) + ")";
+}
+
+const set = (id, html) => { document.getElementById(id).innerHTML = html; };
+
+function shortDate(iso, t, approx){
+  const d = new Date(iso);
+  return (approx ? "~" : "") + d.getUTCDate() + " " + t.months[d.getUTCMonth()];
+}
+
+function renderBands(code){
+  const t = T[code];
+  set("ovTitle", t.ovTitle);
+  set("ovNote", t.ovNote);
+  const host = document.getElementById("bands");
+  host.innerHTML = "";
+
+  t.bands.forEach((b, bi) => {
+    const rows = EVENTS.filter(e => e.band === bi + 1);
+    const ru = rows.filter(e => e.side === "ru").length;
+    const uk = rows.filter(e => e.side === "uk").length;
+    const ot = rows.length - ru - uk;
+    const split = [ru + " " + t.sides.ru, uk + " " + t.sides.uk]
+      .concat(ot ? [ot + " " + t.sides.ot] : []).join(" / ");
+    const range = rows.length
+      ? shortDate(rows[0].date, t, rows[0].approx) + " – " + shortDate(rows[rows.length - 1].date, t, rows[rows.length - 1].approx)
+      : "";
+
+    const card = document.createElement("div");
+    card.className = "band";
+    card.innerHTML =
+      '<div class="meter"><i style="width:' + ((bi + 1) * 25) + '%"></i></div>' +
+      '<span class="num">' + (bi + 1) + ' / 4</span>' +
+      '<h4>' + b.name + '</h4>' +
+      '<p class="def">' + b.def + '</p>' +
+      '<div class="meta">' + t.metaFmt(rows.length, split, range) + '</div>' +
+      rows.map(e =>
+        '<div class="ev ' + e.rag + '"><span class="m">' + FLAGS[e.side] + '</span>' +
+        '<span class="t">' + e[code].short +
+        '<span class="d">' + shortDate(e.date, t, e.approx) + '</span></span></div>'
+      ).join("");
+    host.appendChild(card);
+  });
+}
+
+function render(code){
+  const t = T[code];
+  document.documentElement.lang = t.lang;
+  document.body.dir = t.dir;
+
+  set("eyebrow", t.eyebrow);
+  set("title", t.title);
+  set("standfirst", t.standfirst);
+  set("k1", t.k1); set("k1d", t.k1d);
+  set("k2", t.k2); set("k2d", t.k2d);
+  set("f1", t.f1); set("f1d", t.f1d);
+  set("fl1", FLAGS.uk); set("fl2", FLAGS.ru); set("fl3", FLAGS.ot);
+  set("f2", t.f2); set("f2d", t.f2d);
+  set("f3", t.f3); set("f3d", t.f3d);
+  set("panelTitle", t.panelTitle);
+  set("u1", t.unit); set("u2", t.unit);
+  set("s1", t.s1); set("s2", t.s2); set("s3", t.s3); set("s4", t.s4);
+  set("p0", t.p0); set("p1", t.p1); set("p2", t.p2);
+  set("foot", t.foot);
+
+  document.getElementById("btn-en").setAttribute("aria-pressed", code === "en");
+  document.getElementById("btn-he").setAttribute("aria-pressed", code === "he");
+
+  renderBands(code);
+
+  tl.innerHTML = "";
+  EVENTS.forEach((e, i) => {
+    const c = e[code];
+
+    const srcHtml = e.sources.map(s => {
+      const label = (code === "he" && s.labelHe) ? s.labelHe : s.label;
+      return s.url
+        ? '<a class="src" href="' + s.url + '" target="_blank" rel="noopener">' + label + '</a>'
+        : '<span class="src missing">' + label + '</span>';
+    }).join('<span class="sep">·</span>');
+
+    const row = document.createElement("div");
+    row.className = "row " + e.side + " " + e.rag;
+    row.innerHTML =
+      '<span class="dot">' + FLAGS[e.side] + '</span>' +
+      '<time><span class="side">' + t.sides[e.side] + '</span>' +
+        t.ago(daysAgo(e.date), e.approx) +
+        '<span class="abs">' + c.label + '</span></time>' +
+      '<h2>' + c.title + '</h2>' +
+      '<p class="why">' + c.why + '</p>' +
+      '<div class="srcs">' + srcHtml + '</div>';
+    tl.appendChild(row);
+
+    const next = EVENTS[i + 1];
+    if (!next) return;
+
+    const days = Math.round((new Date(next.date) - new Date(e.date)) / DAY);
+    const soft = e.approx || next.approx;
+    const h = Math.round(26 + Math.sqrt(days) * 15);
+
+    // Intensity: pinned at 1.0 for anything two days or under, then falling away
+    // on a log scale. Vivid red at the short end, fading toward slate at the long.
+    const k = days <= 2 ? 1 : Math.max(0, Math.min(1, 1 - Math.log(days / 2) / Math.log(45)));
+    const fill   = lerpHex("#1b232c", "#c0605a", k);
+    const stroke = lerpHex("#2a333d", "#d97e77", k);
+    const text   = lerpHex("#6c7885", "#fff1ef", Math.pow(k, 0.7));
+
+    const gap = document.createElement("div");
+    gap.className = "gap";
+    gap.style.height = h + "px";
+    gap.innerHTML =
+      '<span class="bar"></span>' +
+      '<span class="days" style="background:' + fill + ';border-color:' + stroke +
+      ';color:' + text + '">' +
+      t.gapWord + ' ' +
+      (days === 0 ? t.sameDay : (soft ? "~" : "") + days + t.dayUnit) + '</span>';
+    tl.appendChild(gap);
+  });
+}
+
+document.getElementById("btn-en").addEventListener("click", () => render("en"));
+document.getElementById("btn-he").addEventListener("click", () => render("he"));
+render("en");
+</script>
+</body>
+</html>
