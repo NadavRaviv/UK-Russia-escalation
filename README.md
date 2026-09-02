@@ -6,9 +6,19 @@ The page exists to test a hypothesis, not to assert it: that British military in
 
 ## Running it
 
-Open `index.html` in a browser, or visit the published page at [nadavraviv.github.io/UK-Russia-escalation](https://nadavraviv.github.io/UK-Russia-escalation/). There is no build step and no dependency beyond Google Fonts, loaded from a CDN — so the page needs network access for its typefaces, and every visitor makes a request to Google. Self-host the fonts or swap in a system stack if that matters for your deployment.
+Open `index.html` in a browser. There is no build step and no dependency beyond Google Fonts, loaded from a CDN — so the page needs network access for its typefaces, and every visitor makes a request to Google. Self-host the fonts or swap in a system stack if that matters for your deployment.
 
-GitHub Pages is deployed from `main` by `.github/workflows/pages.yml`. If the site is not yet live, enable Pages once under **Settings → Pages**, source **GitHub Actions**.
+### Netlify
+
+`netlify.toml` publishes `index.html` as a static site. Deploy from this repo with [Deploy to Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/NadavRaviv/UK-Russia-escalation), or from the CLI:
+
+```bash
+npx netlify-cli deploy --prod --build
+```
+
+### GitHub Pages
+
+GitHub Pages is deployed from `main` by `.github/workflows/pages.yml`. If that site is not yet live, enable Pages once under **Settings → Pages**, source **GitHub Actions**. The Pages URL is [nadavraviv.github.io/UK-Russia-escalation](https://nadavraviv.github.io/UK-Russia-escalation/).
 
 ## License
 
