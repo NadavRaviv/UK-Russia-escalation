@@ -5,3 +5,4 @@
   from = "/"
   to = "/uk-russia-merged-timeline.html"
   status = 200
+  force = true
