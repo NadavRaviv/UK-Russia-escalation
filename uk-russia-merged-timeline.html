@@ -22,7 +22,7 @@
     --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
   }
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
+  html{-webkit-text-size-adjust:100%;overflow-x:hidden}
   body{
     margin:0;background:var(--base);color:var(--text);
     font-family:var(--sans);line-height:1.5;
@@ -42,9 +42,9 @@
     background:transparent;border:0;color:var(--faint);
     padding:7px 13px;cursor:pointer;transition:color .15s,background .15s;
   }
-  .toggle button:nth-child(2){font-family:'Heebo',var(--sans);letter-spacing:0;font-size:12.5px}
   .toggle button:hover{color:var(--text)}
   .toggle button[aria-pressed="true"]{background:rgba(148,163,184,0.11);color:var(--text)}
+  #btn-he{font-family:'Heebo',var(--sans);letter-spacing:0;font-size:12.5px}
 
   header{border-bottom:1px solid var(--rule);padding-bottom:24px;margin-bottom:8px}
   .eyebrow{
@@ -165,21 +165,51 @@
   .gap:hover .days{transform:translateX(3px)}
   body[dir="rtl"] .gap:hover .days{transform:translateX(-3px)}
 
-  /* --- horizontal band overview --- */
-  .overview{
-    width:min(1200px, calc(100vw - 36px));
-    margin:0 0 34px;margin-left:50%;transform:translateX(-50%);
+  /* --- band overview: kanban (horizontal) / outline (vertical) --- */
+  .overview{margin:0 0 34px}
+  .ovhead{
+    display:flex;align-items:flex-start;justify-content:space-between;
+    gap:12px;flex-wrap:wrap;margin-bottom:4px;
   }
-  .overview > h3{
+  .ovhead h3{
     font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--faint);margin:0 0 4px;font-weight:500;
+    color:var(--faint);margin:0;font-weight:500;padding-top:8px;
   }
+  .viewtoggle button{
+    font-family:var(--sans);letter-spacing:0;font-size:12px;line-height:1.2;
+    padding:6px 12px 7px;display:flex;flex-direction:column;align-items:flex-start;gap:1px;
+  }
+  body[dir="rtl"] .viewtoggle button{font-family:'Heebo',var(--sans)}
+  .viewtoggle .hint{
+    font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faint);font-weight:400;
+  }
+  body[dir="rtl"] .viewtoggle .hint{
+    font-family:'Heebo',var(--sans);letter-spacing:0;text-transform:none;font-size:10.5px;
+  }
+  .viewtoggle button[aria-pressed="true"] .hint{color:var(--muted)}
   .overview > p.note{font-size:11.5px;color:var(--muted);margin:0 0 13px;max-width:70ch}
-  .bands{display:flex;flex-wrap:nowrap;gap:8px;align-items:stretch}
+  .bands{display:flex;gap:8px;align-items:stretch}
   .band{
-    flex:1 1 0;min-width:0;display:flex;flex-direction:column;
+    display:flex;flex-direction:column;
     background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:11px 11px 6px;
   }
+  .overview.layout-kanban{
+    width:min(1200px, calc(100vw - 40px));
+    max-width:calc(100vw - 40px);
+    margin-inline:calc((100% - min(1200px, 100vw - 40px)) / 2);
+  }
+  .overview.layout-kanban .bands{
+    flex-direction:row;flex-wrap:nowrap;
+    overflow-x:auto;overscroll-behavior-x:contain;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(148,163,184,.35) transparent;
+    padding-bottom:4px;
+  }
+  .overview.layout-kanban .band{flex:1 1 0;min-width:220px}
+  .overview.layout-outline{width:auto;max-width:100%;margin-inline:0}
+  .overview.layout-outline .bands{flex-direction:column;overflow:visible}
+  .overview.layout-outline .band{flex:none;width:100%;min-width:0}
   .band .meter{height:3px;border-radius:2px;background:rgba(148,163,184,.13);overflow:hidden;margin-bottom:10px}
   .band .meter i{display:block;height:100%;background:var(--yellow);opacity:.75}
   .band .num{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--faint)}
@@ -203,11 +233,6 @@
   .ev .d{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--yellow);opacity:.7;display:block;margin-top:1px}
   body[dir="rtl"] .ev .d{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:10px}
 
-  @media (max-width:640px){
-    .bands{flex-wrap:wrap}
-    .band{flex:1 1 calc(50% - 4px);min-width:calc(50% - 4px)}
-  }
-
   footer{
     margin-top:44px;padding-top:20px;border-top:1px solid var(--rule);
     font-size:11.5px;color:var(--faint);line-height:1.6;
@@ -223,7 +248,8 @@
   body[dir="rtl"] .gap .bar{left:auto;right:-20px}
   body[dir="rtl"] h1{letter-spacing:0;line-height:1.16}
   body[dir="rtl"] .eyebrow,
-  body[dir="rtl"] .panel h3{letter-spacing:.06em}
+  body[dir="rtl"] .panel h3,
+  body[dir="rtl"] .ovhead h3{letter-spacing:.06em}
   body[dir="rtl"] time{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11.5px}
   body[dir="rtl"] .gap .days{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11px}
   body[dir="rtl"] .stat .n,
@@ -290,10 +316,22 @@
     <p id="p2"></p>
   </div>
 
-  <section class="overview">
-    <h3 id="ovTitle"></h3>
+  <section class="overview" id="overview">
+    <div class="ovhead">
+      <h3 id="ovTitle"></h3>
+      <div class="toggle viewtoggle" role="tablist" aria-label="Band layout">
+        <button id="btn-kanban" role="tab" aria-controls="bands" aria-pressed="false">
+          <span class="tab-name" id="tabKanban"></span>
+          <span class="hint" id="tabKanbanHint"></span>
+        </button>
+        <button id="btn-outline" role="tab" aria-controls="bands" aria-pressed="false">
+          <span class="tab-name" id="tabOutline"></span>
+          <span class="hint" id="tabOutlineHint"></span>
+        </button>
+      </div>
+    </div>
     <p class="note" id="ovNote"></p>
-    <div class="bands" id="bands"></div>
+    <div class="bands" id="bands" role="tabpanel"></div>
   </section>
 
   <div class="timeline" id="tl"></div>
@@ -328,6 +366,9 @@ const T = {
     months:["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],
     ovTitle:"Four bands, by how directly Britain is named",
     ovNote:"A third axis, and the only one on this page that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — not how alarming its content is. That is why an unannounced nuclear exercise and an American trip to Moscow both sit in the first band. Flag and ring keep their meanings.",
+    ovViewLabel:"Band layout",
+    ovKanban:"Kanban", ovKanbanHint:"horizontal",
+    ovOutline:"Outline", ovOutlineHint:"vertical",
     metaFmt:(n,r,rng)=>n+" rows &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
       {name:"Britain not named", def:"Background, structural, or deliberately concealed. Britain is not the object."},
@@ -362,6 +403,9 @@ const T = {
     months:["ינו׳","פבר׳","מרץ","אפר׳","מאי","יוני","יולי","אוג׳","ספט׳","אוק׳","נוב׳","דצמ׳"],
     ovTitle:"ארבע רמות, לפי מידת הישירות שבה בריטניה נקובה",
     ovNote:"ציר שלישי, והיחיד בדף הזה שהוא שיפוט ולא עובדה מתועדת. המבחן הוא עד כמה בריטניה היא במפורש מושא האיתות — לא עד כמה תוכנו מדאיג. לכן תרגיל גרעיני ללא הודעה וביקור אמריקאי במוסקבה יושבים שניהם ברמה הראשונה. הדגל והטבעת שומרים על משמעותם.",
+    ovViewLabel:"פריסת הרמות",
+    ovKanban:"קנבן", ovKanbanHint:"אופקי",
+    ovOutline:"מתווה", ovOutlineHint:"אנכי",
     metaFmt:(n,r,rng)=>n+" שורות &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
       {name:"בריטניה אינה נקובה", def:"רקע, מהלך מבני, או פעולה שהוסתרה בכוונה. בריטניה אינה המושא."},
@@ -774,6 +818,11 @@ function renderBands(code){
   const t = T[code];
   set("ovTitle", t.ovTitle);
   set("ovNote", t.ovNote);
+  set("tabKanban", t.ovKanban);
+  set("tabKanbanHint", t.ovKanbanHint);
+  set("tabOutline", t.ovOutline);
+  set("tabOutlineHint", t.ovOutlineHint);
+  document.querySelector(".viewtoggle").setAttribute("aria-label", t.ovViewLabel);
   const host = document.getElementById("bands");
   host.innerHTML = "";
 
@@ -882,6 +931,32 @@ function render(code){
 
 document.getElementById("btn-en").addEventListener("click", () => render("en"));
 document.getElementById("btn-he").addEventListener("click", () => render("he"));
+
+const overview = document.getElementById("overview");
+const btnKanban = document.getElementById("btn-kanban");
+const btnOutline = document.getElementById("btn-outline");
+const MOBILE_MQ = window.matchMedia("(max-width: 720px)");
+let viewOverride = null;
+
+function currentView(){
+  return viewOverride || (MOBILE_MQ.matches ? "outline" : "kanban");
+}
+
+function applyView(){
+  const view = currentView();
+  overview.classList.toggle("layout-kanban", view === "kanban");
+  overview.classList.toggle("layout-outline", view === "outline");
+  btnKanban.setAttribute("aria-pressed", view === "kanban" ? "true" : "false");
+  btnOutline.setAttribute("aria-pressed", view === "outline" ? "true" : "false");
+  btnKanban.setAttribute("aria-selected", view === "kanban" ? "true" : "false");
+  btnOutline.setAttribute("aria-selected", view === "outline" ? "true" : "false");
+}
+
+btnKanban.addEventListener("click", () => { viewOverride = "kanban"; applyView(); });
+btnOutline.addEventListener("click", () => { viewOverride = "outline"; applyView(); });
+MOBILE_MQ.addEventListener("change", applyView);
+
+applyView();
 render("en");
 </script>
 </body>
