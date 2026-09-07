@@ -365,7 +365,7 @@ const T = {
     dayUnit:"d", sameDay:"same day", gapWord:"Gap",
     months:["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],
     ovTitle:"Four bands, by how directly Britain is named",
-    ovNote:"A third axis, and the only one on this page that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — not how alarming its content is. That is why an unannounced nuclear exercise and an American trip to Moscow both sit in the first band. Flag and ring keep their meanings.",
+    ovNote:"A third axis, and the only one on this page that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — not how alarming its content is. The top band adds a second cut: the named object sits under a strike threat or a concealed act, so notified gunnery and diplomat rows stay routine. That is also why an unannounced nuclear exercise and an American trip to Moscow both sit in the first band. Flag and ring keep their meanings.",
     ovViewLabel:"Band layout",
     ovKanban:"Kanban", ovKanbanHint:"horizontal",
     ovOutline:"Outline", ovOutlineHint:"vertical",
@@ -374,7 +374,7 @@ const T = {
       {name:"Britain not named", def:"Background, structural, or deliberately concealed. Britain is not the object."},
       {name:"Britain named, routine", def:"Diplomatic and naval friction, inside the ordinary run of statecraft."},
       {name:"A consequence is stated", def:"Britain is warned it will pay, but nothing specific is named as the thing at risk."},
-      {name:"A target is named", def:"The object that could be struck is specified — and it is on British soil."}
+      {name:"A specific object, hostile or concealed", def:"A particular British thing is named as the object — a factory, a military site, or a stretch of UK water — and the act is a strike threat or concealment."}
     ],
     sides:{uk:"UK", ru:"RU", ot:"US"},
     ago:(n,soft)=>n===0?"today":n===1?"yesterday":(soft?"~":"")+n+"d ago"
@@ -402,7 +402,7 @@ const T = {
     dayUnit:" ימים", sameDay:"אותו יום", gapWord:"פער",
     months:["ינו׳","פבר׳","מרץ","אפר׳","מאי","יוני","יולי","אוג׳","ספט׳","אוק׳","נוב׳","דצמ׳"],
     ovTitle:"ארבע רמות, לפי מידת הישירות שבה בריטניה נקובה",
-    ovNote:"ציר שלישי, והיחיד בדף הזה שהוא שיפוט ולא עובדה מתועדת. המבחן הוא עד כמה בריטניה היא במפורש מושא האיתות — לא עד כמה תוכנו מדאיג. לכן תרגיל גרעיני ללא הודעה וביקור אמריקאי במוסקבה יושבים שניהם ברמה הראשונה. הדגל והטבעת שומרים על משמעותם.",
+    ovNote:"ציר שלישי, והיחיד בדף הזה שהוא שיפוט ולא עובדה מתועדת. המבחן הוא עד כמה בריטניה היא במפורש מושא האיתות — לא עד כמה תוכנו מדאיג. הרמה העליונה דורשת גם איום תקיפה או מעשה מוסתר, ולכן ירי שהודיעו עליו מראש ושורות דיפלומטיות נשארים ברמה השגרתית. לכן גם תרגיל גרעיני ללא הודעה וביקור אמריקאי במוסקבה יושבים שניהם ברמה הראשונה. הדגל והטבעת שומרים על משמעותם.",
     ovViewLabel:"פריסת הרמות",
     ovKanban:"קנבן", ovKanbanHint:"אופקי",
     ovOutline:"מתווה", ovOutlineHint:"אנכי",
@@ -411,7 +411,7 @@ const T = {
       {name:"בריטניה אינה נקובה", def:"רקע, מהלך מבני, או פעולה שהוסתרה בכוונה. בריטניה אינה המושא."},
       {name:"בריטניה נקובה, שגרתי", def:"חיכוך דיפלומטי וימי, בתוך ההתנהלות המדינית הרגילה."},
       {name:"נאמרת השלכה", def:"בריטניה מוזהרת שתשלם מחיר, אך לא ננקב דבר מסוים כמה שנמצא בסיכון."},
-      {name:"ננקבת מטרה", def:"המושא שעלול להיות מותקף מצוין במפורש — והוא על אדמת בריטניה."}
+      {name:"מושא מסוים, עוין או מוסתר", def:"דבר בריטי מסוים נקוב כמושא — מפעל, אתר צבאי או מקטע מים — והמעשה הוא איום תקיפה או הסתרה."}
     ],
     sides:{uk:"בריטניה", ru:"רוסיה", ot:"ארה\u201db"},
     ago:(n,soft)=>n===0?"היום":n===1?"אתמול":(!soft&&n===2)?"לפני יומיים":"לפני "+(soft?"~":"")+n+" ימים"
@@ -480,7 +480,7 @@ const EVENTS = [
       why:"ה-FSB מאשים את המזכיר השני אלברטוס ינסה ואן רנסבורג בריגול ונותן לו שבועיים. הטלוויזיה הממלכתית הרוסית מכנה אותו הדיפלומט הבריטי השישה־עשר שגורש בתוך שנתיים. מוסקבה כבר גירשה אחד בינואר; לונדון ביטלה אקרדיטציות רוסיות בפברואר ושוב ב-29 באפריל." } },
 
   { date:"2026-04-09", side:"ru", rag:"r",
-    band:2,
+    band:4,
     sources:[{url:"https://www.aljazeera.com/amp/news/2026/4/9/uk-says-three-russian-submarines-tracked-during-covert-operation", label:"Al Jazeera"}],
     en:{ label:"9 APR 2026",
       short:"Submarine op exposed",
@@ -772,7 +772,7 @@ const EVENTS = [
       why:"בהתבטאות בבישקק, פוטין נמנע מלשלול תקיפות על אתרים צבאיים או מפעלי נשק בריטיים, מכנה את השאלה סוד צבאי, ואומר שכל מתקן צבאי באוקראינה — כולל בריטי — הוא מטרה לגיטימית. שתי טענות נפרדות: השנייה קובעת משהו לגבי אוקראינה, הראשונה רק מסרבת להכחיש. מה שמשתנה כאן הוא דרגת הדובר ולא המטרה — דיפלומט לשעבר ב-25 באוגוסט, משרד החוץ ב-27, והנשיא ב-2 בספטמבר." } },
 
   { date:"2026-09-06", side:"ru", rag:"r",
-    band:2,
+    band:4,
     sources:[
       {url:"https://inews.co.uk/news/imitation-game-putins-shadow-fleet-tankers-disguise-4749413", label:"The i Paper"},
       {url:"https://www.timesnowworld.com/us-news/russian-shadow-fleet-ais-manipulation-uk-sanctions-evasion-article-156102098", label:"Times Now World (synd.)", labelHe:"Times Now World (\u05e2\u05d9\u05d1\u05d5\u05d3 \u05de\u05d7\u05d3\u05e9)"},

@@ -18,7 +18,7 @@ Three encodings, deliberately kept separate:
 |---|---|---|
 | Flag in the marker | Who acted | Union flag, Russian tricolour, Stars and Stripes |
 | Ring colour | Whether Britain is the named object | red (21 rows), green (8 rows) |
-| Band card | How directly Britain is named | four levels, 10 / 10 / 6 / 3 rows |
+| Band card | How directly Britain is named | four levels, 10 / 8 / 6 / 5 rows |
 
 Reading two of them as one thing is the main way to misread the page.
 
@@ -34,12 +34,12 @@ Two earlier timelines fed this one and graded on different definitions. The Brit
 
 ## The bands
 
-The one axis here that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — *not* how alarming the content is.
+The one axis here that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — *not* how alarming the content is. The top band adds a second cut: the named object sits under a strike threat or a concealed act.
 
 1. **Britain not named** (10 rows, 1 Feb – 25 Aug) — background, structural, or deliberately concealed.
-2. **Britain named, routine** (10 rows, 30 Mar – 6 Sep) — diplomatic and naval friction inside ordinary statecraft.
+2. **Britain named, routine** (8 rows, 30 Mar – 1 Sep) — diplomatic and naval friction inside ordinary statecraft. Notified gunnery and diplomat rows stay here.
 3. **A consequence is stated** (6 rows, 15 Aug – 26 Aug) — Britain is warned it will pay, nothing specific named as at risk.
-4. **A target is named** (3 rows, 25 Aug – 2 Sep) — the object that could be struck is specified, and it is on British soil.
+4. **A specific object, hostile or concealed** (5 rows, 9 Apr – 6 Sep) — a particular British thing is named as the object (a factory, a military site, or a stretch of UK water) and the act is a strike threat or concealment. The 9 April submarine operation and the 6 September AIS handshake sit here with the three late-August strike-threat rows.
 
 The consequence of defining bands this way: an unannounced Russian nuclear exercise and an unannounced CIA trip to Moscow both sit in band 1, because neither names Britain, though both are more alarming than a diplomat expulsion in band 2. That is the rule working as intended, not a misfiling.
 
