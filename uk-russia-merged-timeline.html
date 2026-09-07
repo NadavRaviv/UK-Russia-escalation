@@ -194,6 +194,30 @@
     display:flex;flex-direction:column;
     background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:11px 11px 6px;
   }
+  /* Default: one layout only. Outline below 721px, kanban from 721px.
+     .layout-* is a user override from the toggle and always wins. */
+  @media (max-width: 720px){
+    .overview:not(.layout-kanban){
+      width:auto;max-width:100%;margin-inline:0;
+    }
+    .overview:not(.layout-kanban) .bands{flex-direction:column;overflow:visible}
+    .overview:not(.layout-kanban) .band{flex:none;width:100%;min-width:0}
+  }
+  @media (min-width: 721px){
+    .overview:not(.layout-outline){
+      width:min(1200px, calc(100vw - 40px));
+      max-width:calc(100vw - 40px);
+      margin-inline:calc((100% - min(1200px, 100vw - 40px)) / 2);
+    }
+    .overview:not(.layout-outline) .bands{
+      flex-direction:row;flex-wrap:nowrap;
+      overflow-x:auto;overscroll-behavior-x:contain;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(148,163,184,.35) transparent;
+      padding-bottom:4px;
+    }
+    .overview:not(.layout-outline) .band{flex:1 1 0;min-width:220px;width:auto}
+  }
   .overview.layout-kanban{
     width:min(1200px, calc(100vw - 40px));
     max-width:calc(100vw - 40px);
@@ -206,9 +230,9 @@
     scrollbar-color:rgba(148,163,184,.35) transparent;
     padding-bottom:4px;
   }
-  .overview.layout-kanban .band{flex:1 1 0;min-width:220px}
+  .overview.layout-kanban .band{flex:1 1 0;min-width:220px;width:auto}
   .overview.layout-outline{width:auto;max-width:100%;margin-inline:0}
-  .overview.layout-outline .bands{flex-direction:column;overflow:visible}
+  .overview.layout-outline .bands{flex-direction:column;flex-wrap:nowrap;overflow:visible}
   .overview.layout-outline .band{flex:none;width:100%;min-width:0}
   .band .meter{height:3px;border-radius:2px;background:rgba(148,163,184,.13);overflow:hidden;margin-bottom:10px}
   .band .meter i{display:block;height:100%;background:var(--yellow);opacity:.75}
@@ -320,11 +344,11 @@
     <div class="ovhead">
       <h3 id="ovTitle"></h3>
       <div class="toggle viewtoggle" role="tablist" aria-label="Band layout">
-        <button id="btn-kanban" role="tab" aria-controls="bands" aria-pressed="false">
+        <button id="btn-kanban" role="tab" aria-controls="bands" aria-pressed="true" aria-selected="true">
           <span class="tab-name" id="tabKanban"></span>
           <span class="hint" id="tabKanbanHint"></span>
         </button>
-        <button id="btn-outline" role="tab" aria-controls="bands" aria-pressed="false">
+        <button id="btn-outline" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false">
           <span class="tab-name" id="tabOutline"></span>
           <span class="hint" id="tabOutlineHint"></span>
         </button>
@@ -333,6 +357,17 @@
     <p class="note" id="ovNote"></p>
     <div class="bands" id="bands" role="tabpanel"></div>
   </section>
+  <script>
+    (function(){
+      var mobile = window.matchMedia("(max-width: 720px)").matches;
+      var k = document.getElementById("btn-kanban");
+      var o = document.getElementById("btn-outline");
+      k.setAttribute("aria-pressed", mobile ? "false" : "true");
+      k.setAttribute("aria-selected", mobile ? "false" : "true");
+      o.setAttribute("aria-pressed", mobile ? "true" : "false");
+      o.setAttribute("aria-selected", mobile ? "true" : "false");
+    })();
+  </script>
 
   <div class="timeline" id="tl"></div>
 
@@ -953,14 +988,20 @@ const btnOutline = document.getElementById("btn-outline");
 const MOBILE_MQ = window.matchMedia("(max-width: 720px)");
 let viewOverride = null;
 
+function defaultView(){
+  return MOBILE_MQ.matches ? "outline" : "kanban";
+}
+
 function currentView(){
-  return viewOverride || (MOBILE_MQ.matches ? "outline" : "kanban");
+  return viewOverride || defaultView();
 }
 
 function applyView(){
   const view = currentView();
-  overview.classList.toggle("layout-kanban", view === "kanban");
-  overview.classList.toggle("layout-outline", view === "outline");
+  // Only stamp an override class when the user picked a tab.
+  // With neither class, CSS media queries show exactly one default layout.
+  overview.classList.toggle("layout-kanban", viewOverride === "kanban");
+  overview.classList.toggle("layout-outline", viewOverride === "outline");
   btnKanban.setAttribute("aria-pressed", view === "kanban" ? "true" : "false");
   btnOutline.setAttribute("aria-pressed", view === "outline" ? "true" : "false");
   btnKanban.setAttribute("aria-selected", view === "kanban" ? "true" : "false");
@@ -969,7 +1010,8 @@ function applyView(){
 
 btnKanban.addEventListener("click", () => { viewOverride = "kanban"; applyView(); });
 btnOutline.addEventListener("click", () => { viewOverride = "outline"; applyView(); });
-MOBILE_MQ.addEventListener("change", applyView);
+if (MOBILE_MQ.addEventListener) MOBILE_MQ.addEventListener("change", applyView);
+else if (MOBILE_MQ.addListener) MOBILE_MQ.addListener(applyView);
 
 applyView();
 render("en");
