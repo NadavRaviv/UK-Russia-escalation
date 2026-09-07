@@ -1,6 +1,6 @@
 # UK–Russia escalation timeline, Feb–Sep 2026
 
-An open-source-intelligence audit of 28 dated events on the British–Russian thread, presented as a single self-contained HTML page in English and Hebrew.
+An open-source-intelligence audit of 29 dated events on the British–Russian thread, presented as a single self-contained HTML page in English and Hebrew.
 
 The page exists to test a hypothesis, not to assert it: that British military involvement in Ukraine — in particular concealed drone strikes on Russian territory — forms part of an undisclosed shift in defence posture. Everything below is written so a reader can check that hypothesis against the record and find it wanting if it deserves to be.
 
@@ -10,15 +10,15 @@ Open `uk-russia-merged-timeline.html` in a browser. There is no build step and n
 
 ## What is on the page
 
-**28 events**, 1 February to 2 September 2026. 17 Russian, 9 British or western, 2 third-party (both American). 24 distinct source domains; 8 rows carry two sources; 1 row carries none.
+**29 events**, 1 February to 6 September 2026. 18 Russian, 9 British or western, 2 third-party (both American). 26 distinct source domains; 8 rows carry two sources; 1 row carries three; 1 row carries none.
 
 Three encodings, deliberately kept separate:
 
 | Encoding | Carries | Values |
 |---|---|---|
 | Flag in the marker | Who acted | Union flag, Russian tricolour, Stars and Stripes |
-| Ring colour | Whether Britain is the named object | red (20 rows), green (8 rows) |
-| Band card | How directly Britain is named | four levels, 10 / 9 / 6 / 3 rows |
+| Ring colour | Whether Britain is the named object | red (21 rows), green (8 rows) |
+| Band card | How directly Britain is named | four levels, 10 / 10 / 6 / 3 rows |
 
 Reading two of them as one thing is the main way to misread the page.
 
@@ -37,7 +37,7 @@ Two earlier timelines fed this one and graded on different definitions. The Brit
 The one axis here that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — *not* how alarming the content is.
 
 1. **Britain not named** (10 rows, 1 Feb – 25 Aug) — background, structural, or deliberately concealed.
-2. **Britain named, routine** (9 rows, 30 Mar – 1 Sep) — diplomatic and naval friction inside ordinary statecraft.
+2. **Britain named, routine** (10 rows, 30 Mar – 6 Sep) — diplomatic and naval friction inside ordinary statecraft.
 3. **A consequence is stated** (6 rows, 15 Aug – 26 Aug) — Britain is warned it will pay, nothing specific named as at risk.
 4. **A target is named** (3 rows, 25 Aug – 2 Sep) — the object that could be struck is specified, and it is on British soil.
 
@@ -71,7 +71,7 @@ Kept visible rather than silently resolved:
 
 ## Known limits
 
-**Interval compression is partly an artefact of observation.** Mean gap between events is 11.5 days from February to 15 August and 1.8 days after. Some of that is real, but early rows are month-level estimates and structural events reported once, while late rows are discrete statements logged the day they were made. Attention rose after 15 August and the observation rate rose with it. Any timeline built from news crowds at its own end.
+**Interval compression is partly an artefact of observation.** Mean gap between events is 11.5 days from February to 15 August and 2.0 days after. Some of that is real, but early rows are month-level estimates and structural events reported once, while late rows are discrete statements logged the day they were made. Attention rose after 15 August and the observation rate rose with it. Any timeline built from news crowds at its own end.
 
 **Three rows carry approximate dates**, marked `~`. Intervals touching them are approximate too.
 
