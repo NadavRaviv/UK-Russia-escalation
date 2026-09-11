@@ -20,7 +20,7 @@ Three encodings, deliberately kept separate:
 | Ring colour | Whether Britain is the named object | red (22 rows), green (9 rows) |
 | Band card | How directly Britain is named | four levels, 11 / 8 / 6 / 6 rows |
 | Domain card | Kind of object in play | war infra / war zones / civil infra / civil zone |
-| Danger plot | Alarm vs stakes | 1–10 each; slider keeps rows up to a date |
+| Danger plot | Alarm vs stakes | 1–10 each; UK blue, Russia red; slider keeps rows up to a date |
 
 Reading two of them as one thing is the main way to misread the page.
 
@@ -54,7 +54,7 @@ A third grouping, on the **Domain** tab, cuts the same 31 rows by the kind of ob
 3. **Civil infra** — airports, courts, energy plants. The NATS outage and the Swindon court case sit here.
 4. **Civil zone** — cities, capitals, diplomatic space. No strike on London buildings is in this set.
 
-A fourth grouping, on the **Danger** tab, plots the same rows as a scatter: vertical is how alarming the act is (high at the top), horizontal is how large the stakes are if it lands (high to the right). Both axes are a 1–10 judgement, independent of the band test. A date slider keeps every row up to the date you stop on, so the cloud can be read as a path.
+A fourth grouping, on the **Danger** tab, plots the same rows as a scatter: vertical is how alarming the act is (high at the top), horizontal is how large the stakes are if it lands (high to the right). Both axes are a 1–10 judgement, independent of the band test. Dots are blue for British or western acts, red for Russian, grey for the two American rows. A date slider keeps every row up to the date you stop on, so the cloud can be read as a path.
 
 ## Sourcing standard
 
