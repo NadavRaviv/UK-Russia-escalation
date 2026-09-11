@@ -60,7 +60,19 @@ A fourth grouping, on the **Danger** tab, plots the same rows as a scatter: vert
 
 The Danger tab is the page's lead view, because the question most readers arrive with is whether the signal is hardening. Four figures sit above the plot: mean danger and mean impact across the rows on screen, the count, and **drift** — the combined danger-plus-impact mean of the five most recent rows minus that of the five before them. Positive drift, shown in red, means the recent cluster sits higher and further right than the one before it. A yellow cross marks the centre of those five most recent rows and a faint line traces where that centre has been; the tinted corner is danger 7+ against impact 7+.
 
-Both the drift window and the tinted corner are arbitrary cuts chosen to make a turn visible, not thresholds with any external meaning.
+A **View** dropdown above the plot reads the same rows from one army's point of view. A British or western act is danger to Russia; a Russian act is danger to Britain:
+
+| View | Shows | Rows |
+|---|---|---|
+| All events | every row | 31 |
+| Danger to UK | Russian acts and statements | 19 |
+| Danger to Russia | British or western acts | 10 |
+
+The two American rows sit outside both points of view and appear only under *All events*. Filtering recomputes the four readouts, the marker and the trail against that side alone, and narrows the drift window from five rows to three — a single side holds a third of the set, so a five-row window would not resolve until the end of the period. The date axis stays fixed across views so switching does not move the slider.
+
+This is where the merged set earns its keep. Over the full window, drift across all 31 rows is mildly *negative*, but drift on the Russian rows alone is strongly positive: the two sides are moving differently, and the combined figure hides it.
+
+Both the drift window and the tinted corner are arbitrary cuts chosen to make a turn visible, not thresholds with any external meaning. The point-of-view split is a judgement about who an act endangers, not a claim about intent.
 
 ## Sourcing standard
 
