@@ -1327,7 +1327,7 @@ function renderDanger(code){
   dangerSlider.setAttribute("aria-valuetext", shortDate(cut, t, cutEvent && cutEvent.approx));
   dangerSlider.setAttribute("aria-label", t.dangerSlider);
 
-  const W = 760, H = 480, L = 78, R = 22, Top = 28, B = 52;
+  const W = 760, H = 480, L = 90, R = 22, Top = 28, B = 48;
   const plotW = W - L - R, plotH = H - Top - B;
   const ticks = [1, 4, 7, 10];
   const grid = ticks.map(v => {
@@ -1344,12 +1344,13 @@ function renderDanger(code){
     cx = L + (mx - 1) / 9 * plotW;
     cy = Top + (10 - my) / 9 * plotH;
     const labSide = cx > L + plotW - 160;
+    const labY = cy < Top + 22 ? cy + 20 : cy - 10;
     centroid =
       '<g class="centroid" aria-hidden="true">'
       + '<line x1="' + (cx - 9) + '" y1="' + cy + '" x2="' + (cx + 9) + '" y2="' + cy + '"/>'
       + '<line x1="' + cx + '" y1="' + (cy - 9) + '" x2="' + cx + '" y2="' + (cy + 9) + '"/>'
       + '<text class="centroid-lab" text-anchor="' + (labSide ? "end" : "start") + '" x="'
-      + (labSide ? cx - 12 : cx + 12) + '" y="' + (cy - 10) + '">' + t.dangerCentre + '</text>'
+      + (labSide ? cx - 12 : cx + 12) + '" y="' + labY + '">' + t.dangerCentre + '</text>'
       + '</g>';
   }
 
@@ -1370,9 +1371,9 @@ function renderDanger(code){
     + '<rect x="' + L + '" y="' + Top + '" width="' + plotW + '" height="' + plotH + '" fill="none" stroke="var(--rule)"/>'
     + grid
     + '<text class="axis-label" x="' + L + '" y="' + (Top - 10) + '">' + t.dangerHigh + '</text>'
-    + '<text class="axis-label" x="' + L + '" y="' + (Top + plotH + 18) + '">' + t.dangerLow + '</text>'
-    + '<text class="axis-label" x="' + L + '" y="' + (Top + plotH + 36) + '">' + t.impactLow + '</text>'
-    + '<text class="axis-label" text-anchor="end" x="' + (L + plotW) + '" y="' + (Top + plotH + 36) + '">' + t.impactHigh + '</text>'
+    + '<text class="axis-label" text-anchor="end" x="' + (L - 8) + '" y="' + (Top + plotH - 4) + '">' + t.dangerLow + '</text>'
+    + '<text class="axis-label" x="' + L + '" y="' + (Top + plotH + 28) + '">' + t.impactLow + '</text>'
+    + '<text class="axis-label" text-anchor="end" x="' + (L + plotW) + '" y="' + (Top + plotH + 28) + '">' + t.impactHigh + '</text>'
     + centroid
     + dots
     + '</svg>';
