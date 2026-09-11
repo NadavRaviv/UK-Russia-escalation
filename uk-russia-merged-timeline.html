@@ -56,13 +56,17 @@
   body{
     margin:0;background:var(--base);color:var(--text);
     font-family:var(--sans);line-height:1.5;
-    padding:22px 20px 80px;
+    padding:0 20px 72px;
   }
   body[dir="rtl"]{font-family:'Heebo',var(--sans)}
-  .wrap{max-width:760px;margin:0 auto}
+  .wrap{max-width:1120px;margin:0 auto}
+  .narrow{max-width:768px;margin-inline:auto}
 
   /* --- language + theme --- */
-  .langbar{display:flex;justify-content:flex-end;align-items:center;gap:8px;direction:ltr;margin-bottom:18px}
+  .langbar{
+    display:flex;justify-content:flex-end;align-items:center;gap:8px;direction:ltr;
+    padding:14px 0 12px;
+  }
   .theme-btn{
     width:36px;height:32px;display:inline-flex;align-items:center;justify-content:center;
     border:1px solid var(--rule);border-radius:3px;background:var(--surface);
@@ -86,53 +90,87 @@
   .toggle button[aria-pressed="true"]{background:rgba(148,163,184,0.11);color:var(--text)}
   #btn-he{font-family:'Heebo',var(--sans);letter-spacing:0;font-size:12.5px}
 
-  header{border-bottom:1px solid var(--rule);padding-bottom:24px;margin-bottom:8px}
+  header{
+    display:grid;grid-template-columns:minmax(0,1fr);gap:14px;
+    border-bottom:1px solid var(--rule);padding-bottom:16px;
+  }
+  @media (min-width: 880px){
+    header{grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:28px}
+  }
   .eyebrow{
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--faint);margin:0 0 12px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--faint);margin:0 0 8px;
   }
   h1{
-    font-size:clamp(26px,6vw,38px);line-height:1.08;margin:0 0 12px;
-    font-weight:700;letter-spacing:-0.02em;
+    font-size:clamp(24px,3.4vw,32px);line-height:1.05;margin:0 0 8px;
+    font-weight:700;letter-spacing:-0.025em;
   }
-  .standfirst{color:var(--muted);font-size:15px;margin:0;max-width:56ch}
+  .standfirst{color:var(--muted);font-size:13.5px;margin:0;max-width:60ch}
 
-  .legend{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 4px}
-  .legend.forms{margin-top:10px}
-  .key{
-    display:flex;align-items:flex-start;gap:9px;flex:1 1 240px;
-    background:var(--surface);border:1px solid var(--rule);
-    border-radius:3px;padding:11px 13px;
+  /* --- inline legend chips --- */
+  .chipbar{display:flex;flex-wrap:wrap;align-items:center;gap:7px 14px;justify-self:start}
+  @media (min-width: 880px){ .chipbar{justify-self:end} }
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+    color:var(--muted);white-space:nowrap;
   }
-  .legend.forms .key{flex:1 1 180px;padding:10px 13px}
-  .key .swatch{width:11px;height:11px;border-radius:50%;margin-top:4px;flex:none}
-  .key .flag{
-    width:17px;height:17px;border-radius:50%;overflow:hidden;flex:none;
-    margin-top:2px;border:1px solid var(--rule);background:var(--base);
+  .chip .swatch{width:9px;height:9px;border-radius:50%;flex:none}
+  .chip .flag{
+    width:15px;height:15px;border-radius:50%;overflow:hidden;flex:none;
+    border:1px solid var(--rule);background:var(--base);
   }
-  .key .flag svg{display:block;width:100%;height:100%}
-  .key b{display:block;font-size:13px;font-weight:500}
-  .key .count{font-family:var(--mono);font-style:normal;color:var(--faint);font-size:11px}
-  .key span.d{display:block;font-size:11.5px;color:var(--muted);line-height:1.4}
+  .chip .flag svg{display:block;width:100%;height:100%}
+  .chip b{font-weight:400;color:var(--muted)}
+  .chip .count{font-style:normal;font-weight:700;color:var(--text);margin-inline-start:5px}
+  .chip-rule{width:1px;height:14px;background:var(--rule);flex:none}
+  body[dir="rtl"] .chip{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:12px}
 
-  /* --- compression panel --- */
-  .panel{
-    background:var(--surface);border:1px solid var(--rule);border-radius:3px;
-    padding:16px 16px 14px;margin:14px 0 34px;
+  /* --- info buttons --- */
+  .info-btn{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);background:transparent;border:1px solid var(--rule);border-radius:2px;
+    padding:3px 8px;cursor:pointer;flex:none;
+    transition:color .15s, border-color .15s;
   }
-  .panel h3{
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--faint);margin:0 0 12px;font-weight:500;
+  .info-btn:hover{color:var(--text);border-color:rgba(148,163,184,0.45)}
+  body[dir="rtl"] .info-btn{
+    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:11px;
   }
-  .stats{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:12px}
-  .stat .n{font-family:var(--mono);font-size:23px;font-weight:700;display:block;line-height:1}
-  .stat .n .u{font-size:13px}
-  .stat .l{font-size:11.5px;color:var(--muted);display:block;margin-top:5px}
-  .panel p{font-size:12.5px;color:var(--muted);margin:0;line-height:1.55}
-  .panel p + p{margin-top:8px}
-  .panel b{color:var(--muted);font-weight:500}
+
+  /* --- tempo strip --- */
+  .metrics{
+    display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 34px;
+    padding:14px 0 16px;margin:0 0 22px;border-bottom:1px solid var(--rule);
+  }
+  .stat .n{
+    font-family:var(--mono);font-size:20px;font-weight:700;display:block;line-height:1;
+    letter-spacing:-0.01em;
+  }
+  .stat .n .u{font-size:11px;font-weight:500}
+  .stat .l{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);display:block;margin-top:6px;
+  }
+  body[dir="rtl"] .stat .l{
+    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:11px;
+  }
+  .metrics .info-btn{margin-inline-start:auto;align-self:center}
 
   /* --- timeline --- */
+  .tlhead{
+    display:flex;align-items:baseline;gap:12px;
+    border-bottom:1px solid var(--rule);padding-bottom:8px;margin-bottom:22px;
+  }
+  .tlhead h3{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--text);margin:0;font-weight:500;
+  }
+  .tlcount{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--faint)}
+  body[dir="rtl"] .tlhead h3{
+    letter-spacing:.06em;font-family:'Heebo',var(--sans);text-transform:none;font-size:13px;
+  }
+  body[dir="rtl"] .tlcount{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11.5px}
   .timeline{position:relative;padding-left:26px}
   .timeline:before{
     content:"";position:absolute;left:6px;top:6px;bottom:6px;width:1px;
@@ -215,172 +253,173 @@
   .gap:hover .days{transform:translateX(3px)}
   body[dir="rtl"] .gap:hover .days{transform:translateX(-3px)}
 
-  /* --- band overview: kanban / outline / domain --- */
-  .viewtoggle{flex-wrap:wrap;max-width:100%;overflow:visible}
-  .overview{margin:0 0 34px}
+  /* --- overview: kanban / outline / domain / danger --- */
+  .overview{margin:0 0 30px;width:100%}
   .ovhead{
-    display:flex;align-items:flex-start;justify-content:space-between;
-    gap:12px;flex-wrap:wrap;margin-bottom:4px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:10px 14px;flex-wrap:wrap;margin-bottom:10px;
   }
+  .ovtitle{display:flex;align-items:center;gap:9px;min-width:0}
   .ovhead h3{
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--faint);margin:0;font-weight:500;padding-top:8px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--text);margin:0;font-weight:500;
   }
+  body[dir="rtl"] .ovhead h3{
+    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:13px;
+  }
+  .viewtoggle{flex-wrap:wrap;max-width:100%;overflow:visible}
   .viewtoggle button{
     font-family:var(--sans);letter-spacing:0;font-size:12px;line-height:1.2;
-    padding:6px 12px 7px;display:flex;flex-direction:column;align-items:flex-start;gap:1px;
+    padding:6px 13px 7px;display:flex;flex-direction:column;align-items:flex-start;gap:1px;
   }
   body[dir="rtl"] .viewtoggle button{font-family:'Heebo',var(--sans)}
   .viewtoggle .hint{
-    font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+    font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;
     color:var(--faint);font-weight:400;
   }
   body[dir="rtl"] .viewtoggle .hint{
     font-family:'Heebo',var(--sans);letter-spacing:0;text-transform:none;font-size:10.5px;
   }
   .viewtoggle button[aria-pressed="true"] .hint{color:var(--muted)}
-  .overview > p.note{font-size:11.5px;color:var(--muted);margin:0 0 13px;max-width:70ch}
+
   .bands{display:flex;gap:8px;align-items:stretch}
   .band{
     display:flex;flex-direction:column;
     background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:11px 11px 6px;
   }
-  /* Default: one layout only. Outline below 721px, kanban from 721px.
+  /* Default: kanban columns on desktop, stacked outline below 721px.
      .layout-* is a user override from the toggle and always wins. */
-  @media (max-width: 720px){
-    .overview:not(.layout-kanban){
-      width:auto;max-width:100%;margin-inline:0;
-    }
-    .overview:not(.layout-kanban) .bands{flex-direction:column;overflow:visible}
-    .overview:not(.layout-kanban) .band{flex:none;width:100%;min-width:0}
-  }
-  @media (min-width: 721px){
-    .overview:not(.layout-outline){
-      width:min(1200px, calc(100vw - 40px));
-      max-width:calc(100vw - 40px);
-      margin-inline:calc((100% - min(1200px, 100vw - 40px)) / 2);
-    }
-    .overview:not(.layout-outline) .bands{
-      flex-direction:row;flex-wrap:nowrap;
-      overflow-x:auto;overscroll-behavior-x:contain;
-      scrollbar-width:thin;
-      scrollbar-color:rgba(148,163,184,.35) transparent;
-      padding-bottom:4px;
-    }
-    .overview:not(.layout-outline) .band{flex:1 1 0;min-width:220px;width:auto}
-  }
-  .overview.layout-kanban{
-    width:min(1200px, calc(100vw - 40px));
-    max-width:calc(100vw - 40px);
-    margin-inline:calc((100% - min(1200px, 100vw - 40px)) / 2);
-  }
-  .overview.layout-kanban .bands{
+  .overview:not(.layout-outline) .bands{
     flex-direction:row;flex-wrap:nowrap;
     overflow-x:auto;overscroll-behavior-x:contain;
-    scrollbar-width:thin;
-    scrollbar-color:rgba(148,163,184,.35) transparent;
+    scrollbar-width:thin;scrollbar-color:rgba(148,163,184,.35) transparent;
     padding-bottom:4px;
   }
-  .overview.layout-kanban .band{flex:1 1 0;min-width:220px;width:auto}
-  .overview.layout-outline{width:auto;max-width:100%;margin-inline:0}
+  .overview:not(.layout-outline) .band{flex:1 1 0;min-width:210px;width:auto}
   .overview.layout-outline .bands{flex-direction:column;flex-wrap:nowrap;overflow:visible}
   .overview.layout-outline .band{flex:none;width:100%;min-width:0}
-  .overview.layout-domain{
-    width:min(1200px, calc(100vw - 40px));
-    max-width:calc(100vw - 40px);
-    margin-inline:calc((100% - min(1200px, 100vw - 40px)) / 2);
-  }
-  .overview.layout-domain .bands{
-    flex-direction:row;flex-wrap:nowrap;
-    overflow-x:auto;overscroll-behavior-x:contain;
-    scrollbar-width:thin;
-    scrollbar-color:rgba(148,163,184,.35) transparent;
-    padding-bottom:4px;
-  }
-  .overview.layout-domain .band{flex:1 1 0;min-width:220px;width:auto}
   @media (max-width: 720px){
-    .overview.layout-domain{
-      width:auto;max-width:100%;margin-inline:0;
-    }
-    .overview.layout-domain .bands{flex-direction:column;overflow:visible}
-    .overview.layout-domain .band{flex:none;width:100%;min-width:0}
+    .overview:not(.layout-kanban):not(.layout-domain) .bands{flex-direction:column;overflow:visible}
+    .overview:not(.layout-kanban):not(.layout-domain) .band{flex:none;width:100%;min-width:0}
   }
-  .overview.layout-danger{
-    width:min(1200px, calc(100vw - 40px));
-    max-width:calc(100vw - 40px);
-    margin-inline:calc((100% - min(1200px, 100vw - 40px)) / 2);
+
+  /* --- danger view --- */
+  .danger-pane{direction:ltr}
+  .danger-head{
+    display:flex;align-items:stretch;gap:0;flex-wrap:wrap;
+    border:1px solid var(--rule);border-radius:3px;background:var(--surface);
+    margin-bottom:10px;overflow:hidden;
   }
-  @media (max-width: 720px){
-    .overview.layout-danger{
-      width:auto;max-width:100%;margin-inline:0;
-    }
+  .ro{
+    flex:1 1 140px;min-width:120px;padding:10px 14px;
+    border-inline-end:1px solid var(--rule);
   }
-  .danger-pane{
-    background:var(--surface);border:1px solid var(--rule);border-radius:3px;
-    padding:12px 14px 16px;direction:ltr;
+  .ro:last-child{border-inline-end:0}
+  .ro-n{
+    font-family:var(--mono);font-size:19px;font-weight:700;line-height:1;
+    display:block;letter-spacing:-0.01em;
   }
-  .danger-meta{
-    display:flex;justify-content:space-between;align-items:baseline;gap:12px;
-    flex-wrap:wrap;margin:0 0 8px;
+  .ro-l{
+    font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--faint);display:block;margin-top:6px;
   }
-  .danger-date{
-    font-family:var(--mono);font-size:13px;letter-spacing:.04em;
-    color:var(--text);margin:0;font-weight:500;
+  body[dir="rtl"] .danger-head{direction:rtl}
+  body[dir="rtl"] .ro-l{
+    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:10.5px;
   }
-  .danger-count{
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--faint);margin:0;
+  .ro.up .ro-n{color:var(--red)}
+  .ro.down .ro-n{color:var(--green)}
+  .ro.flat .ro-n{color:var(--muted)}
+
+  .danger-plot{
+    position:relative;width:100%;aspect-ratio:1.9;min-height:320px;
+    border:1px solid var(--rule);border-radius:3px;background:var(--surface);
+    padding:10px 12px;
   }
-  .danger-key{
-    display:flex;flex-wrap:wrap;gap:12px 16px;margin:0 0 8px;
-    font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--text);
-  }
-  .danger-key span{display:inline-flex;align-items:center;gap:6px}
-  .danger-key i{
-    width:8px;height:8px;border-radius:50%;display:block;flex:none;
-    box-shadow:0 0 0 1px rgba(0,0,0,.12);
-  }
-  .danger-key i.uk{background:var(--uk-dot)}
-  .danger-key i.ru{background:var(--ru-dot)}
-  .danger-key i.ot{background:var(--ot-dot)}
-  body[dir="rtl"] .danger-meta{direction:rtl}
-  body[dir="rtl"] .danger-date,body[dir="rtl"] .danger-count,
-  body[dir="rtl"] .danger-key{
-    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:12px;
-  }
-  .danger-plot{position:relative;width:100%;aspect-ratio:1.55;min-height:280px}
-  .danger-chart{position:absolute;inset:0}
+  @media (max-width: 720px){ .danger-plot{aspect-ratio:1.15} }
+  .danger-chart{position:absolute;inset:10px 12px}
   .danger-chart svg{width:100%;height:100%;display:block;overflow:visible}
-  .danger-chart .axis-label{fill:var(--faint);font-family:var(--mono);font-size:10px;letter-spacing:.08em}
-  .danger-chart .tick{stroke:var(--rule);stroke-width:1}
-  .danger-chart .grid{stroke:var(--rule);stroke-width:1;opacity:.7}
-  .danger-chart .centroid{stroke:var(--yellow);stroke-width:1.4;fill:none}
-  .danger-chart .centroid-lab{fill:var(--yellow);font-family:var(--mono);font-size:9px;letter-spacing:.06em}
+  .danger-chart .axis-label{
+    fill:var(--faint);font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .danger-chart .grid{stroke:var(--rule);stroke-width:1;opacity:.65}
+  .danger-chart .frame{stroke:var(--rule);stroke-width:1;fill:none}
+  .danger-chart .hotzone{fill:var(--red);opacity:.05}
+  html[data-theme="dark"] .danger-chart .hotzone{opacity:.1}
+  .danger-chart .trail{stroke:var(--yellow);stroke-width:1.2;fill:none;opacity:.42}
+  .danger-chart .centroid{stroke:var(--yellow);stroke-width:1.6;fill:none}
+  .danger-chart .centroid-lab{
+    fill:var(--yellow);font-family:var(--mono);font-size:9px;letter-spacing:.1em;
+    text-transform:uppercase;
+  }
   body[dir="rtl"] .danger-chart .axis-label,
   body[dir="rtl"] .danger-chart .centroid-lab{
-    font-family:'Heebo',var(--sans);letter-spacing:0;font-size:11px;
+    font-family:'Heebo',var(--sans);letter-spacing:0;text-transform:none;font-size:11px;
   }
-  .danger-dot:focus-visible .danger-halo{stroke:var(--yellow);stroke-width:2}
+  .danger-dot{cursor:pointer;outline:none}
+  .danger-dot:focus-visible .danger-halo{stroke:var(--yellow);stroke-width:2.4}
   .danger-tip{
     position:absolute;z-index:3;pointer-events:none;
     background:var(--base);border:1px solid var(--rule);border-radius:3px;
-    padding:7px 9px;max-width:220px;
+    padding:7px 9px;max-width:230px;
     box-shadow:0 8px 24px rgba(0,0,0,.18);
   }
   .danger-tip b{display:block;font-size:12px;font-weight:500;line-height:1.3;margin:0 0 2px}
   .danger-tip span{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--yellow)}
   body[dir="rtl"] .danger-tip span{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11px}
-  .danger-slider-wrap{
-    display:flex;flex-direction:column;gap:6px;margin-top:12px;
-    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--faint);
+
+  .danger-controls{display:flex;align-items:center;gap:12px;margin-top:12px}
+  .play-btn{
+    width:34px;height:30px;flex:none;display:inline-flex;align-items:center;justify-content:center;
+    border:1px solid var(--rule);border-radius:3px;background:var(--surface);
+    color:var(--text);cursor:pointer;padding:0;
+    transition:color .15s, border-color .15s;
   }
-  body[dir="rtl"] .danger-slider-wrap{
-    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:12px;
+  .play-btn:hover{color:var(--yellow);border-color:rgba(148,163,184,0.45)}
+  .play-btn svg{width:13px;height:13px;display:block}
+  .play-btn .icon-pause{display:none}
+  .play-btn[aria-pressed="true"] .icon-play{display:none}
+  .play-btn[aria-pressed="true"] .icon-pause{display:block}
+  #dangerSlider{
+    flex:1 1 auto;min-width:0;height:22px;cursor:pointer;
+    -webkit-appearance:none;appearance:none;background:transparent;margin:0;
   }
-  .danger-slider-wrap input[type="range"]{
-    width:100%;accent-color:var(--yellow);height:18px;cursor:pointer;
+  #dangerSlider:focus-visible{outline:1px solid var(--yellow);outline-offset:3px}
+  #dangerSlider::-webkit-slider-runnable-track{
+    height:3px;border-radius:2px;background:var(--rule);
+  }
+  #dangerSlider::-moz-range-track{height:3px;border-radius:2px;background:var(--rule)}
+  #dangerSlider::-moz-range-progress{height:3px;border-radius:2px;background:var(--yellow);opacity:.55}
+  #dangerSlider::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;
+    width:13px;height:13px;border-radius:50%;margin-top:-5px;
+    background:var(--yellow);border:2px solid var(--surface);
+    box-shadow:0 0 0 1px var(--yellow);
+  }
+  #dangerSlider::-moz-range-thumb{
+    width:13px;height:13px;border-radius:50%;border:2px solid var(--surface);
+    background:var(--yellow);box-shadow:0 0 0 1px var(--yellow);
+  }
+  .danger-cut{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--text);
+    flex:none;min-width:74px;text-align:end;font-weight:500;
+  }
+  body[dir="rtl"] .danger-cut{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:12.5px}
+  .danger-key{
+    display:flex;flex-wrap:wrap;gap:8px 16px;margin:10px 0 0;
+    font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .danger-key span{display:inline-flex;align-items:center;gap:6px}
+  .danger-key i{width:8px;height:8px;border-radius:50%;display:block;flex:none}
+  .danger-key i.uk{background:var(--uk-dot)}
+  .danger-key i.ru{background:var(--ru-dot)}
+  .danger-key i.ot{background:var(--ot-dot)}
+  .danger-key i.hot{width:12px;height:9px;border-radius:2px;background:var(--red);opacity:.28}
+  .danger-key .km{width:11px;height:11px;display:block;flex:none}
+  body[dir="rtl"] .danger-key{
+    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:11.5px;
   }
   .band .meter{height:3px;border-radius:2px;background:rgba(148,163,184,.13);overflow:hidden;margin-bottom:10px}
   .band .meter i{display:block;height:100%;background:var(--yellow);opacity:.75}
@@ -406,10 +445,14 @@
   body[dir="rtl"] .ev .d{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:10px}
 
   footer{
-    margin-top:44px;padding-top:20px;border-top:1px solid var(--rule);
-    font-size:11.5px;color:var(--faint);line-height:1.6;
+    margin-top:44px;padding-top:18px;border-top:1px solid var(--rule);
+    display:flex;align-items:center;justify-content:space-between;gap:12px 18px;flex-wrap:wrap;
   }
-  footer b{color:var(--muted);font-weight:500}
+  .footline{
+    font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+    color:var(--faint);margin:0;
+  }
+  body[dir="rtl"] .footline{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11.5px}
 
   /* --- RTL --- */
   body[dir="rtl"] .timeline{padding-left:0;padding-right:26px}
@@ -420,12 +463,12 @@
   body[dir="rtl"] .gap .bar{left:auto;right:-20px}
   body[dir="rtl"] h1{letter-spacing:0;line-height:1.16}
   body[dir="rtl"] .eyebrow,
-  body[dir="rtl"] .panel h3,
   body[dir="rtl"] .ovhead h3{letter-spacing:.06em}
   body[dir="rtl"] time{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11.5px}
   body[dir="rtl"] .gap .days{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11px}
   body[dir="rtl"] .stat .n,
-  body[dir="rtl"] .key .count{direction:ltr;display:inline-block}
+  body[dir="rtl"] .ro-n,
+  body[dir="rtl"] .chip .count{direction:ltr;display:inline-block}
   body[dir="rtl"] .stat .n{display:block}
 
   @media (prefers-reduced-motion: reduce){
@@ -462,6 +505,7 @@
   body[dir="rtl"] .why-close{letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none}
   .why-body{font-size:13.5px;color:var(--muted);line-height:1.55;margin:0 0 12px}
   .why-dialog .srcs{border-top:1px solid var(--rule);padding-top:10px}
+  .why-dialog .srcs:empty{display:none}
   body.why-open{overflow:hidden}
 </style>
 </head>
@@ -485,105 +529,91 @@
   </div>
 
   <header>
-    <p class="eyebrow" id="eyebrow"></p>
-    <h1 id="title"></h1>
-    <p class="standfirst" id="standfirst"></p>
+    <div>
+      <p class="eyebrow" id="eyebrow"></p>
+      <h1 id="title"></h1>
+      <p class="standfirst" id="standfirst"></p>
+    </div>
+    <div class="chipbar">
+      <span class="chip"><span class="swatch" style="background:var(--red)"></span><b id="k1"></b></span>
+      <span class="chip"><span class="swatch" style="background:var(--green)"></span><b id="k2"></b></span>
+      <span class="chip-rule" aria-hidden="true"></span>
+      <span class="chip"><span class="flag" id="fl1"></span><b id="f1"></b></span>
+      <span class="chip"><span class="flag" id="fl2"></span><b id="f2"></b></span>
+      <span class="chip"><span class="flag" id="fl3"></span><b id="f3"></b></span>
+      <button type="button" class="info-btn" id="btn-legend"></button>
+    </div>
   </header>
 
-  <div class="legend">
-    <div class="key">
-      <span class="swatch" style="background:var(--red)"></span>
-      <span><b id="k1"></b><span class="d" id="k1d"></span></span>
-    </div>
-    <div class="key">
-      <span class="swatch" style="background:var(--green)"></span>
-      <span><b id="k2"></b><span class="d" id="k2d"></span></span>
-    </div>
-  </div>
-
-  <div class="legend forms">
-    <div class="key">
-      <span class="flag" id="fl1"></span>
-      <span><b id="f1"></b><span class="d" id="f1d"></span></span>
-    </div>
-    <div class="key">
-      <span class="flag" id="fl2"></span>
-      <span><b id="f2"></b><span class="d" id="f2d"></span></span>
-    </div>
-    <div class="key">
-      <span class="flag" id="fl3"></span>
-      <span><b id="f3"></b><span class="d" id="f3d"></span></span>
-    </div>
-  </div>
-
-  <div class="panel">
-    <h3 id="panelTitle"></h3>
-    <div class="stats">
-      <div class="stat"><span class="n" style="color:var(--faint)">11.5<span class="u" id="u1"></span></span><span class="l" id="s1"></span></div>
-      <div class="stat"><span class="n" style="color:var(--red)">2.0<span class="u" id="u2"></span></span><span class="l" id="s2"></span></div>
-      <div class="stat"><span class="n" style="color:var(--faint)">34 → 0</span><span class="l" id="s3"></span></div>
-      <div class="stat"><span class="n" style="color:var(--faint)">19 / 10 / 2</span><span class="l" id="s4"></span></div>
-    </div>
-    <p id="p0"></p>
-    <p id="p1"></p>
-    <p id="p2"></p>
+  <div class="metrics">
+    <div class="stat"><span class="n">11.5<span class="u" id="u1"></span></span><span class="l" id="s1"></span></div>
+    <div class="stat"><span class="n" style="color:var(--red)">2.0<span class="u" id="u2"></span></span><span class="l" id="s2"></span></div>
+    <div class="stat"><span class="n">34 &rarr; 0</span><span class="l" id="s3"></span></div>
+    <div class="stat"><span class="n">19 / 10 / 2</span><span class="l" id="s4"></span></div>
+    <button type="button" class="info-btn" id="btn-tempo"></button>
   </div>
 
   <section class="overview" id="overview">
     <div class="ovhead">
-      <h3 id="ovTitle"></h3>
-      <div class="toggle viewtoggle" role="tablist" aria-label="Band layout">
-        <button id="btn-kanban" role="tab" aria-controls="bands" aria-pressed="true" aria-selected="true">
+      <div class="ovtitle">
+        <h3 id="ovTitle"></h3>
+        <button type="button" class="info-btn" id="btn-view"></button>
+      </div>
+      <div class="toggle viewtoggle" role="tablist" aria-label="View">
+        <button id="btn-danger" role="tab" aria-controls="dangerPane" aria-pressed="true" aria-selected="true">
+          <span class="tab-name" id="tabDanger"></span>
+          <span class="hint" id="tabDangerHint"></span>
+        </button>
+        <button id="btn-kanban" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false">
           <span class="tab-name" id="tabKanban"></span>
           <span class="hint" id="tabKanbanHint"></span>
-        </button>
-        <button id="btn-outline" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false">
-          <span class="tab-name" id="tabOutline"></span>
-          <span class="hint" id="tabOutlineHint"></span>
         </button>
         <button id="btn-domain" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false">
           <span class="tab-name" id="tabDomain"></span>
           <span class="hint" id="tabDomainHint"></span>
         </button>
-        <button id="btn-danger" role="tab" aria-controls="dangerPane" aria-pressed="false" aria-selected="false">
-          <span class="tab-name" id="tabDanger"></span>
-          <span class="hint" id="tabDangerHint"></span>
+        <button id="btn-outline" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false">
+          <span class="tab-name" id="tabOutline"></span>
+          <span class="hint" id="tabOutlineHint"></span>
         </button>
       </div>
     </div>
-    <p class="note" id="ovNote"></p>
-    <div class="bands" id="bands" role="tabpanel"></div>
-    <div class="danger-pane" id="dangerPane" hidden role="tabpanel">
-      <div class="danger-meta">
-        <p class="danger-date" id="dangerDate"></p>
-        <p class="danger-count" id="dangerCount"></p>
+    <div class="bands" id="bands" role="tabpanel" hidden></div>
+    <div class="danger-pane" id="dangerPane" role="tabpanel">
+      <div class="danger-head">
+        <div class="ro"><span class="ro-n" id="roDanger"></span><span class="ro-l" id="roDangerL"></span></div>
+        <div class="ro"><span class="ro-n" id="roImpact"></span><span class="ro-l" id="roImpactL"></span></div>
+        <div class="ro" id="roDriftBox"><span class="ro-n" id="roDrift"></span><span class="ro-l" id="roDriftL"></span></div>
+        <div class="ro"><span class="ro-n" id="roCount"></span><span class="ro-l" id="roCountL"></span></div>
       </div>
-      <div class="danger-key" id="dangerKey"></div>
       <div class="danger-plot" id="dangerPlot">
         <div class="danger-chart" id="dangerChart"></div>
         <div class="danger-tip" id="dangerTip" hidden></div>
       </div>
-      <label class="danger-slider-wrap">
-        <span class="danger-slider-name" id="dangerSliderLabel"></span>
+      <div class="danger-controls">
+        <button type="button" class="play-btn" id="dangerPlay" aria-pressed="false">
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5 20 12 7 19.5z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z"/></svg>
+        </button>
         <input type="range" id="dangerSlider" min="0" step="1" value="0">
-      </label>
+        <span class="danger-cut" id="dangerDate"></span>
+      </div>
+      <div class="danger-key" id="dangerKey"></div>
     </div>
   </section>
-  <script>
-    (function(){
-      var mobile = window.matchMedia("(max-width: 720px)").matches;
-      var k = document.getElementById("btn-kanban");
-      var o = document.getElementById("btn-outline");
-      k.setAttribute("aria-pressed", mobile ? "false" : "true");
-      k.setAttribute("aria-selected", mobile ? "false" : "true");
-      o.setAttribute("aria-pressed", mobile ? "true" : "false");
-      o.setAttribute("aria-selected", mobile ? "true" : "false");
-    })();
-  </script>
 
-  <div class="timeline" id="tl"></div>
+  <div class="narrow">
+    <div class="tlhead">
+      <h3 id="tlTitle"></h3>
+      <span class="tlcount" id="tlCount"></span>
+    </div>
+    <div class="timeline" id="tl"></div>
+  </div>
 
-  <footer id="foot"></footer>
+  <footer class="narrow">
+    <p class="footline" id="footLine"></p>
+    <button type="button" class="info-btn" id="btn-method"></button>
+  </footer>
 
 </div>
 
@@ -605,42 +635,49 @@
 const T = {
   en: {
     dir:"ltr", lang:"en",
-    eyebrow:"Open-source audit · Feb – Sep 2026 · merged set",
-    title:"UK–Russia escalation:<br>thirty-one dated events, both sides",
-    standfirst:"The British and Russian sets placed on one spine. Colour codes whether an event sits on the UK–Russia thread; the flag inside each marker codes who acted. The dashed intervals show the elapsed time between one event and the next.",
-    k1:'Direct link <em class="count">· 22</em>',
-    k1d:"Names Britain, or acts against British ships, staff, territory or equipment.",
-    k2:'No direct link <em class="count">· 9</em>',
-    k2d:"Documented driver lies elsewhere — Ukraine broadly, NATO, Washington, or domestic. Any British connection is inferred, not stated.",
-    f1:'British or western act <em class="count">· 10</em>', f1d:"Union flag.",
-    f2:'Russian act or statement <em class="count">· 19</em>', f2d:"Russian tricolour.",
-    f3:'Third party <em class="count">· 2</em>', f3d:"Both rows are American.",
-    panelTitle:"Interval compression",
-    unit:" d",
-    s1:"Mean gap, Feb → 15 Aug", s2:"Mean gap, 15 Aug → 10 Sep",
-    s3:"Longest to shortest interval", s4:"Russian / British / third-party rows",
+    eyebrow:"Open-source audit · Feb–Sep 2026",
+    title:"UK–Russia escalation",
+    standfirst:"Thirty-one dated events, both sides. Drag the date under Danger: if the cloud drifts up and to the right, the signal is hardening.",
+    k1:'Direct <em class="count">22</em>',
+    k1d:"<b>Direct link.</b> Names Britain, or acts against British ships, staff, territory or equipment.",
+    k2:'Indirect <em class="count">9</em>',
+    k2d:"<b>No direct link.</b> Documented driver lies elsewhere — Ukraine broadly, NATO, Washington, or domestic. Any British connection is inferred, not stated.",
+    f1:'UK / west <em class="count">10</em>', f1d:"<b>British or western act.</b> Union flag.",
+    f2:'Russia <em class="count">19</em>', f2d:"<b>Russian act or statement.</b> Russian tricolour.",
+    f3:'Other <em class="count">2</em>', f3d:"<b>Third party.</b> Both rows are American.",
+    unit:"d",
+    s1:"Mean gap to 15 Aug", s2:"Mean gap since 15 Aug",
+    s3:"Longest → shortest", s4:"RU / UK / other",
     p0:"<b>One rule, both sides.</b> The two source sets graded on different definitions. The merged set applies the stricter, target-based rule throughout. No row changed grade under it.",
     p1:"<b>Read the compression with care.</b> Part of it is method. Early rows are month-level estimates; late rows are statements logged the day they were made. Attention rose after 15 August, and the observation rate with it.",
     p2:"<b>What the merge adds.</b> Reply time — from 15 August, ten of fourteen rows are Russian, and each British move draws a response within two days. Target — threats name objects in Ukraine until 23 August, on British soil from the 24th. Rank — a former diplomat on the 25th, the foreign ministry on the 27th, Putin on 2 September.",
     foot:"<b>Merging two colour schemes.</b> The British set coded for a link to the escalation thesis; the Russian set coded for whether a signal named Britain. Those are not the same question. This set uses the second, narrower rule throughout, which is the one that can be checked against a source rather than against a hypothesis.<br><br><b>Flag and ring.</b> The two encode different things and should be read separately: the flag is which side acted, the ring colour is the grading. The Union flag is drawn in simplified form at this size — the diagonal counterchange is not rendered. Neither is a claim about causation between adjacent rows.<br><br><b>Interval scale.</b> Gap heights use a square-root scale — a 34-day gap is drawn about six times the height of a 1-day gap, not thirty-four times. Without it the short intervals would be invisible. The day count inside each badge is exact.<br><br><b>Badge fill.</b> The fill of each interval badge runs inverse to its length: anything two days or under is full red, and longer gaps fade toward the page's slate grey. It encodes the same number as the label, so it adds emphasis rather than information.<br><br><b>Same-day intervals.</b> Two intervals are zero days and are badged as such. Ordering within a day follows the reporting, not a verified clock.<br><br><b>Approximate dates.</b> Three rows are dated to the month or to \u201caround\u201d a day (marked ~). Intervals touching them are approximate and marked as such. The ambassador's departure, carried as approximate in the earlier set, is now dated to 21 July on the Guardian's account.<br><br><b>Two rows dated to disclosure, not to the act.</b> The submarine operation ran for over a month before 9 April and sits on the day Britain revealed it. The drone strikes run the other way: dated to February, with the August disclosure logged as its own row. The two cannot be compared without that in mind.<br><br><b>Date conflicts, unresolved.</b> The Fedorov remark: CBS dates it 25 August, the Independent to around the 24th. The CIA trip: the Guardian says Tuesday, others Wednesday. The embassy warning: logged 17 August, carried by Reuters on the 18th. The Sarmat launch: Defense News 12 May, GlobalSecurity 13 May.<br><br><b>One unsourced row.</b> The 6 August defence talks have no online report found; the row is marked rather than linked to something adjacent.<br><br><b>Two candidates dropped.</b> A reported North Korean missile strike on Kyiv (19–20 Aug) and a GRU-signature explosive drone found near a Ukrainian cargo aircraft in Germany (27 Aug) were each carried by a single outlet at second hand. Neither is in the timeline.<br><br><b>Counter-signals are graded the same way.</b> On 1 September Moscow calls the ambassador's departure routine and says a successor is coming, which cuts against the reading placed on the 23 August row. It still codes red, because the rule asks whether Britain is the named object of a signal, not whether the signal points up or down. A red row is not on its own evidence of escalation.<br><br><b>Window.</b> Both sides run the full February–September window. The earlier trimmed Russian window, and the selection-effect note attached to it, do not carry over to these figures.",
     dayUnit:"d", sameDay:"same day", gapWord:"Gap",
     months:["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],
-    ovTitle:"Four bands, by how directly Britain is named",
+    ovTitle:"Bands · how directly Britain is named",
     ovNote:"A third axis, and the only one on this page that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — not how alarming its content is. The top band adds a second cut: the named object sits under a strike threat or a concealed act, so notified gunnery and diplomat rows stay routine. That is also why an unannounced nuclear exercise and an American trip to Moscow both sit in the first band. Flag and ring keep their meanings.",
-    ovTitleDomain:"Four domains, by the kind of object in play",
+    ovTitleDomain:"Domains · the kind of object in play",
     ovNoteDomain:"War versus civil, infrastructure versus zone. War infra is army systems and the plants that make them. War zones are military geography — a front, a base, a stretch of water. Civil infra is the systems of ordinary life: airports, courts, energy plants. Civil zone is cities and diplomatic space. Nothing in this set is a strike on London buildings. Like the bands, this cut is a judgement. Flag and ring keep their meanings.",
     ovViewLabel:"View",
-    ovKanban:"Kanban", ovKanbanHint:"alert level",
-    ovOutline:"Outline", ovOutlineHint:"by date",
+    ovKanban:"Bands", ovKanbanHint:"how direct",
+    ovOutline:"List", ovOutlineHint:"by date",
     ovDomain:"Domain", ovDomainHint:"war / civil",
-    ovDanger:"Danger", ovDangerHint:"risk / impact",
-    ovTitleDanger:"Danger against impact, through time",
-    ovNoteDanger:"A fourth cut, and a judgement like the bands. Vertical is how alarming the act is — high at the top. Horizontal is how large the stakes are if it lands — high to the right. The slider keeps every row up to the date you stop on, so the cloud can be read as a path. The cross is the centre of the rows on screen. Blue is a British or western act, red is Russian; the two American rows are grey.",
+    ovDanger:"Danger", ovDangerHint:"signal strength",
+    ovTitleDanger:"Danger against impact",
+    ovNoteDanger:"A fourth cut, and a judgement like the bands. Vertical is how alarming the act is — high at the top. Horizontal is how large the stakes are if it lands — high to the right. The slider keeps every row up to the date you stop on, so the cloud can be read as a path. The cross marks the centre of the five most recent rows and the faint line behind it is where that centre has been. Drift compares those five rows with the five before them: positive means the recent cluster sits higher and further right. Blue is a British or western act, red is Russian; the two American rows are grey.",
     dangerHigh:"High danger", dangerLow:"Low danger",
     impactLow:"Low impact", impactHigh:"High impact",
-    dangerCentre:"centre of shown rows",
+    dangerCentre:"last 5",
+    keyNewest:"newest", keyHot:"danger 7+ · impact 7+",
     dangerSlider:"Date",
-    dangerThru:(n,date,total)=>n===total?n+" rows · full window":n+" of "+total+" · through "+date,
+    roDangerL:"Mean danger", roImpactL:"Mean impact",
+    roDriftL:"Drift, last 5", roCountL:"Events shown",
+    legendBtn:"Key", legendTitle:"Reading the marks",
+    tempoBtn:"Tempo", tempoTitle:"Interval compression",
+    infoBtn:"About", methodBtn:"Method", methodTitle:"Method and caveats",
+    playLabel:"Play through the dates", pauseLabel:"Pause",
+    tlTitle:"Timeline", tlCount:"31 events · Feb – Sep 2026",
+    footLine:"Thirty-one rows, February to September 2026. Every row carries its source.",
     metaFmt:(n,r,rng)=>n+" rows &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
       {name:"Britain not named", def:"Background, structural, or deliberately concealed. Britain is not the object."},
@@ -662,42 +699,49 @@ const T = {
   },
   he: {
     dir:"rtl", lang:"he",
-    eyebrow:"בדיקת מקורות גלויים · פברואר–ספטמבר 2026 · מערך ממוזג",
-    title:"הסלמה בין בריטניה לרוסיה:<br>שלושים ואחד אירועים, שני הצדדים",
-    standfirst:"המערך הבריטי והמערך הרוסי על ציר אחד. הצבע מסמן אם האירוע יושב על ציר בריטניה–רוסיה; הדגל שבתוך הסימן מסמן מי פעל. המרווחים המקווקווים מציגים את הזמן שחלף בין אירוע אחד למשנהו.",
-    k1:'קשר ישיר <em class="count">· 22</em>',
-    k1d:"נוקב בשם בריטניה, או פועל נגד כלי שיט, אנשי סגל, שטח או ציוד בריטיים.",
-    k2:'אין קשר ישיר <em class="count">· 9</em>',
-    k2d:"הגורם המתועד נמצא במקום אחר — אוקראינה בכללותה, נאט\u201dו, וושינגטון או זירה פנימית. כל קשר בריטי הוא הסקה ולא אמירה.",
-    f1:'מהלך בריטי או מערבי <em class="count">· 10</em>', f1d:"דגל בריטניה.",
-    f2:'מהלך או הצהרה רוסיים <em class="count">· 19</em>', f2d:"דגל רוסיה.",
-    f3:'צד שלישי <em class="count">· 2</em>', f3d:"שתי השורות אמריקאיות.",
-    panelTitle:"התכווצות המרווחים",
+    eyebrow:"בדיקת מקורות גלויים · פברואר–ספטמבר 2026",
+    title:"הסלמה בין בריטניה לרוסיה",
+    standfirst:"שלושים ואחד אירועים מתוארכים, משני הצדדים. הזיזו את התאריך בלשונית הסכנה: אם ענן הנקודות נודד למעלה ולימין, האיתות מתחזק.",
+    k1:'ישיר <em class="count">22</em>',
+    k1d:"<b>קשר ישיר.</b> נוקב בשם בריטניה, או פועל נגד כלי שיט, אנשי סגל, שטח או ציוד בריטיים.",
+    k2:'עקיף <em class="count">9</em>',
+    k2d:"<b>אין קשר ישיר.</b> הגורם המתועד נמצא במקום אחר — אוקראינה בכללותה, נאט\u201dו, וושינגטון או זירה פנימית. כל קשר בריטי הוא הסקה ולא אמירה.",
+    f1:'בריטניה / המערב <em class="count">10</em>', f1d:"<b>מהלך בריטי או מערבי.</b> דגל בריטניה.",
+    f2:'רוסיה <em class="count">19</em>', f2d:"<b>מהלך או הצהרה רוסיים.</b> דגל רוסיה.",
+    f3:'אחר <em class="count">2</em>', f3d:"<b>צד שלישי.</b> שתי השורות אמריקאיות.",
     unit:" ימים",
-    s1:"מרווח ממוצע, פברואר → 15 באוגוסט", s2:"מרווח ממוצע, 15 באוגוסט – 10 בספטמבר",
-    s3:"מהמרווח הארוך ביותר לקצר ביותר", s4:"שורות רוסיות / בריטיות / צד שלישי",
+    s1:"מרווח ממוצע עד 15 באוג׳", s2:"מרווח ממוצע מ-15 באוג׳",
+    s3:"מהארוך ביותר לקצר", s4:"רוסיה / בריטניה / אחר",
     p0:"<b>כלל אחד, לשני הצדדים.</b> שני המערכים המקוריים דירגו לפי הגדרות שונות. המערך הממוזג מחיל את הכלל המחמיר יותר, זה שמבוסס על המטרה, על כל השורות — ואף שורה לא שינתה דירוג.",
     p1:"<b>יש לקרוא את ההתכווצות בזהירות.</b> חלק ממנה נובע מהשיטה. הרשומות המוקדמות הן הערכות ברמת החודש; המאוחרות הן הצהרות שנרשמו ביום שנאמרו. תשומת הלב עלתה אחרי 15 באוגוסט, ואיתה שיעור התצפיות.",
     p2:"<b>מה שהמיזוג מוסיף.</b> זמן תגובה — מ-15 באוגוסט עשר מארבע־עשרה השורות רוסיות, וכל מהלך בריטי מושך תגובה בתוך יומיים. מטרה — האיומים נוקבים ביעדים באוקראינה עד 23 באוגוסט, ועל אדמת בריטניה מה-24. דרג — דיפלומט לשעבר ב-25, משרד החוץ ב-27, פוטין ב-2 בספטמבר.",
     foot:"<b>מיזוג שתי סכמות צבע.</b> המערך הבריטי סימן לפי קשר לתזת ההסלמה; המערך הרוסי סימן לפי השאלה אם האיתות נוקב בשם בריטניה. אלה אינן אותה שאלה. המערך הזה משתמש בכלל השני, הצר יותר, לכל אורכו — זה שניתן לבדיקה מול מקור ולא מול השערה.<br><br><b>הדגל והטבעת.</b> השניים מקודדים דברים שונים ויש לקרוא אותם בנפרד: הדגל הוא הצד שפעל, צבע הטבעת הוא הדירוג. דגל בריטניה מצויר בגרסה מפושטת בגודל הזה — הקו האלכסוני המוסט אינו מיוצג. אף אחד מהם אינו טענה על סיבתיות בין שורות סמוכות.<br><br><b>קנה המידה של המרווחים.</b> גובה המרווחים מבוסס על שורש ריבועי — מרווח של 34 יום מצויר בגובה של פי שישה בערך ממרווח של יום אחד, ולא פי שלושים וארבעה. בלעדיו המרווחים הקצרים היו נעלמים. מספר הימים בתוך כל תג מדויק.<br><br><b>מילוי התגים.</b> מילוי כל תג מרווח פועל הפוך לאורכו: כל מרווח של יומיים או פחות מוצג באדום מלא, ומרווחים ארוכים יותר דוהים לעבר האפור־כחלחל של הדף. הוא מקודד בדיוק את אותו מספר שמופיע בתווית, ולכן הוא מוסיף הדגשה ולא מידע.<br><br><b>מרווחים של אותו יום.</b> שני מרווחים הם אפס ימים ומסומנים ככאלה. הסדר בתוך יום נקבע לפי הדיווח ולא לפי שעון מאומת.<br><br><b>תאריכים משוערים.</b> שלוש שורות מתוארכות לרמת החודש או ל\u201dבערך\u201d יום מסוים (מסומן ~). מרווחים הנוגעים בהן משוערים ומסומנים ככאלה. עזיבת השגריר, שנשאה סימון משוער במערך הקודם, מתוארכת כעת ל-21 ביולי לפי הגרדיאן.<br><br><b>שתי שורות מתוארכות לחשיפה ולא למעשה.</b> מבצע הצוללות נמשך למעלה מחודש לפני 9 באפריל, והשורה יושבת על היום שבו בריטניה חשפה אותו. תקיפות המזל\u201dטים פועלות בכיוון ההפוך: מתוארכות לפברואר, כשהחשיפה של אוגוסט נרשמת כשורה נפרדת. אי אפשר להשוות ביניהן בלי לזכור זאת.<br><br><b>סתירות תאריכים שלא יושבו.</b> אמירת פדורוב: CBS מתארך ל-25 באוגוסט, האינדיפנדנט לסביבות ה-24. ביקור ראש ה-CIA: הגרדיאן אומר יום שלישי, אחרים יום רביעי. אזהרת השגרירות: נרשמה ב-17 באוגוסט, רויטרס פרסמה ב-18. שיגור הסרמט: Defense News ב-12 במאי, GlobalSecurity ב-13 במאי.<br><br><b>שורה אחת ללא מקור.</b> לשיחות ההגנה של 6 באוגוסט לא נמצא דיווח מקוון; השורה מסומנת ככזו ולא מקושרת למקור סמוך.<br><br><b>שני מועמדים הוסרו.</b> דיווח על תקיפת קייב בטילים צפון־קוריאניים (19–20 באוגוסט) ורחפן נפץ בחתימת GRU שנמצא ליד מטוס מטען אוקראיני בגרמניה (27 באוגוסט) הופיעו כל אחד בכלי תקשורת יחיד וממקור משני. שניהם אינם בציר הזמן.<br><br><b>איתותים נגדיים מדורגים באותה שיטה.</b> ב-1 בספטמבר מוסקבה מכנה את עזיבת השגריר שגרתית ומודיעה שמחליף בדרך, דבר הסותר את הקריאה שהוצמדה לשורה של 23 באוגוסט. השורה עדיין מסומנת באדום, משום שהכלל שואל אם בריטניה היא מושא האיתות ולא אם האיתות מצביע כלפי מעלה או מטה. שורה אדומה אינה כשלעצמה ראיה להסלמה.<br><br><b>חלון הזמן.</b> שני הצדדים פרוסים על חלון פברואר–ספטמבר המלא. החלון הרוסי המקוצר הקודם, וההערה על אפקט הבחירה שנלוותה אליו, אינם חלים על הנתונים כאן.",
     dayUnit:" ימים", sameDay:"אותו יום", gapWord:"פער",
     months:["ינו׳","פבר׳","מרץ","אפר׳","מאי","יוני","יולי","אוג׳","ספט׳","אוק׳","נוב׳","דצמ׳"],
-    ovTitle:"ארבע רמות, לפי מידת הישירות שבה בריטניה נקובה",
+    ovTitle:"רמות · מידת הישירות שבה בריטניה נקובה",
     ovNote:"ציר שלישי, והיחיד בדף הזה שהוא שיפוט ולא עובדה מתועדת. המבחן הוא עד כמה בריטניה היא במפורש מושא האיתות — לא עד כמה תוכנו מדאיג. הרמה העליונה דורשת גם איום תקיפה או מעשה מוסתר, ולכן ירי שהודיעו עליו מראש ושורות דיפלומטיות נשארים ברמה השגרתית. לכן גם תרגיל גרעיני ללא הודעה וביקור אמריקאי במוסקבה יושבים שניהם ברמה הראשונה. הדגל והטבעת שומרים על משמעותם.",
-    ovTitleDomain:"ארבעה תחומים, לפי סוג המושא",
+    ovTitleDomain:"תחומים · סוג המושא",
     ovNoteDomain:"מלחמה מול אזרחי, תשתיות מול זירה. תשתית מלחמה היא מערכות הצבא והמפעלים שמייצרים אותן. אזורי מלחמה הם גאוגרפיה צבאית — חזית, בסיס, מקטע מים. תשתית אזרחית היא מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה. אזור אזרחי הוא ערים ומרחב דיפלומטי. אין במערך תקיפה על בניינים בלונדון. כמו הרמות, גם החיתוך הזה הוא שיפוט. הדגל והטבעת שומרים על משמעותם.",
     ovViewLabel:"תצוגה",
-    ovKanban:"קנבן", ovKanbanHint:"רמת התראה",
-    ovOutline:"מתווה", ovOutlineHint:"לפי תאריך",
+    ovKanban:"רמות", ovKanbanHint:"מידת הישירות",
+    ovOutline:"רשימה", ovOutlineHint:"לפי תאריך",
     ovDomain:"תחום", ovDomainHint:"מלחמה / אזרחי",
-    ovDanger:"סכנה", ovDangerHint:"סיכון / השפעה",
-    ovTitleDanger:"סכנה מול השפעה, לאורך הזמן",
-    ovNoteDanger:"חיתוך רביעי, וגם הוא שיפוט כמו הרמות. הציר האנכי הוא עד כמה המעשה מדאיג — גבוה למעלה. האופקי הוא עד כמה גבוה המחיר אם הוא מתממש — גבוה לימין. הסרגל משאיר כל שורה עד התאריך שבו עוצרים, כך שאפשר לקרוא את ענן הנקודות כמסלול. הצלב הוא מרכז השורות שעל המסך. כחול הוא מהלך בריטי או מערבי, אדום הוא רוסי; שתי השורות האמריקאיות אפורות.",
+    ovDanger:"סכנה", ovDangerHint:"עוצמת האיתות",
+    ovTitleDanger:"סכנה מול השפעה",
+    ovNoteDanger:"חיתוך רביעי, וגם הוא שיפוט כמו הרמות. הציר האנכי הוא עד כמה המעשה מדאיג — גבוה למעלה. האופקי הוא עד כמה גבוה המחיר אם הוא מתממש — גבוה לימין. הסרגל משאיר כל שורה עד התאריך שבו עוצרים, כך שאפשר לקרוא את ענן הנקודות כמסלול. הצלב מסמן את מרכז חמש השורות האחרונות, והקו הדהוי מאחוריו הוא המסלול שהמרכז הזה עבר. הנדידה משווה בין חמש השורות האחרונות לחמש שלפניהן: ערך חיובי אומר שהאשכול האחרון יושב גבוה יותר ורחוק יותר לימין. כחול הוא מהלך בריטי או מערבי, אדום הוא רוסי; שתי השורות האמריקאיות אפורות.",
     dangerHigh:"סכנה גבוהה", dangerLow:"סכנה נמוכה",
     impactLow:"השפעה נמוכה", impactHigh:"השפעה גבוהה",
-    dangerCentre:"מרכז השורות המוצגות",
+    dangerCentre:"5 האחרונות",
+    keyNewest:"האחרון", keyHot:"סכנה 7+ · השפעה 7+",
     dangerSlider:"תאריך",
-    dangerThru:(n,date,total)=>n===total?n+" שורות · החלון המלא":n+" מתוך "+total+" · עד "+date,
+    roDangerL:"סכנה ממוצעת", roImpactL:"השפעה ממוצעת",
+    roDriftL:"נדידה, 5 אחרונות", roCountL:"אירועים מוצגים",
+    legendBtn:"מקרא", legendTitle:"קריאת הסימנים",
+    tempoBtn:"קצב", tempoTitle:"התכווצות המרווחים",
+    infoBtn:"הסבר", methodBtn:"שיטה", methodTitle:"שיטה והסתייגויות",
+    playLabel:"הרצה על פני התאריכים", pauseLabel:"עצירה",
+    tlTitle:"ציר הזמן", tlCount:"31 אירועים · פברואר–ספטמבר 2026",
+    footLine:"שלושים ואחת שורות, פברואר עד ספטמבר 2026. לכל שורה מצורף מקור.",
     metaFmt:(n,r,rng)=>n+" שורות &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
       {name:"בריטניה אינה נקובה", def:"רקע, מהלך מבני, או פעולה שהוסתרה בכוונה. בריטניה אינה המושא."},
@@ -1291,6 +1335,19 @@ function openWhy(i){
   document.getElementById("whyClose").focus();
 }
 
+function openInfo(kicker, title, html){
+  const t = T[lang];
+  whyLastFocus = document.activeElement;
+  set("whyKicker", kicker);
+  set("whyTitle", title);
+  set("whyBody", html);
+  set("whySrcs", "");
+  document.getElementById("whyClose").textContent = t.whyClose;
+  whyOverlay.hidden = false;
+  document.body.classList.add("why-open");
+  document.getElementById("whyClose").focus();
+}
+
 const DANGER_DATES = Array.from(new Set(EVENTS.map(e => e.date)));
 const dangerPane = document.getElementById("dangerPane");
 const dangerSlider = document.getElementById("dangerSlider");
@@ -1328,25 +1385,61 @@ function showDangerTip(ev, html){
   dangerTip.style.top = top + "px";
 }
 
+const meanOf = (rows, key) => rows.length
+  ? rows.reduce((s, x) => s + x.e[key], 0) / rows.length
+  : 0;
+
+// The moving marker tracks the five most recent rows, not the whole cloud —
+// a running mean over 31 rows barely shifts, so it would hide the turn.
+const RECENT = 5;
+
+function shownAt(step){
+  const cut = DANGER_DATES[step];
+  return EVENTS.map((e, i) => ({e, i})).filter(x => x.e.date <= cut);
+}
+
 function renderDanger(code){
   const t = T[code];
   const cut = DANGER_DATES[dangerStep];
   const cutEvent = EVENTS.filter(e => e.date === cut).slice(-1)[0];
-  const shown = EVENTS.map((e, i) => ({e, i})).filter(x => x.e.date <= cut);
+  const shown = shownAt(dangerStep);
   const newest = shown.length ? shown[shown.length - 1].i : -1;
+  const recent = shown.slice(-RECENT);
+  const prior = shown.slice(-RECENT * 2, -RECENT);
+
+  set("roDanger", shown.length ? meanOf(shown, "danger").toFixed(1) : "—");
+  set("roDangerL", t.roDangerL);
+  set("roImpact", shown.length ? meanOf(shown, "impact").toFixed(1) : "—");
+  set("roImpactL", t.roImpactL);
+  set("roCount", shown.length + " / " + EVENTS.length);
+  set("roCountL", t.roCountL);
+
+  const drift = prior.length
+    ? (meanOf(recent, "danger") + meanOf(recent, "impact"))
+      - (meanOf(prior, "danger") + meanOf(prior, "impact"))
+    : null;
+  const driftBox = document.getElementById("roDriftBox");
+  driftBox.className = "ro" + (drift === null ? "" : drift > 0.25 ? " up" : drift < -0.25 ? " down" : " flat");
+  set("roDrift", drift === null ? "—" : (drift > 0 ? "+" : drift < 0 ? "−" : "±") + Math.abs(drift).toFixed(1));
+  set("roDriftL", t.roDriftL);
 
   set("dangerDate", shortDate(cut, t, cutEvent && cutEvent.approx));
-  set("dangerCount", t.dangerThru(shown.length, shortDate(cut, t, false), EVENTS.length));
-  set("dangerSliderLabel", t.dangerSlider);
   set("dangerKey",
     '<span><i class="uk"></i>' + t.sides.uk + '</span>' +
     '<span><i class="ru"></i>' + t.sides.ru + '</span>' +
-    '<span><i class="ot"></i>' + t.sides.ot + '</span>'
+    '<span><i class="ot"></i>' + t.sides.ot + '</span>' +
+    '<span><svg class="km" viewBox="0 0 12 12" aria-hidden="true">' +
+      '<circle cx="6" cy="6" r="4.6" fill="none" stroke="var(--yellow)" stroke-width="1.3"/>' +
+      '</svg>' + t.keyNewest + '</span>' +
+    '<span><svg class="km" viewBox="0 0 12 12" aria-hidden="true">' +
+      '<path d="M1.4 6h9.2M6 1.4v9.2" stroke="var(--yellow)" stroke-width="1.3"/>' +
+      '</svg>' + t.dangerCentre + '</span>' +
+    '<span><i class="hot"></i>' + t.keyHot + '</span>'
   );
   dangerSlider.setAttribute("aria-valuetext", shortDate(cut, t, cutEvent && cutEvent.approx));
   dangerSlider.setAttribute("aria-label", t.dangerSlider);
 
-  const W = 760, H = 480, L = 90, R = 22, Top = 28, B = 48;
+  const W = 760, H = 460, L = 104, R = 24, Top = 16, B = 46;
   const plotW = W - L - R, plotH = H - Top - B;
   const ticks = [1, 4, 7, 10];
   const grid = ticks.map(v => {
@@ -1356,20 +1449,47 @@ function renderDanger(code){
       + '<line class="grid" x1="' + x + '" y1="' + Top + '" x2="' + x + '" y2="' + (Top + plotH) + '"/>';
   }).join("");
 
+  // Danger 7+ and impact 7+ — the corner the cloud drifts into when things harden.
+  const hotX = L + 6 / 9 * plotW, hotY = Top;
+  const hot = '<rect class="hotzone" x="' + hotX + '" y="' + hotY
+    + '" width="' + (L + plotW - hotX) + '" height="' + (3 / 9 * plotH) + '"/>';
+
+  const at = rows => [
+    L + (meanOf(rows, "impact") - 1) / 9 * plotW,
+    Top + (10 - meanOf(rows, "danger")) / 9 * plotH
+  ];
+
+  // Where the marker has just been. The raw step-to-step centroid jumps hard
+  // enough to read as noise, so it is eased and cropped to the recent past.
+  let trail = "";
+  const path = [];
+  let sx = null, sy = null;
+  for (let s = 0; s <= dangerStep; s++){
+    const r = shownAt(s).slice(-RECENT);
+    if (r.length < RECENT) continue;
+    const [px, py] = at(r);
+    sx = sx === null ? px : sx + (px - sx) * 0.4;
+    sy = sy === null ? py : sy + (py - sy) * 0.4;
+    path.push([sx, sy]);
+  }
+  if (path.length) path[path.length - 1] = at(recent);
+  const tail = path.slice(-12);
+  if (tail.length > 1){
+    trail = '<polyline class="trail" points="'
+      + tail.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" ") + '"/>';
+  }
+
   let cx = 0, cy = 0, centroid = "";
-  if (shown.length){
-    const mx = shown.reduce((s, x) => s + x.e.impact, 0) / shown.length;
-    const my = shown.reduce((s, x) => s + x.e.danger, 0) / shown.length;
-    cx = L + (mx - 1) / 9 * plotW;
-    cy = Top + (10 - my) / 9 * plotH;
-    const labSide = cx > L + plotW - 160;
-    const labY = cy < Top + 22 ? cy + 20 : cy - 10;
+  if (recent.length){
+    [cx, cy] = at(recent);
+    const labY = cy > Top + plotH - 26 ? cy - 16 : cy + 24;
+    const labX = Math.max(L + 34, Math.min(L + plotW - 34, cx));
     centroid =
       '<g class="centroid" aria-hidden="true">'
       + '<line x1="' + (cx - 9) + '" y1="' + cy + '" x2="' + (cx + 9) + '" y2="' + cy + '"/>'
       + '<line x1="' + cx + '" y1="' + (cy - 9) + '" x2="' + cx + '" y2="' + (cy + 9) + '"/>'
-      + '<text class="centroid-lab" text-anchor="' + (labSide ? "end" : "start") + '" x="'
-      + (labSide ? cx - 12 : cx + 12) + '" y="' + labY + '">' + t.dangerCentre + '</text>'
+      + '<text class="centroid-lab" text-anchor="middle" x="' + labX + '" y="' + labY + '">'
+      + t.dangerCentre + '</text>'
       + '</g>';
   }
 
@@ -1387,12 +1507,14 @@ function renderDanger(code){
 
   dangerChart.innerHTML =
     '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + t.ovTitleDanger + '">'
+    + hot
     + '<rect x="' + L + '" y="' + Top + '" width="' + plotW + '" height="' + plotH + '" fill="none" stroke="var(--rule)"/>'
     + grid
-    + '<text class="axis-label" x="' + L + '" y="' + (Top - 10) + '">' + t.dangerHigh + '</text>'
-    + '<text class="axis-label" text-anchor="end" x="' + (L - 8) + '" y="' + (Top + plotH - 4) + '">' + t.dangerLow + '</text>'
+    + '<text class="axis-label" text-anchor="end" x="' + (L - 10) + '" y="' + (Top + 10) + '">' + t.dangerHigh + '</text>'
+    + '<text class="axis-label" text-anchor="end" x="' + (L - 10) + '" y="' + (Top + plotH) + '">' + t.dangerLow + '</text>'
     + '<text class="axis-label" x="' + L + '" y="' + (Top + plotH + 28) + '">' + t.impactLow + '</text>'
     + '<text class="axis-label" text-anchor="end" x="' + (L + plotW) + '" y="' + (Top + plotH + 28) + '">' + t.impactHigh + '</text>'
+    + trail
     + centroid
     + dots
     + '</svg>';
@@ -1414,9 +1536,8 @@ function renderBands(code){
   const t = T[code];
   const view = currentView();
   const titles = {domain: t.ovTitleDomain, danger: t.ovTitleDanger};
-  const notes = {domain: t.ovNoteDomain, danger: t.ovNoteDanger};
   set("ovTitle", titles[view] || t.ovTitle);
-  set("ovNote", notes[view] || t.ovNote);
+  set("btn-view", t.infoBtn);
   set("tabKanban", t.ovKanban);
   set("tabKanbanHint", t.ovKanbanHint);
   set("tabOutline", t.ovOutline);
@@ -1478,17 +1599,22 @@ function render(code){
   set("eyebrow", t.eyebrow);
   set("title", t.title);
   set("standfirst", t.standfirst);
-  set("k1", t.k1); set("k1d", t.k1d);
-  set("k2", t.k2); set("k2d", t.k2d);
-  set("f1", t.f1); set("f1d", t.f1d);
+  set("k1", t.k1); set("k2", t.k2);
+  set("f1", t.f1); set("f2", t.f2); set("f3", t.f3);
   set("fl1", FLAGS.uk); set("fl2", FLAGS.ru); set("fl3", FLAGS.ot);
-  set("f2", t.f2); set("f2d", t.f2d);
-  set("f3", t.f3); set("f3d", t.f3d);
-  set("panelTitle", t.panelTitle);
+  set("btn-legend", t.legendBtn);
   set("u1", t.unit); set("u2", t.unit);
   set("s1", t.s1); set("s2", t.s2); set("s3", t.s3); set("s4", t.s4);
-  set("p0", t.p0); set("p1", t.p1); set("p2", t.p2);
-  set("foot", t.foot);
+  set("btn-tempo", t.tempoBtn);
+  set("tlTitle", t.tlTitle);
+  set("tlCount", t.tlCount);
+  set("footLine", t.footLine);
+  set("btn-method", t.methodBtn);
+
+  const play = document.getElementById("dangerPlay");
+  const playing = play.getAttribute("aria-pressed") === "true";
+  play.setAttribute("aria-label", playing ? t.pauseLabel : t.playLabel);
+  play.setAttribute("title", playing ? t.pauseLabel : t.playLabel);
 
   document.getElementById("btn-en").setAttribute("aria-pressed", code === "en");
   document.getElementById("btn-he").setAttribute("aria-pressed", code === "he");
@@ -1565,7 +1691,15 @@ let viewOverride = null;
 let lang = "en";
 
 function defaultView(){
-  return MOBILE_MQ.matches ? "outline" : "kanban";
+  return "danger";
+}
+
+function viewNote(){
+  const t = T[lang];
+  const view = currentView();
+  if (view === "domain") return {title: t.ovTitleDomain, body: t.ovNoteDomain};
+  if (view === "danger") return {title: t.ovTitleDanger, body: t.ovNoteDanger};
+  return {title: t.ovTitle, body: t.ovNote};
 }
 
 function currentView(){
@@ -1596,9 +1730,63 @@ btnOutline.addEventListener("click", () => { viewOverride = "outline"; applyView
 btnDomain.addEventListener("click", () => { viewOverride = "domain"; applyView(); });
 btnDanger.addEventListener("click", () => { viewOverride = "danger"; applyView(); });
 dangerSlider.addEventListener("input", () => {
+  stopPlay();
   dangerStep = +dangerSlider.value;
   hideDangerTip();
   if (currentView() === "danger") renderDanger(lang);
+});
+
+const dangerPlay = document.getElementById("dangerPlay");
+let playTimer = null;
+
+function stopPlay(){
+  if (playTimer === null) return;
+  clearInterval(playTimer);
+  playTimer = null;
+  dangerPlay.setAttribute("aria-pressed", "false");
+  const t = T[lang];
+  dangerPlay.setAttribute("aria-label", t.playLabel);
+  dangerPlay.setAttribute("title", t.playLabel);
+}
+
+function startPlay(){
+  if (playTimer !== null) return;
+  const last = DANGER_DATES.length - 1;
+  if (dangerStep >= last) dangerStep = 0;
+  dangerPlay.setAttribute("aria-pressed", "true");
+  const t = T[lang];
+  dangerPlay.setAttribute("aria-label", t.pauseLabel);
+  dangerPlay.setAttribute("title", t.pauseLabel);
+  hideDangerTip();
+  const tick = () => {
+    dangerSlider.value = String(dangerStep);
+    renderDanger(lang);
+    if (dangerStep >= last){ stopPlay(); return; }
+    dangerStep++;
+  };
+  tick();
+  playTimer = setInterval(tick, 420);
+}
+
+dangerPlay.addEventListener("click", () => {
+  if (playTimer === null) startPlay(); else stopPlay();
+});
+
+document.getElementById("btn-legend").addEventListener("click", () => {
+  const t = T[lang];
+  openInfo(t.whyKicker, t.legendTitle, [t.k1d, t.k2d, t.f1d, t.f2d, t.f3d].join("<br><br>"));
+});
+document.getElementById("btn-tempo").addEventListener("click", () => {
+  const t = T[lang];
+  openInfo(t.whyKicker, t.tempoTitle, [t.p0, t.p1, t.p2].join("<br><br>"));
+});
+document.getElementById("btn-view").addEventListener("click", () => {
+  const n = viewNote();
+  openInfo(T[lang].whyKicker, n.title, n.body);
+});
+document.getElementById("btn-method").addEventListener("click", () => {
+  const t = T[lang];
+  openInfo(t.whyKicker, t.methodTitle, t.foot);
 });
 if (MOBILE_MQ.addEventListener) MOBILE_MQ.addEventListener("change", applyView);
 else if (MOBILE_MQ.addListener) MOBILE_MQ.addListener(applyView);
