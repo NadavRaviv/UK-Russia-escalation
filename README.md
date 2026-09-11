@@ -1,6 +1,6 @@
 # UK–Russia escalation timeline, Feb–Sep 2026
 
-An open-source-intelligence audit of 30 dated events on the British–Russian thread, presented as a single self-contained HTML page in English and Hebrew.
+An open-source-intelligence audit of 31 dated events on the British–Russian thread, presented as a single self-contained HTML page in English and Hebrew.
 
 The page exists to test a hypothesis, not to assert it: that British military involvement in Ukraine — in particular concealed drone strikes on Russian territory — forms part of an undisclosed shift in defence posture. Everything below is written so a reader can check that hypothesis against the record and find it wanting if it deserves to be.
 
@@ -10,15 +10,15 @@ Open `uk-russia-merged-timeline.html` in a browser. There is no build step and n
 
 ## What is on the page
 
-**30 events**, 1 February to 8 September 2026. 18 Russian, 10 British or western, 2 third-party (both American). 27 distinct source domains; 8 rows carry two sources; 1 row carries three; 1 row carries none.
+**31 events**, 1 February to 10 September 2026. 19 Russian, 10 British or western, 2 third-party (both American). 29 distinct source domains; 9 rows carry two sources; 2 rows carry three; 1 row carries none.
 
 Three encodings, deliberately kept separate:
 
 | Encoding | Carries | Values |
 |---|---|---|
 | Flag in the marker | Who acted | Union flag, Russian tricolour, Stars and Stripes |
-| Ring colour | Whether Britain is the named object | red (21 rows), green (9 rows) |
-| Band card | How directly Britain is named | four levels, 10 / 8 / 6 / 5 rows |
+| Ring colour | Whether Britain is the named object | red (22 rows), green (9 rows) |
+| Band card | How directly Britain is named | four levels, 11 / 8 / 6 / 6 rows |
 
 Reading two of them as one thing is the main way to misread the page.
 
@@ -39,7 +39,7 @@ The one axis here that is a judgement rather than a fact on the record. The test
 1. **Britain not named** (11 rows, 1 Feb – 8 Sep) — background, structural, or deliberately concealed.
 2. **Britain named, routine** (8 rows, 30 Mar – 1 Sep) — diplomatic and naval friction inside ordinary statecraft. Notified gunnery and diplomat rows stay here.
 3. **A consequence is stated** (6 rows, 15 Aug – 26 Aug) — Britain is warned it will pay, nothing specific named as at risk.
-4. **A specific object, hostile or concealed** (5 rows, 9 Apr – 6 Sep) — a particular British thing is named as the object (a factory, a military site, or a stretch of UK water) and the act is a strike threat or concealment. The 9 April submarine operation and the 6 September AIS handshake sit here with the three late-August strike-threat rows.
+4. **A specific object, hostile or concealed** (6 rows, 9 Apr – 10 Sep) — a particular British thing is named as the object (a factory, a military site, or a stretch of UK water) and the act is a strike threat or concealment. The 9 April submarine operation, the 6 September AIS handshake and the 10 September Swindon drone-plant case sit here with the late-August and 2 September strike-threat rows.
 
 The consequence of defining bands this way: an unannounced Russian nuclear exercise and an unannounced CIA trip to Moscow both sit in band 1, because neither names Britain, though both are more alarming than a diplomat expulsion in band 2. That is the rule working as intended, not a misfiling.
 
