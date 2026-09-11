@@ -299,6 +299,69 @@
     .overview.layout-domain .bands{flex-direction:column;overflow:visible}
     .overview.layout-domain .band{flex:none;width:100%;min-width:0}
   }
+  .overview.layout-danger{
+    width:min(1200px, calc(100vw - 40px));
+    max-width:calc(100vw - 40px);
+    margin-inline:calc((100% - min(1200px, 100vw - 40px)) / 2);
+  }
+  @media (max-width: 720px){
+    .overview.layout-danger{
+      width:auto;max-width:100%;margin-inline:0;
+    }
+  }
+  .danger-pane{
+    background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+    padding:12px 14px 16px;direction:ltr;
+  }
+  .danger-meta{
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    flex-wrap:wrap;margin:0 0 8px;
+  }
+  .danger-date{
+    font-family:var(--mono);font-size:13px;letter-spacing:.04em;
+    color:var(--text);margin:0;font-weight:500;
+  }
+  .danger-count{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--faint);margin:0;
+  }
+  body[dir="rtl"] .danger-meta{direction:rtl}
+  body[dir="rtl"] .danger-date,body[dir="rtl"] .danger-count{
+    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:12px;
+  }
+  .danger-plot{position:relative;width:100%;aspect-ratio:1.55;min-height:280px}
+  .danger-chart{position:absolute;inset:0}
+  .danger-chart svg{width:100%;height:100%;display:block;overflow:visible}
+  .danger-chart .axis-label{fill:var(--faint);font-family:var(--mono);font-size:10px;letter-spacing:.08em}
+  .danger-chart .tick{stroke:var(--rule);stroke-width:1}
+  .danger-chart .grid{stroke:var(--rule);stroke-width:1;opacity:.7}
+  .danger-chart .centroid{stroke:var(--yellow);stroke-width:1.4;fill:none}
+  .danger-chart .centroid-lab{fill:var(--yellow);font-family:var(--mono);font-size:9px;letter-spacing:.06em}
+  body[dir="rtl"] .danger-chart .axis-label,
+  body[dir="rtl"] .danger-chart .centroid-lab{
+    font-family:'Heebo',var(--sans);letter-spacing:0;font-size:11px;
+  }
+  .danger-dot:focus-visible .danger-halo{stroke:var(--yellow);stroke-width:2}
+  .danger-tip{
+    position:absolute;z-index:3;pointer-events:none;
+    background:var(--base);border:1px solid var(--rule);border-radius:3px;
+    padding:7px 9px;max-width:220px;
+    box-shadow:0 8px 24px rgba(0,0,0,.18);
+  }
+  .danger-tip b{display:block;font-size:12px;font-weight:500;line-height:1.3;margin:0 0 2px}
+  .danger-tip span{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--yellow)}
+  body[dir="rtl"] .danger-tip span{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11px}
+  .danger-slider-wrap{
+    display:flex;flex-direction:column;gap:6px;margin-top:12px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--faint);
+  }
+  body[dir="rtl"] .danger-slider-wrap{
+    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:12px;
+  }
+  .danger-slider-wrap input[type="range"]{
+    width:100%;accent-color:var(--yellow);height:18px;cursor:pointer;
+  }
   .band .meter{height:3px;border-radius:2px;background:rgba(148,163,184,.13);overflow:hidden;margin-bottom:10px}
   .band .meter i{display:block;height:100%;background:var(--yellow);opacity:.75}
   .band .num{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--faint)}
@@ -462,10 +525,28 @@
           <span class="tab-name" id="tabDomain"></span>
           <span class="hint" id="tabDomainHint"></span>
         </button>
+        <button id="btn-danger" role="tab" aria-controls="dangerPane" aria-pressed="false" aria-selected="false">
+          <span class="tab-name" id="tabDanger"></span>
+          <span class="hint" id="tabDangerHint"></span>
+        </button>
       </div>
     </div>
     <p class="note" id="ovNote"></p>
     <div class="bands" id="bands" role="tabpanel"></div>
+    <div class="danger-pane" id="dangerPane" hidden role="tabpanel">
+      <div class="danger-meta">
+        <p class="danger-date" id="dangerDate"></p>
+        <p class="danger-count" id="dangerCount"></p>
+      </div>
+      <div class="danger-plot" id="dangerPlot">
+        <div class="danger-chart" id="dangerChart"></div>
+        <div class="danger-tip" id="dangerTip" hidden></div>
+      </div>
+      <label class="danger-slider-wrap">
+        <span class="danger-slider-name" id="dangerSliderLabel"></span>
+        <input type="range" id="dangerSlider" min="0" step="1" value="0">
+      </label>
+    </div>
   </section>
   <script>
     (function(){
@@ -531,6 +612,14 @@ const T = {
     ovKanban:"Kanban", ovKanbanHint:"alert level",
     ovOutline:"Outline", ovOutlineHint:"by date",
     ovDomain:"Domain", ovDomainHint:"war / civil",
+    ovDanger:"Danger", ovDangerHint:"risk / impact",
+    ovTitleDanger:"Danger against impact, through time",
+    ovNoteDanger:"A fourth cut, and a judgement like the bands. Vertical is how alarming the act is — high at the top. Horizontal is how large the stakes are if it lands — high to the right. The slider keeps every row up to the date you stop on, so the cloud can be read as a path. The cross is the centre of the rows on screen. Flag and ring keep their meanings.",
+    dangerHigh:"High danger", dangerLow:"Low danger",
+    impactLow:"Low impact", impactHigh:"High impact",
+    dangerCentre:"centre of shown rows",
+    dangerSlider:"Date",
+    dangerThru:(n,date,total)=>n===total?n+" rows · full window":n+" of "+total+" · through "+date,
     metaFmt:(n,r,rng)=>n+" rows &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
       {name:"Britain not named", def:"Background, structural, or deliberately concealed. Britain is not the object."},
@@ -580,6 +669,14 @@ const T = {
     ovKanban:"קנבן", ovKanbanHint:"רמת התראה",
     ovOutline:"מתווה", ovOutlineHint:"לפי תאריך",
     ovDomain:"תחום", ovDomainHint:"מלחמה / אזרחי",
+    ovDanger:"סכנה", ovDangerHint:"סיכון / השפעה",
+    ovTitleDanger:"סכנה מול השפעה, לאורך הזמן",
+    ovNoteDanger:"חיתוך רביעי, וגם הוא שיפוט כמו הרמות. הציר האנכי הוא עד כמה המעשה מדאיג — גבוה למעלה. האופקי הוא עד כמה גבוה המחיר אם הוא מתממש — גבוה לימין. הסרגל משאיר כל שורה עד התאריך שבו עוצרים, כך שאפשר לקרוא את ענן הנקודות כמסלול. הצלב הוא מרכז השורות שעל המסך. הדגל והטבעת שומרים על משמעותם.",
+    dangerHigh:"סכנה גבוהה", dangerLow:"סכנה נמוכה",
+    impactLow:"השפעה נמוכה", impactHigh:"השפעה גבוהה",
+    dangerCentre:"מרכז השורות המוצגות",
+    dangerSlider:"תאריך",
+    dangerThru:(n,date,total)=>n===total?n+" שורות · החלון המלא":n+" מתוך "+total+" · עד "+date,
     metaFmt:(n,r,rng)=>n+" שורות &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
       {name:"בריטניה אינה נקובה", def:"רקע, מהלך מבני, או פעולה שהוסתרה בכוונה. בריטניה אינה המושא."},
@@ -605,6 +702,7 @@ const EVENTS = [
   { date:"2026-02-01", approx:true, side:"uk", rag:"r",
     band:1,
     domain:3,
+    danger:7, impact:8,
     sources:[{url:"https://www.aljazeera.com/news/2026/8/18/why-is-russia-threatening-uk-with-consequences-over-ukraine-drones", label:"Al Jazeera"}],
     en:{ label:"~FEB 2026",
       short:"Drone strikes begin",
@@ -618,6 +716,7 @@ const EVENTS = [
   { date:"2026-02-05", side:"ot", rag:"g",
     band:1,
     domain:1,
+    danger:3, impact:9,
     sources:[{url:"https://www.armscontrol.org/act/2026-03/news/new-start-expires-us-urges-modernized-treaty", label:"Arms Control Assoc."}],
     en:{ label:"5 FEB 2026",
       short:"New START lapses",
@@ -631,6 +730,7 @@ const EVENTS = [
   { date:"2026-02-17", side:"ru", rag:"g",
     band:1,
     domain:2,
+    danger:5, impact:6,
     sources:[{url:"https://www.rferl.org/a/russian-oreshnik-nuclear-capable-missile-belarus/33693310.html", label:"RFE/RL"}],
     en:{ label:"17 FEB 2026",
       short:"Oreshnik site defended",
@@ -644,6 +744,7 @@ const EVENTS = [
   { date:"2026-03-15", approx:true, side:"ru", rag:"g",
     band:1,
     domain:2,
+    danger:6, impact:7,
     sources:[{url:"https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-august-1-2026", label:"ISW"}],
     en:{ label:"~MID-MAR 2026",
       short:"Offensive opens",
@@ -657,6 +758,7 @@ const EVENTS = [
   { date:"2026-03-30", side:"ru", rag:"r",
     band:2,
     domain:4,
+    danger:3, impact:3,
     sources:[{url:"https://www.themoscowtimes.com/2026/03/30/russia-expels-british-diplomat-over-alleged-economic-espionage-a92371", label:"Moscow Times"}],
     en:{ label:"30 MAR 2026",
       short:"Diplomat expelled",
@@ -670,6 +772,7 @@ const EVENTS = [
   { date:"2026-04-09", side:"ru", rag:"r",
     band:4,
     domain:2,
+    danger:8, impact:7,
     sources:[{url:"https://www.aljazeera.com/amp/news/2026/4/9/uk-says-three-russian-submarines-tracked-during-covert-operation", label:"Al Jazeera"}],
     en:{ label:"9 APR 2026",
       short:"Submarine op exposed",
@@ -683,6 +786,7 @@ const EVENTS = [
   { date:"2026-04-15", side:"uk", rag:"r",
     band:2,
     domain:1,
+    danger:4, impact:6,
     sources:[{url:"https://www.gov.uk/government/news/uk-announces-biggest-ever-drone-package-for-ukraine-to-push-back-putin", label:"GOV.UK"}],
     en:{ label:"15 APR 2026",
       short:"£752m drone package",
@@ -696,6 +800,7 @@ const EVENTS = [
   { date:"2026-04-30", side:"uk", rag:"g",
     band:1,
     domain:4,
+    danger:4, impact:5,
     sources:[{url:"https://www.mi5.gov.uk/uk-national-terrorism-threat-level-raised-to-severe", label:"MI5"}],
     en:{ label:"30 APR 2026",
       short:"Threat level SEVERE",
@@ -709,6 +814,7 @@ const EVENTS = [
   { date:"2026-05-13", side:"ru", rag:"g",
     band:1,
     domain:1,
+    danger:6, impact:9,
     sources:[{url:"https://www.globalsecurity.org/wmd/ops/putin-2026-05.htm", label:"GlobalSecurity"}],
     en:{ label:"13 MAY 2026",
       short:"Sarmat test launch",
@@ -722,6 +828,7 @@ const EVENTS = [
   { date:"2026-05-19", side:"ru", rag:"g",
     band:1,
     domain:1,
+    danger:7, impact:9,
     sources:[{url:"https://www.defensenews.com/global/europe/2026/05/20/russia-launches-unannounced-nuclear-exercise-including-belarusian-launch-sites/", label:"Defense News"}],
     en:{ label:"19 MAY 2026",
       short:"Unannounced nuclear drill",
@@ -735,6 +842,7 @@ const EVENTS = [
   { date:"2026-06-01", approx:true, side:"uk", rag:"r",
     band:1,
     domain:2,
+    danger:6, impact:7,
     sources:[{url:"https://ukdefencejournal.org.uk/britain-brushes-off-threats-from-russia/", label:"UK Defence Journal"}],
     en:{ label:"JUN 2026",
       short:"Deep strikes intensify",
@@ -748,6 +856,7 @@ const EVENTS = [
   { date:"2026-06-16", side:"ru", rag:"r",
     band:2,
     domain:2,
+    danger:5, impact:4,
     sources:[{url:"https://www.navylookout.com/russian-frigate-rfs-admiral-grigorovich-fires-warning-shots-at-a-british-yacht/", label:"Navy Lookout"}],
     en:{ label:"16 JUN 2026",
       short:"Warning shots, Channel",
@@ -761,6 +870,7 @@ const EVENTS = [
   { date:"2026-07-20", side:"ru", rag:"r",
     band:2,
     domain:2,
+    danger:5, impact:5,
     sources:[{url:"https://maritime-executive.com/article/royal-navy-monitors-increased-russian-activity-in-uk-waters-in-2026", label:"Maritime Executive"}],
     en:{ label:"20 JUL 2026",
       short:"Gunnery off UK coast",
@@ -774,6 +884,7 @@ const EVENTS = [
   { date:"2026-07-21", side:"ru", rag:"r",
     band:2,
     domain:4,
+    danger:4, impact:4,
     sources:[
       {url:"https://www.theguardian.com/world/2026/aug/23/russia-withdraws-ambassador-uk-kremlin-pressure-ukraine-andrey-kelin", label:"Guardian"},
       {url:"https://www.gbnews.com/news/world/russian-ambassador-withdrawn-vladimir-putin-andrey-kelin", label:"GB News"}],
@@ -789,6 +900,7 @@ const EVENTS = [
   { date:"2026-07-27", side:"uk", rag:"r",
     band:2,
     domain:1,
+    danger:4, impact:6,
     sources:[{url:"https://ukrainetoday.org/uk-to-protect-ukraines-attack-drones-with-signal-jammers/", label:"Telegraph (synd.)"}],
     en:{ label:"27 JUL 2026",
       short:"Jammer IP transferred",
@@ -802,6 +914,7 @@ const EVENTS = [
   { date:"2026-08-06", side:"uk", rag:"r",
     band:2,
     domain:1,
+    danger:3, impact:5,
     sources:[{url:null, label:"No online source found", labelHe:"לא נמצא מקור מקוון"}],
     en:{ label:"6 AUG 2026",
       short:"UK–Ukraine defence talks",
@@ -815,6 +928,7 @@ const EVENTS = [
   { date:"2026-08-14", side:"uk", rag:"g",
     band:1,
     domain:4,
+    danger:2, impact:3,
     sources:[{url:"https://www.gov.uk/government/news/emergency-alert-to-be-sent-to-england-and-wales-as-government-steps-up-wildfire-response-with-funding-military-support-and-bbq-ban", label:"GOV.UK"}],
     en:{ label:"14 AUG 2026",
       short:"Wildfire alert",
@@ -828,6 +942,7 @@ const EVENTS = [
   { date:"2026-08-15", side:"uk", rag:"r",
     band:3,
     domain:3,
+    danger:5, impact:7,
     sources:[{url:"https://www.aljazeera.com/news/2026/8/18/why-is-russia-threatening-uk-with-consequences-over-ukraine-drones", label:"Al Jazeera"}],
     en:{ label:"15 AUG 2026",
       short:"Campaign disclosed",
@@ -841,6 +956,7 @@ const EVENTS = [
   { date:"2026-08-17", side:"ru", rag:"r",
     band:3,
     domain:4,
+    danger:6, impact:6,
     sources:[
       {url:"https://www.reuters.com/world/uk/russia-warns-britain-consequences-supplying-drones-ukraine-2026-08-18/", label:"Reuters"},
       {url:"https://meduza.io/en/feature/2026/08/19/moscow-says-britain-will-have-to-answer-for-the-uk-made-drones-hitting-russian-refineries", label:"Meduza"}],
@@ -856,6 +972,7 @@ const EVENTS = [
   { date:"2026-08-23", side:"ru", rag:"r",
     band:3,
     domain:4,
+    danger:4, impact:4,
     sources:[
       {url:"https://www.theguardian.com/world/2026/aug/23/russia-withdraws-ambassador-uk-kremlin-pressure-ukraine-andrey-kelin", label:"Guardian"},
       {url:"https://www.gbnews.com/news/world/russian-ambassador-withdrawn-vladimir-putin-andrey-kelin", label:"GB News"}],
@@ -871,6 +988,7 @@ const EVENTS = [
   { date:"2026-08-24", side:"uk", rag:"r",
     band:3,
     domain:1,
+    danger:5, impact:7,
     sources:[
       {url:"https://www.bbc.com/news/articles/clyqypkrzq5o", label:"BBC"},
       {url:"https://www.pravda.com.ua/eng/news/2026/08/27/8050577/", label:"Ukrainska Pravda"}],
@@ -886,6 +1004,7 @@ const EVENTS = [
   { date:"2026-08-24", side:"ru", rag:"r",
     band:3,
     domain:1,
+    danger:6, impact:6,
     sources:[{url:"https://www.independent.co.uk/news/uk/home-news/andy-burnham-ukraine-dmitry-peskov-kremlin-russia-b3038192.html", label:"Independent"}],
     en:{ label:"24 AUG 2026",
       short:"“Participating in the war”",
@@ -899,6 +1018,7 @@ const EVENTS = [
   { date:"2026-08-25", side:"ru", rag:"r",
     band:4,
     domain:1,
+    danger:8, impact:8,
     sources:[
       {url:"https://www.independent.co.uk/news/uk/home-news/andy-burnham-russia-volodymyr-zelensky-ukraine-kremlin-b3038552.html", label:"Independent"},
       {url:"https://www.cbsnews.com/news/ukraine-war-russia-uk-threat-drone-factories-attacks-unknown-sources/", label:"CBS News"}],
@@ -914,6 +1034,7 @@ const EVENTS = [
   { date:"2026-08-25", side:"ot", rag:"g",
     band:1,
     domain:2,
+    danger:3, impact:6,
     sources:[
       {url:"https://www.theguardian.com/world/2026/aug/27/britain-ukraine-war-russia", label:"Guardian"},
       {url:"https://www.fitsnews.com/2026/08/27/playing-with-fire-russia-warns-great-britain-over-ukraine/", label:"FITSNews (2nd-hand)", labelHe:"FITSNews (מקור משני)"}],
@@ -929,6 +1050,7 @@ const EVENTS = [
   { date:"2026-08-26", side:"ru", rag:"r",
     band:3,
     domain:4,
+    danger:6, impact:6,
     sources:[{url:"https://meduza.io/en/feature/2026/08/26/kremlin-sources-tell-bloomberg-that-putin-is-preparing-to-escalate-the-war-in-ukraine-a-growing-number-of-russian-officials-believe-that-could-eventually-mean-a-tactical-nuclear-weapon", label:"Meduza / Bloomberg"}],
     en:{ label:"26 AUG 2026",
       short:"Escalation signalled",
@@ -942,6 +1064,7 @@ const EVENTS = [
   { date:"2026-08-27", side:"ru", rag:"r",
     band:4,
     domain:2,
+    danger:8, impact:8,
     sources:[
       {url:"https://www.reuters.com/world/europe/russia-says-it-could-strike-uk-military-targets-response-ukrainian-strikes-using-2026-08-27/", label:"Reuters"},
       {url:"https://www.theguardian.com/world/2026/aug/27/britain-ukraine-war-russia", label:"Guardian"}],
@@ -957,6 +1080,7 @@ const EVENTS = [
   { date:"2026-09-01", side:"ru", rag:"r",
     band:2,
     domain:4,
+    danger:2, impact:3,
     sources:[{url:"https://www.straitstimes.com/world/europe/russia-at-dire-point-in-ties-with-uk-says-it-will-name-new-ambassador-when-ready", label:"Reuters (via Straits Times)", labelHe:"\u05e8\u05d5\u05d9\u05d8\u05e8\u05e1 (\u05d3\u05e8\u05da Straits Times)"}],
     en:{ label:"1 SEP 2026",
       short:"Departure called routine",
@@ -970,6 +1094,7 @@ const EVENTS = [
   { date:"2026-09-02", side:"ru", rag:"r",
     band:4,
     domain:1,
+    danger:9, impact:9,
     sources:[
       {url:"https://www.independent.co.uk/news/world/europe/ukraine-russia-war-live-putin-zelensky-uk-germany-b3043169.html", label:"Independent"},
       {url:"https://tass.com/politics/2180923", label:"TASS (state)", labelHe:"TASS (\u05de\u05de\u05dc\u05db\u05ea\u05d9)"}],
@@ -985,6 +1110,7 @@ const EVENTS = [
   { date:"2026-09-06", side:"ru", rag:"r",
     band:4,
     domain:2,
+    danger:7, impact:6,
     sources:[
       {url:"https://inews.co.uk/news/imitation-game-putins-shadow-fleet-tankers-disguise-4749413", label:"The i Paper"},
       {url:"https://www.timesnowworld.com/us-news/russian-shadow-fleet-ais-manipulation-uk-sanctions-evasion-article-156102098", label:"Times Now World (synd.)", labelHe:"Times Now World (\u05e2\u05d9\u05d1\u05d5\u05d3 \u05de\u05d7\u05d3\u05e9)"},
@@ -1001,6 +1127,7 @@ const EVENTS = [
   { date:"2026-09-08", side:"uk", rag:"g",
     band:1,
     domain:3,
+    danger:3, impact:7,
     sources:[
       {url:"https://www.independent.co.uk/news/uk/home-news/nats-airlines-norway-england-stourbridge-b2799028.html", label:"Independent"},
       {url:"https://www.insidermedia.com/news/national/airlines-demand-answers-from-air-traffic-control-provider-over-technical-glitch", label:"Insider Media"}],
@@ -1016,6 +1143,7 @@ const EVENTS = [
   { date:"2026-09-10", side:"ru", rag:"r",
     band:4,
     domain:3,
+    danger:8, impact:7,
     sources:[
       {url:"https://www.bbc.co.uk/news/articles/c74e0ml3y8go", label:"BBC"},
       {url:"https://www.reuters.com/world/uk/man-appears-uk-court-accused-providing-russian-intelligence-with-drone-factory-2026-09-10/", label:"Reuters"},
@@ -1142,23 +1270,156 @@ function openWhy(i){
   document.getElementById("whyClose").focus();
 }
 
+const DANGER_DATES = Array.from(new Set(EVENTS.map(e => e.date)));
+const dangerPane = document.getElementById("dangerPane");
+const dangerSlider = document.getElementById("dangerSlider");
+const dangerTip = document.getElementById("dangerTip");
+const dangerChart = document.getElementById("dangerChart");
+let dangerStep = DANGER_DATES.length - 1;
+dangerSlider.max = String(DANGER_DATES.length - 1);
+dangerSlider.value = String(dangerStep);
+
+function nestFlag(side, x, y, s){
+  return FLAGS[side].replace(
+    "<svg ",
+    '<svg x="' + (x - s/2) + '" y="' + (y - s/2) + '" width="' + s + '" height="' + s + '" '
+  );
+}
+
+function dangerXY(e, i, L, T, plotW, plotH){
+  const jx = ((i * 13) % 7 - 3) * 0.012;
+  const jy = ((i * 17) % 7 - 3) * 0.012;
+  const x = Math.max(0, Math.min(1, (e.impact - 1) / 9 + jx));
+  const y = Math.max(0, Math.min(1, (10 - e.danger) / 9 + jy));
+  return [L + x * plotW, T + y * plotH];
+}
+
+function hideDangerTip(){
+  dangerTip.hidden = true;
+}
+
+function showDangerTip(ev, html){
+  const plot = document.getElementById("dangerPlot");
+  const r = plot.getBoundingClientRect();
+  dangerTip.innerHTML = html;
+  dangerTip.hidden = false;
+  const tw = dangerTip.offsetWidth;
+  const th = dangerTip.offsetHeight;
+  let left = ev.clientX - r.left + 12;
+  let top = ev.clientY - r.top - th - 8;
+  if (left + tw > r.width - 8) left = r.width - tw - 8;
+  if (left < 8) left = 8;
+  if (top < 8) top = ev.clientY - r.top + 16;
+  dangerTip.style.left = left + "px";
+  dangerTip.style.top = top + "px";
+}
+
+function renderDanger(code){
+  const t = T[code];
+  const cut = DANGER_DATES[dangerStep];
+  const cutEvent = EVENTS.filter(e => e.date === cut).slice(-1)[0];
+  const shown = EVENTS.map((e, i) => ({e, i})).filter(x => x.e.date <= cut);
+  const newest = shown.length ? shown[shown.length - 1].i : -1;
+
+  set("dangerDate", shortDate(cut, t, cutEvent && cutEvent.approx));
+  set("dangerCount", t.dangerThru(shown.length, shortDate(cut, t, false), EVENTS.length));
+  set("dangerSliderLabel", t.dangerSlider);
+  dangerSlider.setAttribute("aria-valuetext", shortDate(cut, t, cutEvent && cutEvent.approx));
+  dangerSlider.setAttribute("aria-label", t.dangerSlider);
+
+  const W = 760, H = 480, L = 78, R = 22, Top = 28, B = 52;
+  const plotW = W - L - R, plotH = H - Top - B;
+  const ticks = [1, 4, 7, 10];
+  const grid = ticks.map(v => {
+    const x = L + (v - 1) / 9 * plotW;
+    const y = Top + (10 - v) / 9 * plotH;
+    return '<line class="grid" x1="' + L + '" y1="' + y + '" x2="' + (L + plotW) + '" y2="' + y + '"/>'
+      + '<line class="grid" x1="' + x + '" y1="' + Top + '" x2="' + x + '" y2="' + (Top + plotH) + '"/>';
+  }).join("");
+
+  let cx = 0, cy = 0, centroid = "";
+  if (shown.length){
+    const mx = shown.reduce((s, x) => s + x.e.impact, 0) / shown.length;
+    const my = shown.reduce((s, x) => s + x.e.danger, 0) / shown.length;
+    cx = L + (mx - 1) / 9 * plotW;
+    cy = Top + (10 - my) / 9 * plotH;
+    const labSide = cx > L + plotW - 160;
+    centroid =
+      '<g class="centroid" aria-hidden="true">'
+      + '<line x1="' + (cx - 9) + '" y1="' + cy + '" x2="' + (cx + 9) + '" y2="' + cy + '"/>'
+      + '<line x1="' + cx + '" y1="' + (cy - 9) + '" x2="' + cx + '" y2="' + (cy + 9) + '"/>'
+      + '<text class="centroid-lab" text-anchor="' + (labSide ? "end" : "start") + '" x="'
+      + (labSide ? cx - 12 : cx + 12) + '" y="' + (cy - 10) + '">' + t.dangerCentre + '</text>'
+      + '</g>';
+  }
+
+  const dots = shown.map(({e, i}) => {
+    const [x, y] = dangerXY(e, i, L, Top, plotW, plotH);
+    const latest = i === newest;
+    const ring = e.rag === "r" ? "var(--red)" : "var(--green)";
+    const halo = latest ? '<circle cx="' + x + '" cy="' + y + '" r="13" fill="none" stroke="var(--yellow)" stroke-width="1.4"/>' : "";
+    return '<g class="danger-dot" data-i="' + i + '" tabindex="0" role="button">'
+      + halo
+      + '<circle class="danger-halo" cx="' + x + '" cy="' + y + '" r="10" fill="var(--base)" stroke="' + ring + '" stroke-width="2"/>'
+      + nestFlag(e.side, x, y, 14)
+      + '</g>';
+  }).join("");
+
+  dangerChart.innerHTML =
+    '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + t.ovTitleDanger + '">'
+    + '<rect x="' + L + '" y="' + Top + '" width="' + plotW + '" height="' + plotH + '" fill="none" stroke="var(--rule)"/>'
+    + grid
+    + '<text class="axis-label" x="' + L + '" y="' + (Top - 10) + '">' + t.dangerHigh + '</text>'
+    + '<text class="axis-label" x="' + L + '" y="' + (Top + plotH + 18) + '">' + t.dangerLow + '</text>'
+    + '<text class="axis-label" x="' + L + '" y="' + (Top + plotH + 36) + '">' + t.impactLow + '</text>'
+    + '<text class="axis-label" text-anchor="end" x="' + (L + plotW) + '" y="' + (Top + plotH + 36) + '">' + t.impactHigh + '</text>'
+    + centroid
+    + dots
+    + '</svg>';
+
+  dangerChart.querySelectorAll(".danger-dot").forEach(g => {
+    const i = +g.getAttribute("data-i");
+    const e = EVENTS[i];
+    const html = "<b>" + e[code].short + "</b><span>" + shortDate(e.date, t, e.approx) + "</span>";
+    const open = () => openWhy(i);
+    g.addEventListener("pointerenter", ev => showDangerTip(ev, html));
+    g.addEventListener("pointermove", ev => showDangerTip(ev, html));
+    g.addEventListener("pointerleave", hideDangerTip);
+    g.addEventListener("click", open);
+    g.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); open(); } });
+  });
+}
+
 function renderBands(code){
   const t = T[code];
-  const domainView = currentView() === "domain";
-  set("ovTitle", domainView ? t.ovTitleDomain : t.ovTitle);
-  set("ovNote", domainView ? t.ovNoteDomain : t.ovNote);
+  const view = currentView();
+  const titles = {domain: t.ovTitleDomain, danger: t.ovTitleDanger};
+  const notes = {domain: t.ovNoteDomain, danger: t.ovNoteDanger};
+  set("ovTitle", titles[view] || t.ovTitle);
+  set("ovNote", notes[view] || t.ovNote);
   set("tabKanban", t.ovKanban);
   set("tabKanbanHint", t.ovKanbanHint);
   set("tabOutline", t.ovOutline);
   set("tabOutlineHint", t.ovOutlineHint);
   set("tabDomain", t.ovDomain);
   set("tabDomainHint", t.ovDomainHint);
+  set("tabDanger", t.ovDanger);
+  set("tabDangerHint", t.ovDangerHint);
   document.querySelector(".viewtoggle").setAttribute("aria-label", t.ovViewLabel);
-  const host = document.getElementById("bands");
-  host.innerHTML = "";
 
-  const cards = domainView ? t.domains : t.bands;
-  const key = domainView ? "domain" : "band";
+  const host = document.getElementById("bands");
+  const dangerView = view === "danger";
+  host.hidden = dangerView;
+  dangerPane.hidden = !dangerView;
+  if (dangerView){
+    host.innerHTML = "";
+    renderDanger(code);
+    return;
+  }
+
+  host.innerHTML = "";
+  const cards = view === "domain" ? t.domains : t.bands;
+  const key = view === "domain" ? "domain" : "band";
   cards.forEach((b, bi) => {
     const rows = EVENTS.filter(e => e[key] === bi + 1);
     const ru = rows.filter(e => e.side === "ru").length;
@@ -1278,6 +1539,7 @@ const overview = document.getElementById("overview");
 const btnKanban = document.getElementById("btn-kanban");
 const btnOutline = document.getElementById("btn-outline");
 const btnDomain = document.getElementById("btn-domain");
+const btnDanger = document.getElementById("btn-danger");
 const MOBILE_MQ = window.matchMedia("(max-width: 720px)");
 let viewOverride = null;
 let lang = "en";
@@ -1297,18 +1559,27 @@ function applyView(){
   overview.classList.toggle("layout-kanban", viewOverride === "kanban");
   overview.classList.toggle("layout-outline", viewOverride === "outline");
   overview.classList.toggle("layout-domain", viewOverride === "domain");
+  overview.classList.toggle("layout-danger", viewOverride === "danger");
   btnKanban.setAttribute("aria-pressed", view === "kanban" ? "true" : "false");
   btnOutline.setAttribute("aria-pressed", view === "outline" ? "true" : "false");
   btnDomain.setAttribute("aria-pressed", view === "domain" ? "true" : "false");
+  btnDanger.setAttribute("aria-pressed", view === "danger" ? "true" : "false");
   btnKanban.setAttribute("aria-selected", view === "kanban" ? "true" : "false");
   btnOutline.setAttribute("aria-selected", view === "outline" ? "true" : "false");
   btnDomain.setAttribute("aria-selected", view === "domain" ? "true" : "false");
+  btnDanger.setAttribute("aria-selected", view === "danger" ? "true" : "false");
   renderBands(lang);
 }
 
 btnKanban.addEventListener("click", () => { viewOverride = "kanban"; applyView(); });
 btnOutline.addEventListener("click", () => { viewOverride = "outline"; applyView(); });
 btnDomain.addEventListener("click", () => { viewOverride = "domain"; applyView(); });
+btnDanger.addEventListener("click", () => { viewOverride = "danger"; applyView(); });
+dangerSlider.addEventListener("input", () => {
+  dangerStep = +dangerSlider.value;
+  hideDangerTip();
+  if (currentView() === "danger") renderDanger(lang);
+});
 if (MOBILE_MQ.addEventListener) MOBILE_MQ.addEventListener("change", applyView);
 else if (MOBILE_MQ.addListener) MOBILE_MQ.addListener(applyView);
 

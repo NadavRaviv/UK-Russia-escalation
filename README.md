@@ -20,6 +20,7 @@ Three encodings, deliberately kept separate:
 | Ring colour | Whether Britain is the named object | red (22 rows), green (9 rows) |
 | Band card | How directly Britain is named | four levels, 11 / 8 / 6 / 6 rows |
 | Domain card | Kind of object in play | war infra / war zones / civil infra / civil zone |
+| Danger plot | Alarm vs stakes | 1–10 each; slider keeps rows up to a date |
 
 Reading two of them as one thing is the main way to misread the page.
 
@@ -52,6 +53,8 @@ A third grouping, on the **Domain** tab, cuts the same 31 rows by the kind of ob
 2. **War zones** — a front, a base, or a stretch of naval water.
 3. **Civil infra** — airports, courts, energy plants. The NATS outage and the Swindon court case sit here.
 4. **Civil zone** — cities, capitals, diplomatic space. No strike on London buildings is in this set.
+
+A fourth grouping, on the **Danger** tab, plots the same rows as a scatter: vertical is how alarming the act is (high at the top), horizontal is how large the stakes are if it lands (high to the right). Both axes are a 1–10 judgement, independent of the band test. A date slider keeps every row up to the date you stop on, so the cloud can be read as a path.
 
 ## Sourcing standard
 
@@ -97,7 +100,7 @@ Kept visible rather than silently resolved:
 
 ## Editing
 
-Everything is in the one file. Events live in the `EVENTS` array; each row carries `date`, optional `approx`, `side` (`uk` / `ru` / `ot`), `rag` (`r` / `g`), `band` (1–4), `domain` (1 war infra / 2 war zones / 3 civil infra / 4 civil zone), a `sources` array, and `en` / `he` objects holding `label`, `short`, `title` and `why`.
+Everything is in the one file. Events live in the `EVENTS` array; each row carries `date`, optional `approx`, `side` (`uk` / `ru` / `ot`), `rag` (`r` / `g`), `band` (1–4), `domain` (1 war infra / 2 war zones / 3 civil infra / 4 civil zone), `danger` and `impact` (1–10), a `sources` array, and `en` / `he` objects holding `label`, `short`, `title` and `why`.
 
 Statistics in the summary panel — mean gaps, counts, side split, band totals — are **hard-coded strings**, not computed. Adding or removing a row means recomputing them by hand or they will quietly go wrong.
 
