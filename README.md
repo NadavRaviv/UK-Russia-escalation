@@ -24,6 +24,8 @@ Three encodings, deliberately kept separate:
 
 Reading two of them as one thing is the main way to misread the page.
 
+On-page text is kept to short labels. The longer notes — how the marks are read, why the intervals compress, what each view is doing, and the method and caveats — sit behind the **Key**, **Tempo**, **About** and **Method** buttons, and each event's note behind its **Why** button.
+
 ## The colour rule
 
 **Red — direct link.** The event names Britain, or acts against British ships, staff, territory or equipment.
@@ -54,7 +56,11 @@ A third grouping, on the **Domain** tab, cuts the same 31 rows by the kind of ob
 3. **Civil infra** — airports, courts, energy plants. The NATS outage and the Swindon court case sit here.
 4. **Civil zone** — cities, capitals, diplomatic space. No strike on London buildings is in this set.
 
-A fourth grouping, on the **Danger** tab, plots the same rows as a scatter: vertical is how alarming the act is (high at the top), horizontal is how large the stakes are if it lands (high to the right). Both axes are a 1–10 judgement, independent of the band test. Dots are blue for British or western acts, red for Russian, grey for the two American rows. A date slider keeps every row up to the date you stop on, so the cloud can be read as a path.
+A fourth grouping, on the **Danger** tab, plots the same rows as a scatter: vertical is how alarming the act is (high at the top), horizontal is how large the stakes are if it lands (high to the right). Both axes are a 1–10 judgement, independent of the band test. Dots are blue for British or western acts, red for Russian, grey for the two American rows. A date slider — with a play control that runs it forward — keeps every row up to the date you stop on, so the cloud can be read as a path.
+
+The Danger tab is the page's lead view, because the question most readers arrive with is whether the signal is hardening. Four figures sit above the plot: mean danger and mean impact across the rows on screen, the count, and **drift** — the combined danger-plus-impact mean of the five most recent rows minus that of the five before them. Positive drift, shown in red, means the recent cluster sits higher and further right than the one before it. A yellow cross marks the centre of those five most recent rows and a faint line traces where that centre has been; the tinted corner is danger 7+ against impact 7+.
+
+Both the drift window and the tinted corner are arbitrary cuts chosen to make a turn visible, not thresholds with any external meaning.
 
 ## Sourcing standard
 
@@ -102,7 +108,7 @@ Kept visible rather than silently resolved:
 
 Everything is in the one file. Events live in the `EVENTS` array; each row carries `date`, optional `approx`, `side` (`uk` / `ru` / `ot`), `rag` (`r` / `g`), `band` (1–4), `domain` (1 war infra / 2 war zones / 3 civil infra / 4 civil zone), `danger` and `impact` (1–10), a `sources` array, and `en` / `he` objects holding `label`, `short`, `title` and `why`.
 
-Statistics in the summary panel — mean gaps, counts, side split, band totals — are **hard-coded strings**, not computed. Adding or removing a row means recomputing them by hand or they will quietly go wrong.
+Statistics in the strip under the header — mean gaps, longest-to-shortest, side split — and the counts in the legend chips are **hard-coded strings**, not computed. Adding or removing a row means recomputing them by hand or they will quietly go wrong. The Danger readouts and the band totals *are* computed from `EVENTS`.
 
 ## Provenance
 

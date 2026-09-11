@@ -332,16 +332,22 @@
   .ro.flat .ro-n{color:var(--muted)}
 
   .danger-plot{
-    position:relative;width:100%;aspect-ratio:1.9;min-height:320px;
+    position:relative;width:100%;aspect-ratio:2;min-height:300px;
     border:1px solid var(--rule);border-radius:3px;background:var(--surface);
     padding:10px 12px;
   }
-  @media (max-width: 720px){ .danger-plot{aspect-ratio:1.15} }
+  @media (max-width: 720px){ .danger-plot{aspect-ratio:1.105} }
   .danger-chart{position:absolute;inset:10px 12px}
   .danger-chart svg{width:100%;height:100%;display:block;overflow:visible}
   .danger-chart .axis-label{
     fill:var(--faint);font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
     text-transform:uppercase;
+  }
+  @media (max-width: 720px){
+    .danger-chart .axis-label{font-size:7.5px;letter-spacing:.05em}
+    .danger-chart .centroid-lab{font-size:7.5px;letter-spacing:.05em}
+    body[dir="rtl"] .danger-chart .axis-label,
+    body[dir="rtl"] .danger-chart .centroid-lab{font-size:9px}
   }
   .danger-chart .grid{stroke:var(--rule);stroke-width:1;opacity:.65}
   .danger-chart .frame{stroke:var(--rule);stroke-width:1;fill:none}
@@ -1439,7 +1445,12 @@ function renderDanger(code){
   dangerSlider.setAttribute("aria-valuetext", shortDate(cut, t, cutEvent && cutEvent.approx));
   dangerSlider.setAttribute("aria-label", t.dangerSlider);
 
-  const W = 760, H = 460, L = 104, R = 24, Top = 16, B = 46;
+  // The viewBox is matched to the container's aspect ratio so nothing letterboxes,
+  // and narrow screens get a taller box with proportionally larger labels.
+  const narrow = MOBILE_MQ.matches;
+  const W = narrow ? 420 : 760, H = narrow ? 380 : 380;
+  const L = narrow ? 74 : 104, R = narrow ? 16 : 24;
+  const Top = narrow ? 14 : 14, B = narrow ? 40 : 42;
   const plotW = W - L - R, plotH = H - Top - B;
   const ticks = [1, 4, 7, 10];
   const grid = ticks.map(v => {
