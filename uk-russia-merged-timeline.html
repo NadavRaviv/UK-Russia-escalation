@@ -32,6 +32,9 @@
     --ru-dot:#c0453e;
     --ot-dot:#8a9199;
     --overlay:rgba(22,26,30,0.46);
+    /* Grading is a ring style, not a hue — red is reserved for Russia. */
+    --grade-on:var(--text);
+    --grade-off:var(--faint);
     --sans:'DM Sans',ui-sans-serif,system-ui,sans-serif;
     --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
   }
@@ -68,13 +71,17 @@
     padding:14px 0 12px;
   }
   .theme-btn{
-    width:36px;height:32px;display:inline-flex;align-items:center;justify-content:center;
+    height:32px;display:inline-flex;align-items:center;justify-content:center;gap:7px;
     border:1px solid var(--rule);border-radius:3px;background:var(--surface);
-    color:var(--text);cursor:pointer;padding:0;
+    color:var(--muted);cursor:pointer;padding:0 11px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
     transition:color .15s, background .15s, border-color .15s;
   }
   .theme-btn:hover{color:var(--yellow);border-color:rgba(148,163,184,0.45)}
-  .theme-btn svg{width:16px;height:16px;display:block}
+  .theme-btn svg{width:15px;height:15px;display:block;flex:none}
+  body[dir="rtl"] .theme-btn{
+    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:12px;
+  }
   html[data-theme="light"] .theme-btn .icon-sun{display:none}
   html[data-theme="dark"] .theme-btn .icon-moon{display:none}
   .toggle{
@@ -83,11 +90,13 @@
   }
   .toggle button{
     font-family:var(--mono);font-size:11px;letter-spacing:.1em;
-    background:transparent;border:0;color:var(--faint);
+    background:transparent;border:0;color:var(--muted);
     padding:7px 13px;cursor:pointer;transition:color .15s,background .15s;
   }
   .toggle button:hover{color:var(--text)}
-  .toggle button[aria-pressed="true"]{background:rgba(148,163,184,0.11);color:var(--text)}
+  .toggle button[aria-pressed="true"]{
+    background:rgba(148,163,184,0.18);color:var(--text);font-weight:500;
+  }
   #btn-he{font-family:'Heebo',var(--sans);letter-spacing:0;font-size:12.5px}
 
   header{
@@ -115,7 +124,9 @@
     font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
     color:var(--muted);white-space:nowrap;
   }
-  .chip .swatch{width:9px;height:9px;border-radius:50%;flex:none}
+  .chip .ring{width:12px;height:12px;border-radius:50%;flex:none;box-sizing:border-box}
+  .chip .ring.on{border:2px solid var(--grade-on)}
+  .chip .ring.off{border:1.5px dashed var(--grade-off)}
   .chip .flag{
     width:15px;height:15px;border-radius:50%;overflow:hidden;flex:none;
     border:1px solid var(--rule);background:var(--base);
@@ -148,6 +159,7 @@
     letter-spacing:-0.01em;
   }
   .stat .n .u{font-size:11px;font-weight:500}
+  .stat .n.accent{color:var(--yellow);font-size:23px}
   .stat .l{
     font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
     color:var(--faint);display:block;margin-top:6px;
@@ -163,13 +175,11 @@
     border-bottom:1px solid var(--rule);padding-bottom:8px;margin-bottom:22px;
   }
   .tlhead h3{
-    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--text);margin:0;font-weight:500;
+    font-family:var(--sans);font-size:14px;letter-spacing:-0.005em;
+    color:var(--muted);margin:0;font-weight:500;
   }
   .tlcount{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--faint)}
-  body[dir="rtl"] .tlhead h3{
-    letter-spacing:.06em;font-family:'Heebo',var(--sans);text-transform:none;font-size:13px;
-  }
+  body[dir="rtl"] .tlhead h3{letter-spacing:0;font-family:'Heebo',var(--sans)}
   body[dir="rtl"] .tlcount{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11.5px}
   .timeline{position:relative;padding-left:26px}
   .timeline:before{
@@ -186,11 +196,9 @@
     transition:transform .18s ease, box-shadow .18s ease;
   }
   .dot svg{display:block;width:100%;height:100%}
-  .row.r .dot{box-shadow:0 0 0 2px var(--red)}
-  .row.g .dot{box-shadow:0 0 0 2px var(--green)}
-  .row:hover .dot{transform:scale(1.16)}
-  .row.r:hover .dot{box-shadow:0 0 0 2px var(--red),0 0 0 7px rgba(192,96,90,.14)}
-  .row.g:hover .dot{box-shadow:0 0 0 2px var(--green),0 0 0 7px rgba(74,158,116,.14)}
+  .row.r .dot{outline:2px solid var(--grade-on)}
+  .row.g .dot{outline:1.5px dashed var(--grade-off);outline-offset:1px}
+  .row:hover .dot{transform:scale(1.16);box-shadow:0 0 0 6px rgba(148,163,184,.15)}
 
   time{
     font-family:var(--mono);font-size:11px;letter-spacing:.09em;
@@ -261,26 +269,16 @@
   }
   .ovtitle{display:flex;align-items:center;gap:9px;min-width:0}
   .ovhead h3{
-    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--text);margin:0;font-weight:500;
+    font-family:var(--sans);font-size:14px;letter-spacing:-0.005em;
+    color:var(--muted);margin:0;font-weight:500;
   }
-  body[dir="rtl"] .ovhead h3{
-    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:13px;
-  }
+  body[dir="rtl"] .ovhead h3{letter-spacing:0;font-family:'Heebo',var(--sans)}
   .viewtoggle{flex-wrap:wrap;max-width:100%;overflow:visible}
   .viewtoggle button{
-    font-family:var(--sans);letter-spacing:0;font-size:12px;line-height:1.2;
-    padding:6px 13px 7px;display:flex;flex-direction:column;align-items:flex-start;gap:1px;
+    font-family:var(--sans);letter-spacing:0;font-size:13px;line-height:1.2;
+    padding:8px 16px 9px;
   }
   body[dir="rtl"] .viewtoggle button{font-family:'Heebo',var(--sans)}
-  .viewtoggle .hint{
-    font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--faint);font-weight:400;
-  }
-  body[dir="rtl"] .viewtoggle .hint{
-    font-family:'Heebo',var(--sans);letter-spacing:0;text-transform:none;font-size:10.5px;
-  }
-  .viewtoggle button[aria-pressed="true"] .hint{color:var(--muted)}
 
   .bands{display:flex;gap:8px;align-items:stretch}
   .band{
@@ -376,17 +374,17 @@
     body[dir="rtl"] .danger-chart .axis-label,
     body[dir="rtl"] .danger-chart .centroid-lab{font-size:9px}
   }
-  .danger-chart .grid{stroke:var(--rule);stroke-width:1;opacity:.65}
+  .danger-chart .grid{stroke:var(--rule);stroke-width:1;opacity:1}
   .danger-chart .frame{stroke:var(--rule);stroke-width:1;fill:none}
   .danger-chart .hotzone{fill:var(--red);opacity:.05}
   html[data-theme="dark"] .danger-chart .hotzone{opacity:.1}
   .danger-chart .trail{stroke:var(--yellow);stroke-width:1.2;fill:none;opacity:.42}
   .danger-chart .centroid{stroke:var(--yellow);stroke-width:1.6;fill:none}
   .danger-chart .centroid-lab{
-    fill:var(--yellow);font-family:var(--mono);font-size:9px;letter-spacing:.1em;
-    text-transform:uppercase;
+    fill:var(--yellow);font-family:var(--mono);font-size:11px;font-weight:500;
+    letter-spacing:.04em;
     /* knocked out of whatever dot it lands on */
-    stroke:var(--surface);stroke-width:2.2;paint-order:stroke fill;
+    stroke:var(--surface);stroke-width:2.6;paint-order:stroke fill;
     stroke-linejoin:round;
   }
   body[dir="rtl"] .danger-chart .axis-label,
@@ -401,9 +399,52 @@
     padding:7px 9px;max-width:230px;
     box-shadow:0 8px 24px rgba(0,0,0,.18);
   }
-  .danger-tip b{display:block;font-size:12px;font-weight:500;line-height:1.3;margin:0 0 2px}
-  .danger-tip span{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--yellow)}
-  body[dir="rtl"] .danger-tip span{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11px}
+  .danger-tip b{display:block;font-size:12px;font-weight:500;line-height:1.3;margin:0 0 4px}
+  .danger-tip .tip-meta{
+    display:flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--yellow);
+  }
+  .danger-tip .tip-flag{
+    width:13px;height:13px;border-radius:50%;overflow:hidden;flex:none;
+    border:1px solid var(--rule);background:var(--base);
+  }
+  .danger-tip .tip-flag svg{display:block;width:100%;height:100%}
+  body[dir="rtl"] .danger-tip .tip-meta{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11px}
+
+  /* --- selected point --- */
+  .danger-sel{
+    display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;
+    border:1px solid var(--rule);border-radius:3px;background:var(--surface);
+    padding:11px 13px;margin-top:12px;
+  }
+  .danger-sel.on{border-inline-start:2px solid var(--yellow)}
+  body[dir="rtl"] .danger-sel{direction:rtl}
+  .sel-hint{
+    font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--faint);margin:0;
+  }
+  body[dir="rtl"] .sel-hint{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11.5px}
+  .sel-flag{
+    width:19px;height:19px;border-radius:50%;overflow:hidden;flex:none;margin-top:2px;
+    border:1px solid var(--rule);background:var(--base);
+  }
+  .sel-flag svg{display:block;width:100%;height:100%}
+  .sel-main{flex:1 1 260px;min-width:0}
+  .sel-meta{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--yellow);margin:0 0 4px;
+  }
+  body[dir="rtl"] .sel-meta{
+    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:11px;
+  }
+  .sel-title{font-size:13.5px;font-weight:500;line-height:1.35;margin:0}
+  .sel-nums{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px}
+  .sel-num{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--faint)}
+  .sel-num b{color:var(--text);font-weight:700;margin-inline-start:5px}
+  body[dir="rtl"] .sel-num{
+    letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:11px;
+  }
+  .sel-acts{display:flex;align-items:center;gap:7px;flex:none;margin-inline-start:auto}
 
   .danger-controls{display:flex;align-items:center;gap:12px;margin-top:12px}
   .play-btn{
@@ -474,8 +515,8 @@
     border:1px solid var(--base);background:var(--base);
   }
   .ev .m svg{display:block;width:100%;height:100%}
-  .ev.r .m{box-shadow:0 0 0 1.5px var(--red)}
-  .ev.g .m{box-shadow:0 0 0 1.5px var(--green)}
+  .ev.r .m{outline:1.5px solid var(--grade-on)}
+  .ev.g .m{outline:1.2px dashed var(--grade-off);outline-offset:1px}
   .ev .t{font-size:11px;line-height:1.3;min-width:0;overflow-wrap:break-word}
   .ev .d{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--yellow);opacity:.7;display:block;margin-top:1px}
   body[dir="rtl"] .ev .d{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:10px}
@@ -557,6 +598,7 @@
       <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/>
       </svg>
+      <span id="themeName"></span>
     </button>
     <div class="toggle" role="group" aria-label="Language">
       <button id="btn-en" aria-pressed="true">EN</button>
@@ -571,8 +613,8 @@
       <p class="standfirst" id="standfirst"></p>
     </div>
     <div class="chipbar">
-      <span class="chip"><span class="swatch" style="background:var(--red)"></span><b id="k1"></b></span>
-      <span class="chip"><span class="swatch" style="background:var(--green)"></span><b id="k2"></b></span>
+      <span class="chip"><span class="ring on"></span><b id="k1"></b></span>
+      <span class="chip"><span class="ring off"></span><b id="k2"></b></span>
       <span class="chip-rule" aria-hidden="true"></span>
       <span class="chip"><span class="flag" id="fl1"></span><b id="f1"></b></span>
       <span class="chip"><span class="flag" id="fl2"></span><b id="f2"></b></span>
@@ -583,7 +625,7 @@
 
   <div class="metrics">
     <div class="stat"><span class="n">11.5<span class="u" id="u1"></span></span><span class="l" id="s1"></span></div>
-    <div class="stat"><span class="n" style="color:var(--red)">2.0<span class="u" id="u2"></span></span><span class="l" id="s2"></span></div>
+    <div class="stat"><span class="n accent">2.0<span class="u" id="u2"></span></span><span class="l" id="s2"></span></div>
     <div class="stat"><span class="n">34 &rarr; 0</span><span class="l" id="s3"></span></div>
     <div class="stat"><span class="n">19 / 10 / 2</span><span class="l" id="s4"></span></div>
     <button type="button" class="info-btn" id="btn-tempo"></button>
@@ -596,22 +638,10 @@
         <button type="button" class="info-btn" id="btn-view"></button>
       </div>
       <div class="toggle viewtoggle" role="tablist" aria-label="View">
-        <button id="btn-danger" role="tab" aria-controls="dangerPane" aria-pressed="true" aria-selected="true">
-          <span class="tab-name" id="tabDanger"></span>
-          <span class="hint" id="tabDangerHint"></span>
-        </button>
-        <button id="btn-kanban" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false">
-          <span class="tab-name" id="tabKanban"></span>
-          <span class="hint" id="tabKanbanHint"></span>
-        </button>
-        <button id="btn-domain" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false">
-          <span class="tab-name" id="tabDomain"></span>
-          <span class="hint" id="tabDomainHint"></span>
-        </button>
-        <button id="btn-outline" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false">
-          <span class="tab-name" id="tabOutline"></span>
-          <span class="hint" id="tabOutlineHint"></span>
-        </button>
+        <button id="btn-danger" role="tab" aria-controls="dangerPane" aria-pressed="true" aria-selected="true"><span id="tabDanger"></span></button>
+        <button id="btn-kanban" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false"><span id="tabKanban"></span></button>
+        <button id="btn-domain" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false"><span id="tabDomain"></span></button>
+        <button id="btn-outline" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false"><span id="tabOutline"></span></button>
       </div>
     </div>
     <div class="bands" id="bands" role="tabpanel" hidden></div>
@@ -644,6 +674,7 @@
         <input type="range" id="dangerSlider" min="0" step="1" value="0">
         <span class="danger-cut" id="dangerDate"></span>
       </div>
+      <div class="danger-sel" id="dangerSel"></div>
       <div class="danger-key" id="dangerKey"></div>
     </div>
   </section>
@@ -683,21 +714,21 @@ const T = {
     dir:"ltr", lang:"en",
     eyebrow:"Open-source audit · Feb–Sep 2026",
     title:"UK–Russia escalation",
-    standfirst:"Thirty-one dated events, both sides. Drag the date under Danger: if the cloud drifts up and to the right, the signal is hardening.",
+    standfirst:"Events are landing five times faster since 15 August, and the Russian rows are drifting toward higher danger and higher stakes. Thirty-one dated events, both sides.",
     k1:'Direct <em class="count">22</em>',
-    k1d:"<b>Direct link.</b> Names Britain, or acts against British ships, staff, territory or equipment.",
+    k1d:"<b>Direct link — solid ring.</b> Names Britain, or acts against British ships, staff, territory or equipment.",
     k2:'Indirect <em class="count">9</em>',
-    k2d:"<b>No direct link.</b> Documented driver lies elsewhere — Ukraine broadly, NATO, Washington, or domestic. Any British connection is inferred, not stated.",
-    f1:'UK / west <em class="count">10</em>', f1d:"<b>British or western act.</b> Union flag.",
-    f2:'Russia <em class="count">19</em>', f2d:"<b>Russian act or statement.</b> Russian tricolour.",
-    f3:'Other <em class="count">2</em>', f3d:"<b>Third party.</b> Both rows are American.",
+    k2d:"<b>No direct link — dashed ring.</b> Documented driver lies elsewhere — Ukraine broadly, NATO, Washington, or domestic. Any British connection is inferred, not stated.",
+    f1:'UK / west <em class="count">10</em>', f1d:"<b>British or western act.</b> Union flag, and a blue dot on the Danger plot.",
+    f2:'Russia <em class="count">19</em>', f2d:"<b>Russian act or statement.</b> Russian tricolour, and a red dot on the Danger plot. Red carries no other meaning on this page.",
+    f3:'US <em class="count">2</em>', f3d:"<b>Third party — 2 US events.</b> New START expiring on 5 February, and the CIA director's Moscow trip on 25 August.",
     unit:"d",
     s1:"Mean gap to 15 Aug", s2:"Mean gap since 15 Aug",
     s3:"Longest → shortest", s4:"RU / UK / other",
     p0:"<b>One rule, both sides.</b> The two source sets graded on different definitions. The merged set applies the stricter, target-based rule throughout. No row changed grade under it.",
     p1:"<b>Read the compression with care.</b> Part of it is method. Early rows are month-level estimates; late rows are statements logged the day they were made. Attention rose after 15 August, and the observation rate with it.",
     p2:"<b>What the merge adds.</b> Reply time — from 15 August, ten of fourteen rows are Russian, and each British move draws a response within two days. Target — threats name objects in Ukraine until 23 August, on British soil from the 24th. Rank — a former diplomat on the 25th, the foreign ministry on the 27th, Putin on 2 September.",
-    foot:"<b>Merging two colour schemes.</b> The British set coded for a link to the escalation thesis; the Russian set coded for whether a signal named Britain. Those are not the same question. This set uses the second, narrower rule throughout, which is the one that can be checked against a source rather than against a hypothesis.<br><br><b>Flag and ring.</b> The two encode different things and should be read separately: the flag is which side acted, the ring colour is the grading. The Union flag is drawn in simplified form at this size — the diagonal counterchange is not rendered. Neither is a claim about causation between adjacent rows.<br><br><b>Interval scale.</b> Gap heights use a square-root scale — a 34-day gap is drawn about six times the height of a 1-day gap, not thirty-four times. Without it the short intervals would be invisible. The day count inside each badge is exact.<br><br><b>Badge fill.</b> The fill of each interval badge runs inverse to its length: anything two days or under is full red, and longer gaps fade toward the page's slate grey. It encodes the same number as the label, so it adds emphasis rather than information.<br><br><b>Same-day intervals.</b> Two intervals are zero days and are badged as such. Ordering within a day follows the reporting, not a verified clock.<br><br><b>Approximate dates.</b> Three rows are dated to the month or to \u201caround\u201d a day (marked ~). Intervals touching them are approximate and marked as such. The ambassador's departure, carried as approximate in the earlier set, is now dated to 21 July on the Guardian's account.<br><br><b>Two rows dated to disclosure, not to the act.</b> The submarine operation ran for over a month before 9 April and sits on the day Britain revealed it. The drone strikes run the other way: dated to February, with the August disclosure logged as its own row. The two cannot be compared without that in mind.<br><br><b>Date conflicts, unresolved.</b> The Fedorov remark: CBS dates it 25 August, the Independent to around the 24th. The CIA trip: the Guardian says Tuesday, others Wednesday. The embassy warning: logged 17 August, carried by Reuters on the 18th. The Sarmat launch: Defense News 12 May, GlobalSecurity 13 May.<br><br><b>One unsourced row.</b> The 6 August defence talks have no online report found; the row is marked rather than linked to something adjacent.<br><br><b>Two candidates dropped.</b> A reported North Korean missile strike on Kyiv (19–20 Aug) and a GRU-signature explosive drone found near a Ukrainian cargo aircraft in Germany (27 Aug) were each carried by a single outlet at second hand. Neither is in the timeline.<br><br><b>Counter-signals are graded the same way.</b> On 1 September Moscow calls the ambassador's departure routine and says a successor is coming, which cuts against the reading placed on the 23 August row. It still codes red, because the rule asks whether Britain is the named object of a signal, not whether the signal points up or down. A red row is not on its own evidence of escalation.<br><br><b>Window.</b> Both sides run the full February–September window. The earlier trimmed Russian window, and the selection-effect note attached to it, do not carry over to these figures.",
+    foot:"<b>Merging two grading schemes.</b> The British set coded for a link to the escalation thesis; the Russian set coded for whether a signal named Britain. Those are not the same question. This set uses the second, narrower rule throughout, which is the one that can be checked against a source rather than against a hypothesis.<br><br><b>Flag and ring.</b> The two encode different things and should be read separately: the flag is which side acted, the ring style is the grading — solid for a direct link, dashed for none. The grading deliberately carries no colour, so that red can mean Russia on this page and nothing else. The Union flag is drawn in simplified form at this size — the diagonal counterchange is not rendered. Neither is a claim about causation between adjacent rows.<br><br><b>Interval scale.</b> Gap heights use a square-root scale — a 34-day gap is drawn about six times the height of a 1-day gap, not thirty-four times. Without it the short intervals would be invisible. The day count inside each badge is exact.<br><br><b>Badge fill.</b> The tint, border and weight of each interval badge run inverse to its length: anything two days or under is bold on full gold, and longer gaps fade toward the page's slate grey. Gold carries time throughout the page. It encodes the same number as the label, so it adds emphasis rather than information.<br><br><b>Same-day intervals.</b> Two intervals are zero days and are badged as such. Ordering within a day follows the reporting, not a verified clock.<br><br><b>Approximate dates.</b> Three rows are dated to the month or to \u201caround\u201d a day (marked ~). Intervals touching them are approximate and marked as such. The ambassador's departure, carried as approximate in the earlier set, is now dated to 21 July on the Guardian's account.<br><br><b>Two rows dated to disclosure, not to the act.</b> The submarine operation ran for over a month before 9 April and sits on the day Britain revealed it. The drone strikes run the other way: dated to February, with the August disclosure logged as its own row. The two cannot be compared without that in mind.<br><br><b>Date conflicts, unresolved.</b> The Fedorov remark: CBS dates it 25 August, the Independent to around the 24th. The CIA trip: the Guardian says Tuesday, others Wednesday. The embassy warning: logged 17 August, carried by Reuters on the 18th. The Sarmat launch: Defense News 12 May, GlobalSecurity 13 May.<br><br><b>One unsourced row.</b> The 6 August defence talks have no online report found; the row is marked rather than linked to something adjacent.<br><br><b>Two candidates dropped.</b> A reported North Korean missile strike on Kyiv (19–20 Aug) and a GRU-signature explosive drone found near a Ukrainian cargo aircraft in Germany (27 Aug) were each carried by a single outlet at second hand. Neither is in the timeline.<br><br><b>Counter-signals are graded the same way.</b> On 1 September Moscow calls the ambassador's departure routine and says a successor is coming, which cuts against the reading placed on the 23 August row. It still codes red, because the rule asks whether Britain is the named object of a signal, not whether the signal points up or down. A red row is not on its own evidence of escalation.<br><br><b>Window.</b> Both sides run the full February–September window. The earlier trimmed Russian window, and the selection-effect note attached to it, do not carry over to these figures.",
     dayUnit:"d", sameDay:"same day", gapWord:"Gap",
     months:["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],
     ovTitle:"Bands · how directly Britain is named",
@@ -714,7 +745,9 @@ const T = {
     dangerHigh:"High danger", dangerLow:"Low danger",
     impactLow:"Low impact", impactHigh:"High impact",
     dangerCentre:n=>"last "+n,
-    keyNewest:"newest", keyHot:"danger 7+ · impact 7+",
+    keyNewest:"newest", keySelected:"selected", keyHot:"danger 7+ · impact 7+",
+    selHint:"Select a point for its row.",
+    selClose:"Clear", selDangerL:"Danger", selImpactL:"Impact", selBandL:"Band",
     dangerSlider:"Date",
     povLabel:"View",
     povAll:"All events", povToUk:"Danger to UK", povToRu:"Danger to Russia",
@@ -743,27 +776,28 @@ const T = {
     ago:(n,soft)=>n===0?"today":n===1?"yesterday":(soft?"~":"")+n+"d ago",
     whyBtn:"Why", whyClose:"Close", whyKicker:"Note",
     themeToDark:"Switch to dark theme",
-    themeToLight:"Switch to light theme"
+    themeToLight:"Switch to light theme",
+    themeNameDark:"Dark", themeNameLight:"Light"
   },
   he: {
     dir:"rtl", lang:"he",
     eyebrow:"בדיקת מקורות גלויים · פברואר–ספטמבר 2026",
     title:"הסלמה בין בריטניה לרוסיה",
-    standfirst:"שלושים ואחד אירועים מתוארכים, משני הצדדים. הזיזו את התאריך בלשונית הסכנה: אם ענן הנקודות נודד למעלה ולימין, האיתות מתחזק.",
+    standfirst:"קצב האירועים גדל פי חמישה מאז 15 באוגוסט, והשורות הרוסיות נודדות לעבר סכנה גבוהה יותר ומחיר גבוה יותר. שלושים ואחד אירועים מתוארכים, משני הצדדים.",
     k1:'ישיר <em class="count">22</em>',
-    k1d:"<b>קשר ישיר.</b> נוקב בשם בריטניה, או פועל נגד כלי שיט, אנשי סגל, שטח או ציוד בריטיים.",
+    k1d:"<b>קשר ישיר — טבעת מלאה.</b> נוקב בשם בריטניה, או פועל נגד כלי שיט, אנשי סגל, שטח או ציוד בריטיים.",
     k2:'עקיף <em class="count">9</em>',
-    k2d:"<b>אין קשר ישיר.</b> הגורם המתועד נמצא במקום אחר — אוקראינה בכללותה, נאט\u201dו, וושינגטון או זירה פנימית. כל קשר בריטי הוא הסקה ולא אמירה.",
-    f1:'בריטניה / המערב <em class="count">10</em>', f1d:"<b>מהלך בריטי או מערבי.</b> דגל בריטניה.",
-    f2:'רוסיה <em class="count">19</em>', f2d:"<b>מהלך או הצהרה רוסיים.</b> דגל רוסיה.",
-    f3:'אחר <em class="count">2</em>', f3d:"<b>צד שלישי.</b> שתי השורות אמריקאיות.",
+    k2d:"<b>אין קשר ישיר — טבעת מקווקוות.</b> הגורם המתועד נמצא במקום אחר — אוקראינה בכללותה, נאט\u201dו, וושינגטון או זירה פנימית. כל קשר בריטי הוא הסקה ולא אמירה.",
+    f1:'בריטניה / המערב <em class="count">10</em>', f1d:"<b>מהלך בריטי או מערבי.</b> דגל בריטניה, ונקודה כחולה בתרשים הסכנה.",
+    f2:'רוסיה <em class="count">19</em>', f2d:"<b>מהלך או הצהרה רוסיים.</b> דגל רוסיה, ונקודה אדומה בתרשים הסכנה. לאדום אין משמעות אחרת בדף הזה.",
+    f3:'ארה\u201db <em class="count">2</em>', f3d:"<b>צד שלישי — 2 אירועים אמריקאיים.</b> פקיעת ניו סטארט ב-5 בפברואר, וביקור ראש ה-CIA במוסקבה ב-25 באוגוסט.",
     unit:" ימים",
     s1:"מרווח ממוצע עד 15 באוג׳", s2:"מרווח ממוצע מ-15 באוג׳",
     s3:"מהארוך ביותר לקצר", s4:"רוסיה / בריטניה / אחר",
     p0:"<b>כלל אחד, לשני הצדדים.</b> שני המערכים המקוריים דירגו לפי הגדרות שונות. המערך הממוזג מחיל את הכלל המחמיר יותר, זה שמבוסס על המטרה, על כל השורות — ואף שורה לא שינתה דירוג.",
     p1:"<b>יש לקרוא את ההתכווצות בזהירות.</b> חלק ממנה נובע מהשיטה. הרשומות המוקדמות הן הערכות ברמת החודש; המאוחרות הן הצהרות שנרשמו ביום שנאמרו. תשומת הלב עלתה אחרי 15 באוגוסט, ואיתה שיעור התצפיות.",
     p2:"<b>מה שהמיזוג מוסיף.</b> זמן תגובה — מ-15 באוגוסט עשר מארבע־עשרה השורות רוסיות, וכל מהלך בריטי מושך תגובה בתוך יומיים. מטרה — האיומים נוקבים ביעדים באוקראינה עד 23 באוגוסט, ועל אדמת בריטניה מה-24. דרג — דיפלומט לשעבר ב-25, משרד החוץ ב-27, פוטין ב-2 בספטמבר.",
-    foot:"<b>מיזוג שתי סכמות צבע.</b> המערך הבריטי סימן לפי קשר לתזת ההסלמה; המערך הרוסי סימן לפי השאלה אם האיתות נוקב בשם בריטניה. אלה אינן אותה שאלה. המערך הזה משתמש בכלל השני, הצר יותר, לכל אורכו — זה שניתן לבדיקה מול מקור ולא מול השערה.<br><br><b>הדגל והטבעת.</b> השניים מקודדים דברים שונים ויש לקרוא אותם בנפרד: הדגל הוא הצד שפעל, צבע הטבעת הוא הדירוג. דגל בריטניה מצויר בגרסה מפושטת בגודל הזה — הקו האלכסוני המוסט אינו מיוצג. אף אחד מהם אינו טענה על סיבתיות בין שורות סמוכות.<br><br><b>קנה המידה של המרווחים.</b> גובה המרווחים מבוסס על שורש ריבועי — מרווח של 34 יום מצויר בגובה של פי שישה בערך ממרווח של יום אחד, ולא פי שלושים וארבעה. בלעדיו המרווחים הקצרים היו נעלמים. מספר הימים בתוך כל תג מדויק.<br><br><b>מילוי התגים.</b> מילוי כל תג מרווח פועל הפוך לאורכו: כל מרווח של יומיים או פחות מוצג באדום מלא, ומרווחים ארוכים יותר דוהים לעבר האפור־כחלחל של הדף. הוא מקודד בדיוק את אותו מספר שמופיע בתווית, ולכן הוא מוסיף הדגשה ולא מידע.<br><br><b>מרווחים של אותו יום.</b> שני מרווחים הם אפס ימים ומסומנים ככאלה. הסדר בתוך יום נקבע לפי הדיווח ולא לפי שעון מאומת.<br><br><b>תאריכים משוערים.</b> שלוש שורות מתוארכות לרמת החודש או ל\u201dבערך\u201d יום מסוים (מסומן ~). מרווחים הנוגעים בהן משוערים ומסומנים ככאלה. עזיבת השגריר, שנשאה סימון משוער במערך הקודם, מתוארכת כעת ל-21 ביולי לפי הגרדיאן.<br><br><b>שתי שורות מתוארכות לחשיפה ולא למעשה.</b> מבצע הצוללות נמשך למעלה מחודש לפני 9 באפריל, והשורה יושבת על היום שבו בריטניה חשפה אותו. תקיפות המזל\u201dטים פועלות בכיוון ההפוך: מתוארכות לפברואר, כשהחשיפה של אוגוסט נרשמת כשורה נפרדת. אי אפשר להשוות ביניהן בלי לזכור זאת.<br><br><b>סתירות תאריכים שלא יושבו.</b> אמירת פדורוב: CBS מתארך ל-25 באוגוסט, האינדיפנדנט לסביבות ה-24. ביקור ראש ה-CIA: הגרדיאן אומר יום שלישי, אחרים יום רביעי. אזהרת השגרירות: נרשמה ב-17 באוגוסט, רויטרס פרסמה ב-18. שיגור הסרמט: Defense News ב-12 במאי, GlobalSecurity ב-13 במאי.<br><br><b>שורה אחת ללא מקור.</b> לשיחות ההגנה של 6 באוגוסט לא נמצא דיווח מקוון; השורה מסומנת ככזו ולא מקושרת למקור סמוך.<br><br><b>שני מועמדים הוסרו.</b> דיווח על תקיפת קייב בטילים צפון־קוריאניים (19–20 באוגוסט) ורחפן נפץ בחתימת GRU שנמצא ליד מטוס מטען אוקראיני בגרמניה (27 באוגוסט) הופיעו כל אחד בכלי תקשורת יחיד וממקור משני. שניהם אינם בציר הזמן.<br><br><b>איתותים נגדיים מדורגים באותה שיטה.</b> ב-1 בספטמבר מוסקבה מכנה את עזיבת השגריר שגרתית ומודיעה שמחליף בדרך, דבר הסותר את הקריאה שהוצמדה לשורה של 23 באוגוסט. השורה עדיין מסומנת באדום, משום שהכלל שואל אם בריטניה היא מושא האיתות ולא אם האיתות מצביע כלפי מעלה או מטה. שורה אדומה אינה כשלעצמה ראיה להסלמה.<br><br><b>חלון הזמן.</b> שני הצדדים פרוסים על חלון פברואר–ספטמבר המלא. החלון הרוסי המקוצר הקודם, וההערה על אפקט הבחירה שנלוותה אליו, אינם חלים על הנתונים כאן.",
+    foot:"<b>מיזוג שתי סכמות דירוג.</b> המערך הבריטי סימן לפי קשר לתזת ההסלמה; המערך הרוסי סימן לפי השאלה אם האיתות נוקב בשם בריטניה. אלה אינן אותה שאלה. המערך הזה משתמש בכלל השני, הצר יותר, לכל אורכו — זה שניתן לבדיקה מול מקור ולא מול השערה.<br><br><b>הדגל והטבעת.</b> השניים מקודדים דברים שונים ויש לקרוא אותם בנפרד: הדגל הוא הצד שפעל, וסגנון הטבעת הוא הדירוג — מלאה לקשר ישיר, מקווקוות כשאין. לדירוג אין צבע בכוונה, כדי שאדום יסמן רוסיה בדף הזה ולא שום דבר אחר. דגל בריטניה מצויר בגרסה מפושטת בגודל הזה — הקו האלכסוני המוסט אינו מיוצג. אף אחד מהם אינו טענה על סיבתיות בין שורות סמוכות.<br><br><b>קנה המידה של המרווחים.</b> גובה המרווחים מבוסס על שורש ריבועי — מרווח של 34 יום מצויר בגובה של פי שישה בערך ממרווח של יום אחד, ולא פי שלושים וארבעה. בלעדיו המרווחים הקצרים היו נעלמים. מספר הימים בתוך כל תג מדויק.<br><br><b>מילוי התגים.</b> הגוון, המסגרת והמשקל של כל תג מרווח פועלים הפוך לאורכו: כל מרווח של יומיים או פחות מוצג בזהב מלא ובהדגשה, ומרווחים ארוכים יותר דוהים לעבר האפור־כחלחל של הדף. הזהב מסמן זמן לכל אורך הדף. הוא מקודד בדיוק את אותו מספר שמופיע בתווית, ולכן הוא מוסיף הדגשה ולא מידע.<br><br><b>מרווחים של אותו יום.</b> שני מרווחים הם אפס ימים ומסומנים ככאלה. הסדר בתוך יום נקבע לפי הדיווח ולא לפי שעון מאומת.<br><br><b>תאריכים משוערים.</b> שלוש שורות מתוארכות לרמת החודש או ל\u201dבערך\u201d יום מסוים (מסומן ~). מרווחים הנוגעים בהן משוערים ומסומנים ככאלה. עזיבת השגריר, שנשאה סימון משוער במערך הקודם, מתוארכת כעת ל-21 ביולי לפי הגרדיאן.<br><br><b>שתי שורות מתוארכות לחשיפה ולא למעשה.</b> מבצע הצוללות נמשך למעלה מחודש לפני 9 באפריל, והשורה יושבת על היום שבו בריטניה חשפה אותו. תקיפות המזל\u201dטים פועלות בכיוון ההפוך: מתוארכות לפברואר, כשהחשיפה של אוגוסט נרשמת כשורה נפרדת. אי אפשר להשוות ביניהן בלי לזכור זאת.<br><br><b>סתירות תאריכים שלא יושבו.</b> אמירת פדורוב: CBS מתארך ל-25 באוגוסט, האינדיפנדנט לסביבות ה-24. ביקור ראש ה-CIA: הגרדיאן אומר יום שלישי, אחרים יום רביעי. אזהרת השגרירות: נרשמה ב-17 באוגוסט, רויטרס פרסמה ב-18. שיגור הסרמט: Defense News ב-12 במאי, GlobalSecurity ב-13 במאי.<br><br><b>שורה אחת ללא מקור.</b> לשיחות ההגנה של 6 באוגוסט לא נמצא דיווח מקוון; השורה מסומנת ככזו ולא מקושרת למקור סמוך.<br><br><b>שני מועמדים הוסרו.</b> דיווח על תקיפת קייב בטילים צפון־קוריאניים (19–20 באוגוסט) ורחפן נפץ בחתימת GRU שנמצא ליד מטוס מטען אוקראיני בגרמניה (27 באוגוסט) הופיעו כל אחד בכלי תקשורת יחיד וממקור משני. שניהם אינם בציר הזמן.<br><br><b>איתותים נגדיים מדורגים באותה שיטה.</b> ב-1 בספטמבר מוסקבה מכנה את עזיבת השגריר שגרתית ומודיעה שמחליף בדרך, דבר הסותר את הקריאה שהוצמדה לשורה של 23 באוגוסט. השורה עדיין מסומנת באדום, משום שהכלל שואל אם בריטניה היא מושא האיתות ולא אם האיתות מצביע כלפי מעלה או מטה. שורה אדומה אינה כשלעצמה ראיה להסלמה.<br><br><b>חלון הזמן.</b> שני הצדדים פרוסים על חלון פברואר–ספטמבר המלא. החלון הרוסי המקוצר הקודם, וההערה על אפקט הבחירה שנלוותה אליו, אינם חלים על הנתונים כאן.",
     dayUnit:" ימים", sameDay:"אותו יום", gapWord:"פער",
     months:["ינו׳","פבר׳","מרץ","אפר׳","מאי","יוני","יולי","אוג׳","ספט׳","אוק׳","נוב׳","דצמ׳"],
     ovTitle:"רמות · מידת הישירות שבה בריטניה נקובה",
@@ -780,7 +814,9 @@ const T = {
     dangerHigh:"סכנה גבוהה", dangerLow:"סכנה נמוכה",
     impactLow:"השפעה נמוכה", impactHigh:"השפעה גבוהה",
     dangerCentre:n=>n+" האחרונות",
-    keyNewest:"האחרון", keyHot:"סכנה 7+ · השפעה 7+",
+    keyNewest:"האחרון", keySelected:"נבחר", keyHot:"סכנה 7+ · השפעה 7+",
+    selHint:"בחרו נקודה כדי לראות את השורה.",
+    selClose:"ניקוי", selDangerL:"סכנה", selImpactL:"השפעה", selBandL:"רמה",
     dangerSlider:"תאריך",
     povLabel:"תצוגה",
     povAll:"כל האירועים", povToUk:"סכנה לבריטניה", povToRu:"סכנה לרוסיה",
@@ -809,7 +845,8 @@ const T = {
     ago:(n,soft)=>n===0?"היום":n===1?"אתמול":(!soft&&n===2)?"לפני יומיים":"לפני "+(soft?"~":"")+n+" ימים",
     whyBtn:"פירוט", whyClose:"סגור", whyKicker:"הערה",
     themeToDark:"מעבר לערכת נושא כהה",
-    themeToLight:"מעבר לערכת נושא בהירה"
+    themeToLight:"מעבר לערכת נושא בהירה",
+    themeNameDark:"כהה", themeNameLight:"בהיר"
   }
 };
 
@@ -1326,18 +1363,23 @@ function applyTheme(theme){
     const label = next === "dark" ? t.themeToLight : t.themeToDark;
     btn.setAttribute("aria-label", label);
     btn.setAttribute("title", label);
+    set("themeName", next === "dark" ? t.themeNameLight : t.themeNameDark);
   }
 }
 
+// Gaps run toward the gold accent, which already carries time on this page.
+// Red is left to mean Russia.
 function gapPalette(){
+  // The fill stays a light tint at every length so the label never sits on a
+  // muddy midtone; intensity rides on the border, the ink and the weight.
   return currentTheme() === "dark" ? {
-    fillFrom:"#1b232c", fillTo:"#c0605a",
-    strokeFrom:"#2a333d", strokeTo:"#d97e77",
-    textFrom:"#6c7885", textTo:"#fff1ef"
+    fillFrom:"#1b232c", fillTo:"#3f3517",
+    strokeFrom:"#2a333d", strokeTo:"#c99f31",
+    textFrom:"#7f8fa0", textTo:"#f0d68d"
   } : {
-    fillFrom:"#e6e8eb", fillTo:"#c0605a",
-    strokeFrom:"#cfd3d7", strokeTo:"#d97e77",
-    textFrom:"#6c7885", textTo:"#fff1ef"
+    fillFrom:"#eceae4", fillTo:"#eeda9a",
+    strokeFrom:"#cfd3d7", strokeTo:"#b08a26",
+    textFrom:"#7a8691", textTo:"#6b4f05"
   };
 }
 
@@ -1442,6 +1484,7 @@ const meanOf = (rows, key) => rows.length
 // Who the danger runs toward. A British or western act is danger to Russia,
 // a Russian act is danger to Britain; the two American rows sit outside both.
 let dangerPov = "all";
+let dangerSelected = null;
 const POV_SIDE = {toRu:"uk", toUk:"ru"};
 
 function povKeeps(e){
@@ -1463,6 +1506,7 @@ function renderDanger(code){
   const cut = DANGER_DATES[dangerStep];
   const cutEvent = EVENTS.filter(e => e.date === cut).slice(-1)[0];
   const shown = shownAt(dangerStep);
+  if (dangerSelected !== null && !shown.some(x => x.i === dangerSelected)) dangerSelected = null;
   const newest = shown.length ? shown[shown.length - 1].i : -1;
   // A single side has a third of the rows, so the window narrows with it —
   // otherwise drift would not resolve until the very end of the window.
@@ -1493,6 +1537,11 @@ function renderDanger(code){
     '<span><svg class="km" viewBox="0 0 12 12" aria-hidden="true">' +
       '<circle cx="6" cy="6" r="4.6" fill="none" stroke="var(--yellow)" stroke-width="1.3"/>' +
       '</svg>' + t.keyNewest + '</span>' +
+    (dangerSelected === null ? "" :
+      '<span><svg class="km" viewBox="0 0 12 12" aria-hidden="true">' +
+        '<rect x="1.4" y="1.4" width="9.2" height="9.2" rx="1" fill="none" ' +
+        'stroke="var(--yellow)" stroke-width="1.6"/>' +
+        '</svg>' + t.keySelected + '</span>') +
     '<span><svg class="km" viewBox="0 0 12 12" aria-hidden="true">' +
       '<path d="M1.4 6h9.2M6 1.4v9.2" stroke="var(--yellow)" stroke-width="1.3"/>' +
       '</svg>' + t.dangerCentre(RECENT) + '</span>' +
@@ -1563,11 +1612,19 @@ function renderDanger(code){
   const DOT = {uk:"var(--uk-dot)", ru:"var(--ru-dot)", ot:"var(--ot-dot)"};
   const dots = shown.map(({e, i}) => {
     const [x, y] = dangerXY(e, i, L, Top, plotW, plotH);
-    const latest = i === newest;
     const fill = DOT[e.side] || DOT.ot;
-    const halo = latest ? '<circle cx="' + x + '" cy="' + y + '" r="12" fill="none" stroke="var(--yellow)" stroke-width="1.4"/>' : "";
-    return '<g class="danger-dot" data-i="' + i + '" tabindex="0" role="button">'
-      + halo
+    // A circle marks the newest row, a square the one you picked, so the two
+    // gold marks never have to be told apart by weight alone.
+    const ring = i === newest
+      ? '<circle cx="' + x + '" cy="' + y + '" r="12" fill="none" stroke="var(--yellow)" stroke-width="1.4"/>'
+      : "";
+    const box = i === dangerSelected
+      ? '<rect x="' + (x - 12) + '" y="' + (y - 12) + '" width="24" height="24" rx="2" '
+        + 'fill="none" stroke="var(--yellow)" stroke-width="2"/>'
+      : "";
+    return '<g class="danger-dot" data-i="' + i + '" tabindex="0" role="button"'
+      + ' aria-pressed="' + (i === dangerSelected) + '">'
+      + ring + box
       + '<circle class="danger-halo" cx="' + x + '" cy="' + y + '" r="7" fill="' + fill + '" stroke="var(--surface)" stroke-width="1.2"/>'
       + '</g>';
   }).join("");
@@ -1589,13 +1646,53 @@ function renderDanger(code){
   dangerChart.querySelectorAll(".danger-dot").forEach(g => {
     const i = +g.getAttribute("data-i");
     const e = EVENTS[i];
-    const html = "<b>" + e[code].short + "</b><span>" + shortDate(e.date, t, e.approx) + "</span>";
-    const open = () => openWhy(i);
+    const html = '<b>' + e[code].short + '</b>'
+      + '<span class="tip-meta"><span class="tip-flag">' + FLAGS[e.side] + '</span>'
+      + t.sides[e.side] + ' · ' + shortDate(e.date, t, e.approx) + '</span>';
+    const pick = () => {
+      dangerSelected = dangerSelected === i ? null : i;
+      hideDangerTip();
+      renderDanger(code);
+    };
     g.addEventListener("pointerenter", ev => showDangerTip(ev, html));
     g.addEventListener("pointermove", ev => showDangerTip(ev, html));
     g.addEventListener("pointerleave", hideDangerTip);
-    g.addEventListener("click", open);
-    g.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); open(); } });
+    g.addEventListener("click", pick);
+    g.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); pick(); } });
+  });
+
+  renderSelected(code);
+}
+
+function renderSelected(code){
+  const t = T[code];
+  const host = document.getElementById("dangerSel");
+  const e = dangerSelected === null ? null : EVENTS[dangerSelected];
+  host.classList.toggle("on", !!e);
+  if (!e){
+    host.innerHTML = '<p class="sel-hint">' + t.selHint + '</p>';
+    return;
+  }
+  const c = e[code];
+  host.innerHTML =
+    '<span class="sel-flag">' + FLAGS[e.side] + '</span>'
+    + '<div class="sel-main">'
+      + '<p class="sel-meta">' + t.sides[e.side] + ' · ' + c.label + '</p>'
+      + '<p class="sel-title">' + c.title + '</p>'
+      + '<div class="sel-nums">'
+        + '<span class="sel-num">' + t.selDangerL + '<b>' + e.danger + '</b></span>'
+        + '<span class="sel-num">' + t.selImpactL + '<b>' + e.impact + '</b></span>'
+        + '<span class="sel-num">' + t.selBandL + '<b>' + e.band + '/4</b></span>'
+      + '</div>'
+    + '</div>'
+    + '<div class="sel-acts">'
+      + '<button type="button" class="why-btn" id="selWhy">' + t.whyBtn + '</button>'
+      + '<button type="button" class="info-btn" id="selClear">' + t.selClose + '</button>'
+    + '</div>';
+  document.getElementById("selWhy").addEventListener("click", () => openWhy(dangerSelected));
+  document.getElementById("selClear").addEventListener("click", () => {
+    dangerSelected = null;
+    renderDanger(code);
   });
 }
 
@@ -1606,13 +1703,13 @@ function renderBands(code){
   set("ovTitle", titles[view] || t.ovTitle);
   set("btn-view", t.infoBtn);
   set("tabKanban", t.ovKanban);
-  set("tabKanbanHint", t.ovKanbanHint);
   set("tabOutline", t.ovOutline);
-  set("tabOutlineHint", t.ovOutlineHint);
   set("tabDomain", t.ovDomain);
-  set("tabDomainHint", t.ovDomainHint);
   set("tabDanger", t.ovDanger);
-  set("tabDangerHint", t.ovDangerHint);
+  [["btn-kanban", t.ovKanbanHint], ["btn-outline", t.ovOutlineHint],
+   ["btn-domain", t.ovDomainHint], ["btn-danger", t.ovDangerHint]].forEach(([id, hint]) => {
+    document.getElementById(id).setAttribute("title", hint);
+  });
   document.querySelector(".viewtoggle").setAttribute("aria-label", t.ovViewLabel);
 
   const host = document.getElementById("bands");
@@ -1732,7 +1829,7 @@ function render(code){
     const pal    = gapPalette();
     const fill   = lerpHex(pal.fillFrom, pal.fillTo, k);
     const stroke = lerpHex(pal.strokeFrom, pal.strokeTo, k);
-    const text   = lerpHex(pal.textFrom, pal.textTo, Math.pow(k, 0.7));
+    const text   = lerpHex(pal.textFrom, pal.textTo, k);
 
     const gap = document.createElement("div");
     gap.className = "gap";
@@ -1740,7 +1837,7 @@ function render(code){
     gap.innerHTML =
       '<span class="bar"></span>' +
       '<span class="days" style="background:' + fill + ';border-color:' + stroke +
-      ';color:' + text + '">' +
+      ';color:' + text + ';font-weight:' + (k > 0.7 ? 700 : 400) + '">' +
       t.gapWord + ' ' +
       (days === 0 ? t.sameDay : (soft ? "~" : "") + days + t.dayUnit) + '</span>';
     tl.appendChild(gap);

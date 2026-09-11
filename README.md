@@ -17,7 +17,7 @@ Three encodings, deliberately kept separate:
 | Encoding | Carries | Values |
 |---|---|---|
 | Flag in the marker | Who acted | Union flag, Russian tricolour, Stars and Stripes |
-| Ring colour | Whether Britain is the named object | red (22 rows), green (9 rows) |
+| Ring style | Whether Britain is the named object | solid (22 rows), dashed (9 rows) |
 | Band card | How directly Britain is named | four levels, 11 / 8 / 6 / 6 rows |
 | Domain card | Kind of object in play | war infra / war zones / civil infra / civil zone |
 | Danger plot | Alarm vs stakes | 1–10 each; UK blue, Russia red; slider keeps rows up to a date |
@@ -26,13 +26,15 @@ Reading two of them as one thing is the main way to misread the page.
 
 On-page text is kept to short labels. The longer notes — how the marks are read, why the intervals compress, what each view is doing, and the method and caveats — sit behind the **Key**, **Tempo**, **About** and **Method** buttons, and each event's note behind its **Why** button.
 
-## The colour rule
+## The ring rule
 
-**Red — direct link.** The event names Britain, or acts against British ships, staff, territory or equipment.
+**Solid ring — direct link.** The event names Britain, or acts against British ships, staff, territory or equipment.
 
-**Green — no direct link.** The documented driver lies elsewhere: Ukraine broadly, NATO, Washington, or a domestic British matter. Any British connection is inferred rather than stated.
+**Dashed ring — no direct link.** The documented driver lies elsewhere: Ukraine broadly, NATO, Washington, or a domestic British matter. Any British connection is inferred rather than stated.
 
-This is a test about the *target* of a signal, not its *direction*. A Russian statement that de-escalates still codes red if it is about Britain — the 1 September row, where Moscow calls the ambassador's departure routine, is exactly that case. **The red count is not an escalation score.**
+This is a test about the *target* of a signal, not its *direction*. A Russian statement that de-escalates still takes a solid ring if it is about Britain — the 1 September row, where Moscow calls the ambassador's departure routine, is exactly that case. **The solid-ring count is not an escalation score.**
+
+The grading deliberately carries no hue. Red was doing three jobs on this page — the direct-link grade, Russian dots on the Danger plot, and the compressed interval figure — and a reader will collapse three jobs into "red means Russia" or "red means bad". Red is now reserved for Russia. Grading moved to ring style, which is also legible without colour vision, and the interval scale moved to the gold accent that already carries dates and time everywhere else on the page.
 
 Two earlier timelines fed this one and graded on different definitions. The British-side set coded for a link to the escalation thesis; the Russian-side set coded for whether a signal named Britain. Those are different questions, and only the second can be checked against a source rather than against a hypothesis. The merged set applies the second rule throughout. No row changed grade under it.
 
@@ -47,7 +49,7 @@ The one axis here that is a judgement rather than a fact on the record. The test
 
 The consequence of defining bands this way: an unannounced Russian nuclear exercise and an unannounced CIA trip to Moscow both sit in band 1, because neither names Britain, though both are more alarming than a diplomat expulsion in band 2. That is the rule working as intended, not a misfiling.
 
-Note also that bands 2, 3 and 4 are entirely red and band 1 holds eight of the nine green rows. The band axis and the colour axis are measuring closely related things, so the bands add less independent information than four separate cards imply.
+Note also that bands 2, 3 and 4 are entirely solid-ring and band 1 holds eight of the nine dashed rows. The band axis and the grading axis are measuring closely related things, so the bands add less independent information than four separate cards imply.
 
 A third grouping, on the **Domain** tab, cuts the same 31 rows by the kind of object in play rather than by how Britain is named:
 
@@ -57,6 +59,8 @@ A third grouping, on the **Domain** tab, cuts the same 31 rows by the kind of ob
 4. **Civil zone** — cities, capitals, diplomatic space. No strike on London buildings is in this set.
 
 A fourth grouping, on the **Danger** tab, plots the same rows as a scatter: vertical is how alarming the act is (high at the top), horizontal is how large the stakes are if it lands (high to the right). Both axes are a 1–10 judgement, independent of the band test. Dots are blue for British or western acts, red for Russian, grey for the two American rows. A date slider — with a play control that runs it forward — keeps every row up to the date you stop on, so the cloud can be read as a path.
+
+Hovering a point gives its actor, date and short title; clicking one pins a card under the plot with the danger and impact scores, the band, and a Why button for the full note. A circle marks the newest row on screen and a square the pinned one, and both are named in the key.
 
 The Danger tab is the page's lead view, because the question most readers arrive with is whether the signal is hardening. Four figures sit above the plot: mean danger and mean impact across the rows on screen, the count, and **drift** — the combined danger-plus-impact mean of the five most recent rows minus that of the five before them. Positive drift, shown in red, means the recent cluster sits higher and further right than the one before it. A yellow cross marks the centre of those five most recent rows and a faint line traces where that centre has been; the tinted corner is danger 7+ against impact 7+.
 
