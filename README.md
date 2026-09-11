@@ -19,6 +19,7 @@ Three encodings, deliberately kept separate:
 | Flag in the marker | Who acted | Union flag, Russian tricolour, Stars and Stripes |
 | Ring colour | Whether Britain is the named object | red (22 rows), green (9 rows) |
 | Band card | How directly Britain is named | four levels, 11 / 8 / 6 / 6 rows |
+| Domain card | Kind of object in play | war infra / war zones / civil infra / civil zone |
 
 Reading two of them as one thing is the main way to misread the page.
 
@@ -44,6 +45,13 @@ The one axis here that is a judgement rather than a fact on the record. The test
 The consequence of defining bands this way: an unannounced Russian nuclear exercise and an unannounced CIA trip to Moscow both sit in band 1, because neither names Britain, though both are more alarming than a diplomat expulsion in band 2. That is the rule working as intended, not a misfiling.
 
 Note also that bands 2, 3 and 4 are entirely red and band 1 holds eight of the nine green rows. The band axis and the colour axis are measuring closely related things, so the bands add less independent information than four separate cards imply.
+
+A third grouping, on the **Domain** tab, cuts the same 31 rows by the kind of object in play rather than by how Britain is named:
+
+1. **War infra** — army systems and the plants that make them.
+2. **War zones** — a front, a base, or a stretch of naval water.
+3. **Civil infra** — airports, courts, energy plants. The NATS outage and the Swindon court case sit here.
+4. **Civil zone** — cities, capitals, diplomatic space. No strike on London buildings is in this set.
 
 ## Sourcing standard
 
@@ -89,7 +97,7 @@ Kept visible rather than silently resolved:
 
 ## Editing
 
-Everything is in the one file. Events live in the `EVENTS` array; each row carries `date`, optional `approx`, `side` (`uk` / `ru` / `ot`), `rag` (`r` / `g`), `band` (1–4), a `sources` array, and `en` / `he` objects holding `label`, `short`, `title` and `why`.
+Everything is in the one file. Events live in the `EVENTS` array; each row carries `date`, optional `approx`, `side` (`uk` / `ru` / `ot`), `rag` (`r` / `g`), `band` (1–4), `domain` (1 war infra / 2 war zones / 3 civil infra / 4 civil zone), a `sources` array, and `en` / `he` objects holding `label`, `short`, `title` and `why`.
 
 Statistics in the summary panel — mean gaps, counts, side split, band totals — are **hard-coded strings**, not computed. Adding or removing a row means recomputing them by hand or they will quietly go wrong.
 

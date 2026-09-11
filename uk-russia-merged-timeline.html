@@ -165,7 +165,8 @@
   .gap:hover .days{transform:translateX(3px)}
   body[dir="rtl"] .gap:hover .days{transform:translateX(-3px)}
 
-  /* --- band overview: kanban (horizontal) / outline (vertical) --- */
+  /* --- band overview: kanban / outline / domain --- */
+  .viewtoggle{flex-wrap:wrap;max-width:100%;overflow:visible}
   .overview{margin:0 0 34px}
   .ovhead{
     display:flex;align-items:flex-start;justify-content:space-between;
@@ -234,6 +235,26 @@
   .overview.layout-outline{width:auto;max-width:100%;margin-inline:0}
   .overview.layout-outline .bands{flex-direction:column;flex-wrap:nowrap;overflow:visible}
   .overview.layout-outline .band{flex:none;width:100%;min-width:0}
+  .overview.layout-domain{
+    width:min(1200px, calc(100vw - 40px));
+    max-width:calc(100vw - 40px);
+    margin-inline:calc((100% - min(1200px, 100vw - 40px)) / 2);
+  }
+  .overview.layout-domain .bands{
+    flex-direction:row;flex-wrap:nowrap;
+    overflow-x:auto;overscroll-behavior-x:contain;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(148,163,184,.35) transparent;
+    padding-bottom:4px;
+  }
+  .overview.layout-domain .band{flex:1 1 0;min-width:220px;width:auto}
+  @media (max-width: 720px){
+    .overview.layout-domain{
+      width:auto;max-width:100%;margin-inline:0;
+    }
+    .overview.layout-domain .bands{flex-direction:column;overflow:visible}
+    .overview.layout-domain .band{flex:none;width:100%;min-width:0}
+  }
   .band .meter{height:3px;border-radius:2px;background:rgba(148,163,184,.13);overflow:hidden;margin-bottom:10px}
   .band .meter i{display:block;height:100%;background:var(--yellow);opacity:.75}
   .band .num{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--faint)}
@@ -352,6 +373,10 @@
           <span class="tab-name" id="tabOutline"></span>
           <span class="hint" id="tabOutlineHint"></span>
         </button>
+        <button id="btn-domain" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false">
+          <span class="tab-name" id="tabDomain"></span>
+          <span class="hint" id="tabDomainHint"></span>
+        </button>
       </div>
     </div>
     <p class="note" id="ovNote"></p>
@@ -401,15 +426,24 @@ const T = {
     months:["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],
     ovTitle:"Four bands, by how directly Britain is named",
     ovNote:"A third axis, and the only one on this page that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — not how alarming its content is. The top band adds a second cut: the named object sits under a strike threat or a concealed act, so notified gunnery and diplomat rows stay routine. That is also why an unannounced nuclear exercise and an American trip to Moscow both sit in the first band. Flag and ring keep their meanings.",
-    ovViewLabel:"Band layout",
-    ovKanban:"Kanban", ovKanbanHint:"horizontal",
-    ovOutline:"Outline", ovOutlineHint:"vertical",
+    ovTitleDomain:"Four domains, by the kind of object in play",
+    ovNoteDomain:"War versus civil, infrastructure versus zone. War infra is army systems and the plants that make them. War zones are military geography — a front, a base, a stretch of water. Civil infra is the systems of ordinary life: airports, courts, energy plants. Civil zone is cities and diplomatic space. Nothing in this set is a strike on London buildings. Like the bands, this cut is a judgement. Flag and ring keep their meanings.",
+    ovViewLabel:"View",
+    ovKanban:"Kanban", ovKanbanHint:"alert level",
+    ovOutline:"Outline", ovOutlineHint:"by date",
+    ovDomain:"Domain", ovDomainHint:"war / civil",
     metaFmt:(n,r,rng)=>n+" rows &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
       {name:"Britain not named", def:"Background, structural, or deliberately concealed. Britain is not the object."},
       {name:"Britain named, routine", def:"Diplomatic and naval friction, inside the ordinary run of statecraft."},
       {name:"A consequence is stated", def:"Britain is warned it will pay, but nothing specific is named as the thing at risk."},
       {name:"A specific object, hostile or concealed", def:"A particular British thing is named as the object — a factory, a military site, or a stretch of UK water — and the act is a strike threat or concealment."}
+    ],
+    domains:[
+      {name:"War infra", def:"Army systems and the plants that make them — nuclear forces, drones, jammers, weapons production."},
+      {name:"War zones", def:"War actions in a military geography: a front, a base, or a stretch of naval water."},
+      {name:"Civil infra", def:"The systems of ordinary life: airports, courts, energy plants. The NATS outage and the Swindon court case sit here."},
+      {name:"Civil zone", def:"Civilian geography: cities, capitals, diplomatic space. No strike on London buildings is in this set."}
     ],
     sides:{uk:"UK", ru:"RU", ot:"US"},
     ago:(n,soft)=>n===0?"today":n===1?"yesterday":(soft?"~":"")+n+"d ago"
@@ -438,15 +472,24 @@ const T = {
     months:["ינו׳","פבר׳","מרץ","אפר׳","מאי","יוני","יולי","אוג׳","ספט׳","אוק׳","נוב׳","דצמ׳"],
     ovTitle:"ארבע רמות, לפי מידת הישירות שבה בריטניה נקובה",
     ovNote:"ציר שלישי, והיחיד בדף הזה שהוא שיפוט ולא עובדה מתועדת. המבחן הוא עד כמה בריטניה היא במפורש מושא האיתות — לא עד כמה תוכנו מדאיג. הרמה העליונה דורשת גם איום תקיפה או מעשה מוסתר, ולכן ירי שהודיעו עליו מראש ושורות דיפלומטיות נשארים ברמה השגרתית. לכן גם תרגיל גרעיני ללא הודעה וביקור אמריקאי במוסקבה יושבים שניהם ברמה הראשונה. הדגל והטבעת שומרים על משמעותם.",
-    ovViewLabel:"פריסת הרמות",
-    ovKanban:"קנבן", ovKanbanHint:"אופקי",
-    ovOutline:"מתווה", ovOutlineHint:"אנכי",
+    ovTitleDomain:"ארבעה תחומים, לפי סוג המושא",
+    ovNoteDomain:"מלחמה מול אזרחי, תשתיות מול זירה. תשתית מלחמה היא מערכות הצבא והמפעלים שמייצרים אותן. אזורי מלחמה הם גאוגרפיה צבאית — חזית, בסיס, מקטע מים. תשתית אזרחית היא מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה. אזור אזרחי הוא ערים ומרחב דיפלומטי. אין במערך תקיפה על בניינים בלונדון. כמו הרמות, גם החיתוך הזה הוא שיפוט. הדגל והטבעת שומרים על משמעותם.",
+    ovViewLabel:"תצוגה",
+    ovKanban:"קנבן", ovKanbanHint:"רמת התראה",
+    ovOutline:"מתווה", ovOutlineHint:"לפי תאריך",
+    ovDomain:"תחום", ovDomainHint:"מלחמה / אזרחי",
     metaFmt:(n,r,rng)=>n+" שורות &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
       {name:"בריטניה אינה נקובה", def:"רקע, מהלך מבני, או פעולה שהוסתרה בכוונה. בריטניה אינה המושא."},
       {name:"בריטניה נקובה, שגרתי", def:"חיכוך דיפלומטי וימי, בתוך ההתנהלות המדינית הרגילה."},
       {name:"נאמרת השלכה", def:"בריטניה מוזהרת שתשלם מחיר, אך לא ננקב דבר מסוים כמה שנמצא בסיכון."},
       {name:"מושא מסוים, עוין או מוסתר", def:"דבר בריטי מסוים נקוב כמושא — מפעל, אתר צבאי או מקטע מים — והמעשה הוא איום תקיפה או הסתרה."}
+    ],
+    domains:[
+      {name:"תשתית מלחמה", def:"מערכות הצבא והמפעלים שמייצרים אותן — כוחות גרעין, מזל״טים, משבשים, ייצור נשק."},
+      {name:"אזורי מלחמה", def:"פעולות מלחמה בגאוגרפיה צבאית: חזית, בסיס, או מקטע מים ימי."},
+      {name:"תשתית אזרחית", def:"מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה. תקלת NATS ותיק סווינדון יושבים כאן."},
+      {name:"אזור אזרחי", def:"גאוגרפיה אזרחית: ערים, בירות, מרחב דיפלומטי. אין במערך תקיפה על בניינים בלונדון."}
     ],
     sides:{uk:"בריטניה", ru:"רוסיה", ot:"ארה\u201db"},
     ago:(n,soft)=>n===0?"היום":n===1?"אתמול":(!soft&&n===2)?"לפני יומיים":"לפני "+(soft?"~":"")+n+" ימים"
@@ -456,6 +499,7 @@ const T = {
 const EVENTS = [
   { date:"2026-02-01", approx:true, side:"uk", rag:"r",
     band:1,
+    domain:3,
     sources:[{url:"https://www.aljazeera.com/news/2026/8/18/why-is-russia-threatening-uk-with-consequences-over-ukraine-drones", label:"Al Jazeera"}],
     en:{ label:"~FEB 2026",
       short:"Drone strikes begin",
@@ -468,6 +512,7 @@ const EVENTS = [
 
   { date:"2026-02-05", side:"ot", rag:"g",
     band:1,
+    domain:1,
     sources:[{url:"https://www.armscontrol.org/act/2026-03/news/new-start-expires-us-urges-modernized-treaty", label:"Arms Control Assoc."}],
     en:{ label:"5 FEB 2026",
       short:"New START lapses",
@@ -480,6 +525,7 @@ const EVENTS = [
 
   { date:"2026-02-17", side:"ru", rag:"g",
     band:1,
+    domain:2,
     sources:[{url:"https://www.rferl.org/a/russian-oreshnik-nuclear-capable-missile-belarus/33693310.html", label:"RFE/RL"}],
     en:{ label:"17 FEB 2026",
       short:"Oreshnik site defended",
@@ -492,6 +538,7 @@ const EVENTS = [
 
   { date:"2026-03-15", approx:true, side:"ru", rag:"g",
     band:1,
+    domain:2,
     sources:[{url:"https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-august-1-2026", label:"ISW"}],
     en:{ label:"~MID-MAR 2026",
       short:"Offensive opens",
@@ -504,6 +551,7 @@ const EVENTS = [
 
   { date:"2026-03-30", side:"ru", rag:"r",
     band:2,
+    domain:4,
     sources:[{url:"https://www.themoscowtimes.com/2026/03/30/russia-expels-british-diplomat-over-alleged-economic-espionage-a92371", label:"Moscow Times"}],
     en:{ label:"30 MAR 2026",
       short:"Diplomat expelled",
@@ -516,6 +564,7 @@ const EVENTS = [
 
   { date:"2026-04-09", side:"ru", rag:"r",
     band:4,
+    domain:2,
     sources:[{url:"https://www.aljazeera.com/amp/news/2026/4/9/uk-says-three-russian-submarines-tracked-during-covert-operation", label:"Al Jazeera"}],
     en:{ label:"9 APR 2026",
       short:"Submarine op exposed",
@@ -528,6 +577,7 @@ const EVENTS = [
 
   { date:"2026-04-15", side:"uk", rag:"r",
     band:2,
+    domain:1,
     sources:[{url:"https://www.gov.uk/government/news/uk-announces-biggest-ever-drone-package-for-ukraine-to-push-back-putin", label:"GOV.UK"}],
     en:{ label:"15 APR 2026",
       short:"£752m drone package",
@@ -540,6 +590,7 @@ const EVENTS = [
 
   { date:"2026-04-30", side:"uk", rag:"g",
     band:1,
+    domain:4,
     sources:[{url:"https://www.mi5.gov.uk/uk-national-terrorism-threat-level-raised-to-severe", label:"MI5"}],
     en:{ label:"30 APR 2026",
       short:"Threat level SEVERE",
@@ -552,6 +603,7 @@ const EVENTS = [
 
   { date:"2026-05-13", side:"ru", rag:"g",
     band:1,
+    domain:1,
     sources:[{url:"https://www.globalsecurity.org/wmd/ops/putin-2026-05.htm", label:"GlobalSecurity"}],
     en:{ label:"13 MAY 2026",
       short:"Sarmat test launch",
@@ -564,6 +616,7 @@ const EVENTS = [
 
   { date:"2026-05-19", side:"ru", rag:"g",
     band:1,
+    domain:1,
     sources:[{url:"https://www.defensenews.com/global/europe/2026/05/20/russia-launches-unannounced-nuclear-exercise-including-belarusian-launch-sites/", label:"Defense News"}],
     en:{ label:"19 MAY 2026",
       short:"Unannounced nuclear drill",
@@ -576,6 +629,7 @@ const EVENTS = [
 
   { date:"2026-06-01", approx:true, side:"uk", rag:"r",
     band:1,
+    domain:2,
     sources:[{url:"https://ukdefencejournal.org.uk/britain-brushes-off-threats-from-russia/", label:"UK Defence Journal"}],
     en:{ label:"JUN 2026",
       short:"Deep strikes intensify",
@@ -588,6 +642,7 @@ const EVENTS = [
 
   { date:"2026-06-16", side:"ru", rag:"r",
     band:2,
+    domain:2,
     sources:[{url:"https://www.navylookout.com/russian-frigate-rfs-admiral-grigorovich-fires-warning-shots-at-a-british-yacht/", label:"Navy Lookout"}],
     en:{ label:"16 JUN 2026",
       short:"Warning shots, Channel",
@@ -600,6 +655,7 @@ const EVENTS = [
 
   { date:"2026-07-20", side:"ru", rag:"r",
     band:2,
+    domain:2,
     sources:[{url:"https://maritime-executive.com/article/royal-navy-monitors-increased-russian-activity-in-uk-waters-in-2026", label:"Maritime Executive"}],
     en:{ label:"20 JUL 2026",
       short:"Gunnery off UK coast",
@@ -612,6 +668,7 @@ const EVENTS = [
 
   { date:"2026-07-21", side:"ru", rag:"r",
     band:2,
+    domain:4,
     sources:[
       {url:"https://www.theguardian.com/world/2026/aug/23/russia-withdraws-ambassador-uk-kremlin-pressure-ukraine-andrey-kelin", label:"Guardian"},
       {url:"https://www.gbnews.com/news/world/russian-ambassador-withdrawn-vladimir-putin-andrey-kelin", label:"GB News"}],
@@ -626,6 +683,7 @@ const EVENTS = [
 
   { date:"2026-07-27", side:"uk", rag:"r",
     band:2,
+    domain:1,
     sources:[{url:"https://ukrainetoday.org/uk-to-protect-ukraines-attack-drones-with-signal-jammers/", label:"Telegraph (synd.)"}],
     en:{ label:"27 JUL 2026",
       short:"Jammer IP transferred",
@@ -638,6 +696,7 @@ const EVENTS = [
 
   { date:"2026-08-06", side:"uk", rag:"r",
     band:2,
+    domain:1,
     sources:[{url:null, label:"No online source found", labelHe:"לא נמצא מקור מקוון"}],
     en:{ label:"6 AUG 2026",
       short:"UK–Ukraine defence talks",
@@ -650,6 +709,7 @@ const EVENTS = [
 
   { date:"2026-08-14", side:"uk", rag:"g",
     band:1,
+    domain:4,
     sources:[{url:"https://www.gov.uk/government/news/emergency-alert-to-be-sent-to-england-and-wales-as-government-steps-up-wildfire-response-with-funding-military-support-and-bbq-ban", label:"GOV.UK"}],
     en:{ label:"14 AUG 2026",
       short:"Wildfire alert",
@@ -662,6 +722,7 @@ const EVENTS = [
 
   { date:"2026-08-15", side:"uk", rag:"r",
     band:3,
+    domain:3,
     sources:[{url:"https://www.aljazeera.com/news/2026/8/18/why-is-russia-threatening-uk-with-consequences-over-ukraine-drones", label:"Al Jazeera"}],
     en:{ label:"15 AUG 2026",
       short:"Campaign disclosed",
@@ -674,6 +735,7 @@ const EVENTS = [
 
   { date:"2026-08-17", side:"ru", rag:"r",
     band:3,
+    domain:4,
     sources:[
       {url:"https://www.reuters.com/world/uk/russia-warns-britain-consequences-supplying-drones-ukraine-2026-08-18/", label:"Reuters"},
       {url:"https://meduza.io/en/feature/2026/08/19/moscow-says-britain-will-have-to-answer-for-the-uk-made-drones-hitting-russian-refineries", label:"Meduza"}],
@@ -688,6 +750,7 @@ const EVENTS = [
 
   { date:"2026-08-23", side:"ru", rag:"r",
     band:3,
+    domain:4,
     sources:[
       {url:"https://www.theguardian.com/world/2026/aug/23/russia-withdraws-ambassador-uk-kremlin-pressure-ukraine-andrey-kelin", label:"Guardian"},
       {url:"https://www.gbnews.com/news/world/russian-ambassador-withdrawn-vladimir-putin-andrey-kelin", label:"GB News"}],
@@ -702,6 +765,7 @@ const EVENTS = [
 
   { date:"2026-08-24", side:"uk", rag:"r",
     band:3,
+    domain:1,
     sources:[
       {url:"https://www.bbc.com/news/articles/clyqypkrzq5o", label:"BBC"},
       {url:"https://www.pravda.com.ua/eng/news/2026/08/27/8050577/", label:"Ukrainska Pravda"}],
@@ -716,6 +780,7 @@ const EVENTS = [
 
   { date:"2026-08-24", side:"ru", rag:"r",
     band:3,
+    domain:1,
     sources:[{url:"https://www.independent.co.uk/news/uk/home-news/andy-burnham-ukraine-dmitry-peskov-kremlin-russia-b3038192.html", label:"Independent"}],
     en:{ label:"24 AUG 2026",
       short:"“Participating in the war”",
@@ -728,6 +793,7 @@ const EVENTS = [
 
   { date:"2026-08-25", side:"ru", rag:"r",
     band:4,
+    domain:1,
     sources:[
       {url:"https://www.independent.co.uk/news/uk/home-news/andy-burnham-russia-volodymyr-zelensky-ukraine-kremlin-b3038552.html", label:"Independent"},
       {url:"https://www.cbsnews.com/news/ukraine-war-russia-uk-threat-drone-factories-attacks-unknown-sources/", label:"CBS News"}],
@@ -742,6 +808,7 @@ const EVENTS = [
 
   { date:"2026-08-25", side:"ot", rag:"g",
     band:1,
+    domain:2,
     sources:[
       {url:"https://www.theguardian.com/world/2026/aug/27/britain-ukraine-war-russia", label:"Guardian"},
       {url:"https://www.fitsnews.com/2026/08/27/playing-with-fire-russia-warns-great-britain-over-ukraine/", label:"FITSNews (2nd-hand)", labelHe:"FITSNews (מקור משני)"}],
@@ -756,6 +823,7 @@ const EVENTS = [
 
   { date:"2026-08-26", side:"ru", rag:"r",
     band:3,
+    domain:4,
     sources:[{url:"https://meduza.io/en/feature/2026/08/26/kremlin-sources-tell-bloomberg-that-putin-is-preparing-to-escalate-the-war-in-ukraine-a-growing-number-of-russian-officials-believe-that-could-eventually-mean-a-tactical-nuclear-weapon", label:"Meduza / Bloomberg"}],
     en:{ label:"26 AUG 2026",
       short:"Escalation signalled",
@@ -768,6 +836,7 @@ const EVENTS = [
 
   { date:"2026-08-27", side:"ru", rag:"r",
     band:4,
+    domain:2,
     sources:[
       {url:"https://www.reuters.com/world/europe/russia-says-it-could-strike-uk-military-targets-response-ukrainian-strikes-using-2026-08-27/", label:"Reuters"},
       {url:"https://www.theguardian.com/world/2026/aug/27/britain-ukraine-war-russia", label:"Guardian"}],
@@ -782,6 +851,7 @@ const EVENTS = [
 
   { date:"2026-09-01", side:"ru", rag:"r",
     band:2,
+    domain:4,
     sources:[{url:"https://www.straitstimes.com/world/europe/russia-at-dire-point-in-ties-with-uk-says-it-will-name-new-ambassador-when-ready", label:"Reuters (via Straits Times)", labelHe:"\u05e8\u05d5\u05d9\u05d8\u05e8\u05e1 (\u05d3\u05e8\u05da Straits Times)"}],
     en:{ label:"1 SEP 2026",
       short:"Departure called routine",
@@ -794,6 +864,7 @@ const EVENTS = [
 
   { date:"2026-09-02", side:"ru", rag:"r",
     band:4,
+    domain:1,
     sources:[
       {url:"https://www.independent.co.uk/news/world/europe/ukraine-russia-war-live-putin-zelensky-uk-germany-b3043169.html", label:"Independent"},
       {url:"https://tass.com/politics/2180923", label:"TASS (state)", labelHe:"TASS (\u05de\u05de\u05dc\u05db\u05ea\u05d9)"}],
@@ -808,6 +879,7 @@ const EVENTS = [
 
   { date:"2026-09-06", side:"ru", rag:"r",
     band:4,
+    domain:2,
     sources:[
       {url:"https://inews.co.uk/news/imitation-game-putins-shadow-fleet-tankers-disguise-4749413", label:"The i Paper"},
       {url:"https://www.timesnowworld.com/us-news/russian-shadow-fleet-ais-manipulation-uk-sanctions-evasion-article-156102098", label:"Times Now World (synd.)", labelHe:"Times Now World (\u05e2\u05d9\u05d1\u05d5\u05d3 \u05de\u05d7\u05d3\u05e9)"},
@@ -823,6 +895,7 @@ const EVENTS = [
 
   { date:"2026-09-08", side:"uk", rag:"g",
     band:1,
+    domain:3,
     sources:[
       {url:"https://www.independent.co.uk/news/uk/home-news/nats-airlines-norway-england-stourbridge-b2799028.html", label:"Independent"},
       {url:"https://www.insidermedia.com/news/national/airlines-demand-answers-from-air-traffic-control-provider-over-technical-glitch", label:"Insider Media"}],
@@ -837,6 +910,7 @@ const EVENTS = [
 
   { date:"2026-09-10", side:"ru", rag:"r",
     band:4,
+    domain:3,
     sources:[
       {url:"https://www.bbc.co.uk/news/articles/c74e0ml3y8go", label:"BBC"},
       {url:"https://www.reuters.com/world/uk/man-appears-uk-court-accused-providing-russian-intelligence-with-drone-factory-2026-09-10/", label:"Reuters"},
@@ -895,18 +969,23 @@ function shortDate(iso, t, approx){
 
 function renderBands(code){
   const t = T[code];
-  set("ovTitle", t.ovTitle);
-  set("ovNote", t.ovNote);
+  const domainView = currentView() === "domain";
+  set("ovTitle", domainView ? t.ovTitleDomain : t.ovTitle);
+  set("ovNote", domainView ? t.ovNoteDomain : t.ovNote);
   set("tabKanban", t.ovKanban);
   set("tabKanbanHint", t.ovKanbanHint);
   set("tabOutline", t.ovOutline);
   set("tabOutlineHint", t.ovOutlineHint);
+  set("tabDomain", t.ovDomain);
+  set("tabDomainHint", t.ovDomainHint);
   document.querySelector(".viewtoggle").setAttribute("aria-label", t.ovViewLabel);
   const host = document.getElementById("bands");
   host.innerHTML = "";
 
-  t.bands.forEach((b, bi) => {
-    const rows = EVENTS.filter(e => e.band === bi + 1);
+  const cards = domainView ? t.domains : t.bands;
+  const key = domainView ? "domain" : "band";
+  cards.forEach((b, bi) => {
+    const rows = EVENTS.filter(e => e[key] === bi + 1);
     const ru = rows.filter(e => e.side === "ru").length;
     const uk = rows.filter(e => e.side === "uk").length;
     const ot = rows.length - ru - uk;
@@ -934,6 +1013,7 @@ function renderBands(code){
 }
 
 function render(code){
+  lang = code;
   const t = T[code];
   document.documentElement.lang = t.lang;
   document.body.dir = t.dir;
@@ -1014,8 +1094,10 @@ document.getElementById("btn-he").addEventListener("click", () => render("he"));
 const overview = document.getElementById("overview");
 const btnKanban = document.getElementById("btn-kanban");
 const btnOutline = document.getElementById("btn-outline");
+const btnDomain = document.getElementById("btn-domain");
 const MOBILE_MQ = window.matchMedia("(max-width: 720px)");
 let viewOverride = null;
+let lang = "en";
 
 function defaultView(){
   return MOBILE_MQ.matches ? "outline" : "kanban";
@@ -1031,14 +1113,19 @@ function applyView(){
   // With neither class, CSS media queries show exactly one default layout.
   overview.classList.toggle("layout-kanban", viewOverride === "kanban");
   overview.classList.toggle("layout-outline", viewOverride === "outline");
+  overview.classList.toggle("layout-domain", viewOverride === "domain");
   btnKanban.setAttribute("aria-pressed", view === "kanban" ? "true" : "false");
   btnOutline.setAttribute("aria-pressed", view === "outline" ? "true" : "false");
+  btnDomain.setAttribute("aria-pressed", view === "domain" ? "true" : "false");
   btnKanban.setAttribute("aria-selected", view === "kanban" ? "true" : "false");
   btnOutline.setAttribute("aria-selected", view === "outline" ? "true" : "false");
+  btnDomain.setAttribute("aria-selected", view === "domain" ? "true" : "false");
+  renderBands(lang);
 }
 
 btnKanban.addEventListener("click", () => { viewOverride = "kanban"; applyView(); });
 btnOutline.addEventListener("click", () => { viewOverride = "outline"; applyView(); });
+btnDomain.addEventListener("click", () => { viewOverride = "domain"; applyView(); });
 if (MOBILE_MQ.addEventListener) MOBILE_MQ.addEventListener("change", applyView);
 else if (MOBILE_MQ.addListener) MOBILE_MQ.addListener(applyView);
 
