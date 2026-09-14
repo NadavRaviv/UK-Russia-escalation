@@ -8,6 +8,16 @@ The page exists to test a hypothesis, not to assert it: that British military in
 
 Open `uk-russia-merged-timeline.html` in a browser. There is no build step and no dependency beyond Google Fonts, loaded from a CDN — so the page needs network access for its typefaces, and every visitor makes a request to Google. Self-host the fonts or swap in a system stack if that matters for your deployment.
 
+## GitHub Pages deploy
+
+Pushes to `main` run `.github/workflows/pages.yml` and publish the static site.
+
+**One-time setup (repo owner):** GitHub → **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+Live URL after the first successful run: **https://nadavraviv.github.io/UK-Russia-escalation/**
+
+If the workflow fails with a Pages permission error, re-enable Pages in Settings and ensure Actions is allowed to deploy to the `github-pages` environment.
+
 ## What is on the page
 
 **31 events**, 1 February to 13 September 2026. 19 Russian, 10 British or western, 2 third-party (both American). 28 distinct source domains; 8 rows carry two sources; 1 row carries three; 1 row carries none.
