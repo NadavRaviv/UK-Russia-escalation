@@ -20,10 +20,10 @@
   /* Light mode: Claude artifact palette (ladder page) */
   :root, html[data-theme="light"]{
     color-scheme:light;
-    --bg:#F2F3F1;--paper:#FBFBFA;--ink:#1D2630;--soft:#5C6873;--rule:#D3D8DB;--grid:#E3E7E9;
+    --bg:#F2F3F1;--paper:#FBFBFA;--ink:#1D2630;--soft:#424e5a;--rule:#D3D8DB;--grid:#E3E7E9;
     --l0:#B9C0C5;--l1:#8E98A1;--l2:#6F7D8A;--l3:#B98A8A;--l4:#A76565;--l5:#B8403B;--l6:#9E1F1F;--l7:#761414;--l8:#4E0B0B;
     --focus:#2F6FB0;--warn:#9a7310;--ok:#2d6a4f;
-    --base:var(--bg);--surface:var(--paper);--text:var(--ink);--muted:var(--soft);--faint:#6f7a85;
+    --base:var(--bg);--surface:var(--paper);--text:var(--ink);--muted:var(--soft);--faint:#424e5a;
     --green:var(--ok);--red:var(--l5);--yellow:var(--warn);
     --uk-dot:#2f62b5;--ru-dot:var(--l5);--ot-dot:var(--l1);
     --overlay:rgba(29,38,48,0.46);
@@ -150,7 +150,7 @@
   }
   .eyebrow{
     font-family:var(--mono);font-size:10px;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--faint);margin:0 0 8px;
+    text-transform:uppercase;color:var(--soft);margin:0 0 8px;
   }
   h1{margin:0 0 8px;font-weight:700;letter-spacing:-0.025em;line-height:1.05;font-size:clamp(24px,3.4vw,32px)}
   .standfirst{color:var(--muted);font-size:max(13.5px, 12px);margin:0;max-width:60ch}
@@ -201,7 +201,7 @@
   .stat .n.accent{color:var(--yellow);font-size:23px}
   .stat .l{
     font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--faint);display:block;margin-top:6px;
+    color:var(--soft);display:block;margin-top:6px;
   }
   body[dir="rtl"] .stat .l{
     letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:11px;
@@ -217,7 +217,7 @@
     font-family:var(--sans);font-size:14px;letter-spacing:-0.005em;
     color:var(--muted);margin:0;font-weight:500;
   }
-  .tlcount{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--faint)}
+  .tlcount{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--soft)}
   body[dir="rtl"] .tlhead h3{letter-spacing:0;font-family:'Heebo',var(--sans)}
   body[dir="rtl"] .tlcount{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11.5px}
   .timeline{position:relative;padding-left:26px}
@@ -611,11 +611,11 @@
 
   .band .meter{height:3px;border-radius:2px;background:rgba(148,163,184,.13);overflow:hidden;margin-bottom:10px}
   .band .meter i{display:block;height:100%;background:var(--yellow);opacity:.75}
-  .band .num{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--faint)}
+  .band .num{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--soft)}
   .band h4{font-size:12.5px;font-weight:500;margin:4px 0 4px;line-height:1.25;overflow-wrap:break-word}
   .band .def{font-size:10.5px;color:var(--muted);line-height:1.4;margin:0 0 9px}
   .band .meta{
-    font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:var(--faint);line-height:1.5;
+    font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:var(--soft);line-height:1.5;
     border-top:1px solid var(--rule);padding-top:7px;margin-bottom:4px;
   }
   body[dir="rtl"] .band .meta,body[dir="rtl"] .band .num{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:10.5px}
@@ -638,7 +638,7 @@
   }
   .footline{
     font-family:var(--mono);font-size:10px;letter-spacing:.08em;
-    color:var(--faint);margin:0;
+    color:var(--soft);margin:0;
   }
   body[dir="rtl"] .footline{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11.5px}
 
