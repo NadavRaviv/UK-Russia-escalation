@@ -4,6 +4,14 @@ An open-source-intelligence audit of 33 dated events on the British–Russian th
 
 The page exists to test a hypothesis, not to assert it: that British military involvement in Ukraine — in particular concealed drone strikes on Russian territory — forms part of an undisclosed shift in defence posture. Everything below is written so a reader can check that hypothesis against the record and find it wanting if it deserves to be.
 
+## Design & animation skills
+
+This repo includes [Emil Kowalski’s agent skills](https://github.com/emilkowalski/skills) under `.agents/skills/` (design engineering, `animate`, animation review, and related skills). Refresh them with:
+
+```bash
+npx skills@latest add emilkowalski/skills
+```
+
 ## Running it
 
 Open `uk-russia-merged-timeline.html` in a browser. There is no build step and no dependency beyond Google Fonts, loaded from a CDN — so the page needs network access for its typefaces, and every visitor makes a request to Google. Self-host the fonts or swap in a system stack if that matters for your deployment.

@@ -9,44 +9,86 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Heebo:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --base:#0f1419;
-    --surface:#161d25;
-    --rule:rgba(148,163,184,0.16);
-    --text:#e3e9ef;
-    --muted:#7f8fa0;
-    --faint:#5a6774;
+    --base:#0c1014;
+    --base-elev:#0f1419;
+    --surface:#151c24;
+    --surface-hover:#1a222c;
+    --rule:rgba(148,163,184,0.14);
+    --text:#e8eef4;
+    --muted:#8a9aad;
+    --faint:#5c6a78;
     --green:#4a9e74;
     --red:#c0605a;
     --yellow:#e0b64a;
     --sans:'DM Sans',ui-sans-serif,system-ui,sans-serif;
     --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
+    --ease-out:cubic-bezier(0.23,1,0.32,1);
+    --ease-in-out:cubic-bezier(0.77,0,0.175,1);
+    --dur-press:160ms;
+    --dur-ui:200ms;
+    --dur-panel:260ms;
+    --radius-sm:6px;
+    --radius-md:10px;
+    --shadow-card:0 1px 0 rgba(255,255,255,.04) inset,0 12px 40px rgba(0,0,0,.35);
+    --shadow-soft:0 8px 32px rgba(0,0,0,.25);
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%;overflow-x:hidden}
   body{
     margin:0;background:var(--base);color:var(--text);
     font-family:var(--sans);line-height:1.5;
-    padding:22px 20px 80px;
+    padding:0 20px 80px;
+    min-height:100vh;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%,rgba(192,96,90,.12),transparent 55%),
+      radial-gradient(ellipse 60% 40% at 100% 30%,rgba(74,158,116,.08),transparent 50%),
+      radial-gradient(ellipse 50% 35% at 0% 70%,rgba(224,182,74,.06),transparent 45%),
+      var(--base);
   }
   body[dir="rtl"]{font-family:'Heebo',var(--sans)}
-  .wrap{max-width:760px;margin:0 auto}
+  .wrap{max-width:800px;margin:0 auto;padding-top:8px}
+
+  .topbar{
+    position:sticky;top:0;z-index:50;margin:0 -20px 20px;padding:14px 20px 12px;
+    background:linear-gradient(180deg,rgba(12,16,20,.92) 0%,rgba(12,16,20,.78) 70%,transparent 100%);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+  }
 
   /* --- language toggle --- */
-  .langbar{display:flex;justify-content:flex-end;direction:ltr;margin-bottom:18px}
+  .langbar{display:flex;justify-content:flex-end;direction:ltr}
   .toggle{
-    display:inline-flex;border:1px solid var(--rule);border-radius:3px;
-    background:var(--surface);overflow:hidden;
+    display:inline-flex;border:1px solid var(--rule);border-radius:var(--radius-sm);
+    background:var(--surface);overflow:hidden;box-shadow:var(--shadow-card);
   }
   .toggle button{
     font-family:var(--mono);font-size:11px;letter-spacing:.1em;
     background:transparent;border:0;color:var(--faint);
-    padding:7px 13px;cursor:pointer;transition:color .15s,background .15s;
+    padding:8px 14px;cursor:pointer;
+    transition:color var(--dur-ui) var(--ease-out),background var(--dur-ui) var(--ease-out),transform var(--dur-press) var(--ease-out);
   }
-  .toggle button:hover{color:var(--text)}
-  .toggle button[aria-pressed="true"]{background:rgba(148,163,184,0.11);color:var(--text)}
+  @media (hover:hover) and (pointer:fine){
+    .toggle button:hover{color:var(--text);background:rgba(148,163,184,.06)}
+  }
+  .toggle button:active{transform:scale(0.97)}
+  .toggle button[aria-pressed="true"]{background:rgba(148,163,184,0.14);color:var(--text)}
   #btn-he{font-family:'Heebo',var(--sans);letter-spacing:0;font-size:12.5px}
 
-  header{border-bottom:1px solid var(--rule);padding-bottom:24px;margin-bottom:8px}
+  .hero-stagger{
+    opacity:0;transform:translateY(10px);
+    transition:opacity var(--dur-panel) var(--ease-out),transform var(--dur-panel) var(--ease-out);
+  }
+  body.is-ready .hero-stagger{opacity:1;transform:none}
+  body.is-ready .hero-stagger[data-delay="1"]{transition-delay:40ms}
+  body.is-ready .hero-stagger[data-delay="2"]{transition-delay:80ms}
+  body.is-ready .hero-stagger[data-delay="3"]{transition-delay:120ms}
+  body.is-ready .hero-stagger[data-delay="4"]{transition-delay:160ms}
+  body.is-ready .hero-stagger[data-delay="5"]{transition-delay:200ms}
+
+  header{border-bottom:1px solid var(--rule);padding-bottom:28px;margin-bottom:12px}
   .eyebrow{
     font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
     text-transform:uppercase;color:var(--faint);margin:0 0 12px;
@@ -62,7 +104,12 @@
   .key{
     display:flex;align-items:flex-start;gap:9px;flex:1 1 240px;
     background:var(--surface);border:1px solid var(--rule);
-    border-radius:3px;padding:11px 13px;
+    border-radius:var(--radius-md);padding:12px 14px;
+    box-shadow:var(--shadow-card);
+    transition:background var(--dur-ui) var(--ease-out),border-color var(--dur-ui) var(--ease-out),transform var(--dur-press) var(--ease-out);
+  }
+  @media (hover:hover) and (pointer:fine){
+    .key:hover{background:var(--surface-hover);border-color:rgba(148,163,184,.22)}
   }
   .legend.forms .key{flex:1 1 180px;padding:10px 13px}
   .key .swatch{width:11px;height:11px;border-radius:50%;margin-top:4px;flex:none}
@@ -77,8 +124,15 @@
 
   /* --- compression panel --- */
   .panel{
-    background:var(--surface);border:1px solid var(--rule);border-radius:3px;
-    padding:16px 16px 14px;margin:14px 0 34px;
+    background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius-md);
+    padding:18px 18px 16px;margin:14px 0 34px;
+    box-shadow:var(--shadow-card);
+    position:relative;overflow:hidden;
+  }
+  .panel::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--red),var(--yellow) 45%,var(--green));
+    opacity:.55;
   }
   .panel h3{
     font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
@@ -101,18 +155,27 @@
 
   .row{position:relative;padding:0 0 0 4px}
   /* flag = who acted; ring colour = the grading */
+  .row,.gap{
+    opacity:0;transform:translateY(12px);
+    transition:opacity 420ms var(--ease-out),transform 420ms var(--ease-out);
+  }
+  .row.is-visible,.gap.is-visible{opacity:1;transform:none}
+  .row.no-motion,.gap.no-motion{opacity:1;transform:none;transition:none}
+
   .dot{
     position:absolute;left:-28px;top:2px;width:18px;height:18px;
     border-radius:50%;overflow:hidden;background:var(--base);
     border:2px solid var(--base);
-    transition:transform .18s ease, box-shadow .18s ease;
+    transition:transform var(--dur-ui) var(--ease-out),box-shadow var(--dur-ui) var(--ease-out);
   }
   .dot svg{display:block;width:100%;height:100%}
   .row.r .dot{box-shadow:0 0 0 2px var(--red)}
   .row.g .dot{box-shadow:0 0 0 2px var(--green)}
-  .row:hover .dot{transform:scale(1.16)}
-  .row.r:hover .dot{box-shadow:0 0 0 2px var(--red),0 0 0 7px rgba(192,96,90,.14)}
-  .row.g:hover .dot{box-shadow:0 0 0 2px var(--green),0 0 0 7px rgba(74,158,116,.14)}
+  @media (hover:hover) and (pointer:fine){
+    .row:hover .dot{transform:scale(1.12)}
+    .row.r:hover .dot{box-shadow:0 0 0 2px var(--red),0 0 0 7px rgba(192,96,90,.14)}
+    .row.g:hover .dot{box-shadow:0 0 0 2px var(--green),0 0 0 7px rgba(74,158,116,.14)}
+  }
 
   time{
     font-family:var(--mono);font-size:11px;letter-spacing:.09em;
@@ -142,7 +205,7 @@
   .src{
     font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
     color:var(--faint);text-decoration:none;border-bottom:1px solid transparent;
-    transition:color .15s, border-color .15s;
+    transition:color var(--dur-ui) var(--ease-out),border-color var(--dur-ui) var(--ease-out);
   }
   .src:hover{color:var(--text);border-bottom-color:var(--rule)}
   .src.missing{color:#6b5b45}
@@ -158,12 +221,14 @@
   .gap .days{
     display:inline-flex;align-items:center;gap:5px;
     font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
-    padding:3.5px 11px;border-radius:999px;
+    padding:4px 12px;border-radius:999px;
     border:1px solid;white-space:nowrap;
-    transition:transform .18s ease;
+    transition:transform var(--dur-ui) var(--ease-out);
   }
-  .gap:hover .days{transform:translateX(3px)}
-  body[dir="rtl"] .gap:hover .days{transform:translateX(-3px)}
+  @media (hover:hover) and (pointer:fine){
+    .gap:hover .days{transform:translateX(3px)}
+    body[dir="rtl"] .gap:hover .days{transform:translateX(-3px)}
+  }
 
   /* --- band overview: kanban (horizontal) / outline (vertical) --- */
   .overview{margin:0 0 34px}
@@ -178,7 +243,9 @@
   .viewtoggle button{
     font-family:var(--sans);letter-spacing:0;font-size:12px;line-height:1.2;
     padding:6px 12px 7px;display:flex;flex-direction:column;align-items:flex-start;gap:1px;
+    transition:color var(--dur-ui) var(--ease-out),background var(--dur-ui) var(--ease-out),transform var(--dur-press) var(--ease-out);
   }
+  .viewtoggle button:active{transform:scale(0.97)}
   body[dir="rtl"] .viewtoggle button{font-family:'Heebo',var(--sans)}
   .viewtoggle .hint{
     font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
@@ -192,7 +259,12 @@
   .bands{display:flex;gap:8px;align-items:stretch}
   .band{
     display:flex;flex-direction:column;
-    background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:11px 11px 6px;
+    background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius-md);
+    padding:12px 12px 8px;box-shadow:var(--shadow-card);
+    transition:transform var(--dur-ui) var(--ease-out),border-color var(--dur-ui) var(--ease-out);
+  }
+  @media (hover:hover) and (pointer:fine){
+    .band:hover{border-color:rgba(148,163,184,.24);transform:translateY(-2px)}
   }
   /* Default: one layout only. Outline below 721px, kanban from 721px.
      .layout-* is a user override from the toggle and always wins. */
@@ -235,7 +307,11 @@
   .overview.layout-outline .bands{flex-direction:column;flex-wrap:nowrap;overflow:visible}
   .overview.layout-outline .band{flex:none;width:100%;min-width:0}
   .band .meter{height:3px;border-radius:2px;background:rgba(148,163,184,.13);overflow:hidden;margin-bottom:10px}
-  .band .meter i{display:block;height:100%;background:var(--yellow);opacity:.75}
+  .band .meter i{
+    display:block;height:100%;background:var(--yellow);opacity:.75;width:0;
+    transition:width 650ms var(--ease-in-out);
+  }
+  .overview.is-ready .band .meter i{width:var(--meter-w)}
   .band .num{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--faint)}
   .band h4{font-size:12.5px;font-weight:500;margin:4px 0 4px;line-height:1.25;overflow-wrap:break-word}
   .band .def{font-size:10.5px;color:var(--muted);line-height:1.4;margin:0 0 9px}
@@ -308,13 +384,23 @@
 
   .munger-gate{
     position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
-    background:rgba(15,20,25,.88);backdrop-filter:blur(4px);
+    background:rgba(12,16,20,.72);backdrop-filter:blur(8px);
+    opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity var(--dur-panel) var(--ease-out),visibility 0s linear var(--dur-panel);
+  }
+  .munger-gate.is-open{
+    opacity:1;visibility:visible;pointer-events:auto;
+    transition:opacity var(--dur-panel) var(--ease-out),visibility 0s;
   }
   .munger-gate[hidden]{display:none}
   .munger-modal{
-    background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+    background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius-md);
     padding:22px 24px 18px;width:min(320px,calc(100vw - 40px));text-align:center;
+    box-shadow:var(--shadow-soft);
+    transform:scale(0.96);opacity:0;
+    transition:transform var(--dur-panel) var(--ease-out),opacity var(--dur-panel) var(--ease-out);
   }
+  .munger-gate.is-open .munger-modal{transform:scale(1);opacity:1}
   .munger-modal h3{font-size:15px;margin:0 0 6px;font-weight:500}
   .munger-modal > p{font-size:12px;color:var(--muted);margin:0 0 14px}
   .munger-code{
@@ -327,37 +413,49 @@
   .munger-err[hidden]{display:none}
   .munger-actions{display:flex;gap:8px;justify-content:center;margin-top:4px}
   .munger-actions button{
-    font-family:var(--sans);font-size:12.5px;padding:8px 16px;border-radius:3px;
+    font-family:var(--sans);font-size:12.5px;padding:8px 16px;border-radius:var(--radius-sm);
     border:1px solid var(--rule);cursor:pointer;background:transparent;color:var(--text);
+    transition:transform var(--dur-press) var(--ease-out),background var(--dur-ui) var(--ease-out);
   }
+  .munger-actions button:active{transform:scale(0.97)}
   body[dir="rtl"] .munger-actions button{font-family:'Heebo',var(--sans)}
   .munger-actions button.primary{background:var(--yellow);color:var(--base);border-color:var(--yellow);font-weight:500}
-  .munger-modal.shake{animation:shake .4s ease}
-  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .munger-modal.shake{animation:shake 400ms var(--ease-out)}
+  @keyframes shake{0%,100%{transform:translateX(0) scale(1)}25%{transform:translateX(-6px) scale(1)}75%{transform:translateX(6px) scale(1)}}
+
+  .munger-panel,.bands{
+    transition:opacity var(--dur-ui) var(--ease-out);
+  }
+  .overview.is-switching .munger-panel,
+  .overview.is-switching .bands{opacity:.4}
 
   @media (prefers-reduced-motion: reduce){
-    *{transition:none !important}
+    .hero-stagger,.row,.gap,.munger-modal,.munger-gate{transition:none!important;animation:none!important}
+    .hero-stagger,.row,.gap{opacity:1!important;transform:none!important}
     .munger-modal.shake{animation:none}
+    .band .meter i{transition:none}
   }
 </style>
 </head>
 <body dir="ltr">
 <div class="wrap">
 
-  <div class="langbar">
-    <div class="toggle" role="group" aria-label="Language">
-      <button id="btn-en" aria-pressed="true">EN</button>
-      <button id="btn-he" aria-pressed="false">עברית</button>
+  <div class="topbar">
+    <div class="langbar">
+      <div class="toggle" role="group" aria-label="Language">
+        <button id="btn-en" aria-pressed="true">EN</button>
+        <button id="btn-he" aria-pressed="false">עברית</button>
+      </div>
     </div>
   </div>
 
-  <header>
+  <header class="hero-stagger" data-delay="1">
     <p class="eyebrow" id="eyebrow"></p>
     <h1 id="title"></h1>
     <p class="standfirst" id="standfirst"></p>
   </header>
 
-  <div class="legend">
+  <div class="legend hero-stagger" data-delay="2">
     <div class="key">
       <span class="swatch" style="background:var(--red)"></span>
       <span><b id="k1"></b><span class="d" id="k1d"></span></span>
@@ -368,7 +466,7 @@
     </div>
   </div>
 
-  <div class="legend forms">
+  <div class="legend forms hero-stagger" data-delay="3">
     <div class="key">
       <span class="flag" id="fl1"></span>
       <span><b id="f1"></b><span class="d" id="f1d"></span></span>
@@ -383,7 +481,7 @@
     </div>
   </div>
 
-  <div class="panel">
+  <div class="panel hero-stagger" data-delay="4">
     <h3 id="panelTitle"></h3>
     <div class="stats">
       <div class="stat"><span class="n" style="color:var(--faint)">11.5<span class="u" id="u1"></span></span><span class="l" id="s1"></span></div>
@@ -396,7 +494,7 @@
     <p id="p2"></p>
   </div>
 
-  <section class="overview" id="overview">
+  <section class="overview hero-stagger" data-delay="5" id="overview">
     <div class="ovhead">
       <h3 id="ovTitle"></h3>
       <div class="toggle viewtoggle" role="tablist" aria-label="Band layout">
@@ -1099,6 +1197,26 @@ const FLAGS = {
 
 const DAY = 86400000;
 const tl = document.getElementById("tl");
+const overview = document.getElementById("overview");
+const REDUCE_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let timelineRevealOnScroll = !REDUCE_MOTION;
+let tlObserver = null;
+
+function observeTimeline(){
+  if (REDUCE_MOTION || !timelineRevealOnScroll) return;
+  if (tlObserver) tlObserver.disconnect();
+  tlObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add("is-visible");
+        tlObserver.unobserve(entry.target);
+      }
+    });
+  }, { root: null, rootMargin: "0px 0px -6% 0px", threshold: 0.08 });
+  tl.querySelectorAll(".row:not(.no-motion), .gap:not(.no-motion)").forEach(function(el){
+    tlObserver.observe(el);
+  });
+}
 
 function daysAgo(iso){
   const now = new Date(); now.setHours(0,0,0,0);
@@ -1168,7 +1286,7 @@ function renderBands(code){
     const card = document.createElement("div");
     card.className = "band";
     card.innerHTML =
-      '<div class="meter"><i style="width:' + ((bi + 1) * 25) + '%"></i></div>' +
+      '<div class="meter"><i style="--meter-w:' + ((bi + 1) * 25) + '%"></i></div>' +
       '<span class="num">' + (bi + 1) + ' / 4</span>' +
       '<h4>' + b.name + '</h4>' +
       '<p class="def">' + b.def + '</p>' +
@@ -1179,6 +1297,10 @@ function renderBands(code){
         '<span class="d">' + shortDate(e.date, t, e.approx) + '</span></span></div>'
       ).join("");
     host.appendChild(card);
+  });
+  overview.classList.remove("is-ready");
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){ overview.classList.add("is-ready"); });
   });
 }
 
@@ -1209,6 +1331,7 @@ function render(code){
   renderMunger(code);
 
   tl.innerHTML = "";
+  const instantTimeline = REDUCE_MOTION || !timelineRevealOnScroll;
   EVENTS.forEach((e, i) => {
     const c = e[code];
 
@@ -1220,7 +1343,7 @@ function render(code){
     }).join('<span class="sep">·</span>');
 
     const row = document.createElement("div");
-    row.className = "row " + e.side + " " + e.rag;
+    row.className = "row " + e.side + " " + e.rag + (instantTimeline ? " no-motion is-visible" : "");
     row.innerHTML =
       '<span class="dot">' + FLAGS[e.side] + '</span>' +
       '<time><span class="side">' + t.sides[e.side] + '</span>' +
@@ -1246,7 +1369,7 @@ function render(code){
     const text   = lerpHex("#6c7885", "#fff1ef", Math.pow(k, 0.7));
 
     const gap = document.createElement("div");
-    gap.className = "gap";
+    gap.className = "gap" + (instantTimeline ? " no-motion is-visible" : "");
     gap.style.height = h + "px";
     gap.innerHTML =
       '<span class="bar"></span>' +
@@ -1256,12 +1379,13 @@ function render(code){
       (days === 0 ? t.sameDay : (soft ? "~" : "") + days + t.dayUnit) + '</span>';
     tl.appendChild(gap);
   });
+  if (!instantTimeline) requestAnimationFrame(observeTimeline);
+  timelineRevealOnScroll = false;
 }
 
 document.getElementById("btn-en").addEventListener("click", () => render("en"));
 document.getElementById("btn-he").addEventListener("click", () => render("he"));
 
-const overview = document.getElementById("overview");
 const btnKanban = document.getElementById("btn-kanban");
 const btnOutline = document.getElementById("btn-outline");
 const btnMunger = document.getElementById("btn-munger");
@@ -1289,6 +1413,7 @@ function currentView(){
 }
 
 function applyView(){
+  overview.classList.add("is-switching");
   const view = currentView();
   const isMunger = view === "munger";
   overview.classList.toggle("layout-kanban", viewOverride === "kanban");
@@ -1301,6 +1426,9 @@ function applyView(){
   btnKanban.setAttribute("aria-selected", view === "kanban" ? "true" : "false");
   btnOutline.setAttribute("aria-selected", view === "outline" ? "true" : "false");
   btnMunger.setAttribute("aria-selected", isMunger ? "true" : "false");
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){ overview.classList.remove("is-switching"); });
+  });
 }
 
 function openMungerGate(){
@@ -1308,15 +1436,20 @@ function openMungerGate(){
   mungerCode.value = "";
   mungerErr.hidden = true;
   mungerGate.hidden = false;
+  mungerGate.classList.remove("is-open");
   mungerModal.classList.remove("shake");
+  requestAnimationFrame(function(){ mungerGate.classList.add("is-open"); });
   mungerCode.focus();
 }
 
 function closeMungerGate(){
   mungerPending = false;
-  mungerGate.hidden = true;
+  mungerGate.classList.remove("is-open");
   mungerCode.value = "";
   mungerErr.hidden = true;
+  window.setTimeout(function(){
+    if (!mungerGate.classList.contains("is-open")) mungerGate.hidden = true;
+  }, REDUCE_MOTION ? 0 : 260);
 }
 
 function tryUnlockMunger(){
@@ -1360,6 +1493,7 @@ else if (MOBILE_MQ.addListener) MOBILE_MQ.addListener(applyView);
 
 applyView();
 render("en");
+requestAnimationFrame(function(){ document.body.classList.add("is-ready"); });
 </script>
 </body>
 </html>
