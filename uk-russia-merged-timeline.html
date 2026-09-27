@@ -50,9 +50,18 @@
   html{-webkit-text-size-adjust:100%;overflow-x:hidden}
   body{
     margin:0;background:var(--base);color:var(--text);
-    font-family:var(--sans);line-height:1.55;
+    font-family:var(--sans);font-size:16px;line-height:1.55;
     font-variant-numeric:tabular-nums;
     padding:0 20px 72px;
+  }
+  /* Running text and readable UI copy: 12px minimum */
+  p, li, time, .standfirst, .why-body, .footline, .chip, .side, .src, .sep,
+  .band .def, .band .meta, .band .num, .ev .t, .ev .d, .gap .days,
+  .munger-card p, .munger-card .watch, .munger-panel .intro, .munger-err,
+  .danger-tip, .danger-tip b, .danger-tip .tip-meta, .sel-title, .sel-hint, .sel-num,
+  .danger-key, .danger-cut, .stat .l, .tlcount, .povlab, .why-btn, .info-btn,
+  .theme-btn, .toggle button, .viewtoggle button{
+    font-size:max(12px, 1em);
   }
   body[dir="rtl"]{font-family:'Heebo',var(--sans)}
   .wrap{max-width:1180px;margin:0 auto}
@@ -144,7 +153,7 @@
     text-transform:uppercase;color:var(--faint);margin:0 0 8px;
   }
   h1{margin:0 0 8px;font-weight:700;letter-spacing:-0.025em;line-height:1.05;font-size:clamp(24px,3.4vw,32px)}
-  .standfirst{color:var(--muted);font-size:13.5px;margin:0;max-width:60ch}
+  .standfirst{color:var(--muted);font-size:max(13.5px, 12px);margin:0;max-width:60ch}
 
   /* --- inline legend chips --- */
   .chipbar{display:flex;flex-wrap:wrap;align-items:center;gap:7px 14px;justify-self:start}
@@ -399,8 +408,8 @@
     text-transform:uppercase;
   }
   @media (max-width: 720px){
-    .danger-chart .axis-label{font-size:7.5px;letter-spacing:.05em}
-    .danger-chart .centroid-lab{font-size:7.5px;letter-spacing:.05em}
+    .danger-chart .axis-label{font-size:10px;letter-spacing:.05em}
+    .danger-chart .centroid-lab{font-size:10px;letter-spacing:.05em}
     body[dir="rtl"] .danger-chart .axis-label,
     body[dir="rtl"] .danger-chart .centroid-lab{font-size:9px}
   }
@@ -682,10 +691,27 @@
   }
   .why-close:hover{color:var(--text)}
   body[dir="rtl"] .why-close{letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none}
-  .why-body{font-size:13.5px;color:var(--muted);line-height:1.55;margin:0 0 12px}
+  .why-body{font-size:max(13.5px, 12px);color:var(--muted);line-height:1.55;margin:0 0 12px}
   .why-dialog .srcs{border-top:1px solid var(--rule);padding-top:10px}
   .why-dialog .srcs:empty{display:none}
   body.why-open{overflow:hidden}
+
+  /* 12px floor on readable copy (must follow legacy sizes above) */
+  p, li, time, .standfirst, .why-body, .footline, .chip, .side, .src, .sep,
+  .band .def, .band .meta, .band .num, .ev .t, .ev .d, .gap .days,
+  .munger-card p, .munger-card .watch, .munger-panel .intro, .munger-err,
+  .danger-tip, .danger-tip b, .danger-tip .tip-meta, .sel-title, .sel-hint, .sel-num,
+  .danger-key, .danger-cut, .stat .l, .tlcount, .povlab, .why-btn, .info-btn,
+  .theme-btn, .toggle button, .viewtoggle button, .why-kicker, .why-close,
+  body[dir="rtl"] time, body[dir="rtl"] .ev .d, body[dir="rtl"] .footline,
+  body[dir="rtl"] .gap .days, body[dir="rtl"] .band .meta, body[dir="rtl"] .band .num,
+  body[dir="rtl"] .why-kicker, body[dir="rtl"] .danger-tip .tip-meta,
+  body[dir="rtl"] .sel-hint, body[dir="rtl"] .tlcount{
+    font-size:max(12px, 1em);
+  }
+  .danger-chart .axis-label, .danger-chart .centroid-lab{
+    font-size:max(12px, 1em);
+  }
 </style>
 </head>
 <body dir="ltr">

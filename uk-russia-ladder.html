@@ -33,6 +33,11 @@
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 Archivo,system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums}
+/* Running text: 12px minimum */
+p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
+.detail .body, .detail .meta, .foot, .lane-foot, .lane-head .sub, .lane-head .stats,
+.ladder-seg, .ladder-seg .def, .dual-row, .dual-row .lab, .dual-row .pct, .bar-legend,
+.overlap-sub{font-size:max(12px, 1em)}
 main{max-width:1180px;margin:0 auto;padding:40px 20px 80px}
 h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;font-weight:600;line-height:1.15;margin:0}
 h1{font-size:clamp(30px,4.6vw,48px);max-width:22ch;letter-spacing:-.01em}
@@ -49,10 +54,10 @@ section{margin-top:48px;padding-top:8px;border-top:1px solid var(--rule)}
 .theme-btn{border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--soft);cursor:pointer;padding:8px 14px;font-size:13px;font-weight:500}
 .ladder-note{font-size:15px;color:var(--soft);max-width:68ch;margin:12px 0 18px}
 .ladder-bar{display:grid;grid-template-columns:repeat(9,1fr);gap:2px;margin:16px 0 8px;border-radius:4px;overflow:hidden}
-.ladder-seg{padding:10px 6px 12px;font-size:10px;line-height:1.35;color:var(--ink);min-height:88px}
-.ladder-seg .num{font-weight:700;font-size:11px;display:block;margin-bottom:4px}
+.ladder-seg{padding:10px 6px 12px;font-size:12px;line-height:1.35;color:var(--ink);min-height:88px}
+.ladder-seg .num{font-weight:700;font-size:12px;display:block;margin-bottom:4px}
 .ladder-seg .ttl{font-weight:600;display:block;margin-bottom:2px}
-.ladder-seg .def{color:var(--soft);font-size:9px;display:block}
+.ladder-seg .def{color:var(--soft);font-size:12px;display:block}
 .ladder-seg[data-r="0"]{background:var(--l0)}.ladder-seg[data-r="1"]{background:var(--l1);color:#fff}
 .ladder-seg[data-r="2"]{background:var(--l2);color:#fff}.ladder-seg[data-r="3"]{background:var(--l3)}
 .ladder-seg[data-r="4"]{background:var(--l4);color:#fff}.ladder-seg[data-r="5"]{background:var(--l5);color:#fff}
@@ -70,12 +75,12 @@ section{margin-top:48px;padding-top:8px;border-top:1px solid var(--rule)}
 .lane-head{padding:14px 16px 10px;border-bottom:1px solid var(--rule)}
 .lane-head .title{font-family:"Source Serif 4",Georgia,serif;font-weight:600;font-size:17px;margin:0 0 2px;color:var(--ink)}
 .lane-head .sub{font-size:12px;color:var(--soft);margin:0 0 8px}
-.lane-head .stats{font-size:11px;color:var(--soft);line-height:1.45;margin:0}
+.lane-head .stats{font-size:12px;color:var(--soft);line-height:1.45;margin:0}
 .lane-chart{padding:4px 8px 8px;background:var(--paper)}
 .lane-chart svg{width:100%;height:auto;display:block}
-.lane-chart .tick{font-size:8px;fill:var(--soft);font-family:Archivo,sans-serif}
-.lane-chart .y-label{font-size:7px;fill:var(--soft);font-family:Archivo,sans-serif}
-.lane-chart .anchor-tag{font-size:10px;font-weight:600;fill:var(--ink);font-family:Archivo,sans-serif}
+.lane-chart .tick{font-size:11px;fill:var(--soft);font-family:Archivo,sans-serif}
+.lane-chart .y-label{font-size:10px;fill:var(--soft);font-family:Archivo,sans-serif}
+.lane-chart .anchor-tag{font-size:12px;font-weight:600;fill:var(--ink);font-family:Archivo,sans-serif}
 .lane-chart .grid{stroke:var(--grid);stroke-width:1}
 .lane-chart .rung-band{opacity:.18}
 .lane-chart .area-fill{opacity:.35}
@@ -100,13 +105,13 @@ section{margin-top:48px;padding-top:8px;border-top:1px solid var(--rule)}
 .bar-legend i{display:inline-block;width:14px;height:8px;border-radius:2px;vertical-align:middle;margin-inline-end:6px}
 .bar-legend .uk{background:var(--l5)}.bar-legend .ua{background:var(--l1)}
 .dual-row{display:grid;grid-template-columns:96px 1fr;gap:10px;margin:10px 0;font-size:12px;color:var(--soft);align-items:center}
-.dual-row .lab{font-weight:600;color:var(--ink);font-size:11px;line-height:1.3}
+.dual-row .lab{font-weight:600;color:var(--ink);font-size:12px;line-height:1.3}
 .dual-row .bars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .dual-row .barcell{display:grid;grid-template-columns:1fr 36px;gap:6px;align-items:center}
 .dual-row .track{height:10px;background:var(--grid);border-radius:2px;overflow:hidden}
 .dual-row .track i{display:block;height:100%;border-radius:2px}
 .dual-row .track .uk{background:var(--l5)}.dual-row .track .ua{background:var(--l1)}
-.dual-row .pct{font-size:11px;text-align:end;color:var(--ink);font-weight:600}
+.dual-row .pct{font-size:12px;text-align:end;color:var(--ink);font-weight:600}
 .sign-icon{display:inline-block;width:18px;font-weight:700;margin-inline-end:6px}
 .sign-icon.yes{color:var(--ok)}.sign-icon.sus{color:var(--soft);opacity:.7}
 .detail{margin:20px 0;padding:16px 18px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);min-height:56px}
@@ -124,6 +129,14 @@ section{margin-top:48px;padding-top:8px;border-top:1px solid var(--rule)}
 .foot{font-size:13px;color:var(--soft);margin-top:24px}
 html.embed .topbar{display:none}
 html.embed main{padding-top:16px;padding-bottom:48px}
+
+/* 12px floor on readable copy (must follow legacy sizes above) */
+p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
+.detail .body, .detail .meta, .foot, .lane-foot, .lane-head .sub, .lane-head .stats,
+.ladder-seg, .ladder-seg .num, .ladder-seg .def, .dual-row, .dual-row .lab, .dual-row .pct,
+.bar-legend, .overlap-sub, .lane-chart .tick, .lane-chart .y-label, .lane-chart .anchor-tag{
+  font-size:max(12px, 1em);
+}
 </style>
 </head>
 <body>
