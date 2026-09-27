@@ -1,6 +1,6 @@
 # UK–Russia escalation timeline, Feb–Sep 2026
 
-An open-source-intelligence audit of 33 dated events on the British–Russian thread, presented as a single self-contained HTML page in English and Hebrew.
+An open-source-intelligence audit of 35 dated events on the British–Russian thread, presented as a single self-contained HTML page in English and Hebrew.
 
 The page exists to test a hypothesis, not to assert it: that British military involvement in Ukraine — in particular concealed drone strikes on Russian territory — forms part of an undisclosed shift in defence posture. Everything below is written so a reader can check that hypothesis against the record and find it wanting if it deserves to be.
 
@@ -28,15 +28,15 @@ If the workflow fails with a Pages permission error, re-enable Pages in Settings
 
 ## What is on the page
 
-**33 events**, 1 February to 16 September 2026. 19 Russian, 12 British or western, 2 third-party (both American). 30 distinct source domains; 11 rows carry two sources; 1 row carries three; 1 row carries none.
+**35 events**, 1 February to 18 September 2026. 20 Russian, 13 British or western, 2 third-party (both American). 33 distinct source domains; 11 rows carry two sources; 1 row carries three; 2 rows carry four; 1 row carries none.
 
 Three encodings, deliberately kept separate:
 
 | Encoding | Carries | Values |
 |---|---|---|
 | Flag in the marker | Who acted | Union flag, Russian tricolour, Stars and Stripes |
-| Ring colour | Whether Britain is the named object | red (24 rows), green (9 rows) |
-| Band card | How directly Britain is named | four levels, 11 / 10 / 6 / 6 rows |
+| Ring colour | Whether Britain is the named object | red (26 rows), green (9 rows) |
+| Band card | How directly Britain is named | four levels, 11 / 11 / 7 / 6 rows |
 
 Reading two of them as one thing is the main way to misread the page.
 
@@ -55,8 +55,8 @@ Two earlier timelines fed this one and graded on different definitions. The Brit
 The one axis here that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — *not* how alarming the content is. The top band adds a second cut: the named object sits under a strike threat or a concealed act.
 
 1. **Britain not named** (11 rows, 1 Feb – 8 Sep) — background, structural, or deliberately concealed.
-2. **Britain named, routine** (10 rows, 30 Mar – 16 Sep) — diplomatic and naval friction inside ordinary statecraft. Notified gunnery and diplomat rows stay here. So do the two 16 September British military-leadership statements.
-3. **A consequence is stated** (6 rows, 15 Aug – 26 Aug) — Britain is warned it will pay, nothing specific named as at risk.
+2. **Britain named, routine** (11 rows, 30 Mar – 16 Sep) — diplomatic and naval friction inside ordinary statecraft. Notified gunnery and diplomat rows stay here. So do the 25 August household-preparedness campaign and the two 16 September British military-leadership statements.
+3. **A consequence is stated** (7 rows, 15 Aug – 18 Sep) — Britain is warned it will pay, nothing specific named as at risk. The 18 September MFA summons sits here: British facilities in Ukraine used to strike Russian territory are called a legitimate target. Geography is Ukraine, so it is not band 4 (a named object on British soil).
 4. **A specific object, hostile or concealed** (6 rows, 9 Apr – 13 Sep) — a particular British thing is named as the object (a factory, a military site, a stretch of UK water, or a named person) and the act is a strike threat or concealment. The 9 April submarine operation and the 6 September AIS handshake sit here with the three late-August strike-threat rows and the 13 September strike that Johnson's diplomatic train had just left.
 
 The consequence of defining bands this way: an unannounced Russian nuclear exercise and an unannounced CIA trip to Moscow both sit in band 1, because neither names Britain, though both are more alarming than a diplomat expulsion in band 2. That is the rule working as intended, not a misfiling.
@@ -67,7 +67,7 @@ Note also that bands 2, 3 and 4 are entirely red and band 1 holds eight of the n
 
 - **Verifiability over completeness.** Claims that could not be confirmed were dropped rather than kept with a caveat.
 - **Primary over syndicated** where both exist. Several rows carry two sources because a better original was found later.
-- **State media is labelled as such** (TASS).
+- **State sources are labelled as such** (TASS, Russian MFA).
 - **Second-hand reporting is labelled as such** (FITSNews).
 - **One row has no source.** The 6 August UK–Ukraine defence talks are marked as unsourced rather than attached to something adjacent.
 
@@ -83,13 +83,14 @@ Note also that bands 2, 3 and 4 are entirely red and band 1 holds eight of the n
 Kept visible rather than silently resolved:
 
 - Fedorov's remark on British factories: CBS dates it 25 August, the Independent to around the 24th. On the earlier dating it falls the same day as the Kyiv announcement rather than after it, which weakens any sequential reading.
+- The household-preparedness campaign: the Guardian dates the disclosure to 25 August, the Independent to the 26th. The row sits on the earlier date.
 - The CIA trip to Moscow: the Guardian says Tuesday, other outlets Wednesday.
 - The embassy warning: logged 17 August, carried by Reuters on the 18th.
 - The Sarmat launch: Defense News 12 May, GlobalSecurity 13 May.
 
 ## Known limits
 
-**Interval compression is partly an artefact of observation.** Mean gap between events is 11.5 days from February to 15 August and 2.1 days after. Some of that is real, but early rows are month-level estimates and structural events reported once, while late rows are discrete statements logged the day they were made. Attention rose after 15 August and the observation rate rose with it. Any timeline built from news crowds at its own end.
+**Interval compression is partly an artefact of observation.** Mean gap between events is 11.5 days from February to 15 August and 2.0 days after. Some of that is real, but early rows are month-level estimates and structural events reported once, while late rows are discrete statements logged the day they were made. Attention rose after 15 August and the observation rate rose with it. Any timeline built from news crowds at its own end.
 
 **Three rows carry approximate dates**, marked `~`. Intervals touching them are approximate too.
 
