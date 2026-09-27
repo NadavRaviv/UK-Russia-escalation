@@ -66,7 +66,9 @@ section{margin-top:48px;padding-top:8px;border-top:1px solid var(--rule)}
 .lane-chart .tick{font-size:9px;fill:var(--soft);font-family:Archivo,sans-serif}
 .lane-chart .grid{stroke:var(--grid);stroke-width:1}
 .lane-chart .rung-band{opacity:.22}
-.lane-chart .line{fill:none;stroke:var(--t0);stroke-width:2;stroke-linejoin:round;opacity:.85}
+.lane-chart .line{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.lane-chart .line-solid{opacity:.92}
+.lane-chart .line-dash{stroke-dasharray:6 4;opacity:.65}
 .lane-chart .pt{cursor:pointer;stroke-width:2;stroke:var(--paper)}
 .lane-chart .pt.sus{stroke-dasharray:4 3;fill:var(--paper)!important}
 .lane-chart .pt.hollow{fill:var(--paper)!important;stroke:var(--l0)!important;stroke-dasharray:4 3;opacity:.85}
@@ -293,8 +295,9 @@ const SIGNS = [
 ];
 
 function parseDate(iso){ return new Date(iso + "T12:00:00Z"); }
-function daysBeforeAnchor(iso, anchor){
-  return Math.round((parseDate(anchor) - parseDate(iso)) / DAY);
+/** Days relative to anchor: 0 = anchor day, negative = before, positive = after. */
+function dayOffsetFromAnchor(iso, anchor){
+  return Math.round((parseDate(iso) - parseDate(anchor)) / DAY);
 }
 
 function laneStats(events, anchor, beforeAnchorOnly){
@@ -337,23 +340,34 @@ function renderLane(lane, showGreen){
   const yScale = r => padT + (1 - (r - yMin) / (yMax - yMin)) * (H - padT - padB);
 
   const visible = lane.events.filter(e => {
-    const d = daysBeforeAnchor(e.date, lane.anchor);
-    if (d < xMin || d > xMax) return false;
+    const off = dayOffsetFromAnchor(e.date, lane.anchor);
+    if (off < xMin || off > xMax) return false;
     if (lane.isUk && e.indirect && !showGreen) return false;
     return true;
   });
 
-  const linePts = visible
-    .filter(e => lane.isUk ? (!e.indirect && !e.suspected) : true)
-    .filter(e => e.rung > 0)
-    .sort((a,b) => parseDate(a.date) - parseDate(b.date));
+  const lineEvents = visible
+    .filter(e => !e.indirect && e.rung > 0)
+    .sort((a,b) => parseDate(a.date) - parseDate(b.date) || a.rung - b.rung);
 
-  let pathD = "";
-  linePts.forEach((e,i) => {
-    const x = xScale(-daysBeforeAnchor(e.date, lane.anchor));
-    const y = yScale(e.rung);
-    pathD += (i ? "L" : "M") + x.toFixed(1) + "," + y.toFixed(1) + " ";
-  });
+  const pts = lineEvents.map(e => ({
+    x: xScale(dayOffsetFromAnchor(e.date, lane.anchor)),
+    y: yScale(e.rung),
+    sus: !!e.suspected
+  }));
+
+  let solidD = "";
+  let dashD = "";
+  if (pts.length) {
+    solidD = "M" + pts[0].x.toFixed(1) + "," + pts[0].y.toFixed(1);
+    for (let i = 1; i < pts.length; i++) {
+      const a = pts[i - 1];
+      const b = pts[i];
+      const seg = "M" + a.x.toFixed(1) + "," + a.y.toFixed(1) + "L" + b.x.toFixed(1) + "," + b.y.toFixed(1);
+      if (a.sus || b.sus) dashD += seg;
+      else solidD += "L" + b.x.toFixed(1) + "," + b.y.toFixed(1);
+    }
+  }
 
   const grids = [];
   for (let r = 0; r <= 8; r++) {
@@ -375,7 +389,7 @@ function renderLane(lane, showGreen){
   });
 
   const dots = visible.map((e, idx) => {
-    const x = xScale(-daysBeforeAnchor(e.date, lane.anchor));
+    const x = xScale(dayOffsetFromAnchor(e.date, lane.anchor));
     const y = yScale(e.rung);
     const cls = ["pt", e.suspected ? "sus" : "", e.indirect ? "hollow" : ""].filter(Boolean).join(" ");
     const fill = e.indirect ? "var(--paper)" : rungVar(e.rung);
@@ -390,7 +404,7 @@ function renderLane(lane, showGreen){
       <div><b>Events at rung 6+ before anchor</b>${six}</div>
       <div><b>Average rung, last 60 days</b>${stats.avg60}</div>
     </div>
-    <div class="lane-chart"><svg viewBox="0 0 ${W} ${H}" aria-hidden="false">${grids.join("")}<path class="line" d="${pathD.trim()}"/>${dots}</svg></div>
+    <div class="lane-chart"><svg viewBox="0 0 ${W} ${H}" aria-hidden="false">${grids.join("")}<path class="line line-solid" d="${solidD}"/><path class="line line-dash" d="${dashD}"/>${dots}</svg></div>
     <div class="lane-foot">Select a point to see the event.</div>
   </article>`;
 }
@@ -415,8 +429,8 @@ function bindPoints(){
       const lane = LANES.find(l => l.id === c.dataset.lane);
       const showGreen = document.getElementById("showGreen").checked;
       const visible = lane.events.filter(e => {
-        const d = daysBeforeAnchor(e.date, lane.anchor);
-        if (d < -420 || d > 0) return false;
+        const off = dayOffsetFromAnchor(e.date, lane.anchor);
+        if (off < -420 || off > 0) return false;
         if (lane.isUk && e.indirect && !showGreen) return false;
         return true;
       });

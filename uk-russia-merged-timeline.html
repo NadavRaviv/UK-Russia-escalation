@@ -92,7 +92,9 @@
     font-family:var(--mono);font-size:11px;letter-spacing:.1em;
     background:transparent;border:0;color:var(--muted);
     padding:7px 13px;cursor:pointer;transition:color .15s,background .15s;
+    display:inline-flex;align-items:center;gap:5px;
   }
+  .toggle button .tab-lock{width:11px;height:11px;flex:none;opacity:.72}
   .toggle button:hover{color:var(--text)}
   .toggle button[aria-pressed="true"]{
     background:rgba(148,163,184,0.18);color:var(--text);font-weight:500;
@@ -714,7 +716,10 @@
         <button id="btn-kanban" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false"><span id="tabKanban"></span></button>
         <button id="btn-domain" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false"><span id="tabDomain"></span></button>
         <button id="btn-outline" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false"><span id="tabOutline"></span></button>
-        <button id="btn-munger" role="tab" aria-controls="munger-panel" aria-pressed="false" aria-selected="false"><span id="tabMunger"></span></button>
+        <button id="btn-munger" role="tab" aria-controls="munger-panel" aria-pressed="false" aria-selected="false">
+          <svg class="tab-lock" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>
+          <span id="tabMunger"></span>
+        </button>
         <button id="btn-ladder" role="tab" aria-controls="ladder-panel" aria-pressed="false" aria-selected="false"><span id="tabLadder"></span></button>
       </div>
     </div>
@@ -756,7 +761,7 @@
       <div class="munger-grid" id="mungerGrid"></div>
     </div>
     <div class="ladder-panel" id="ladder-panel" role="tabpanel" hidden>
-      <iframe class="ladder-frame" id="ladderFrame" title="Escalation ladder comparison" src="./uk-russia-ladder.html?embed=1" loading="lazy"></iframe>
+      <iframe class="ladder-frame" id="ladderFrame" title="Levels up/down — escalation ladder comparison" src="./uk-russia-ladder.html?embed=1" loading="lazy"></iframe>
     </div>
   </section>
 
@@ -835,7 +840,7 @@ const T = {
     ovDomain:"Domain", ovDomainHint:"war / civil",
     ovDanger:"Danger", ovDangerHint:"signal strength",
     ovMunger:"Munger", ovMungerHint:"insights · locked",
-    ovLadder:"Ladder", ovLadderHint:"UK–Russia vs three wars",
+    ovLadder:"Levels up/down", ovLadderHint:"escalation ladder · UK–Russia vs three wars",
     ovLadderNote:"Nine rungs from media to civilians harmed. UK–Russia is anchored on today; Russia–Ukraine, Israel–Iran and Israel–Hamas align on the day each war broke out. Dashed marks are suspected, not attributed. Green rows stay off the line unless you switch them on inside the panel.",
     mungerIntro:"Charlie Munger's psychology of human misjudgment, applied to this record. Each card names a bias that distorts how the timeline is read, a corrective, and a watch item that sits off the obvious UK–Russia thread. Not predictions — hypotheses designed to carry fewer built-in mistakes.",
     mungerGateTitle:"Munger insights",
@@ -915,7 +920,7 @@ const T = {
     ovDomain:"תחום", ovDomainHint:"מלחמה / אזרחי",
     ovDanger:"סכנה", ovDangerHint:"עוצמת האיתות",
     ovMunger:"מאנגר", ovMungerHint:"תובנות · נעול",
-    ovLadder:"סולם", ovLadderHint:"בריטניה–רוסיה מול שלוש מלחמות",
+    ovLadder:"רמות מעלה/מטה", ovLadderHint:"סולם הסלמה · בריטניה–רוסיה מול שלוש מלחמות",
     ovLadderNote:"תשע שלבים מכותרות ועד פגיעה באזרחים. ציר בריטניה–רוסיה מיושר על היום; צירי אוקראינה, ישראל–אירן וישראל–חמאס מיושרים על יום פרוץ המלחמה. קווים מקווקווים = חשד, לא ייחוס. שורות ירוקות מחוץ לקו עד שמפעילים אותן בתוך הפאנל.",
     mungerIntro:"פסיכולוגיית השיפוט השגוי של צ'ארלי מאנגר, כפי שהיא חלה על הרשומה הזו. כל כרטיס מציין הטיה שמעוותת את הקריאה של הציר, תיקון, ונקודת מעקב מחוץ לציר הבריטניה–רוסיה הברור. לא תחזיות — השערות שנועדו לכלול פחות טעויות מובנות.",
     mungerGateTitle:"תובנות מאנגר",
