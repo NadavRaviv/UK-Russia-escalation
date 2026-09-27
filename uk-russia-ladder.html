@@ -92,6 +92,8 @@ section{margin-top:48px;padding-top:8px;border-top:1px solid var(--rule)}
 .prose p{color:var(--soft)}
 .prose h3{color:var(--ink)}
 .foot{font-size:13px;color:var(--soft);margin-top:24px}
+html.embed .topbar{display:none}
+html.embed main{padding-top:16px;padding-bottom:48px}
 </style>
 </head>
 <body>
@@ -479,6 +481,15 @@ const uaDist = rungDistribution(LANES[1].events, LANES[1].anchor);
 document.getElementById("overlapPct").textContent = overlapPct(ukDist, uaDist) + "% overlap in how often each rung appears";
 renderOverlapTable(ukDist, uaDist);
 renderSigns();
+
+if (location.search.indexOf("embed=1") !== -1) {
+  document.documentElement.classList.add("embed");
+}
+window.addEventListener("message", function(ev){
+  if (ev.data && ev.data.type === "uk-ru-theme" && ev.data.theme) {
+    document.documentElement.setAttribute("data-theme", ev.data.theme);
+  }
+});
 </script>
 </body>
 </html>
