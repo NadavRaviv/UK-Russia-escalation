@@ -1,6 +1,6 @@
 # UK–Russia escalation timeline, Feb–Sep 2026
 
-An open-source-intelligence audit of 35 dated events on the British–Russian thread, presented as a single self-contained HTML page in English and Hebrew.
+An open-source-intelligence audit of 37 dated events on the British–Russian thread, presented as a single self-contained HTML page in English and Hebrew.
 
 The page exists to test a hypothesis, not to assert it: that British military involvement in Ukraine — in particular concealed drone strikes on Russian territory — forms part of an undisclosed shift in defence posture. Everything below is written so a reader can check that hypothesis against the record and find it wanting if it deserves to be.
 
@@ -28,15 +28,15 @@ If the workflow fails with a Pages permission error, re-enable Pages in Settings
 
 ## What is on the page
 
-**35 events**, 1 February to 26 September 2026. 21 Russian, 12 British or western, 2 third-party (both American). 31 distinct source domains; 11 rows carry two sources; 2 rows carry three; 1 row carries none.
+**37 events**, 1 February to 28 September 2026. 23 Russian, 12 British or western, 2 third-party (both American). 33 distinct source domains; 13 rows carry two sources; 2 rows carry three; 1 row carries none.
 
 Three encodings, deliberately kept separate:
 
 | Encoding | Carries | Values |
 |---|---|---|
 | Flag in the marker | Who acted | Union flag, Russian tricolour, Stars and Stripes |
-| Ring colour | Whether Britain is the named object | red (26 rows), green (9 rows) |
-| Band card | How directly Britain is named | four levels, 11 / 11 / 6 / 7 rows |
+| Ring colour | Whether Britain is the named object | red (28 rows), green (9 rows) |
+| Band card | How directly Britain is named | four levels, 13 / 11 / 6 / 7 rows |
 
 Reading two of them as one thing is the main way to misread the page.
 
@@ -54,14 +54,14 @@ Two earlier timelines fed this one and graded on different definitions. The Brit
 
 The one axis here that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — *not* how alarming the content is. The top band adds a second cut: the named object sits under a strike threat or a concealed act.
 
-1. **Britain not named** (11 rows, 1 Feb – 8 Sep) — background, structural, or deliberately concealed.
+1. **Britain not named** (13 rows, 1 Feb – 28 Sep) — background, structural, or deliberately concealed. The 27 July decree (No. 526, in force 1 August) and the 28 September decree sit here: each raises an authorised ceiling on the Russian armed forces, and neither names Britain.
 2. **Britain named, routine** (11 rows, 30 Mar – 26 Sep) — diplomatic and naval friction inside ordinary statecraft. Notified gunnery and diplomat rows stay here. So do the two 16 September British military-leadership statements, and the 26 September report of drone sightings over nuclear sites. That row names Britain and treats the sightings as surveillance friction: no strike target is declared, and the Russia link is an expert's view, not an official attribution.
 3. **A consequence is stated** (6 rows, 15 Aug – 26 Aug) — Britain is warned it will pay, nothing specific named as at risk.
 4. **A specific object, hostile or concealed** (7 rows, 9 Apr – 13 Sep) — a particular British thing is named as the object (a factory, a military site, a stretch of UK water, or a named person) and the act is a strike threat or concealment. The set is the 9 April submarine operation, the 25 August factory remark, the 27 August military-targets warning, Putin's 2 September refusal to rule British sites out, the 6 September AIS handshake, the 10 September Swindon sabotage charge, and the 13 September strike that Johnson's diplomatic train had just left.
 
 The consequence of defining bands this way: an unannounced Russian nuclear exercise and an unannounced CIA trip to Moscow both sit in band 1, because neither names Britain, though both are more alarming than a diplomat expulsion in band 2. That is the rule working as intended, not a misfiling.
 
-Note also that bands 2, 3 and 4 are entirely red and band 1 holds all nine green rows, plus two red ones. The band axis and the colour axis are measuring closely related things, so the bands add less independent information than four separate cards imply.
+Note also that bands 2, 3 and 4 are entirely red and band 1 holds all nine green rows, plus four red ones. The band axis and the colour axis are measuring closely related things, so the bands add less independent information than four separate cards imply.
 
 ## Sourcing standard
 
@@ -89,7 +89,7 @@ Kept visible rather than silently resolved:
 
 ## Known limits
 
-**Interval compression is partly an artefact of observation.** Mean gap between events is 11.5 days from February to 15 August and 2.5 days after. Some of that is real, but early rows are month-level estimates and structural events reported once, while late rows are discrete statements logged the day they were made. Attention rose after 15 August and the observation rate rose with it. Any timeline built from news crowds at its own end.
+**Interval compression is partly an artefact of observation.** Mean gap between events is 10.8 days from February to 15 August and 2.4 days after. Some of that is real, but early rows are month-level estimates and structural events reported once, while late rows are discrete statements logged the day they were made. Attention rose after 15 August and the observation rate rose with it. Any timeline built from news crowds at its own end.
 
 **Three rows carry approximate dates**, marked `~`. Intervals touching them are approximate too.
 
