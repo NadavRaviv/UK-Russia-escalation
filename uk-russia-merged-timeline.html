@@ -15,54 +15,94 @@
 <title>UK–Russia escalation — merged timeline audit, Feb–Sep 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Heebo:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Archivo:wght@400;500;600&family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+  /* Light mode: Claude artifact palette (ladder page) */
   :root, html[data-theme="light"]{
     color-scheme:light;
-    --base:#f3f2ee;
-    --surface:#fffcf7;
-    --rule:rgba(28,36,44,0.12);
-    --text:#1a2128;
-    --muted:#5a6570;
-    --faint:#6b757f;
-    --green:#2d8a62;
-    --red:#c0453e;
-    --yellow:#9a7310;
-    --uk-dot:#2f62b5;
-    --ru-dot:#c0453e;
-    --ot-dot:#8a9199;
-    --overlay:rgba(22,26,30,0.46);
-    /* Grading is a ring style, not a hue — red is reserved for Russia. */
-    --grade-on:var(--text);
-    --grade-off:var(--faint);
-    --sans:'DM Sans',ui-sans-serif,system-ui,sans-serif;
-    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
+    --bg:#F2F3F1;--paper:#FBFBFA;--ink:#1D2630;--soft:#424e5a;--rule:#D3D8DB;--grid:#E3E7E9;
+    --l0:#B9C0C5;--l1:#8E98A1;--l2:#6F7D8A;--l3:#B98A8A;--l4:#A76565;--l5:#B8403B;--l6:#9E1F1F;--l7:#761414;--l8:#4E0B0B;
+    --focus:#2F6FB0;--warn:#9a7310;--ok:#2d6a4f;
+    --base:var(--bg);--surface:var(--paper);--text:var(--ink);--muted:var(--soft);--faint:#424e5a;
+    --green:var(--ok);--red:var(--l5);--yellow:var(--warn);
+    --uk-dot:#2f62b5;--ru-dot:var(--l5);--ot-dot:var(--l1);
+    --overlay:rgba(29,38,48,0.46);
+    --grade-on:var(--ink);--grade-off:var(--l0);
+    --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+    --sans:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --mono:var(--sans);
   }
   html[data-theme="dark"]{
     color-scheme:dark;
-    --base:#0f1419;
-    --surface:#161d25;
-    --rule:rgba(148,163,184,0.16);
-    --text:#e3e9ef;
-    --muted:#7f8fa0;
-    --faint:#74818e;
-    --green:#4a9e74;
-    --red:#c0605a;
-    --yellow:#e0b64a;
-    --uk-dot:#7eaaea;
-    --ru-dot:#e07d77;
-    --ot-dot:#c0c6ce;
+    --bg:#161B20;--paper:#1C2228;--ink:#E4E7EA;--soft:#9AA5AF;--rule:#343D46;--grid:#262E36;
+    --l0:#4A535B;--l1:#6D7882;--l2:#8794A0;--l3:#C79A9A;--l4:#D07C7C;--l5:#E0574F;--l6:#F0433A;--l7:#FF6B5E;--l8:#FF9C90;
+    --focus:#7FB2E5;--warn:#e0b64a;--ok:#6bbf8a;
+    --base:var(--bg);--surface:var(--paper);--text:var(--ink);--muted:var(--soft);--faint:#8a959f;
+    --green:var(--ok);--red:var(--l5);--yellow:var(--warn);
+    --uk-dot:#7eaaea;--ru-dot:var(--l5);--ot-dot:#c0c6ce;
     --overlay:rgba(8,11,14,0.72);
+    --grade-on:var(--ink);--grade-off:var(--l1);
+    --serif:'Source Serif 4',Georgia,serif;
+    --sans:'Archivo',system-ui,sans-serif;
+    --mono:var(--sans);
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%;overflow-x:hidden}
   body{
     margin:0;background:var(--base);color:var(--text);
-    font-family:var(--sans);line-height:1.5;
+    font-family:var(--sans);font-size:16px;line-height:1.55;
+    font-variant-numeric:tabular-nums;
     padding:0 20px 72px;
   }
+  /* Running text and readable UI copy: 12px minimum */
+  p, li, time, .standfirst, .why-body, .footline, .chip, .side, .src, .sep,
+  .band .def, .band .meta, .band .num, .ev .t, .ev .d, .gap .days,
+  .munger-card p, .munger-card .watch, .munger-panel .intro, .munger-err,
+  .danger-tip, .danger-tip b, .danger-tip .tip-meta, .sel-title, .sel-hint, .sel-num,
+  .danger-key, .danger-cut, .stat .l, .tlcount, .povlab, .why-btn, .info-btn,
+  .theme-btn, .toggle button, .viewtoggle button{
+    font-size:max(12px, 1em);
+  }
   body[dir="rtl"]{font-family:'Heebo',var(--sans)}
-  .wrap{max-width:1120px;margin:0 auto}
+  .wrap{max-width:1180px;margin:0 auto}
+  :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  html[data-theme="light"] h1{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(28px,3.8vw,42px);letter-spacing:-.01em;line-height:1.12;
+    color:var(--ink);
+  }
+  html[data-theme="light"] .standfirst{
+    font-size:17px;line-height:1.55;color:var(--soft);max-width:62ch;
+  }
+  html[data-theme="light"] .ovhead h3,
+  html[data-theme="light"] .tlhead h3,
+  html[data-theme="light"] .why-dialog h2,
+  html[data-theme="light"] .munger-modal h3,
+  html[data-theme="light"] .munger-card h4{
+    font-family:var(--serif);font-weight:600;color:var(--ink);
+  }
+  html[data-theme="light"] .ovhead h3{font-size:19px}
+  html[data-theme="light"] .tlhead h3{font-size:17px}
+  html[data-theme="light"] .row h2{font-family:var(--serif);font-weight:600;font-size:16px}
+  html[data-theme="light"] .band,
+  html[data-theme="light"] .munger-card,
+  html[data-theme="light"] .why-dialog{border-radius:6px}
+  html[data-theme="light"] .toggle{border-radius:4px;border-color:var(--rule);background:var(--paper)}
+  html[data-theme="light"] .toggle button[aria-pressed="true"]{
+    background:var(--ink);color:var(--paper);font-weight:600;
+  }
+  html[data-theme="light"] .toggle button:not([aria-pressed="true"]){
+    color:var(--soft);
+  }
+  html[data-theme="light"] .theme-btn{border-radius:4px}
+  html[data-theme="light"] .theme-btn:hover,
+  html[data-theme="light"] .info-btn:hover,
+  html[data-theme="light"] .why-btn:hover{color:var(--focus);border-color:var(--rule)}
+  html[data-theme="light"] .danger-chart .grid,
+  html[data-theme="light"] .danger-chart .frame{stroke:var(--grid)}
+  html[data-theme="light"] .munger-card .bias{color:var(--l5)}
+  html[data-theme="light"] .munger-card .watch{border-left-color:var(--l3);background:rgba(185,138,138,.12)}
+  html[data-theme="light"] .munger-card .watch b{color:var(--l6)}
   .narrow{max-width:768px;margin-inline:auto}
 
   /* --- language + theme --- */
@@ -77,7 +117,7 @@
     font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
     transition:color .15s, background .15s, border-color .15s;
   }
-  .theme-btn:hover{color:var(--yellow);border-color:rgba(148,163,184,0.45)}
+  .theme-btn:hover{color:var(--focus);border-color:var(--rule)}
   .theme-btn svg{width:15px;height:15px;display:block;flex:none}
   body[dir="rtl"] .theme-btn{
     letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:12px;
@@ -92,10 +132,15 @@
     font-family:var(--mono);font-size:11px;letter-spacing:.1em;
     background:transparent;border:0;color:var(--muted);
     padding:7px 13px;cursor:pointer;transition:color .15s,background .15s;
+    display:inline-flex;align-items:center;gap:5px;
   }
+  .toggle button .tab-lock{width:11px;height:11px;flex:none;opacity:.72}
   .toggle button:hover{color:var(--text)}
   .toggle button[aria-pressed="true"]{
     background:rgba(148,163,184,0.18);color:var(--text);font-weight:500;
+  }
+  html[data-theme="dark"] .toggle button[aria-pressed="true"]{
+    background:rgba(148,163,184,0.18);color:var(--text);
   }
   #btn-he{font-family:'Heebo',var(--sans);letter-spacing:0;font-size:12.5px}
 
@@ -108,13 +153,10 @@
   }
   .eyebrow{
     font-family:var(--mono);font-size:10px;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--faint);margin:0 0 8px;
+    text-transform:uppercase;color:var(--soft);margin:0 0 8px;
   }
-  h1{
-    font-size:clamp(24px,3.4vw,32px);line-height:1.05;margin:0 0 8px;
-    font-weight:700;letter-spacing:-0.025em;
-  }
-  .standfirst{color:var(--muted);font-size:13.5px;margin:0;max-width:60ch}
+  h1{margin:0 0 8px;font-weight:700;letter-spacing:-0.025em;line-height:1.05;font-size:clamp(24px,3.4vw,32px)}
+  .standfirst{color:var(--muted);font-size:max(13.5px, 12px);margin:0;max-width:60ch}
 
   /* --- inline legend chips --- */
   .chipbar{display:flex;flex-wrap:wrap;align-items:center;gap:7px 14px;justify-self:start}
@@ -162,7 +204,7 @@
   .stat .n.accent{color:var(--yellow);font-size:23px}
   .stat .l{
     font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--faint);display:block;margin-top:6px;
+    color:var(--soft);display:block;margin-top:6px;
   }
   body[dir="rtl"] .stat .l{
     letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:11px;
@@ -178,7 +220,7 @@
     font-family:var(--sans);font-size:14px;letter-spacing:-0.005em;
     color:var(--muted);margin:0;font-weight:500;
   }
-  .tlcount{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--faint)}
+  .tlcount{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--soft)}
   body[dir="rtl"] .tlhead h3{letter-spacing:0;font-family:'Heebo',var(--sans)}
   body[dir="rtl"] .tlcount{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11.5px}
   .timeline{position:relative;padding-left:26px}
@@ -283,7 +325,7 @@
   .bands{display:flex;gap:8px;align-items:stretch}
   .band{
     display:flex;flex-direction:column;
-    background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:11px 11px 6px;
+    background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:11px 11px 6px;
   }
   /* Default: kanban columns on desktop, stacked outline below 721px.
      .layout-* is a user override from the toggle and always wins. */
@@ -369,8 +411,8 @@
     text-transform:uppercase;
   }
   @media (max-width: 720px){
-    .danger-chart .axis-label{font-size:7.5px;letter-spacing:.05em}
-    .danger-chart .centroid-lab{font-size:7.5px;letter-spacing:.05em}
+    .danger-chart .axis-label{font-size:10px;letter-spacing:.05em}
+    .danger-chart .centroid-lab{font-size:10px;letter-spacing:.05em}
     body[dir="rtl"] .danger-chart .axis-label,
     body[dir="rtl"] .danger-chart .centroid-lab{font-size:9px}
   }
@@ -498,13 +540,85 @@
   body[dir="rtl"] .danger-key{
     letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none;font-size:11.5px;
   }
+
+  /* --- Munger insights (5th tab) --- */
+  .overview.layout-munger .bands,
+  .overview.layout-munger .danger-pane,
+  .overview.layout-munger .ladder-panel{display:none}
+  .overview.layout-munger .munger-panel{display:block}
+  .overview.layout-ladder .bands,
+  .overview.layout-ladder .danger-pane,
+  .overview.layout-ladder .munger-panel{display:none}
+  .overview.layout-ladder .ladder-panel{display:block}
+  .munger-panel{display:none}
+  .ladder-panel{display:none}
+  .ladder-frame{width:100%;border:0;min-height:4200px;display:block;background:var(--base);border-radius:3px}
+  .munger-panel .intro{font-size:12.5px;color:var(--muted);margin:0 0 16px;max-width:72ch;line-height:1.55}
+  .munger-grid{display:grid;gap:10px;grid-template-columns:1fr}
+  @media (min-width:721px){.munger-grid{grid-template-columns:1fr 1fr}}
+  .munger-card{
+    background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+    padding:14px 14px 12px;
+  }
+  .munger-card .bias{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--yellow);margin:0 0 6px;
+  }
+  body[dir="rtl"] .munger-card .bias{letter-spacing:.04em;font-family:'Heebo',var(--sans);text-transform:none;font-size:10.5px}
+  .munger-card h4{font-size:13.5px;font-weight:500;margin:0 0 6px;line-height:1.3}
+  .munger-card p{font-size:12px;color:var(--muted);margin:0 0 8px;line-height:1.5}
+  .munger-card .watch{
+    font-size:12px;color:var(--text);margin:0;padding:8px 10px;
+    background:rgba(224,182,74,.08);border-left:2px solid var(--yellow);border-radius:0 2px 2px 0;
+  }
+  body[dir="rtl"] .munger-card .watch{border-left:0;border-right:2px solid var(--yellow);border-radius:2px 0 0 2px}
+  .munger-card .watch b{color:var(--yellow);font-weight:500}
+  .munger-gate{
+    position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
+    background:var(--overlay);backdrop-filter:blur(8px);
+    opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity 260ms ease-out,visibility 0s linear 260ms;
+  }
+  .munger-gate.is-open{
+    opacity:1;visibility:visible;pointer-events:auto;
+    transition:opacity 260ms ease-out,visibility 0s;
+  }
+  .munger-gate[hidden]{display:none}
+  .munger-modal{
+    background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+    padding:22px 24px 18px;width:min(320px,calc(100vw - 40px));text-align:center;
+    transform:scale(0.96);opacity:0;
+    transition:transform 260ms ease-out,opacity 260ms ease-out;
+  }
+  .munger-gate.is-open .munger-modal{transform:scale(1);opacity:1}
+  .munger-modal h3{font-size:15px;margin:0 0 6px;font-weight:500}
+  .munger-modal > p{font-size:12px;color:var(--muted);margin:0 0 14px}
+  .munger-code{
+    font-family:var(--mono);font-size:22px;letter-spacing:.35em;text-align:center;
+    width:100%;padding:10px 12px;background:var(--base);border:1px solid var(--rule);
+    border-radius:3px;color:var(--text);margin-bottom:10px;
+  }
+  .munger-code:focus{outline:none;border-color:var(--yellow)}
+  .munger-err{font-size:11.5px;color:var(--red);margin:0 0 8px}
+  .munger-err[hidden]{display:none}
+  .munger-actions{display:flex;gap:8px;justify-content:center;margin-top:4px}
+  .munger-actions button{
+    font-family:var(--sans);font-size:12.5px;padding:8px 16px;border-radius:3px;
+    border:1px solid var(--rule);cursor:pointer;background:transparent;color:var(--text);
+  }
+  .munger-actions button:active{transform:scale(0.97)}
+  body[dir="rtl"] .munger-actions button{font-family:'Heebo',var(--sans)}
+  .munger-actions button.primary{background:var(--yellow);color:var(--base);border-color:var(--yellow);font-weight:500}
+  .munger-modal.shake{animation:shake 400ms ease-out}
+  @keyframes shake{0%,100%{transform:translateX(0) scale(1)}25%{transform:translateX(-6px) scale(1)}75%{transform:translateX(6px) scale(1)}}
+
   .band .meter{height:3px;border-radius:2px;background:rgba(148,163,184,.13);overflow:hidden;margin-bottom:10px}
   .band .meter i{display:block;height:100%;background:var(--yellow);opacity:.75}
-  .band .num{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--faint)}
+  .band .num{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--soft)}
   .band h4{font-size:12.5px;font-weight:500;margin:4px 0 4px;line-height:1.25;overflow-wrap:break-word}
   .band .def{font-size:10.5px;color:var(--muted);line-height:1.4;margin:0 0 9px}
   .band .meta{
-    font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:var(--faint);line-height:1.5;
+    font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:var(--soft);line-height:1.5;
     border-top:1px solid var(--rule);padding-top:7px;margin-bottom:4px;
   }
   body[dir="rtl"] .band .meta,body[dir="rtl"] .band .num{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:10.5px}
@@ -527,7 +641,7 @@
   }
   .footline{
     font-family:var(--mono);font-size:10px;letter-spacing:.08em;
-    color:var(--faint);margin:0;
+    color:var(--soft);margin:0;
   }
   body[dir="rtl"] .footline{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:11.5px}
 
@@ -580,10 +694,27 @@
   }
   .why-close:hover{color:var(--text)}
   body[dir="rtl"] .why-close{letter-spacing:0;font-family:'Heebo',var(--sans);text-transform:none}
-  .why-body{font-size:13.5px;color:var(--muted);line-height:1.55;margin:0 0 12px}
+  .why-body{font-size:max(13.5px, 12px);color:var(--muted);line-height:1.55;margin:0 0 12px}
   .why-dialog .srcs{border-top:1px solid var(--rule);padding-top:10px}
   .why-dialog .srcs:empty{display:none}
   body.why-open{overflow:hidden}
+
+  /* 12px floor on readable copy (must follow legacy sizes above) */
+  p, li, time, .standfirst, .why-body, .footline, .chip, .side, .src, .sep,
+  .band .def, .band .meta, .band .num, .ev .t, .ev .d, .gap .days,
+  .munger-card p, .munger-card .watch, .munger-panel .intro, .munger-err,
+  .danger-tip, .danger-tip b, .danger-tip .tip-meta, .sel-title, .sel-hint, .sel-num,
+  .danger-key, .danger-cut, .stat .l, .tlcount, .povlab, .why-btn, .info-btn,
+  .theme-btn, .toggle button, .viewtoggle button, .why-kicker, .why-close,
+  body[dir="rtl"] time, body[dir="rtl"] .ev .d, body[dir="rtl"] .footline,
+  body[dir="rtl"] .gap .days, body[dir="rtl"] .band .meta, body[dir="rtl"] .band .num,
+  body[dir="rtl"] .why-kicker, body[dir="rtl"] .danger-tip .tip-meta,
+  body[dir="rtl"] .sel-hint, body[dir="rtl"] .tlcount{
+    font-size:max(12px, 1em);
+  }
+  .danger-chart .axis-label, .danger-chart .centroid-lab{
+    font-size:max(12px, 1em);
+  }
 </style>
 </head>
 <body dir="ltr">
@@ -642,6 +773,11 @@
         <button id="btn-kanban" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false"><span id="tabKanban"></span></button>
         <button id="btn-domain" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false"><span id="tabDomain"></span></button>
         <button id="btn-outline" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false"><span id="tabOutline"></span></button>
+        <button id="btn-munger" role="tab" aria-controls="munger-panel" aria-pressed="false" aria-selected="false">
+          <svg class="tab-lock" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>
+          <span id="tabMunger"></span>
+        </button>
+        <button id="btn-ladder" role="tab" aria-controls="ladder-panel" aria-pressed="false" aria-selected="false"><span id="tabLadder"></span></button>
       </div>
     </div>
     <div class="bands" id="bands" role="tabpanel" hidden></div>
@@ -677,7 +813,27 @@
       <div class="danger-sel" id="dangerSel"></div>
       <div class="danger-key" id="dangerKey"></div>
     </div>
+    <div class="munger-panel" id="munger-panel" role="tabpanel" hidden>
+      <p class="intro" id="mungerIntro"></p>
+      <div class="munger-grid" id="mungerGrid"></div>
+    </div>
+    <div class="ladder-panel" id="ladder-panel" role="tabpanel" hidden>
+      <iframe class="ladder-frame" id="ladderFrame" title="Levels up/down — escalation ladder comparison" src="./uk-russia-ladder.html?embed=1" loading="lazy"></iframe>
+    </div>
   </section>
+
+  <div class="munger-gate" id="munger-gate" hidden>
+    <div class="munger-modal" id="munger-modal">
+      <h3 id="mungerGateTitle"></h3>
+      <p id="mungerGateHint"></p>
+      <input class="munger-code" id="munger-code" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off" aria-label="Access code">
+      <p class="munger-err" id="munger-err" hidden></p>
+      <div class="munger-actions">
+        <button type="button" id="munger-cancel"></button>
+        <button type="button" class="primary" id="munger-submit"></button>
+      </div>
+    </div>
+  </div>
 
   <div class="narrow">
     <div class="tlhead">
@@ -740,6 +896,17 @@ const T = {
     ovOutline:"List", ovOutlineHint:"by date",
     ovDomain:"Domain", ovDomainHint:"war / civil",
     ovDanger:"Danger", ovDangerHint:"signal strength",
+    ovMunger:"Munger", ovMungerHint:"insights · locked",
+    ovLadder:"Levels up/down", ovLadderHint:"escalation ladder · UK–Russia vs three wars",
+    ovLadderNote:"Nine rungs from media to civilians harmed. Five lanes share one clock: UK–Russia on today; Russia–Ukraine, Israel–Iran, US–Iran and Israel–Hamas on each war's outbreak. Dashed marks are suspected, not attributed. Green rows stay off the line unless you switch them on inside the panel.",
+    mungerIntro:"Charlie Munger's psychology of human misjudgment, applied to this record. Each card names a bias that distorts how the timeline is read, a corrective, and a watch item that sits off the obvious UK–Russia thread. Not predictions — hypotheses designed to carry fewer built-in mistakes.",
+    mungerGateTitle:"Munger insights",
+    mungerGateHint:"Enter the 6-digit access code.",
+    mungerGateErr:"Incorrect code.",
+    mungerGateSubmit:"Unlock",
+    mungerGateCancel:"Cancel",
+    mungerFix:"Fix",
+    mungerWatch:"Watch",
     ovTitleDanger:"Danger against impact",
     ovNoteDanger:"A fourth cut, and a judgement like the bands. Vertical is how alarming the act is — high at the top. Horizontal is how large the stakes are if it lands — high to the right. The slider keeps every row up to the date you stop on, so the cloud can be read as a path. The cross marks the centre of the five most recent rows and the faint line behind it is where that centre has been. Drift compares those five rows with the five before them: positive means the recent cluster sits higher and further right. Blue is a British or western act, red is Russian; the two American rows are grey.",
     dangerHigh:"High danger", dangerLow:"Low danger",
@@ -809,6 +976,17 @@ const T = {
     ovOutline:"רשימה", ovOutlineHint:"לפי תאריך",
     ovDomain:"תחום", ovDomainHint:"מלחמה / אזרחי",
     ovDanger:"סכנה", ovDangerHint:"עוצמת האיתות",
+    ovMunger:"מאנגר", ovMungerHint:"תובנות · נעול",
+    ovLadder:"רמות מעלה/מטה", ovLadderHint:"סולם הסלמה · בריטניה–רוסיה מול שלוש מלחמות",
+    ovLadderNote:"תשע שלבים מכותרות ועד פגיעה באזרחים. חמישה צירים, שעון אחד: בריטניה–רוסיה על היום; אוקראינה, ישראל–אירן, ארה״ב–אירן וישראל–חמאס על יום פרוץ המלחמה. קווים מקווקווים = חשד. שורות ירוקות מחוץ לקו עד שמפעילים אותן בפאנל.",
+    mungerIntro:"פסיכולוגיית השיפוט השגוי של צ'ארלי מאנגר, כפי שהיא חלה על הרשומה הזו. כל כרטיס מציין הטיה שמעוותת את הקריאה של הציר, תיקון, ונקודת מעקב מחוץ לציר הבריטניה–רוסיה הברור. לא תחזיות — השערות שנועדו לכלול פחות טעויות מובנות.",
+    mungerGateTitle:"תובנות מאנגר",
+    mungerGateHint:"הזינו קוד גישה בן 6 ספרות.",
+    mungerGateErr:"קוד שגוי.",
+    mungerGateSubmit:"פתח",
+    mungerGateCancel:"ביטול",
+    mungerFix:"תיקון",
+    mungerWatch:"מעקב",
     ovTitleDanger:"סכנה מול השפעה",
     ovNoteDanger:"חיתוך רביעי, וגם הוא שיפוט כמו הרמות. הציר האנכי הוא עד כמה המעשה מדאיג — גבוה למעלה. האופקי הוא עד כמה גבוה המחיר אם הוא מתממש — גבוה לימין. הסרגל משאיר כל שורה עד התאריך שבו עוצרים, כך שאפשר לקרוא את ענן הנקודות כמסלול. הצלב מסמן את מרכז חמש השורות האחרונות, והקו הדהוי מאחוריו הוא המסלול שהמרכז הזה עבר. הנדידה משווה בין חמש השורות האחרונות לחמש שלפניהן: ערך חיובי אומר שהאשכול האחרון יושב גבוה יותר ורחוק יותר לימין. כחול הוא מהלך בריטי או מערבי, אדום הוא רוסי; שתי השורות האמריקאיות אפורות.",
     dangerHigh:"סכנה גבוהה", dangerLow:"סכנה נמוכה",
@@ -1420,6 +1598,112 @@ const EVENTS = [
       why:"בסביבות 08:20 BST עולה פוסט בחשבון ה-X המאומת של שגרירות רוסיה בלונדון: כל פעולה צבאית בריטית או של נאט\u201dו נגד שטח רוסי תיענה ב\u201dכל האמצעים... כולל נשק גרעיני\u201d. הפוסט מציין את הסיקור של The i Paper על קלינינגרד ואת משחק המלחמה הטלוויזיוני של סקיי, The Wargame. TASS, LBC ו-Newsweek מפרסמים את האזהרה; TASS מביא את אותו נוסח כהודעה בטלגרם, והשגרירות מוסיפה שרוסיה אינה מבקשת עימות ואינה מתכוונת לתקוף את נאט\u201dו או את אירופה. קיר ג׳יילס כותב ב-The i Paper שזו תגובת רפלקס: איתות גרעיני, לא תוכנית תקיפה חדשה על אתר בריטי מסוים. הפוסט אינו נוקב בדבר בריטי מסוים." } },
 ];
 
+const MUNGER = [
+  { bias:"Availability-misweighing",
+    title:"The bilateral thread feels like the whole story",
+    mistake:"Twenty-four red rows and a 2.1-day mean gap after mid-August train the eye. What is on the page crowds out what is absent from it.",
+    fix:"Before predicting, list what the record does not capture. April drones and July jammers drew no logged Russian reply; the two 16 September statements have none yet; two candidates were dropped as second-hand.",
+    watch:"Surprise axis — Germany. While analysts map UK↔Russia, Berlin holds the EU sanctions veto, the Taurus decision, and the industrial base Moscow most needs to fracture. Leipzig airport attribution (August) and the dropped GRU drone near a Ukrainian cargo aircraft in Germany (27 Aug) sit off the bilateral spine." },
+  { bias:"Simple denial",
+    title:"Quiet read as intent for peace",
+    mistake:"The October 7 error: interpreting calm as a desire for quiet. Here: Moscow's 1 Sep \u201croutine departure\u201d after 23 Aug \u201cunprecedentedly low\u201d; Johnson's \u201crandom attack\u201d after a strike minutes behind his route.",
+    fix:"Grade words and acts separately. The page already does this for 1 Sep — apply the same rule to adversary reassurance.",
+    watch:"The next move may land when rhetoric turns conciliatory, not when threats peak. Train strikes and embassy withdrawals can pair with calming language." },
+  { bias:"Inconsistency-avoidance",
+    title:"Once the story is set, every row confirms it",
+    mistake:"Fedorov \u2192 Zakharova \u2192 Putin reads as a ladder. It may be three audiences hearing three messages on the same day.",
+    fix:"Ask what would falsify the thesis. Green rows (NATS fault, CIA in Moscow, New START lapse) are not noise — they may be the actual structural driver.",
+    watch:"Pivot to the Baltics or Turkey — NATO's seam, not Britain's. A strike 2 km from Poland pressures Washington and Berlin more than it unifies London." },
+  { bias:"Contrast misreaction",
+    title:"Late August compared to the scariest analogue available",
+    mistake:"Gap compression from 34 days to zero invites Cuban Missile Crisis or 1914 comparisons. The spring offensive gained ground at 1.2 km\u00b2/day — unchanged since February.",
+    fix:"Contrast with structural baselines inside the record, not with the most alarming historical template at hand.",
+    watch:"Hybrid harassment may continue while the ground war stays flat — cables, AIS handshakes, embassies. Two speeds, one conflict." },
+  { bias:"Authority-misinfluence",
+    title:"Rank of speaker mistaken for rank of threat",
+    mistake:"Putin's 2 Sep non-denial weighted heavily because of office. Anonymous Bloomberg Kremlin sources (26 Aug) treated as less authoritative — but both are messaging channels.",
+    fix:"Weight by verifiable act, not by title. Notified gunnery off Yorkshire is more informative than a presidential hypothetical.",
+    watch:"Rhetoric climbing the ladder without matching military posture change suggests audience management, not an imminent strike on British soil." },
+  { bias:"Social-proof tendency",
+    title:"The crowd and the timeline reinforce each other",
+    mistake:"Ten of sixteen post-15-Aug rows are Russian partly because observers log what they are primed to find after the Times disclosure.",
+    fix:"British moves with no logged reply (April drones, July jammers) — absence from the record is not absence of response.",
+    watch:"The concealed February drone campaign drew no logged Russian reply for months. The response may already be happening off-thread — in Germany, the Baltics, or the shadow fleet." },
+  { bias:"Deprival-superreaction",
+    title:"Assuming proportional response to marginal moves",
+    mistake:"Storm Shadow IP and jammer transfer look incremental. Adversaries often lash at symbols when they cannot recover what was lost — routes, ambiguity, parity.",
+    fix:"Ask what was taken that cannot be restored: sanctions-evasion corridors, embassy symmetry, strategic ambiguity.",
+    watch:"Shadow-fleet AIS swaps and diplomatic-train targeting are deprival plays — attacking symbols and routes, not defeating militaries head-on." },
+  { bias:"Lollapalooza tendency",
+    title:"Too many biases firing at once",
+    mistake:"Late August stacks disclosure, embassy warning, no ambassador, factory threat, Zakharova, Putin, AIS handshake, train strike. Combination periods carry the highest error rate.",
+    fix:"Separate threads before extrapolating. Count independent hypotheses, not rows.",
+    watch:"Do not project August linearly into autumn. After lollapalooza windows, outcomes often regress to structural drivers — treaty lapse, offensive stall, green rows." },
+  { bias:"Reward superresponse",
+    title:"Both sides assumed to want the same win",
+    mistake:"Britain optimizes for ally credibility; Russia for demonstrating NATO fracture at the lowest cost without triggering full war. Same timeline, different reward functions.",
+    fix:"Map each actor's incentive before predicting the next target. A strike that embarrasses Berlin may beat a strike that unifies London.",
+    watch:"Germany fracture remains higher expected value for Moscow than a direct UK military exchange — industrial sabotage, sanctions splits, or cyber on Mittelstand while the UK thread dominates headlines." },
+  { bias:"Use-it-or-lose-it",
+    title:"Structural clocks dismissed as background",
+    mistake:"New START lapse (Feb) and unannounced nuclear drill (May) code green because Britain is not named. Structural floors set risk even off the bilateral thread.",
+    fix:"Green rows are not decorative. Treaty expiry plus drill-without-notice change the bargaining baseline independently of embassy rows.",
+    watch:"Crisis bargaining may accelerate as strategic-force constraints erode — a driver separate from whether Britain is the named object this week." }
+];
+
+const MUNGER_HE = [
+  { bias:"הטיית זמינות",
+    title:"ציר דו-צדדי מרגיש כמו כל הסיפור",
+    mistake:"24 שורות אדומות ומרווח ממוצע של 2.1 ימים מאמצע אוגוסט מכוונים את העין. מה שעל הדף דוחק את מה שחסר ממנו.",
+    fix:"לפני תחזית, רשמו מה הרשומה לא תופסת. מזל״טים באפריל ומשבשים ביולי ללא תגובה רוסית מתועדת; לשתי ההצהרות של 16 בספטמבר אין תגובה עדיין; שני מועמדים הוסרו כמקור משני.",
+    watch:"ציר הפתעה — גרמניה. בזמן שאנליסטים ממפים בריטניה↔רוסיה, ברלין מחזיקה בוטו הסנקציות של האיחוד, בהחלטת Taurus, ובבסיס התעשייה שמוסקבה הכי צריכה לשבור. ייחוס לייפציג (אוגוסט) ורחפן GRU שנפל מהרשומה ליד מטוס אוקראיני בגרמניה (27 באוג') יושבים מחוץ לציר הדו-צדדי." },
+  { bias:"הכחשה פשוטה",
+    title:"שקט נקרא כרצון לשלום",
+    mistake:"טעות 7 באוקטובר: לפרש שקט כרצון לשקט. כאן: \u201dשגרתי\u201d של מוסקבה ב-1 בספט' אחרי \u201dנמוך מאי פעם\u201d ב-23 באוג'; \u201dתקיפה אקראית\u201d של ג'ונסון אחרי פגיעה דקות אחרי מסלולו.",
+    fix:"דרגו מילים ומעשים בנפרד. הדף כבר עושה זאת ב-1 בספט' — החילו אותו גם על הרגעה של יריב.",
+    watch:"המהלך הבא עלול לנחות כשהרטוריקה מתרככת, לא כשהאיומים בשיא. תקיפות רכבת ועזיבות שגרירות יכולות להיות יחד עם שפה מרגיעה." },
+  { bias:"הימנעות מחוסר עקביות",
+    title:"ברגע שהסיפור נקבע, כל שורה מאשרת אותו",
+    mistake:"פדורוב \u2192 זכרובה \u2192 פוטין נקרא סולם. ייתכן ששלושה קהלים שומעים שלושה מסרים באותו יום.",
+    fix:"שאלו מה יפריך את התזה. שורות ירוקות (תקלת NATS, CIA במוסקבה, פקיעת START) לא רעש — אולי הן המניע המבני.",
+    watch:"פיבוט לבלטיים או לטורקיה — תפר נאט\u201dו, לא בריטניה. תקיפה 2 ק\u201dמ מפולין לוחצת על וושינגטון וברלין יותר מאשר מאחדת לונדון." },
+  { bias:"תגובת ניגוד שגויה",
+    title:"אוגוסט המאוחר מושווה לדוגמה הכי מפחידה",
+    mistake:"דחיסת מרווחים מ-34 ימים לאפס מזמינה השוואות ל-1914 או למשבר הקובי. המתקפה האביבית התקדמה ב-1.2 קמ\u201dר ליום — ללא שינוי מאז פברואר.",
+    fix:"השוו לקווי בסיס מבניים בתוך הרשומה, לא לתבנית היסטורית הכי מלחיצה שזמינה.",
+    watch:"הטרדה היברידית עלולה להמשיך בזמן שהמלחמה הקרקעית שטוחה — כבלים, החלפות AIS, שגרירויות. שני קצבים, מלחמה אחת." },
+  { bias:"השפעת סמכות שגויה",
+    title:"דרג הדובר מבולבל עם דרג האיום",
+    mistake:"אי-שלילת פוטין ב-2 בספט' נשקלת כבד בגלל התפקיד. מקורות אנונימיים בבלומברג (26 באוג') פחות \u201dסמכותיים\u201d — אבל שניהם ערוצי מסר.",
+    fix:"שקלו לפי מעשה שניתן לאמת, לא לפי תואר. אימוני ירי מודיעים מול יורקשייר מלמדים יותר מהיפותטיקה נשיאית.",
+    watch:"רטוריקה שעולה בסולם ללא שינוי תנוחה צבאית תואם מרמזת על ניהול קהלים, לא על תקיפה מיידית באדמת בריטניה." },
+  { bias:"הוכחה חברתית",
+    title:"הקהל והציר מחזקים זה את זה",
+    mistake:"עשר משש-עשרה השורות מאמצע אוגוסט רוסיות חלקית כי צופים רושמים מה שהוכנו למצוא אחרי חשיפת הטיימס.",
+    fix:"מהלכים בריטיים ללא תגובה מתועדת (מזל\u201dטים באפריל, משבשים ביולי) — היעדר מהרשומה הוא לא היעדר תגובה.",
+    watch:"מערכת המזל\u201dטים החבויה מפברואר לא משכה תגובה רוסית מתועדת חודשים. התגובה כבר עלולה לקרות מחוץ לציר — בגרמניה, בבלטיים, או בצי הצללים." },
+  { bias:"תגובת-על לקיחה",
+    title:"הנחת תגובה פרופורציונלית לשינוי קטן",
+    mistake:"העברת IP של Storm Shadow והמשבשים נראים אינקרמנטליים. יריבים לעתים פוגעים בסמלים כשלא יכולים להחזיר מה שאבד — מסלולים, עמימות, שוויון.",
+    fix:"שאלו מה נלקח ולא ניתן להחזיר: מסדרונות עקיפת סנקציות, סימטריה דיפלומטית, עמימות אסטרטגית.",
+    watch:"החלפות AIS בצי הצללים ותקיפת רכבת דיפלומטית הם מעשי קיפוח — פגיעה בסמלים ובמסלולים, לא ניצחון צבאי ישיר." },
+  { bias:"לולאפלוזה",
+    title:"יותר מדי הטיות פועלות יחד",
+    mistake:"אוגוסט המאוחר אורג: חשיפה, אזהרת שגרירות, ללא שגריר, איום מפעלים, זכרובה, פוטין, AIS, תקיפת רכבת. חלונות שילוב נושאים את שיעור השגיאה הגבוה.",
+    fix:"הפרידו חוטים לפני הארכה. ספרו השערות עצמאיות, לא שורות.",
+    watch:"אל תקרו אוגוסט ליניארית לסתיו. אחרי חלונות לולאפלוזה, התוצאות לעתים חוזרות למניעים מבניים — פקיעת אמנה, עצירת מתקפה, שורות ירוקות." },
+  { bias:"תגובת-על לתגמול",
+    title:"שני הצדדים רוצים אותה ניצחון",
+    mistake:"בריטניה ממקסמת אמינות בקרב בעלות ברית; רוסיה ממחישה שברירת נאט\u201dו בעלות הנמוכה בלי מלחמה מלאה. אותו ציר, פונקציות תגמול שונות.",
+    fix:"מפו תמריץ לפני תחזית על המטרה הבאה. תקיפה שמביכה ברלין עשויה להכות תקיפה שמאחדת לונדון.",
+    watch:"שבר בגרמניה נשאר ערך צפוי גבוה יותר למוסקבה מעימות צבאית ישירה עם בריטניה — חבלה תעשייתית, פיצול סנקציות, או סייבר על Mittelstand בזמן שהציר הבריטי שולט בכותרות." },
+  { bias:"השתמש-או-אבד",
+    title:"שעונים מבניים מסווגים כרקע",
+    mistake:"פקיעת START החדשה (פבר') ותרגיל גרעיני ללא הודעה (מאי) ירוקים כי בריטניה לא נקובה. רצפות מבניות קובעות סיכון גם מחוץ לציר.",
+    fix:"שורות ירוקות לא קישוט. פקיעת אמנה + תרגיל ללא הודעה משנים קו בסיס מו״מ בלי קשר לשגרירויות.",
+    watch:"מו״מ משבר עלול להאיץ כשאילוצי כוח אסטרטגי נשחקים — מניע נפרד משאלה אם בריטניה היא המושא השבוע." }
+];
+
 const FLAGS = {
   uk: '<svg viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
     + '<rect width="60" height="30" fill="#012169"/>'
@@ -1463,10 +1747,19 @@ function currentTheme(){
   }
 }
 
+function syncLadderTheme(theme){
+  const frame = document.getElementById("ladderFrame");
+  if (!frame || !frame.contentWindow) return;
+  try {
+    frame.contentWindow.postMessage({type:"uk-ru-theme", theme: theme === "dark" ? "dark" : "light"}, "*");
+  } catch (e) {}
+}
+
 function applyTheme(theme){
   const next = theme === "dark" ? "dark" : "light";
   try { localStorage.setItem("uk-ru-theme", next); } catch (e) {}
   document.documentElement.setAttribute("data-theme", next);
+  syncLadderTheme(next);
   const btn = document.getElementById("btn-theme");
   if (btn) {
     const t = T[lang] || T.en;
@@ -1487,9 +1780,9 @@ function gapPalette(){
     strokeFrom:"#2a333d", strokeTo:"#c99f31",
     textFrom:"#7f8fa0", textTo:"#f0d68d"
   } : {
-    fillFrom:"#eceae4", fillTo:"#eeda9a",
-    strokeFrom:"#cfd3d7", strokeTo:"#b08a26",
-    textFrom:"#5d666f", textTo:"#6b4f05"
+    fillFrom:"#FBFBFA", fillTo:"#f3e4e4",
+    strokeFrom:"#D3D8DB", strokeTo:"#A76565",
+    textFrom:"#5C6873", textTo:"#761414"
   };
 }
 
@@ -1806,26 +2099,59 @@ function renderSelected(code){
   });
 }
 
+function renderMunger(code){
+  const t = T[code];
+  const cards = code === "he" ? MUNGER_HE : MUNGER;
+  set("mungerIntro", t.mungerIntro);
+  set("mungerGateTitle", t.mungerGateTitle);
+  set("mungerGateHint", t.mungerGateHint);
+  document.getElementById("munger-err").textContent = t.mungerGateErr;
+  document.getElementById("munger-submit").textContent = t.mungerGateSubmit;
+  document.getElementById("munger-cancel").textContent = t.mungerGateCancel;
+  document.getElementById("mungerGrid").innerHTML = cards.map(c =>
+    '<article class="munger-card">' +
+      '<p class="bias">' + c.bias + '</p>' +
+      '<h4>' + c.title + '</h4>' +
+      '<p>' + c.mistake + '</p>' +
+      '<p><b>' + t.mungerFix + ':</b> ' + c.fix + '</p>' +
+      '<p class="watch"><b>' + t.mungerWatch + ':</b> ' + c.watch + '</p>' +
+    '</article>'
+  ).join("");
+}
+
 function renderBands(code){
   const t = T[code];
   const view = currentView();
-  const titles = {domain: t.ovTitleDomain, danger: t.ovTitleDanger};
+  const titles = {domain: t.ovTitleDomain, danger: t.ovTitleDanger, munger: t.ovMunger, ladder: t.ovLadder};
   set("ovTitle", titles[view] || t.ovTitle);
   set("btn-view", t.infoBtn);
   set("tabKanban", t.ovKanban);
   set("tabOutline", t.ovOutline);
   set("tabDomain", t.ovDomain);
   set("tabDanger", t.ovDanger);
+  set("tabMunger", t.ovMunger);
+  set("tabLadder", t.ovLadder);
   [["btn-kanban", t.ovKanbanHint], ["btn-outline", t.ovOutlineHint],
-   ["btn-domain", t.ovDomainHint], ["btn-danger", t.ovDangerHint]].forEach(([id, hint]) => {
+   ["btn-domain", t.ovDomainHint], ["btn-danger", t.ovDangerHint],
+   ["btn-munger", t.ovMungerHint], ["btn-ladder", t.ovLadderHint]].forEach(([id, hint]) => {
     document.getElementById(id).setAttribute("title", hint);
   });
   document.querySelector(".viewtoggle").setAttribute("aria-label", t.ovViewLabel);
 
   const host = document.getElementById("bands");
+  const mungerPanel = document.getElementById("munger-panel");
+  const ladderPanel = document.getElementById("ladder-panel");
   const dangerView = view === "danger";
-  host.hidden = dangerView;
+  const mungerView = view === "munger";
+  const ladderView = view === "ladder";
+  host.hidden = dangerView || mungerView || ladderView;
   dangerPane.hidden = !dangerView;
+  mungerPanel.hidden = !mungerView;
+  ladderPanel.hidden = !ladderView;
+  if (mungerView || ladderView){
+    host.innerHTML = "";
+    return;
+  }
   if (dangerView){
     host.innerHTML = "";
     renderDanger(code);
@@ -1904,6 +2230,7 @@ function render(code){
   document.getElementById("btn-he").setAttribute("aria-pressed", code === "he");
   applyTheme(currentTheme());
 
+  renderMunger(code);
   renderBands(code);
 
   tl.innerHTML = "";
@@ -1970,7 +2297,17 @@ const btnKanban = document.getElementById("btn-kanban");
 const btnOutline = document.getElementById("btn-outline");
 const btnDomain = document.getElementById("btn-domain");
 const btnDanger = document.getElementById("btn-danger");
+const btnMunger = document.getElementById("btn-munger");
+const btnLadder = document.getElementById("btn-ladder");
+const ladderFrame = document.getElementById("ladderFrame");
+const mungerPanelEl = document.getElementById("munger-panel");
+const mungerGate = document.getElementById("munger-gate");
+const mungerModal = document.getElementById("munger-modal");
+const mungerCode = document.getElementById("munger-code");
+const mungerErr = document.getElementById("munger-err");
 const MOBILE_MQ = window.matchMedia("(max-width: 720px)");
+const MUNGER_KEY = "ukru-munger";
+const MUNGER_CODE = [5,6,1,9,4,8].join("");
 let viewOverride = null;
 let lang = "en";
 
@@ -1983,6 +2320,8 @@ function viewNote(){
   const view = currentView();
   if (view === "domain") return {title: t.ovTitleDomain, body: t.ovNoteDomain};
   if (view === "danger") return {title: t.ovTitleDanger, body: t.ovNoteDanger};
+  if (view === "munger") return {title: t.ovMunger, body: t.mungerIntro};
+  if (view === "ladder") return {title: t.ovLadder, body: t.ovLadderNote};
   return {title: t.ovTitle, body: t.ovNote};
 }
 
@@ -1990,22 +2329,77 @@ function currentView(){
   return viewOverride || defaultView();
 }
 
+function mungerUnlocked(){
+  return sessionStorage.getItem(MUNGER_KEY) === "1";
+}
+
+function openMungerGate(){
+  mungerCode.value = "";
+  mungerErr.hidden = true;
+  mungerGate.hidden = false;
+  mungerGate.classList.remove("is-open");
+  mungerModal.classList.remove("shake");
+  requestAnimationFrame(function(){ mungerGate.classList.add("is-open"); });
+  mungerCode.focus();
+}
+
+function closeMungerGate(){
+  mungerGate.classList.remove("is-open");
+  mungerCode.value = "";
+  mungerErr.hidden = true;
+  window.setTimeout(function(){
+    if (!mungerGate.classList.contains("is-open")) mungerGate.hidden = true;
+  }, 260);
+}
+
+function tryUnlockMunger(){
+  if (mungerCode.value === MUNGER_CODE){
+    sessionStorage.setItem(MUNGER_KEY, "1");
+    closeMungerGate();
+    viewOverride = "munger";
+    applyView();
+    return;
+  }
+  mungerErr.hidden = false;
+  mungerModal.classList.remove("shake");
+  void mungerModal.offsetWidth;
+  mungerModal.classList.add("shake");
+  mungerCode.select();
+}
+
+function requestMungerView(){
+  if (mungerUnlocked()){
+    viewOverride = "munger";
+    applyView();
+    return;
+  }
+  openMungerGate();
+}
+
 function applyView(){
   const view = currentView();
+  const isMunger = view === "munger";
+  const isLadder = view === "ladder";
   // Only stamp an override class when the user picked a tab.
   // With neither class, CSS media queries show exactly one default layout.
   overview.classList.toggle("layout-kanban", viewOverride === "kanban");
   overview.classList.toggle("layout-outline", viewOverride === "outline");
   overview.classList.toggle("layout-domain", viewOverride === "domain");
-  overview.classList.toggle("layout-danger", viewOverride === "danger");
+  overview.classList.toggle("layout-danger", viewOverride === "danger" || (!viewOverride && defaultView() === "danger"));
+  overview.classList.toggle("layout-munger", isMunger);
+  overview.classList.toggle("layout-ladder", isLadder);
   btnKanban.setAttribute("aria-pressed", view === "kanban" ? "true" : "false");
   btnOutline.setAttribute("aria-pressed", view === "outline" ? "true" : "false");
   btnDomain.setAttribute("aria-pressed", view === "domain" ? "true" : "false");
   btnDanger.setAttribute("aria-pressed", view === "danger" ? "true" : "false");
+  btnMunger.setAttribute("aria-pressed", isMunger ? "true" : "false");
+  btnLadder.setAttribute("aria-pressed", isLadder ? "true" : "false");
   btnKanban.setAttribute("aria-selected", view === "kanban" ? "true" : "false");
   btnOutline.setAttribute("aria-selected", view === "outline" ? "true" : "false");
   btnDomain.setAttribute("aria-selected", view === "domain" ? "true" : "false");
   btnDanger.setAttribute("aria-selected", view === "danger" ? "true" : "false");
+  btnMunger.setAttribute("aria-selected", isMunger ? "true" : "false");
+  btnLadder.setAttribute("aria-selected", isLadder ? "true" : "false");
   renderBands(lang);
 }
 
@@ -2013,6 +2407,17 @@ btnKanban.addEventListener("click", () => { viewOverride = "kanban"; applyView()
 btnOutline.addEventListener("click", () => { viewOverride = "outline"; applyView(); });
 btnDomain.addEventListener("click", () => { viewOverride = "domain"; applyView(); });
 btnDanger.addEventListener("click", () => { viewOverride = "danger"; applyView(); });
+btnMunger.addEventListener("click", requestMungerView);
+btnLadder.addEventListener("click", () => { viewOverride = "ladder"; applyView(); });
+document.getElementById("munger-submit").addEventListener("click", tryUnlockMunger);
+document.getElementById("munger-cancel").addEventListener("click", closeMungerGate);
+mungerCode.addEventListener("keydown", e => {
+  if (e.key === "Enter") tryUnlockMunger();
+  if (e.key === "Escape") closeMungerGate();
+});
+mungerGate.addEventListener("click", e => {
+  if (e.target === mungerGate) closeMungerGate();
+});
 dangerSlider.addEventListener("input", () => {
   stopPlay();
   dangerStep = +dangerSlider.value;

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function(){
+  try {
+    const t = localStorage.getItem("uk-ru-theme");
+    if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();
+</script>
+<title>Escalation ladder: UK–Russia against three wars</title>
+<!-- Layout and copy aligned to Claude artifact 43FX18mJY88DT5eWYzpFe1 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F3F1;--paper:#FBFBFA;--ink:#1D2630;--soft:#424e5a;--rule:#D3D8DB;--grid:#E3E7E9;
+  --l0:#B9C0C5;--l1:#8E98A1;--l2:#6F7D8A;--l3:#B98A8A;--l4:#A76565;--l5:#B8403B;--l6:#9E1F1F;--l7:#761414;--l8:#4E0B0B;
+  --t0:#1D2630;--focus:#2F6FB0;--ok:#2d6a4f;--warn:#9a7310;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161B20;--paper:#1C2228;--ink:#E4E7EA;--soft:#9AA5AF;--rule:#343D46;--grid:#262E36;
+  --l0:#4A535B;--l1:#6D7882;--l2:#8794A0;--l3:#C79A9A;--l4:#D07C7C;--l5:#E0574F;--l6:#F0433A;--l7:#FF6B5E;--l8:#FF9C90;--t0:#E4E7EA;--focus:#7FB2E5;--ok:#6bbf8a;--warn:#e0b64a}}
+:root[data-theme="dark"]{--bg:#161B20;--paper:#1C2228;--ink:#E4E7EA;--soft:#9AA5AF;--rule:#343D46;--grid:#262E36;
+  --l0:#4A535B;--l1:#6D7882;--l2:#8794A0;--l3:#C79A9A;--l4:#D07C7C;--l5:#E0574F;--l6:#F0433A;--l7:#FF6B5E;--l8:#FF9C90;--t0:#E4E7EA;--focus:#7FB2E5;--ok:#6bbf8a;--warn:#e0b64a}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 Archivo,system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums}
+/* Running text: 12px minimum */
+p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
+.detail .body, .detail .meta, .foot, .lane-foot, .lane-head .sub, .lane-head .stats,
+.ladder-seg, .ladder-seg .def, .dual-row, .dual-row .lab, .dual-row .pct, .bar-legend,
+.overlap-sub{font-size:max(12px, 1em)}
+main{max-width:1180px;margin:0 auto;padding:40px 20px 80px}
+h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;font-weight:600;line-height:1.15;margin:0}
+h1{font-size:clamp(30px,4.6vw,48px);max-width:22ch;letter-spacing:-.01em}
+h2{font-size:26px;margin-bottom:10px}
+h3{font-size:19px;margin:20px 0 8px}
+p{margin:0 0 12px;max-width:72ch;color:var(--soft)}
+.lede{font-size:18px;color:var(--soft);margin-top:14px;max-width:62ch}
+a{color:var(--focus)}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+section{margin-top:48px;padding-top:8px;border-top:1px solid var(--rule)}
+.topbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.topbar a{font-size:14px;font-weight:500;text-decoration:none}
+.theme-btn{border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--soft);cursor:pointer;padding:8px 14px;font-size:13px;font-weight:500}
+.ladder-note{font-size:15px;color:var(--soft);max-width:68ch;margin:12px 0 18px}
+.ladder-bar{display:grid;grid-template-columns:repeat(9,1fr);gap:2px;margin:16px 0 8px;border-radius:4px;overflow:hidden}
+.ladder-seg{padding:10px 6px 12px;font-size:12px;line-height:1.35;color:var(--ink);min-height:88px}
+.ladder-seg .num{font-weight:700;font-size:12px;display:block;margin-bottom:4px}
+.ladder-seg .ttl{font-weight:600;display:block;margin-bottom:2px}
+.ladder-seg .def{color:inherit;opacity:.92;font-size:12px;display:block;line-height:1.4}
+.ladder-seg[data-r="0"]{background:var(--l0);color:var(--ink)}
+.ladder-seg[data-r="0"] .def{color:#2f3a44;opacity:1}
+.ladder-seg[data-r="1"]{background:var(--l1);color:#fff}
+.ladder-seg[data-r="2"]{background:var(--l2);color:#fff}
+.ladder-seg[data-r="3"]{background:var(--l3);color:#fff}
+.ladder-seg[data-r="4"]{background:var(--l4);color:#fff}
+.ladder-seg[data-r="5"]{background:var(--l5);color:#fff}
+.ladder-seg[data-r="6"]{background:var(--l6);color:#fff}
+.ladder-seg[data-r="7"]{background:var(--l7);color:#fff}
+.ladder-seg[data-r="8"]{background:var(--l8);color:#fff}
+.ladder-seg[data-r="1"] .def,
+.ladder-seg[data-r="2"] .def,
+.ladder-seg[data-r="3"] .def,
+.ladder-seg[data-r="4"] .def,
+.ladder-seg[data-r="5"] .def,
+.ladder-seg[data-r="6"] .def,
+.ladder-seg[data-r="7"] .def,
+.ladder-seg[data-r="8"] .def{color:rgba(255,255,255,.94);opacity:1}
+@media(max-width:720px){.ladder-bar{grid-template-columns:1fr 1fr}.ladder-seg{min-height:auto}}
+.window-btns{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 12px}
+.window-btns button{border:1px solid var(--rule);background:var(--paper);color:var(--soft);padding:9px 16px;border-radius:4px;font-size:13px;font-weight:600;cursor:pointer}
+.window-btns button.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.controls{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 20px;margin:0 0 16px;font-size:14px;color:var(--soft)}
+.controls label{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+.controls input{accent-color:var(--focus);width:16px;height:16px}
+.hint{font-size:13px;color:var(--soft);margin:0 0 20px}
+.lane{border:1px solid var(--rule);border-radius:6px;background:var(--paper);margin:0 0 22px;overflow:hidden}
+.lane-head{padding:14px 16px 10px;border-bottom:1px solid var(--rule)}
+.lane-head .title{font-family:"Source Serif 4",Georgia,serif;font-weight:600;font-size:17px;margin:0 0 2px;color:var(--ink)}
+.lane-head .sub{font-size:12px;color:var(--soft);margin:0 0 8px}
+.lane-head .stats{font-size:12px;color:var(--soft);line-height:1.45;margin:0}
+.lane-chart{padding:4px 8px 8px;background:var(--paper)}
+.lane-chart svg{width:100%;height:auto;display:block}
+.lane-chart .tick{font-size:11px;fill:var(--ink);fill-opacity:.72;font-family:Archivo,sans-serif}
+.lane-chart .y-label{font-size:10px;fill:var(--ink);fill-opacity:.72;font-family:Archivo,sans-serif}
+.lane-chart .anchor-tag{font-size:12px;font-weight:600;fill:var(--ink);font-family:Archivo,sans-serif}
+.lane-chart .grid{stroke:var(--grid);stroke-width:1}
+.lane-chart .rung-band{opacity:.18}
+.lane-chart .area-fill{opacity:.35}
+.lane-chart .line{fill:none;stroke:var(--l2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.lane-chart .line-solid{stroke:var(--l2)}
+.lane-chart .line-dash{stroke:var(--l2);stroke-dasharray:6 4;opacity:.75}
+.lane-chart .pt{cursor:pointer;stroke-width:2;stroke:var(--paper)}
+.lane-chart .pt.conf{fill:var(--l5)}
+.lane-chart .pt.sus{stroke-dasharray:4 3;fill:var(--paper)!important;stroke:var(--l2)!important}
+.lane-chart .pt.hollow{fill:var(--paper)!important;stroke:var(--l0)!important;stroke-dasharray:4 3;opacity:.85}
+.lane-chart .pt:focus{outline:none}
+.lane-foot{padding:6px 16px 10px;font-size:12px;color:var(--soft)}
+.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px 24px;margin-top:16px}
+.compare-card h3{font-size:16px;margin:0 0 8px;color:var(--ink)}
+.compare-card p{font-size:14px;margin:0}
+.dual-section{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:20px;align-items:start}
+@media(max-width:900px){.dual-section{grid-template-columns:1fr}}
+.overlap-big{font-family:"Source Serif 4",Georgia,serif;font-size:clamp(36px,5vw,56px);font-weight:600;color:var(--ink);margin:8px 0 4px;line-height:1}
+.overlap-big span{font-variant-numeric:tabular-nums}
+.overlap-sub{font-size:15px;color:var(--soft);margin:0 0 16px;max-width:40ch}
+.bar-legend{display:flex;gap:16px;font-size:12px;color:var(--soft);margin-bottom:12px}
+.bar-legend i{display:inline-block;width:14px;height:8px;border-radius:2px;vertical-align:middle;margin-inline-end:6px}
+.bar-legend .uk{background:var(--l5)}.bar-legend .ua{background:var(--l1)}
+.dual-row{display:grid;grid-template-columns:96px 1fr;gap:10px;margin:10px 0;font-size:12px;color:var(--soft);align-items:center}
+.dual-row .lab{font-weight:600;color:var(--ink);font-size:12px;line-height:1.3}
+.dual-row .bars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dual-row .barcell{display:grid;grid-template-columns:1fr 36px;gap:6px;align-items:center}
+.dual-row .track{height:10px;background:var(--grid);border-radius:2px;overflow:hidden}
+.dual-row .track i{display:block;height:100%;border-radius:2px}
+.dual-row .track .uk{background:var(--l5)}.dual-row .track .ua{background:var(--l1)}
+.dual-row .pct{font-size:12px;text-align:end;color:var(--ink);font-weight:600}
+.sign-icon{display:inline-block;width:18px;font-weight:700;margin-inline-end:6px}
+.sign-icon.yes{color:var(--ok)}.sign-icon.sus{color:var(--soft);opacity:.7}
+.detail{margin:20px 0;padding:16px 18px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);min-height:56px}
+.detail b{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:17px;color:var(--ink);margin-bottom:6px}
+.detail .meta{font-size:12px;color:var(--soft);font-weight:500}
+.detail .body{font-size:14px;color:var(--soft);margin-top:8px;max-width:72ch}
+.signs{list-style:none;padding:0;margin:16px 0}
+.signs li{padding:12px 0;border-bottom:1px solid var(--rule);font-size:14px;color:var(--soft)}
+.signs li b{color:var(--ink);font-weight:600}
+.signs .tick-yes{color:var(--ok)}
+.signs .tick-no{color:var(--soft)}
+.signs .tick-sus{color:var(--warn)}
+.prose p{color:var(--soft)}
+.prose h3{color:var(--ink)}
+.foot{font-size:13px;color:var(--soft);margin-top:24px}
+html.embed .topbar{display:none}
+html.embed main{padding-top:16px;padding-bottom:48px}
+
+/* 12px floor on readable copy (must follow legacy sizes above) */
+p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
+.detail .body, .detail .meta, .foot, .lane-foot, .lane-head .sub, .lane-head .stats,
+.ladder-seg, .ladder-seg .num, .ladder-seg .def, .dual-row, .dual-row .lab, .dual-row .pct,
+.bar-legend, .overlap-sub, .lane-chart .tick, .lane-chart .y-label, .lane-chart .anchor-tag{
+  font-size:max(12px, 1em);
+}
+</style>
+</head>
+<body>
+<main>
+  <div class="topbar">
+    <a href="./uk-russia-merged-timeline.html">&larr; Timeline audit</a>
+    <button type="button" class="theme-btn" id="themeBtn">Theme</button>
+  </div>
+
+  <header>
+    <h1>Is the UK–Russia line climbing the same ladder that led to war?</h1>
+    <p class="lede">Every event is placed on one rung of an escalation ladder, from a headline to civilians harmed. The five lanes are lined up on the day war broke out, so you can compare the shape of the months before it. UK–Russia is lined up on today, because there is no outbreak to line it up on.</p>
+  </header>
+
+  <section>
+    <h2>The ladder</h2>
+    <p class="ladder-note">Your five labels are rungs 1, 4, 6, 7 and 8. I added diplomatic acts, explicit threats and proxy or covert strikes, because most of the UK–Russia record sits on exactly those rungs and would otherwise be lumped in with headlines.</p>
+    <div class="ladder-bar" id="ladderBar"></div>
+  </section>
+
+  <section>
+    <h2>Five lanes, one clock</h2>
+    <div class="window-btns" role="group" aria-label="Time window">
+      <button type="button" class="win active" data-xmin="-420">16 months</button>
+      <button type="button" class="win" data-xmin="-240">8 months</button>
+      <button type="button" class="win" data-xmin="-60">Final 60 days</button>
+    </div>
+    <div class="controls">
+      <label><input type="checkbox" id="showGreen"> Show UK–Russia rows with no direct link to Britain</label>
+    </div>
+    <p class="hint">Dashed rings and dashed lines mark suspected, unattributed events. Select any point for its detail.</p>
+
+    <div id="lanes"></div>
+
+    <div class="detail" id="detail" aria-live="polite">
+      <span class="meta">Select a point to see the event.</span>
+    </div>
+  </section>
+
+  <section class="prose">
+    <h2>What the comparison shows</h2>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h3>UK–Russia: confirmed rung 5, suspected rung 7</h3>
+        <p>The highest confirmed rung on the British line is 5: British-made drones striking Russia through Ukraine, and a Russian drone hitting a train in Ukraine just after Johnson left. No British and Russian forces have fired on each other. Since 15 August the line has moved into a dense band of explicit threats at rung 3, capped by Putin on 2 September. The two air-traffic failures on 8 and 21 September are plotted at rung 7 as suspected Russian hits. If that were confirmed, the line would skip rung 6 entirely and go straight from threats to civilian infrastructure, the grey-zone pattern that matches none of the other four lanes.</p>
+      </div>
+      <div class="compare-card">
+        <h3>Israel–Iran crossed rung 6 fourteen months early</h3>
+        <p>Before the June 2025 war, the two states had already exchanged direct fire three times in 2024. Direct strikes had become normal before the war itself. The UK–Russia line looks nothing like this lane: it has threats where Israel–Iran had strikes.</p>
+      </div>
+      <div class="compare-card">
+        <h3>Russia–Ukraine: Russia's own war came from posture, not threats</h3>
+        <p>The same actor, fourteen months out, climbed mostly on rung 4: two border build-ups, exercises in Belarus, ships into the Black Sea, then Western drawdowns. Explicit threats were rare, and the rung-2 "pullbacks" were deception. The last week added cyberattacks, a shelling spike and staged evacuations. UK–Russia today is the reverse: many threats, little force moved toward Britain.</p>
+      </div>
+      <div class="compare-card">
+        <h3>US–Iran is the closest shape, minus the tells</h3>
+        <p>Top-level threats, force posture and talks running side by side, much like UK–Russia since August. What changed in the final eleven days: staff drawn down from embassies, a round of talks cancelled, the president telling civilians to leave Tehran, and a public "two weeks" that turned out to be two days. The UK–Russia line has the threats. It does not yet have the drawdown, the forces moved against each other, or talks to cancel.</p>
+      </div>
+      <div class="compare-card">
+        <h3>Israel–Hamas is the warning about quiet lines</h3>
+        <p>The public record nine days before 7 October showed a de-escalation: Erez reopened and border riots stopped after Qatari mediation. The attack plan and the internal warnings never reached open sources. A flat or falling line is not proof of safety, and an OSINT timeline cannot see a deliberate surprise.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The two Russian lanes, side by side</h2>
+    <p>Russia toward Britain now, against Russia toward Ukraine in the fourteen months before the invasion. Both panels recalculate from the data, so daily updates move them.</p>
+    <div class="dual-section">
+      <div>
+        <p class="overlap-big"><span id="overlapPctNum">0</span>%</p>
+        <p class="overlap-sub">overlap in how often each rung appears</p>
+        <p>Similar on paper, different in substance. The same rung carries different acts: rung 4 in Ukraine was troops massing on the target; in the UK lane it is British arms transfers and Russian naval grey-zone activity. Confirmed events only.</p>
+        <div class="bar-legend"><span><i class="uk"></i>UK – Russia</span><span><i class="ua"></i>Russia – Ukraine 2021–22</span></div>
+        <div id="dualBars"></div>
+      </div>
+      <div>
+        <h2>Signs from the Ukraine lane</h2>
+        <p>A sign ticks when a confirmed UK–Russia event carries it. A dashed ring means only suspected events do.</p>
+        <ul class="signs" id="signsList"></ul>
+        <p><strong>Reading:</strong> the same vocabulary, different grammar. Toward Britain, Russia threatens loudly and moves little, which looks like a state warning off a supplier. Toward Ukraine it threatened rarely and moved a great deal, which looked like a state preparing an operation. Most steps up in the UK lane are British; Russia mostly answers in words.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="prose">
+    <h2>How this was coded, and its limits</h2>
+    <p>Each event takes the highest rung its content reaches. A threat stays at rung 3 whoever makes it; authority (a Kremlin adviser against Putin) is noted in the detail, not in the rung. A de-escalating act, such as a ceasefire or Moscow calling the ambassador's departure routine, is placed at rung 2, so the line drops.</p>
+    <p>Suspected events are placed at the rung they would reach if the suspicion were true, and drawn with dashed rings and dashed line segments. The two NATS failures are coded this way at your direction: no authority has attributed either to Russia, and for 8 September NATS and the government have said the evidence does not point to a cyberattack. The stats report confirmed and suspected separately.</p>
+    <p>The UK–Russia rows are the 33 events in your repository's merged timeline, plus the 21 September failure; the 8 September row was recoded from green to suspected. Rows your colour rule marks green (no direct link to Britain) are hidden by default and shown as hollow points at their natural rung when switched on. They never join the line.</p>
+    <p>The four historical lanes were compiled from widely reported events and carry no source links yet. They are a curated sample, not a complete record, so they do not meet your multi-outlet standard. Verify each row before publishing. The carrier and bomber dates in the US–Iran lane are checked against AP and CNN reporting.</p>
+    <p>Density is an artefact here too. Every lane crowds near its anchor because attention rose, the same observation effect your README flags. Compare the rungs reached, not the number of points.</p>
+    <p>The shapes suggest; they do not predict. Two nuclear-armed states, one inside NATO, do not escalate on the same terms as a state and a non-state group.</p>
+    <p class="foot">UK–Russia data: <a href="https://github.com/NadavRaviv/UK-Russia-escalation">github.com/NadavRaviv/UK-Russia-escalation</a>, merged timeline, 1 Feb – 21 Sep 2026. Anchor for that lane: 23 September 2026.</p>
+  </section>
+</main>
+
+<script>
+const RUNGS = [
+  {n:0, title:"No direct link", def:"Background; your green rows"},
+  {n:1, title:"Media / PR", def:"Headlines, speeches, disclosures"},
+  {n:2, title:"Diplomatic", def:"Expulsions, envoys, talks, ceasefires"},
+  {n:3, title:"Explicit threat", def:"A target or consequence is named, ultimatum"},
+  {n:4, title:"Army movement", def:"Deployments, drills, arms supply, drawdowns"},
+  {n:5, title:"Proxy or covert strike", def:"Through a third party, or concealed"},
+  {n:6, title:"Army targets army", def:"Direct fire between the two states"},
+  {n:7, title:"Civilian infrastructure hit", def:"Energy, transport, media, hospitals"},
+  {n:8, title:"Citizens harmed", def:"Civilian deaths or mass displacement"}
+];
+
+const UK_ANCHOR = "2026-09-23";
+const DAY = 86400000;
+
+/** UK–Russia: rung coding for ladder (direct + suspected + indirect). */
+const UK_EVENTS = [
+  {date:"2026-02-01", rung:5, indirect:true, title:"UK-made drones begin striking Russian refineries", detail:"Volgograd and Yaroslavl. Proxy/covert through Ukraine."},
+  {date:"2026-02-05", rung:0, indirect:true, title:"New START expires", detail:"American driver; no direct Britain link."},
+  {date:"2026-02-17", rung:0, indirect:true, title:"Oreshnik site defended in Belarus", detail:"European reach, not Britain-specific."},
+  {date:"2026-03-15", rung:0, indirect:true, title:"Spring–summer offensive opens", detail:"Ukraine ground war; no Britain as object."},
+  {date:"2026-03-30", rung:2, title:"Russia expels British diplomat", detail:"Diplomatic expulsion."},
+  {date:"2026-04-09", rung:4, title:"Submarine operation over UK cables exposed", detail:"Naval grey-zone posture; dated to disclosure."},
+  {date:"2026-04-15", rung:4, title:"£752m drone package for Ukraine", detail:"Arms supply."},
+  {date:"2026-04-30", rung:0, indirect:true, title:"Terror threat level SEVERE", detail:"Domestic JTAC; no Russia link stated."},
+  {date:"2026-05-13", rung:0, indirect:true, title:"Sarmat test; strategic systems messaging", detail:"Structural; Britain not named."},
+  {date:"2026-05-19", rung:0, indirect:true, title:"Unannounced nuclear exercise", detail:"Structural signal; Britain not named."},
+  {date:"2026-06-01", rung:5, title:"Moscow-area deep strikes intensify", detail:"Month-level; UK-enabled strikes via Ukraine."},
+  {date:"2026-06-16", rung:4, title:"Warning shots near British yacht, Channel", detail:"Naval friction; notified gunnery pattern."},
+  {date:"2026-07-20", rung:4, title:"Gunnery firings off UK and French coasts", detail:"Notified exercises outside territorial waters."},
+  {date:"2026-07-21", rung:2, title:"Ambassador Kelin leaves London", detail:"Diplomatic withdrawal signal."},
+  {date:"2026-07-27", rung:4, title:"Stone Cloak jammer IP to Ukraine", detail:"Arms/tech transfer."},
+  {date:"2026-08-06", rung:2, title:"UK–Ukraine defence talks", detail:"Diplomatic engagement."},
+  {date:"2026-08-14", rung:0, indirect:true, title:"Wildfire emergency alert", detail:"Domestic; not bilateral."},
+  {date:"2026-08-15", rung:1, title:"Sunday Times reveals drone campaign", detail:"Media disclosure."},
+  {date:"2026-08-17", rung:3, title:"London embassy warns of consequences", detail:"Explicit consequence for Britain."},
+  {date:"2026-08-23", rung:2, title:"No ambassador named in London", detail:"Diplomatic downgrade framing."},
+  {date:"2026-08-24", rung:4, title:"Storm Shadow production tech to Kyiv", detail:"Arms/industrial transfer."},
+  {date:"2026-08-24", rung:3, title:"Kremlin: Britain participating in the war", detail:"Named consequence/threat framing."},
+  {date:"2026-08-25", rung:3, title:"Kremlin adviser will not rule out UK factory strikes", detail:"Named objects on British soil."},
+  {date:"2026-08-25", rung:0, indirect:true, title:"CIA director in Moscow", detail:"US driver; green on timeline."},
+  {date:"2026-08-26", rung:3, title:"Kremlin sources: escalation coming", detail:"Threat posture via anonymous sources."},
+  {date:"2026-08-27", rung:3, title:"Zakharova: British military targets could be struck", detail:"Named military targets."},
+  {date:"2026-09-01", rung:2, title:"Moscow calls ambassador departure routine", detail:"De-escalating diplomatic framing; line drops."},
+  {date:"2026-09-02", rung:3, title:"Putin will not rule out British-linked site strikes", detail:"Explicit threat at presidential rank."},
+  {date:"2026-09-06", rung:4, title:"Shadow-fleet AIS handshakes off British Isles", detail:"Grey-zone naval activity."},
+  {date:"2026-09-08", rung:7, suspected:true, title:"NATS system fault grounds 150+ flights", detail:"Suspected rung 7 at direction of editor; not attributed to Russia in sources."},
+  {date:"2026-09-10", rung:5, title:"Swindon drone-factory sabotage offer", detail:"Covert/proxy plot on UK soil."},
+  {date:"2026-09-13", rung:5, title:"Drone hits train after Johnson's diplomatic movement", detail:"Proxy strike signal toward London."},
+  {date:"2026-09-16", rung:1, title:"CDS Knighton: crisis point under Russian aggression", detail:"British media/speech."},
+  {date:"2026-09-16", rung:1, title:"First Sea Lord Jenkins: Russia greatest threat", detail:"British media/speech."},
+  {date:"2026-09-21", rung:7, suspected:true, title:"Second NATS-related air-traffic disruption", detail:"Suspected infrastructure hit; not attributed in open sources."}
+];
+
+const LANES = [
+  {
+    id:"uk-ru",
+    name:"UK – Russia",
+    range:"Feb – Sep 2026 · anchored on today: no war",
+    anchor: UK_ANCHOR,
+    anchorLabel:"Today",
+    events: UK_EVENTS,
+    isUk: true
+  },
+  {
+    id:"ru-ua",
+    name:"Russia – Ukraine",
+    range:"Feb 2021 – Mar 2022 · anchored on the full-scale invasion, 24 Feb 2022",
+    anchor:"2022-02-24",
+    anchorLabel:"Invasion",
+    events:[
+      {date:"2021-02-26",rung:1,title:"Crimea troop rotations reported",detail:"Media coverage of force presence."},
+      {date:"2021-03-30",rung:4,title:"Forces gathering on Ukraine border",detail:"First major build-up signal."},
+      {date:"2021-04-22",rung:2,title:"Partial pullback announced",detail:"Deceptive diplomatic rung drop."},
+      {date:"2021-12-17",rung:3,title:"Draft treaties with NATO ultimatum demands",detail:"Formal ultimatum."},
+      {date:"2022-01-14",rung:5,title:"Attributed cyber on Ukrainian government sites",detail:"Covert/preparation."},
+      {date:"2022-01-17",rung:4,title:"Second border build-up intensifies",detail:"Army movement toward target."},
+      {date:"2022-01-23",rung:4,title:"Embassy staff drawdowns, leave-now advice",detail:"US/UK embassy reductions."},
+      {date:"2022-02-12",rung:4,title:"Further embassy drawdowns",detail:"Western staff exits."},
+      {date:"2022-02-15",rung:5,title:"Major cyberattack wave on Ukraine",detail:"Attributed cyber preparation."},
+      {date:"2022-02-17",rung:4,title:"Staged provocations / shelling spike",detail:"Pretext staging."},
+      {date:"2022-02-18",rung:4,title:"Staged evacuations from Donbas",detail:"Pretext staging."},
+      {date:"2022-02-23",rung:5,title:"Final cyber salvo before invasion",detail:"Attributed cyber."},
+      {date:"2022-02-23",rung:4,title:"Black Sea naval positioning",detail:"Force posture."},
+      {date:"2022-02-24",rung:6,title:"Full-scale invasion begins",detail:"Army targets army — anchor day."}
+    ]
+  },
+  {
+    id:"il-ir",
+    name:"Israel – Iran",
+    range:"Apr 2024 – Jun 2025 · anchored on Operation Rising Lion, 13 Jun 2025",
+    anchor:"2025-06-13",
+    anchorLabel:"War begins",
+    events:[
+      {date:"2024-04-01",rung:1,title:"Exchange of public threats after consulate strike",detail:"Media/diplomatic cycle."},
+      {date:"2024-04-13",rung:6,title:"Iran direct strike on Israel",detail:"Direct state-on-state fire."},
+      {date:"2024-07-31",rung:6,title:"Assassination spiral; Hezbollah/Iran responses",detail:"Direct strikes escalate."},
+      {date:"2024-10-01",rung:6,title:"Iran second direct salvo on Israel",detail:"Direct fire normalized pre-war."},
+      {date:"2025-04-01",rung:3,title:"Explicit threat cycle on nuclear sites",detail:"Named targets."},
+      {date:"2025-05-15",rung:4,title:"Force posture adjustments",detail:"Deployments and alerts."},
+      {date:"2025-06-01",rung:3,title:"Final threat statements",detail:"Explicit threats pre-anchor."},
+      {date:"2025-06-13",rung:6,title:"Operation Rising Lion opens",detail:"War anchor."}
+    ]
+  },
+  {
+    id:"us-ir",
+    name:"US – Iran",
+    range:"Feb – Jun 2025 · anchored on Operation Midnight Hammer, 22 Jun 2025",
+    anchor:"2025-06-22",
+    anchorLabel:"US strikes",
+    events:[
+      {date:"2025-02-01",rung:3,title:"Public threats over nuclear programme",detail:"Explicit rhetoric."},
+      {date:"2025-03-10",rung:4,title:"Carrier group movements",detail:"Posture — AP/CNN reporting."},
+      {date:"2025-04-05",rung:2,title:"Talks channel open",detail:"Diplomatic parallel track."},
+      {date:"2025-05-20",rung:4,title:"Bomber task force movements",detail:"Force posture."},
+      {date:"2025-06-11",rung:4,title:"Embassy drawdown / leave Tehran advice",detail:"Late tell."},
+      {date:"2025-06-12",rung:2,title:"Talks round cancelled",detail:"Diplomatic break."},
+      {date:"2025-06-18",rung:3,title:"Public two-week window rhetoric",detail:"Explicit timeline threat."},
+      {date:"2025-06-22",rung:5,title:"Operation Midnight Hammer strikes",detail:"Direct US strike anchor."}
+    ]
+  },
+  {
+    id:"il-hm",
+    name:"Israel – Hamas",
+    range:"Apr – Oct 2023 · anchored on 7 October 2023",
+    anchor:"2023-10-07",
+    anchorLabel:"7 October",
+    events:[
+      {date:"2023-04-01",rung:3,title:"Rocket cycles from Gaza",detail:"Threat/violence mix."},
+      {date:"2023-06-15",rung:2,title:"Qatari mediation pauses",detail:"Diplomatic quiet."},
+      {date:"2023-09-28",rung:2,title:"Erez reopening; riots stop",detail:"De-escalation in open sources."},
+      {date:"2023-10-07",rung:8,title:"7 October attack",detail:"Mass assault anchor — citizens harmed."}
+    ]
+  }
+];
+
+const SIGNS = [
+  {label:"Forces gathering against the target", uk:"not seen", ua:"30 Mar 2021, 17 Jan 2022"},
+  {label:"Embassy staff drawdowns or leave-now advice", uk:"not seen", ua:"23 Jan 2022, 12 Feb 2022"},
+  {label:"A formal ultimatum with demands", uk:"not seen", ua:"17 Dec 2021"},
+  {label:"Attributed cyberattacks", uk:"suspected only, 8 Sep 2026, 21 Sep 2026; not attributed", ua:"14 Jan 2022, 15 Feb 2022, 23 Feb 2022"},
+  {label:"Pretext staging: provocations, staged evacuations", uk:"not seen", ua:"17 Feb 2022, 18 Feb 2022"}
+];
+
+function parseDate(iso){ return new Date(iso + "T12:00:00Z"); }
+/** Days relative to anchor: 0 = anchor day, negative = before, positive = after. */
+function dayOffsetFromAnchor(iso, anchor){
+  return Math.round((parseDate(iso) - parseDate(anchor)) / DAY);
+}
+
+function laneStats(events, anchor, beforeAnchorOnly){
+  const anchorMs = parseDate(anchor).getTime();
+  const confirmed = events.filter(e => !e.suspected && (!beforeAnchorOnly || parseDate(e.date).getTime() < anchorMs));
+  const suspected = events.filter(e => e.suspected && parseDate(e.date).getTime() < anchorMs);
+  const lineEvs = confirmed.filter(e => !e.indirect && e.rung > 0);
+  const pre = lineEvs.filter(e => parseDate(e.date).getTime() < anchorMs);
+  const hiConf = pre.length ? Math.max(...pre.map(e => e.rung)) : 0;
+  const hiSus = suspected.length ? Math.max(...suspected.map(e => e.rung)) : 0;
+  const sixPlusConf = pre.filter(e => e.rung >= 6).length;
+  const sixPlusSus = suspected.filter(e => e.rung >= 6).length;
+  const cut = anchorMs - 60 * DAY;
+  const last60 = pre.filter(e => parseDate(e.date).getTime() >= cut);
+  const avg60 = last60.length ? (last60.reduce((s,e) => s + e.rung, 0) / last60.length).toFixed(1) : "—";
+  return {hiConf, hiSus, sixPlusConf, sixPlusSus, avg60};
+}
+
+function rungVar(n){ return "var(--l" + n + ")"; }
+
+let chartXMin = -420;
+
+function renderLadderBar(){
+  document.getElementById("ladderBar").innerHTML = RUNGS.map(r =>
+    `<div class="ladder-seg" data-r="${r.n}"><span class="num">${r.n}</span><span class="ttl">${r.title}</span><span class="def">${r.def}</span></div>`
+  ).join("");
+}
+
+function renderLane(lane, showGreen){
+  const stats = laneStats(lane.events, lane.anchor, true);
+  const hi = stats.hiSus > stats.hiConf
+    ? `${stats.hiConf} confirmed, ${stats.hiSus} with suspected`
+    : String(stats.hiConf);
+  const six = stats.sixPlusSus
+    ? `${stats.sixPlusConf} confirmed, ${stats.sixPlusSus} suspected`
+    : String(stats.sixPlusConf);
+  const statsLine = `Highest rung before anchor ${hi} &nbsp;&nbsp; Events at rung 6+ before anchor ${six} &nbsp;&nbsp; Average rung, last 60 days ${stats.avg60}`;
+
+  const W = 820, H = 280, padL = 108, padR = 56, padT = 14, padB = 28;
+  const xMin = chartXMin, xMax = 0;
+  const yMin = 0, yMax = 8;
+  const plotW = W - padL - padR;
+  const xScale = d => padL + ((d - xMin) / (xMax - xMin)) * plotW;
+  const yScale = r => padT + (1 - (r - yMin) / (yMax - yMin)) * (H - padT - padB);
+  const baseY = yScale(0);
+
+  const visible = lane.events.filter(e => {
+    const off = dayOffsetFromAnchor(e.date, lane.anchor);
+    if (off < xMin || off > xMax) return false;
+    if (lane.isUk && e.indirect && !showGreen) return false;
+    return true;
+  });
+
+  const lineEvents = visible
+    .filter(e => !e.indirect && e.rung > 0)
+    .sort((a,b) => parseDate(a.date) - parseDate(b.date) || a.rung - b.rung);
+
+  const pts = lineEvents.map(e => ({
+    x: xScale(dayOffsetFromAnchor(e.date, lane.anchor)),
+    y: yScale(e.rung),
+    sus: !!e.suspected
+  }));
+
+  let solidD = "";
+  let dashD = "";
+  let areaD = "";
+  if (pts.length) {
+    solidD = "M" + pts[0].x.toFixed(1) + "," + pts[0].y.toFixed(1);
+    for (let i = 1; i < pts.length; i++) {
+      const a = pts[i - 1];
+      const b = pts[i];
+      const seg = "M" + a.x.toFixed(1) + "," + a.y.toFixed(1) + "L" + b.x.toFixed(1) + "," + b.y.toFixed(1);
+      if (a.sus || b.sus) dashD += seg;
+      else solidD += "L" + b.x.toFixed(1) + "," + b.y.toFixed(1);
+    }
+    areaD = solidD + " L" + pts[pts.length - 1].x.toFixed(1) + "," + baseY.toFixed(1) +
+      " L" + pts[0].x.toFixed(1) + "," + baseY.toFixed(1) + " Z";
+  }
+
+  const grids = [];
+  grids.push(`<defs><linearGradient id="areaGrad-${lane.id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8A8A8"/><stop offset="100%" stop-color="#FBFBFA" stop-opacity="0"/></linearGradient></defs>`);
+  for (let r = 0; r <= 8; r++) {
+    const yTop = yScale(r + 0.5);
+    const yBot = yScale(r - 0.5);
+    const h = Math.max(yBot - yTop, 1);
+    grids.push(`<rect class="rung-band" x="${padL}" y="${yTop}" width="${plotW}" height="${h}" fill="${rungVar(r)}"/>`);
+  }
+  for (let r = 0; r <= 8; r++) {
+    const y = yScale(r);
+    grids.push(`<line class="grid" x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}"/>`);
+    const lab = RUNGS[r];
+    grids.push(`<text class="y-label" x="4" y="${y+2}">${r} ${lab.title}</text>`);
+  }
+  const xStep = chartXMin <= -240 ? 60 : 30;
+  for (let d = 0; d >= xMin; d -= xStep) {
+    const x = xScale(d);
+    grids.push(`<line class="grid" x1="${x}" y1="${padT}" x2="${x}" y2="${H-padB}"/>`);
+    grids.push(`<text class="tick" text-anchor="middle" x="${x}" y="${H-6}">${d===0?(lane.anchorLabel||"0"):d+"d"}</text>`);
+  }
+  grids.push(`<text class="anchor-tag" text-anchor="end" x="${W-8}" y="${padT+12}">${lane.anchorLabel}</text>`);
+
+  const dots = visible.map((e, idx) => {
+    const x = xScale(dayOffsetFromAnchor(e.date, lane.anchor));
+    const y = yScale(e.rung);
+    const cls = ["pt", e.suspected ? "sus" : "conf", e.indirect ? "hollow" : ""].filter(Boolean).join(" ");
+    const fill = e.indirect ? "var(--paper)" : (e.suspected ? "var(--paper)" : rungVar(Math.max(5, Math.min(8, e.rung))));
+    const stroke = e.indirect ? "var(--l0)" : (e.suspected ? "var(--l2)" : "var(--paper)");
+    return `<circle class="${cls}" cx="${x}" cy="${y}" r="6" fill="${fill}" stroke="${stroke}" tabindex="0" role="button" data-lane="${lane.id}" data-idx="${idx}" aria-label="${e.title}"/>`;
+  }).join("");
+
+  return `<article class="lane" data-lane-id="${lane.id}">
+    <div class="lane-head"><p class="title">${lane.name}</p><p class="sub">${lane.range}</p><p class="stats">${statsLine}</p></div>
+    <div class="lane-chart"><svg viewBox="0 0 ${W} ${H}" aria-hidden="false">${grids.join("")}${areaD?`<path class="area-fill" d="${areaD}" fill="url(#areaGrad-${lane.id})"/>`:""}<path class="line line-solid" d="${solidD}"/><path class="line line-dash" d="${dashD}"/>${dots}</svg></div>
+    <div class="lane-foot">Select a point to see the event.</div>
+  </article>`;
+}
+
+function showDetail(lane, ev){
+  const el = document.getElementById("detail");
+  if (!ev) { el.innerHTML = '<span class="meta">Select a point to see the event.</span>'; return; }
+  const sus = ev.suspected ? " · suspected" : "";
+  const ind = ev.indirect ? " · no direct UK link" : "";
+  el.innerHTML = `<b>${ev.title}</b><div class="meta">${ev.date} · rung ${ev.rung}${sus}${ind}</div><div class="body">${ev.detail || ""}</div>`;
+}
+
+function renderAll(){
+  const showGreen = document.getElementById("showGreen").checked;
+  document.getElementById("lanes").innerHTML = LANES.map(l => renderLane(l, showGreen)).join("");
+  bindPoints();
+}
+
+function bindPoints(){
+  document.querySelectorAll(".lane-chart circle[data-lane]").forEach(c => {
+    c.addEventListener("click", () => {
+      const lane = LANES.find(l => l.id === c.dataset.lane);
+      const showGreen = document.getElementById("showGreen").checked;
+      const visible = lane.events.filter(e => {
+        const off = dayOffsetFromAnchor(e.date, lane.anchor);
+        if (off < chartXMin || off > 0) return false;
+        if (lane.isUk && e.indirect && !showGreen) return false;
+        return true;
+      });
+      showDetail(lane, visible[+c.dataset.idx]);
+    });
+  });
+}
+
+function rungDistribution(events, anchor){
+  const anchorMs = parseDate(anchor).getTime();
+  const pre = events.filter(e => !e.suspected && !e.indirect && e.rung > 0 && parseDate(e.date).getTime() < anchorMs);
+  const counts = {};
+  pre.forEach(e => { counts[e.rung] = (counts[e.rung]||0) + 1; });
+  const total = pre.length || 1;
+  return [1,2,3,4,5,7].map(r => ({rung:r, pct: Math.round(((counts[r]||0)/total)*100)}));
+}
+
+function overlapPct(a, b){
+  const keys = [1,2,3,4,5,7];
+  let diff = 0;
+  keys.forEach(k => {
+    const pa = a.find(x => x.rung === k)?.pct || 0;
+    const pb = b.find(x => x.rung === k)?.pct || 0;
+    diff += Math.abs(pa - pb);
+  });
+  return Math.round(100 - diff / keys.length);
+}
+
+function renderDualBars(ukDist, uaDist){
+  const maxPct = 35;
+  document.getElementById("dualBars").innerHTML = [1,2,3,4,5,7].map(r => {
+    const lab = RUNGS.find(x => x.n === r);
+    const uk = ukDist.find(x => x.rung === r)?.pct ?? 0;
+    const ua = uaDist.find(x => x.rung === r)?.pct ?? 0;
+    const w = p => Math.round(Math.max(p / maxPct * 100, p ? 6 : 0));
+    return `<div class="dual-row"><span class="lab">${r} ${lab.title}</span><div class="bars">` +
+      `<div class="barcell"><div class="track"><i class="uk" style="width:${w(uk)}%"></i></div><span class="pct">${uk}%</span></div>` +
+      `<div class="barcell"><div class="track"><i class="ua" style="width:${w(ua)}%"></i></div><span class="pct">${ua}%</span></div>` +
+      `</div></div>`;
+  }).join("");
+}
+
+function renderSigns(){
+  document.getElementById("signsList").innerHTML = SIGNS.map(s => {
+    const sus = /suspected/i.test(s.uk);
+    const icon = sus ? `<span class="sign-icon sus" aria-hidden="true">○</span>` : `<span class="sign-icon yes" aria-hidden="true">✓</span>`;
+    const ukLine = sus ? s.uk : ("UK lane: " + s.uk + ".");
+    return `<li>${icon}<b>${s.label}</b><br>${ukLine}<br>Ukraine lane: ${s.ua}.</li>`;
+  }).join("");
+}
+
+document.querySelectorAll(".window-btns .win").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".window-btns .win").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    chartXMin = +btn.getAttribute("data-xmin");
+    renderAll();
+  });
+});
+document.getElementById("showGreen").addEventListener("change", renderAll);
+document.getElementById("themeBtn").addEventListener("click", () => {
+  const root = document.documentElement;
+  const cur = root.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : "dark";
+  root.setAttribute("data-theme", next);
+  try { localStorage.setItem("uk-ru-theme", next); } catch (e) {}
+});
+
+renderLadderBar();
+renderAll();
+const ukDist = rungDistribution(UK_EVENTS, UK_ANCHOR);
+const uaDist = rungDistribution(LANES[1].events, LANES[1].anchor);
+document.getElementById("overlapPctNum").textContent = String(overlapPct(ukDist, uaDist));
+renderDualBars(ukDist, uaDist);
+renderSigns();
+
+if (location.search.indexOf("embed=1") !== -1) {
+  document.documentElement.classList.add("embed");
+}
+window.addEventListener("message", function(ev){
+  if (ev.data && ev.data.type === "uk-ru-theme" && ev.data.theme) {
+    document.documentElement.setAttribute("data-theme", ev.data.theme);
+  }
+});
+</script>
+</body>
+</html>
