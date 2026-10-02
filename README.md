@@ -1,6 +1,6 @@
-# UK–Russia escalation timeline, Feb–Sep 2026
+# UK–Russia escalation timeline, Feb–Oct 2026
 
-An open-source-intelligence audit of 38 dated events on the British–Russian thread, presented as a single self-contained HTML page in English and Hebrew.
+An open-source-intelligence audit of 39 dated events on the British–Russian thread, presented as a single self-contained HTML page in English and Hebrew.
 
 The page exists to test a hypothesis, not to assert it: that British military involvement in Ukraine — in particular concealed drone strikes on Russian territory — forms part of an undisclosed shift in defence posture. Everything below is written so a reader can check that hypothesis against the record and find it wanting if it deserves to be.
 
@@ -28,15 +28,15 @@ If the workflow fails with a Pages permission error, re-enable Pages in Settings
 
 ## What is on the page
 
-**38 events**, 1 February to 29 September 2026. 24 Russian, 12 British or western, 2 third-party (both American). 35 distinct source domains; 13 rows carry two sources; 2 rows carry three; 1 row carries four; 1 row carries none.
+**39 events**, 1 February to 1 October 2026. 24 Russian, 13 British or western, 2 third-party (both American). 35 distinct source domains; 14 rows carry two sources; 2 rows carry three; 1 row carries four; 1 row carries none.
 
 Three encodings, deliberately kept separate:
 
 | Encoding | Carries | Values |
 |---|---|---|
 | Flag in the marker | Who acted | Union flag, Russian tricolour, Stars and Stripes |
-| Ring colour | Whether Britain is the named object | red (29 rows), green (9 rows) |
-| Band card | How directly Britain is named | four levels, 13 / 11 / 7 / 7 rows |
+| Ring colour | Whether Britain is the named object | red (30 rows), green (9 rows) |
+| Band card | How directly Britain is named | four levels, 13 / 12 / 7 / 7 rows |
 
 Reading two of them as one thing is the main way to misread the page.
 
@@ -55,7 +55,7 @@ Two earlier timelines fed this one and graded on different definitions. The Brit
 The one axis here that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — *not* how alarming the content is. The top band adds a second cut: the named object sits under a strike threat or a concealed act.
 
 1. **Britain not named** (13 rows, 1 Feb – 28 Sep) — background, structural, or deliberately concealed. The 27 July decree (No. 526, in force 1 August) and the 28 September decree sit here: each raises an authorised ceiling on the Russian armed forces, and neither names Britain.
-2. **Britain named, routine** (11 rows, 30 Mar – 26 Sep) — diplomatic and naval friction inside ordinary statecraft. Notified gunnery and diplomat rows stay here. So do the two 16 September British military-leadership statements, and the 26 September report of drone sightings over nuclear sites. That row names Britain and treats the sightings as surveillance friction: no strike target is declared, and the Russia link is an expert's view, not an official attribution.
+2. **Britain named, routine** (12 rows, 30 Mar – 1 Oct) — diplomatic and naval friction inside ordinary statecraft. Notified gunnery and diplomat rows stay here. So do the two 16 September British military-leadership statements, and the 26 September report of drone sightings over nuclear sites. That row names Britain and treats the sightings as surveillance friction: no strike target is declared, and the Russia link is an expert's view, not an official attribution. The 1 October sanctions package sits here as well: it names Russia, and the act is a legal measure rather than a strike threat.
 3. **A consequence is stated** (7 rows, 15 Aug – 29 Sep) — Britain is warned it will pay, nothing specific named as at risk. The 29 September post from the London embassy sits here: any British or NATO military action against Russian territory would be met with "all means... including nuclear weapons," and no British object is named.
 4. **A specific object, hostile or concealed** (7 rows, 9 Apr – 13 Sep) — a particular British thing is named as the object (a factory, a military site, a stretch of UK water, or a named person) and the act is a strike threat or concealment. The set is the 9 April submarine operation, the 25 August factory remark, the 27 August military-targets warning, Putin's 2 September refusal to rule British sites out, the 6 September AIS handshake, the 10 September Swindon sabotage charge, and the 13 September strike that Johnson's diplomatic train had just left.
 
