@@ -336,11 +336,17 @@
     padding-bottom:4px;
   }
   .overview:not(.layout-outline) .band{flex:1 1 0;min-width:210px;width:auto}
+  /* Five domain cards share the same row. A slightly lower floor keeps them
+     inside the 1180px wrap on a laptop; below that the row scrolls, as before. */
+  .overview.layout-domain .band{min-width:180px}
   .overview.layout-outline .bands{flex-direction:column;flex-wrap:nowrap;overflow:visible}
   .overview.layout-outline .band{flex:none;width:100%;min-width:0}
   @media (max-width: 720px){
     .overview:not(.layout-kanban):not(.layout-domain) .bands{flex-direction:column;overflow:visible}
     .overview:not(.layout-kanban):not(.layout-domain) .band{flex:none;width:100%;min-width:0}
+    /* Five domain cards do not fit a phone as a row. Stack them, full width. */
+    .overview.layout-domain .bands{flex-direction:column;flex-wrap:nowrap;overflow:visible}
+    .overview.layout-domain .band{flex:none;width:100%;min-width:0}
   }
 
   /* --- danger view --- */
@@ -890,11 +896,11 @@ const T = {
     ovTitle:"Bands · how directly Britain is named",
     ovNote:"A third axis, and the only one on this page that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — not how alarming its content is. The top band adds a second cut: the named object sits under a strike threat or a concealed act, so notified gunnery and diplomat rows stay routine. That is also why an unannounced nuclear exercise and an American trip to Moscow both sit in the first band. Flag and ring keep their meanings.",
     ovTitleDomain:"Domains · the kind of object in play",
-    ovNoteDomain:"War versus civil, infrastructure versus zone. War infra is army systems and the plants that make them. War zones are military geography — a front, a base, a stretch of water. Civil infra is the systems of ordinary life: airports, courts, energy plants. Civil zone is cities and diplomatic space. Nothing in this set is a strike on London buildings. Like the bands, this cut is a judgement. Flag and ring keep their meanings.",
+    ovNoteDomain:"War versus civil, infrastructure versus zone, and money as its own card. War infra is army systems and the plants that make them. War zones are military geography — a front, a base, a stretch of water. Civil infra is the systems of ordinary life: airports, courts, energy plants. Civil zone is cities and diplomatic space. Money and sanctions is packages, asset freezes, designations, enforcement, and other financial measures between Britain and Russia. Nothing in this set is a strike on London buildings. Like the bands, this cut is a judgement. Flag and ring keep their meanings.",
     ovViewLabel:"View",
     ovKanban:"Bands", ovKanbanHint:"how direct",
     ovOutline:"List", ovOutlineHint:"by date",
-    ovDomain:"Domain", ovDomainHint:"war / civil",
+    ovDomain:"Domain", ovDomainHint:"war / civil / money",
     ovDanger:"Danger", ovDangerHint:"signal strength",
     ovMunger:"Munger", ovMungerHint:"insights · locked",
     ovLadder:"Levels up/down", ovLadderHint:"escalation ladder · UK–Russia vs three wars",
@@ -926,7 +932,7 @@ const T = {
     playLabel:"Play through the dates", pauseLabel:"Pause",
     tlTitle:"Timeline", tlCount:"39 events · Feb – Oct 2026",
     footLine:"Thirty-nine rows, February to October 2026. Every row carries its source.",
-    metaFmt:(n,r,rng)=>n+" rows &nbsp;·&nbsp; "+rng+"<br>"+r,
+    metaFmt:(n,r,rng)=>(n===1?"1 row":n+" rows")+" &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
       {name:"Britain not named", def:"Background, structural, or deliberately concealed. Britain is not the object."},
       {name:"Britain named, routine", def:"Diplomatic and naval friction, inside the ordinary run of statecraft."},
@@ -937,7 +943,8 @@ const T = {
       {name:"War infra", def:"Army systems and the plants that make them — nuclear forces, drones, jammers, weapons production."},
       {name:"War zones", def:"War actions in a military geography: a front, a base, or a stretch of naval water."},
       {name:"Civil infra", def:"The systems of ordinary life: airports, courts, energy plants. The NATS outage and the Swindon court case sit here."},
-      {name:"Civil zone", def:"Civilian geography: cities, capitals, diplomatic space. No strike on London buildings is in this set."}
+      {name:"Civil zone", def:"Civilian geography: cities, capitals, diplomatic space. No strike on London buildings is in this set."},
+      {name:"Money & sanctions", def:"Sanctions packages, asset freezes, designations, enforcement, and other financial measures between Britain and Russia."}
     ],
     sides:{uk:"UK", ru:"RU", ot:"US"},
     ago:(n,soft)=>n===0?"today":n===1?"yesterday":(soft?"~":"")+n+"d ago",
@@ -970,11 +977,11 @@ const T = {
     ovTitle:"רמות · מידת הישירות שבה בריטניה נקובה",
     ovNote:"ציר שלישי, והיחיד בדף הזה שהוא שיפוט ולא עובדה מתועדת. המבחן הוא עד כמה בריטניה היא במפורש מושא האיתות — לא עד כמה תוכנו מדאיג. הרמה העליונה דורשת גם איום תקיפה או מעשה מוסתר, ולכן ירי שהודיעו עליו מראש ושורות דיפלומטיות נשארים ברמה השגרתית. לכן גם תרגיל גרעיני ללא הודעה וביקור אמריקאי במוסקבה יושבים שניהם ברמה הראשונה. הדגל והטבעת שומרים על משמעותם.",
     ovTitleDomain:"תחומים · סוג המושא",
-    ovNoteDomain:"מלחמה מול אזרחי, תשתיות מול זירה. תשתית מלחמה היא מערכות הצבא והמפעלים שמייצרים אותן. אזורי מלחמה הם גאוגרפיה צבאית — חזית, בסיס, מקטע מים. תשתית אזרחית היא מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה. אזור אזרחי הוא ערים ומרחב דיפלומטי. אין במערך תקיפה על בניינים בלונדון. כמו הרמות, גם החיתוך הזה הוא שיפוט. הדגל והטבעת שומרים על משמעותם.",
+    ovNoteDomain:"מלחמה מול אזרחי, תשתיות מול זירה, וכסף בכרטיס משלו. תשתית מלחמה היא מערכות הצבא והמפעלים שמייצרים אותן. אזורי מלחמה הם גאוגרפיה צבאית — חזית, בסיס, מקטע מים. תשתית אזרחית היא מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה. אזור אזרחי הוא ערים ומרחב דיפלומטי. כסף וסנקציות הוא חבילות, הקפאת נכסים, הכללה ברשימות, אכיפה, וצעדים כספיים אחרים בין בריטניה לרוסיה. אין במערך תקיפה על בניינים בלונדון. כמו הרמות, גם החיתוך הזה הוא שיפוט. הדגל והטבעת שומרים על משמעותם.",
     ovViewLabel:"תצוגה",
     ovKanban:"רמות", ovKanbanHint:"מידת הישירות",
     ovOutline:"רשימה", ovOutlineHint:"לפי תאריך",
-    ovDomain:"תחום", ovDomainHint:"מלחמה / אזרחי",
+    ovDomain:"תחום", ovDomainHint:"מלחמה / אזרחי / כסף",
     ovDanger:"סכנה", ovDangerHint:"עוצמת האיתות",
     ovMunger:"מאנגר", ovMungerHint:"תובנות · נעול",
     ovLadder:"רמות מעלה/מטה", ovLadderHint:"סולם הסלמה · בריטניה–רוסיה מול שלוש מלחמות",
@@ -1006,7 +1013,7 @@ const T = {
     playLabel:"הרצה על פני התאריכים", pauseLabel:"עצירה",
     tlTitle:"ציר הזמן", tlCount:"39 אירועים · פברואר–אוקטובר 2026",
     footLine:"שלושים ותשע שורות, פברואר עד אוקטובר 2026. לכל שורה מצורף מקור.",
-    metaFmt:(n,r,rng)=>n+" שורות &nbsp;·&nbsp; "+rng+"<br>"+r,
+    metaFmt:(n,r,rng)=>(n===1?"שורה אחת":n+" שורות")+" &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
       {name:"בריטניה אינה נקובה", def:"רקע, מהלך מבני, או פעולה שהוסתרה בכוונה. בריטניה אינה המושא."},
       {name:"בריטניה נקובה, שגרתי", def:"חיכוך דיפלומטי וימי, בתוך ההתנהלות המדינית הרגילה."},
@@ -1017,7 +1024,8 @@ const T = {
       {name:"תשתית מלחמה", def:"מערכות הצבא והמפעלים שמייצרים אותן — כוחות גרעין, מזל״טים, משבשים, ייצור נשק."},
       {name:"אזורי מלחמה", def:"פעולות מלחמה בגאוגרפיה צבאית: חזית, בסיס, או מקטע מים ימי."},
       {name:"תשתית אזרחית", def:"מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה. תקלת NATS ותיק סווינדון יושבים כאן."},
-      {name:"אזור אזרחי", def:"גאוגרפיה אזרחית: ערים, בירות, מרחב דיפלומטי. אין במערך תקיפה על בניינים בלונדון."}
+      {name:"אזור אזרחי", def:"גאוגרפיה אזרחית: ערים, בירות, מרחב דיפלומטי. אין במערך תקיפה על בניינים בלונדון."},
+      {name:"כסף וסנקציות", def:"חבילות סנקציות, הקפאת נכסים, הכללה ברשימות, אכיפה, וצעדים כספיים אחרים בין בריטניה לרוסיה."}
     ],
     sides:{uk:"בריטניה", ru:"רוסיה", ot:"ארה\u201db"},
     ago:(n,soft)=>n===0?"היום":n===1?"אתמול":(!soft&&n===2)?"לפני יומיים":"לפני "+(soft?"~":"")+n+" ימים",
@@ -1599,7 +1607,7 @@ const EVENTS = [
 
   { date:"2026-10-01", side:"uk", rag:"r",
     band:2,
-    domain:4,
+    domain:5,
     danger:3, impact:4,
     sources:[
       {url:"https://www.gov.uk/government/news/new-uk-sanctions-target-kremlin-war-chest-propagandists-and-torturers", label:"GOV.UK"},
@@ -2185,14 +2193,18 @@ function renderBands(code){
     const split = [ru + " " + t.sides.ru, uk + " " + t.sides.uk]
       .concat(ot ? [ot + " " + t.sides.ot] : []).join(" / ");
     const range = rows.length
-      ? shortDate(rows[0].date, t, rows[0].approx) + " – " + shortDate(rows[rows.length - 1].date, t, rows[rows.length - 1].approx)
+      ? (() => {
+          const a = shortDate(rows[0].date, t, rows[0].approx);
+          const b = shortDate(rows[rows.length - 1].date, t, rows[rows.length - 1].approx);
+          return a === b ? a : a + " – " + b;
+        })()
       : "";
 
     const card = document.createElement("div");
     card.className = "band";
     card.innerHTML =
-      '<div class="meter"><i style="width:' + ((bi + 1) * 25) + '%"></i></div>' +
-      '<span class="num">' + (bi + 1) + ' / 4</span>' +
+      '<div class="meter"><i style="width:' + ((bi + 1) / cards.length * 100) + '%"></i></div>' +
+      '<span class="num">' + (bi + 1) + ' / ' + cards.length + '</span>' +
       '<h4>' + b.name + '</h4>' +
       '<p class="def">' + b.def + '</p>' +
       '<div class="meta">' + t.metaFmt(rows.length, split, range) + '</div>' +
