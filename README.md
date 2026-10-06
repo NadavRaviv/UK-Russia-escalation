@@ -63,6 +63,16 @@ The consequence of defining bands this way: an unannounced Russian nuclear exerc
 
 Note also that bands 2, 3 and 4 are entirely red and band 1 holds all nine green rows, plus four red ones. The band axis and the colour axis are measuring closely related things, so the bands add less independent information than four separate cards imply.
 
+## The domains
+
+A separate judgement from the bands: what kind of object is in play. Five cards. The test is the main subject of the row. A price tag on a weapons transfer, or a sanctions motive attached to an act at sea, stays on the card for that act.
+
+1. **War infra** (11 rows, 5 Feb – 16 Sep) — army systems and the plants that make them. 5 Russian, 5 British, 1 American.
+2. **War zones** (14 rows, 17 Feb – 28 Sep) — military geography: a front, a base, a stretch of water. 11 Russian, 2 British, 1 American. The 6 September AIS handshake stays here: the logged act is the identity swap off the British Isles.
+3. **Civil infra** (4 rows, ~1 Feb – 10 Sep) — airports, courts, energy plants. 1 Russian, 3 British. The February refinery strikes, the NATS outage and the Swindon court case sit here.
+4. **Civil zone** (9 rows, 30 Mar – 29 Sep) — cities and diplomatic space. 7 Russian, 2 British. No strike on London buildings is in this set.
+5. **Money & sanctions** (1 row, 1 Oct) — sanctions packages, asset freezes, designations, enforcement, and other financial measures between Britain and Russia. The only row is the Foreign Office package of 31 measures. 1 British.
+
 ## Sourcing standard
 
 - **Verifiability over completeness.** Claims that could not be confirmed were dropped rather than kept with a caveat.
@@ -107,7 +117,7 @@ Kept visible rather than silently resolved:
 
 ## Editing
 
-Everything is in the one file. Events live in the `EVENTS` array; each row carries `date`, optional `approx`, `side` (`uk` / `ru` / `ot`), `rag` (`r` / `g`), `band` (1–4), a `sources` array, and `en` / `he` objects holding `label`, `short`, `title` and `why`.
+Everything is in the one file. Events live in the `EVENTS` array; each row carries `date`, optional `approx`, `side` (`uk` / `ru` / `ot`), `rag` (`r` / `g`), `band` (1–4), `domain` (1–5), a `sources` array, and `en` / `he` objects holding `label`, `short`, `title` and `why`.
 
 Statistics in the summary panel — mean gaps, counts, side split, band totals — are **hard-coded strings**, not computed. Adding or removing a row means recomputing them by hand or they will quietly go wrong.
 
