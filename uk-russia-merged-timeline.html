@@ -627,6 +627,7 @@
     font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:var(--soft);line-height:1.5;
     border-top:1px solid var(--rule);padding-top:7px;margin-bottom:4px;
   }
+  .band .meta .rng{white-space:nowrap}
   body[dir="rtl"] .band .meta,body[dir="rtl"] .band .num{letter-spacing:0;font-family:'Heebo',var(--sans);font-size:10.5px}
   .ev{display:flex;gap:6px;align-items:flex-start;padding:4px 0;border-top:1px solid rgba(148,163,184,0.07)}
   .ev:first-of-type{border-top:0}
@@ -964,7 +965,7 @@ const T = {
     k2d:"<b>אין קשר ישיר — טבעת מקווקוות.</b> הגורם המתועד נמצא במקום אחר — אוקראינה בכללותה, נאט\u201dו, וושינגטון או זירה פנימית. כל קשר בריטי הוא הסקה ולא אמירה.",
     f1:'בריטניה / המערב <em class="count">13</em>', f1d:"<b>מהלך בריטי או מערבי.</b> דגל בריטניה, ונקודה כחולה בתרשים הסכנה.",
     f2:'רוסיה <em class="count">24</em>', f2d:"<b>מהלך או הצהרה רוסיים.</b> דגל רוסיה, ונקודה אדומה בתרשים הסכנה. לאדום אין משמעות אחרת בדף הזה.",
-    f3:'ארה\u201db <em class="count">2</em>', f3d:"<b>צד שלישי — 2 אירועים אמריקאיים.</b> פקיעת ניו סטארט ב-5 בפברואר, וביקור ראש ה-CIA במוסקבה ב-25 באוגוסט.",
+    f3:'ארה\u05f4\u05d1 <em class="count">2</em>', f3d:"<b>צד שלישי — 2 אירועים אמריקאיים.</b> פקיעת ניו סטארט ב-5 בפברואר, וביקור ראש ה-CIA במוסקבה ב-25 באוגוסט.",
     unit:" ימים",
     s1:"מרווח ממוצע עד 15 באוג׳", s2:"מרווח ממוצע מ-15 באוג׳",
     s3:"מהארוך ביותר לקצר", s4:"רוסיה / בריטניה / אחר",
@@ -977,7 +978,7 @@ const T = {
     ovTitle:"רמות · מידת הישירות שבה בריטניה נקובה",
     ovNote:"ציר שלישי, והיחיד בדף הזה שהוא שיפוט ולא עובדה מתועדת. המבחן הוא עד כמה בריטניה היא במפורש מושא האיתות — לא עד כמה תוכנו מדאיג. הרמה העליונה דורשת גם איום תקיפה או מעשה מוסתר, ולכן ירי שהודיעו עליו מראש ושורות דיפלומטיות נשארים ברמה השגרתית. לכן גם תרגיל גרעיני ללא הודעה וביקור אמריקאי במוסקבה יושבים שניהם ברמה הראשונה. הדגל והטבעת שומרים על משמעותם.",
     ovTitleDomain:"תחומים · סוג המושא",
-    ovNoteDomain:"מלחמה מול אזרחי, תשתיות מול זירה, וכסף בכרטיס משלו. תשתית מלחמה היא מערכות הצבא והמפעלים שמייצרים אותן. אזורי מלחמה הם גאוגרפיה צבאית — חזית, בסיס, מקטע מים. תשתית אזרחית היא מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה. אזור אזרחי הוא ערים ומרחב דיפלומטי. כסף וסנקציות הוא חבילות, הקפאת נכסים, הכללה ברשימות, אכיפה, וצעדים כספיים אחרים בין בריטניה לרוסיה. אין במערך תקיפה על בניינים בלונדון. כמו הרמות, גם החיתוך הזה הוא שיפוט. הדגל והטבעת שומרים על משמעותם.",
+    ovNoteDomain:"מלחמה מול אזרחי, תשתיות מול זירה, וכסף בכרטיס משלו. תשתית מלחמה היא מערכות הצבא והמפעלים שמייצרים אותן. אזורי מלחמה הם גאוגרפיה צבאית — חזית, בסיס, מקטע מים. תשתית אזרחית היא מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה. אזור אזרחי הוא ערים ומרחב דיפלומטי. כסף וסנקציות הם חבילות, הקפאת נכסים, הכללה ברשימות, אכיפה, וצעדים כספיים אחרים בין בריטניה לרוסיה. אין במערך תקיפה על בניינים בלונדון. כמו הרמות, גם החיתוך הזה הוא שיפוט. הדגל והטבעת שומרים על משמעותם.",
     ovViewLabel:"תצוגה",
     ovKanban:"רמות", ovKanbanHint:"מידת הישירות",
     ovOutline:"רשימה", ovOutlineHint:"לפי תאריך",
@@ -1027,7 +1028,7 @@ const T = {
       {name:"אזור אזרחי", def:"גאוגרפיה אזרחית: ערים, בירות, מרחב דיפלומטי. אין במערך תקיפה על בניינים בלונדון."},
       {name:"כסף וסנקציות", def:"חבילות סנקציות, הקפאת נכסים, הכללה ברשימות, אכיפה, וצעדים כספיים אחרים בין בריטניה לרוסיה."}
     ],
-    sides:{uk:"בריטניה", ru:"רוסיה", ot:"ארה\u201db"},
+    sides:{uk:"בריטניה", ru:"רוסיה", ot:"ארה\u05f4\u05d1"},
     ago:(n,soft)=>n===0?"היום":n===1?"אתמול":(!soft&&n===2)?"לפני יומיים":"לפני "+(soft?"~":"")+n+" ימים",
     whyBtn:"פירוט", whyClose:"סגור", whyKicker:"הערה",
     themeToDark:"מעבר לערכת נושא כהה",
@@ -1625,7 +1626,7 @@ const EVENTS = [
 const MUNGER = [
   { bias:"Availability-misweighing",
     title:"The bilateral thread feels like the whole story",
-    mistake:"Twenty-four red rows and a 2.4-day mean gap after mid-August train the eye. What is on the page crowds out what is absent from it.",
+    mistake:"Nineteen red rows and a 2.4-day mean gap from 15 August train the eye. What is on the page crowds out what is absent from it.",
     fix:"Before predicting, list what the record does not capture. April drones and July jammers drew no logged Russian reply; the two 16 September statements have none yet; two candidates were dropped as second-hand.",
     watch:"Surprise axis — Germany. While analysts map UK↔Russia, Berlin holds the EU sanctions veto, the Taurus decision, and the industrial base Moscow most needs to fracture. Leipzig airport attribution (August) and the dropped GRU drone near a Ukrainian cargo aircraft in Germany (27 Aug) sit off the bilateral spine." },
   { bias:"Simple denial",
@@ -1678,7 +1679,7 @@ const MUNGER = [
 const MUNGER_HE = [
   { bias:"הטיית זמינות",
     title:"ציר דו-צדדי מרגיש כמו כל הסיפור",
-    mistake:"24 שורות אדומות ומרווח ממוצע של 2.4 ימים מאמצע אוגוסט מכוונים את העין. מה שעל הדף דוחק את מה שחסר ממנו.",
+    mistake:"19 שורות אדומות ומרווח ממוצע של 2.4 ימים מ-15 באוגוסט מכוונים את העין. מה שעל הדף דוחק את מה שחסר ממנו.",
     fix:"לפני תחזית, רשמו מה הרשומה לא תופסת. מזל״טים באפריל ומשבשים ביולי ללא תגובה רוסית מתועדת; לשתי ההצהרות של 16 בספטמבר אין תגובה עדיין; שני מועמדים הוסרו כמקור משני.",
     watch:"ציר הפתעה — גרמניה. בזמן שאנליסטים ממפים בריטניה↔רוסיה, ברלין מחזיקה בוטו הסנקציות של האיחוד, בהחלטת Taurus, ובבסיס התעשייה שמוסקבה הכי צריכה לשבור. ייחוס לייפציג (אוגוסט) ורחפן GRU שנפל מהרשומה ליד מטוס אוקראיני בגרמניה (27 באוג') יושבים מחוץ לציר הדו-צדדי." },
   { bias:"הכחשה פשוטה",
@@ -1814,7 +1815,8 @@ const set = (id, html) => { document.getElementById(id).innerHTML = html; };
 
 function shortDate(iso, t, approx){
   const d = new Date(iso);
-  return (approx ? "~" : "") + d.getUTCDate() + " " + t.months[d.getUTCMonth()];
+  // Non-breaking spaces keep a date from wrapping between the day and the month.
+  return (approx ? "~\u00a0" : "") + d.getUTCDate() + "\u00a0" + t.months[d.getUTCMonth()];
 }
 
 function sourceHtml(e, code){
@@ -2196,7 +2198,8 @@ function renderBands(code){
       ? (() => {
           const a = shortDate(rows[0].date, t, rows[0].approx);
           const b = shortDate(rows[rows.length - 1].date, t, rows[rows.length - 1].approx);
-          return a === b ? a : a + " – " + b;
+          const text = a === b ? a : a + "\u00a0–\u00a0" + b;
+          return '<span class="rng">' + text + '</span>';
         })()
       : "";
 
