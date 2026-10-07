@@ -1,0 +1,29 @@
+---
+description: Hallmark anti-slop design — use for all UI, layout, typography, and page builds in this repo.
+alwaysApply: true
+---
+
+# Hallmark (project default)
+
+For **any** UI work in this repository — new pages, layout, typography, spacing, components, redesigns, or visual polish — **read and follow** `.agents/skills/hallmark/SKILL.md` before writing CSS or HTML. Load reference files from `.agents/skills/hallmark/references/` when the skill points to them (typography, layout-and-space, slop-test, anti-patterns, etc.).
+
+## Verbs
+
+| User intent | Action |
+| --- | --- |
+| Build or polish UI (default) | Hallmark design flow + slop test |
+| `hallmark audit …` | Score only; do not edit |
+| `hallmark redesign …` | Restructure visuals; keep copy and IA |
+| `hallmark study …` | Extract DNA from URL or screenshot |
+
+## This app’s locked tokens
+
+UK–Russia audit pages share **`uk-russia-tokens.css`**. New or edited pages in this project must use those CSS variables (type scale, spacing, fonts) — do not invent one-off px font sizes or a second token file unless the user asks to replace the system.
+
+## Safety
+
+Hallmark is not a license to delete routes or production files. Prefer in-place edits and additive tokens. State files to touch before large visual changes.
+
+## Other repositories
+
+Re-run `npx skills add nutlope/hallmark` in each repo (or copy `.agents/skills/hallmark` + this rule pattern) so Hallmark stays available everywhere you work.
