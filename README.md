@@ -4,9 +4,19 @@ An open-source-intelligence audit of 39 dated events on the British–Russian th
 
 The page exists to test a hypothesis, not to assert it: that British military involvement in Ukraine — in particular concealed drone strikes on Russian territory — forms part of an undisclosed shift in defence posture. Everything below is written so a reader can check that hypothesis against the record and find it wanting if it deserves to be.
 
-## Design & animation skills
+## Design skills (Hallmark + motion)
 
-This repo includes [Emil Kowalski’s agent skills](https://github.com/emilkowalski/skills) under `.agents/skills/` (design engineering, `animate`, animation review, and related skills). Refresh them with:
+**[Hallmark](https://github.com/Nutlope/hallmark)** is the default design skill for this repo (layout, typography, anti-slop UI). Cursor loads it via `.cursor/rules/hallmark-design.mdc`. UK–Russia pages share tokens in `uk-russia-tokens.css`.
+
+Install or refresh Hallmark:
+
+```bash
+npx skills add nutlope/hallmark
+```
+
+Use the same command in **other repositories** where you want Hallmark; copy `.cursor/rules/hallmark-design.mdc` (or adapt it) so agents always read `.agents/skills/hallmark/SKILL.md` before UI work.
+
+This repo also includes [Emil Kowalski’s agent skills](https://github.com/emilkowalski/skills) under `.agents/skills/` (design engineering, `animate`, animation review). Refresh them with:
 
 ```bash
 npx skills@latest add emilkowalski/skills
@@ -16,9 +26,21 @@ npx skills@latest add emilkowalski/skills
 
 Open `uk-russia-merged-timeline.html` in a browser. There is no build step and no dependency beyond Google Fonts, loaded from a CDN — so the page needs network access for its typefaces, and every visitor makes a request to Google. Self-host the fonts or swap in a system stack if that matters for your deployment.
 
+## Netlify deploy
+
+`netlify.toml` publishes the repo root (static HTML, no build). Link once, then deploy:
+
+```bash
+npx netlify login
+npx netlify link --git-remote-url https://github.com/NadavRaviv/UK-Russia-escalation
+npx netlify deploy --prod
+```
+
+If the site is connected to Git in the Netlify dashboard, pushes to `main` can also trigger automatic production deploys.
+
 ## GitHub Pages deploy
 
-Pushes to `main` run `.github/workflows/pages.yml` and publish the static site.
+Pushes to `main` run `.github/workflows/pages.yml` and publish the static site (includes `uk-russia-tokens.css`).
 
 **One-time setup (repo owner):** GitHub → **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
