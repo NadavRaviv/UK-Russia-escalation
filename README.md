@@ -36,7 +36,9 @@ npx netlify link --git-remote-url https://github.com/NadavRaviv/UK-Russia-escala
 npx netlify deploy --prod
 ```
 
-If the site is connected to Git in the Netlify dashboard, pushes to `main` can also trigger automatic production deploys.
+**GitHub Actions:** add repository secrets `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID`, then pushes to `main` run `.github/workflows/netlify.yml` (same static publish as `netlify.toml`).
+
+If the site is connected to Git in the Netlify dashboard, pushes to `main` can also trigger automatic production deploys without the workflow.
 
 ## GitHub Pages deploy
 
