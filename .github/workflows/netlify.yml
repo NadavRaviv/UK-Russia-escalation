@@ -6,8 +6,7 @@
 name: Deploy Netlify
 
 on:
-  push:
-    branches: [main]
+  # Enable `push: branches: [main]` after adding NETLIFY_AUTH_TOKEN + NETLIFY_SITE_ID repo secrets.
   workflow_dispatch:
 
 jobs:
