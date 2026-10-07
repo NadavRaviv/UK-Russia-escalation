@@ -1,0 +1,35 @@
+/* Hallmark · editorial · design-system: uk-russia-tokens.css · UK–Russia audit UI */
+:root {
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body: Archivo, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-he: Heebo, var(--font-body);
+
+  /* Major third (1.25) — one ratio for the whole site */
+  --text-xs: 0.75rem;       /* 12px labels */
+  --text-sm: 0.8125rem;     /* 13px UI */
+  --text-base: 0.9375rem;   /* 15px body */
+  --text-md: 1rem;          /* 16px lede / emphasis */
+  --text-lg: 1.125rem;      /* 18px section titles */
+  --text-xl: 1.25rem;       /* 20px stats */
+  --text-2xl: 1.5rem;       /* 24px page sections */
+  --text-3xl: clamp(1.625rem, 2.6vw, 2.0625rem); /* ~26–33px page title */
+  --text-display: clamp(1.75rem, 3.2vw, 2.375rem); /* hero numbers on ladder */
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-body: 1.55;
+  --measure: 62ch;
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 2.5rem;
+  --space-3xl: 3rem;
+
+  --page-gutter: clamp(1rem, 4vw, 1.25rem);
+  --page-max: 1180px;
+}
