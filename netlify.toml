@@ -1,6 +1,11 @@
 [build]
   publish = "."
 
+# COGNEE_API_KEY is set in the Netlify UI, not in this file.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 [[redirects]]
   from = "/"
   to = "/uk-russia-merged-timeline.html"

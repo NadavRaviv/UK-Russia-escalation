@@ -1,0 +1,704 @@
+[
+  {
+    "n": 1,
+    "date": "2026-02-01",
+    "approx": true,
+    "side": "uk",
+    "en": {
+      "label": "~FEB 2026",
+      "short": "Drone strikes begin",
+      "title": "UK-made drones begin striking Russian refineries",
+      "why": "Volgograd and Yaroslavl. Dated to the activity; the disclosure is logged separately on 15 August."
+    },
+    "he": {
+      "label": "~פברואר 2026",
+      "short": "תקיפות מזל”טים מתחילות",
+      "title": "מזל”טים מתוצרת בריטניה מתחילים לתקוף בתי זיקוק רוסיים",
+      "why": "וולגוגרד ויארוסלב. מתוארך לפעילות עצמה; החשיפה נרשמת בנפרד ב-15 באוגוסט."
+    }
+  },
+  {
+    "n": 2,
+    "date": "2026-02-05",
+    "approx": false,
+    "side": "ot",
+    "en": {
+      "label": "5 FEB 2026",
+      "short": "New START lapses",
+      "title": "New START expires with no successor",
+      "why": "The last binding cap on US and Russian strategic warheads lapses, with no negotiation under way. Lavrov tells parliament on 11 February that Russia will hold to the numerical limits only for as long as Washington does. The driver is American, not British."
+    },
+    "he": {
+      "label": "5 בפברואר 2026",
+      "short": "START החדשה פוקעת",
+      "title": "אמנת START החדשה פוקעת ללא הסכם ממשיך",
+      "why": "התקרה המחייבת האחרונה על ראשי נפץ אסטרטגיים אמריקאיים ורוסיים פוקעת, ללא משא ומתן על הסכם חדש. לברוב מודיע לפרלמנט ב-11 בפברואר שרוסיה תשמור על המגבלות הכמותיות רק כל עוד וושינגטון עושה זאת. הגורם הוא אמריקאי, לא בריטי."
+    }
+  },
+  {
+    "n": 3,
+    "date": "2026-02-17",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "17 FEB 2026",
+      "short": "Oreshnik site defended",
+      "title": "Air defences ring the suspected Oreshnik site in Belarus",
+      "why": "Planet Labs imagery shows six air-defence and electronic-warfare positions around the former Krychev-6 airfield near Krychau, close to the Russian border. Moscow and Minsk said in December that the nuclear-capable missile was on combat duty in Belarus but never named a location. The reach is European, not specifically British."
+    },
+    "he": {
+      "label": "17 בפברואר 2026",
+      "short": "אתר האורשניק מוגן",
+      "title": "סוללות הגנה אווירית מקיפות את אתר האורשניק המשוער בבלארוס",
+      "why": "תצלומי Planet Labs מראים שישה מערכי הגנה אווירית ולוחמה אלקטרונית סביב שדה התעופה לשעבר קריצ׳ב-6 ליד קריצ׳או, סמוך לגבול הרוסי. מוסקבה ומינסק הודיעו בדצמבר שהטיל בעל היכולת הגרעינית הוצב בכוננות בבלארוס, אך מעולם לא נקבו במיקום. הטווח אירופי, לא בריטי במיוחד."
+    }
+  },
+  {
+    "n": 4,
+    "date": "2026-03-15",
+    "approx": true,
+    "side": "ru",
+    "en": {
+      "label": "~MID-MAR 2026",
+      "short": "Offensive opens",
+      "title": "The spring–summer offensive opens",
+      "why": "ISW dates the start to mid-March; there is no announcement to anchor it. By July the monthly rate of advance had not meaningfully changed from February — roughly 1.2 km² a day, against 456 km² taken in July 2025. Effort up, ground gained flat."
+    },
+    "he": {
+      "label": "~אמצע מרץ 2026",
+      "short": "המתקפה נפתחת",
+      "title": "מתקפת האביב–קיץ נפתחת",
+      "why": "ISW מתארך את הפתיחה לאמצע מרץ; אין הודעה רשמית לעגן אותה. עד יולי קצב ההתקדמות החודשי לא השתנה משמעותית לעומת פברואר — כ-1.2 קמ”ר ליום, לעומת 456 קמ”ר שנכבשו ביולי 2025. המאמץ עלה, השטח שנכבש נותר שטוח."
+    }
+  },
+  {
+    "n": 5,
+    "date": "2026-03-30",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "30 MAR 2026",
+      "short": "Diplomat expelled",
+      "title": "Russia expels a British diplomat and summons the chargé d'affaires",
+      "why": "The FSB accuses second secretary Albertus Janse van Rensburg of espionage and gives him two weeks. Russian state TV calls him the sixteenth British diplomat expelled in two years. Moscow had already expelled one in January; London revoked Russian accreditations in February and again on 29 April."
+    },
+    "he": {
+      "label": "30 במרץ 2026",
+      "short": "דיפלומט מגורש",
+      "title": "רוסיה מגרשת דיפלומט בריטי ומזמנת את הממונה על העסקים",
+      "why": "ה-FSB מאשים את המזכיר השני אלברטוס ינסה ואן רנסבורג בריגול ונותן לו שבועיים. הטלוויזיה הממלכתית הרוסית מכנה אותו הדיפלומט הבריטי השישה־עשר שגורש בתוך שנתיים. מוסקבה כבר גירשה אחד בינואר; לונדון ביטלה אקרדיטציות רוסיות בפברואר ושוב ב-29 באפריל."
+    }
+  },
+  {
+    "n": 6,
+    "date": "2026-04-09",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "9 APR 2026",
+      "short": "Submarine op exposed",
+      "title": "Month-long submarine operation over UK and Norwegian cables exposed",
+      "why": "Healey reveals an Akula-class attack submarine and two GUGI deep-sea vessels spent over a month in and around British waters — inside the exclusive economic zone, outside the territorial sea. He calls the Akula a likely decoy for the two survey boats. Norway confirms its part. The Russian embassy in London calls the account neither credible nor verifiable. Dated to disclosure; the activity ran through February and March."
+    },
+    "he": {
+      "label": "9 באפריל 2026",
+      "short": "מבצע צוללות נחשף",
+      "title": "נחשף מבצע צוללות בן חודש מעל כבלים בריטיים ונורווגיים",
+      "why": "הילי חושף שצוללת תקיפה מדגם אקולה ושתי צוללות מחקר עמוק של GUGI שהו למעלה מחודש במים בריטיים ובסביבתם — בתוך האזור הכלכלי הבלעדי, מחוץ למים הטריטוריאליים. הוא מכנה את האקולה הסחה סבירה לטובת שתי צוללות הסקר. נורווגיה מאשרת את חלקה. שגרירות רוסיה בלונדון מכנה את התיאור בלתי אמין ובלתי ניתן לאימות. מתוארך לחשיפה; הפעילות עצמה נמשכה לאורך פברואר ומרץ."
+    }
+  },
+  {
+    "n": 7,
+    "date": "2026-04-15",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "15 APR 2026",
+      "short": "£752m drone package",
+      "title": "£752m package: at least 120,000 drones for Ukraine",
+      "why": "Announced by the MoD ahead of the 34th Ukraine Defence Contact Group. Includes long-range strike drones. No Russian response is logged in this set within the following month."
+    },
+    "he": {
+      "label": "15 באפריל 2026",
+      "short": "חבילת מזל”טים בת 752 מ׳",
+      "title": "חבילה של 752 מיליון ליש”ט: לפחות 120,000 מזל”טים לאוקראינה",
+      "why": "הוכרזה על ידי משרד ההגנה הבריטי לקראת המפגש ה-34 של קבוצת הקשר להגנת אוקראינה. כוללת מזל”טי תקיפה ארוכי טווח. במערך הזה לא נרשמה תגובה רוסית בחודש שלאחר מכן."
+    }
+  },
+  {
+    "n": 8,
+    "date": "2026-04-30",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "30 APR 2026",
+      "short": "Threat level SEVERE",
+      "title": "Terror threat level raised to SEVERE",
+      "why": "JTAC assessment, SUBSTANTIAL → SEVERE. No Russia link given."
+    },
+    "he": {
+      "label": "30 באפריל 2026",
+      "short": "רמת איום SEVERE",
+      "title": "רמת איום הטרור מועלית ל-SEVERE",
+      "why": "הערכת JTAC, מ-SUBSTANTIAL ל-SEVERE. לא צוין קשר לרוסיה."
+    }
+  },
+  {
+    "n": 9,
+    "date": "2026-05-13",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "13 MAY 2026",
+      "short": "Sarmat test launch",
+      "title": "Sarmat test launch; Poseidon and Burevestnik declared near-ready",
+      "why": "Three signature strategic systems placed in a single news cycle, three months after New START lapsed. Note a date conflict: Defense News places the Sarmat launch on 12 May, GlobalSecurity on 13 May. Putin has claimed Sarmat serial production three times since 2022 with one clean flight test on the public record."
+    },
+    "he": {
+      "label": "13 במאי 2026",
+      "short": "ניסוי שיגור סרמט",
+      "title": "שיגור ניסוי של סרמט; פוסידון ובורביסטניק מוכרזים כמעט מוכנים",
+      "why": "שלוש מערכות אסטרטגיות מובילות מוצגות במחזור חדשותי אחד, שלושה חודשים אחרי פקיעת START החדשה. שימו לב לסתירה בתאריכים: Defense News מציב את שיגור הסרמט ב-12 במאי, GlobalSecurity ב-13 במאי. פוטין הכריז על ייצור סדרתי של סרמט שלוש פעמים מאז 2022, עם ניסוי טיסה תקין אחד בלבד בתיעוד הפומבי."
+    }
+  },
+  {
+    "n": 10,
+    "date": "2026-05-19",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "19 MAY 2026",
+      "short": "Unannounced nuclear drill",
+      "title": "Unannounced nuclear exercise, with Belarusian units integrated",
+      "why": "Around 65,000 personnel over three days. Minsk announces a parallel drill the day before, in which its own units practise preparing nuclear munitions from unprepared positions on Belarusian soil. The absence of notice is itself the message."
+    },
+    "he": {
+      "label": "19 במאי 2026",
+      "short": "תרגיל גרעיני ללא הודעה",
+      "title": "תרגיל גרעיני ללא הודעה מוקדמת, בשילוב יחידות בלארוסיות",
+      "why": "כ-65,000 אנשי צבא על פני שלושה ימים. מינסק מכריזה יום קודם על תרגיל מקביל שבו יחידותיה מתאמנות בהכנת אמצעי לחימה גרעיניים מעמדות לא מוכנות על אדמת בלארוס. היעדר ההודעה המוקדמת הוא עצמו המסר."
+    }
+  },
+  {
+    "n": 11,
+    "date": "2026-06-01",
+    "approx": true,
+    "side": "uk",
+    "en": {
+      "label": "JUN 2026",
+      "short": "Deep strikes intensify",
+      "title": "Moscow-area deep strikes intensify",
+      "why": "Month-level dating only."
+    },
+    "he": {
+      "label": "יוני 2026",
+      "short": "תקיפות עומק מתגברות",
+      "title": "תקיפות העומק באזור מוסקבה מתגברות",
+      "why": "תיארוך ברמת החודש בלבד."
+    }
+  },
+  {
+    "n": 12,
+    "date": "2026-06-16",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "16 JUN 2026",
+      "short": "Warning shots, Channel",
+      "title": "Russian frigate fires warning shots near a British yacht in the Channel",
+      "why": "The Admiral Grigorovich uses horn signals, flares and four or five small-arms rounds as the yacht Bright Future closes in fog, 20 nautical miles south of the Isle of Wight and inside the UK's economic zone. Accounts of the distance differ: the crew says about 500 yards, the Russian MoD says 150 metres. Britain had boarded the sanctioned tanker Smyrtos two days earlier."
+    },
+    "he": {
+      "label": "16 ביוני 2026",
+      "short": "יריות אזהרה בתעלה",
+      "title": "פריגטה רוסית יורה יריות אזהרה ליד יאכטה בריטית בתעלה",
+      "why": "האדמירל גריגורוביץ׳ משתמש בצפירות, נורי תאורה וארבע-חמש יריות מנשק קל כשהיאכטה Bright Future מתקרבת בערפל, 20 מייל ימי מדרום לאי וייט ובתוך האזור הכלכלי הבריטי. הגרסאות על המרחק חלוקות: הצוות מדבר על כ-500 יארד, משרד ההגנה הרוסי על 150 מטר. בריטניה עלתה על המכלית המסונקצת Smyrtos יומיים קודם לכן."
+    }
+  },
+  {
+    "n": 13,
+    "date": "2026-07-20",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "20 JUL 2026",
+      "short": "Gunnery off UK coast",
+      "title": "Russian frigate holds gunnery firings off the UK and French coasts",
+      "why": "The Neustrashimy fires roughly twenty rounds from its 100mm and 30mm guns just outside British and French territorial waters, having notified the Royal Navy first. HMS Tyne watches from five nautical miles. Russian naval activity in UK waters is running about a quarter above the same period last year."
+    },
+    "he": {
+      "label": "20 ביולי 2026",
+      "short": "אימוני ירי מול החוף",
+      "title": "פריגטה רוסית מקיימת אימוני ירי מול חופי בריטניה וצרפת",
+      "why": "הניוסטראשימי יורה כעשרים פגזים מתותחי 100 ו-30 מ”מ ממש מחוץ למים הטריטוריאליים הבריטיים והצרפתיים, לאחר שהודיעה מראש לצי המלכותי. HMS Tyne צופה ממרחק חמישה מיילים ימיים. הפעילות הימית הרוסית במים בריטיים גבוהה בכרבע לעומת אותה תקופה אשתקד."
+    }
+  },
+  {
+    "n": 14,
+    "date": "2026-07-21",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "21 JUL 2026",
+      "short": "Ambassador leaves London",
+      "title": "Ambassador Andrey Kelin leaves London after seven years",
+      "why": "The Guardian dates the departure to 21 July, firming up what the earlier set carried as approximate. It was flagged internally on 11 June, so it predates both the jammer transfer and the drone disclosure. Britain still has an ambassador in Moscow; the asymmetry is the signal, not the exit."
+    },
+    "he": {
+      "label": "21 ביולי 2026",
+      "short": "השגריר עוזב את לונדון",
+      "title": "השגריר אנדריי קלין עוזב את לונדון אחרי שבע שנים",
+      "why": "הגרדיאן מתארך את העזיבה ל-21 ביולי, ומהדק את מה שנשא סימון משוער במערך הקודם. הדבר סומן פנימית כבר ב-11 ביוני, כך שהוא מקדים גם את העברת המשבשים וגם את חשיפת המזל”טים. לבריטניה עדיין יש שגריר במוסקבה; האסימטריה היא האות, לא העזיבה."
+    }
+  },
+  {
+    "n": 15,
+    "date": "2026-07-27",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "27 JUL 2026",
+      "short": "Jammer IP transferred",
+      "title": "Burnham transfers Stone Cloak jammer IP to Ukraine",
+      "why": "First major foreign policy act, one week into office. Britain takes battlefield telemetry back into Project Brakestop. No Russian response is logged in this set in the weeks that follow."
+    },
+    "he": {
+      "label": "27 ביולי 2026",
+      "short": "זכויות המשבשים מועברות",
+      "title": "ברנהאם מעביר לאוקראינה את זכויות הקניין הרוחני של Stone Cloak",
+      "why": "המהלך המדיני המשמעותי הראשון שלו, שבוע לתוך הכהונה. בריטניה מקבלת בחזרה טלמטריה משדה הקרב לטובת פרויקט Brakestop. במערך הזה לא נרשמה תגובה רוסית בשבועות שלאחר מכן."
+    }
+  },
+  {
+    "n": 16,
+    "date": "2026-07-27",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "27 JUL 2026",
+      "short": "Decree 526: force ceiling",
+      "title": "Decree No. 526 raises the authorised strength to 2,426,130",
+      "why": "Putin signs Decree No. 526 on 27 July; it takes effect on 1 August. The authorised strength of the Armed Forces is set at 2,426,130 posts, of which 1,535,000 are servicemen — 27,000 more posts, including 25,000 servicemen, which the decree assigns to newly created military-construction units. These are authorised ceilings, not a count of people in uniform. Britain is not named."
+    },
+    "he": {
+      "label": "27 ביולי 2026",
+      "short": "צו 526: תקרת הכוח",
+      "title": "צו מספר 526 מעלה את התקן המאושר ל-2,426,130",
+      "why": "פוטין חותם ב-27 ביולי על צו מספר 526, הנכנס לתוקף ב-1 באוגוסט. התקן המאושר של הכוחות המזוינים עומד על 2,426,130 תקנים, מתוכם 1,535,000 אנשי צבא. זו תוספת של 27,000 תקנים, ובהם 25,000 אנשי צבא, והצו מייעד אותם ליחידות בנייה צבאית חדשות. אלה תקרות מאושרות, לא מניין של אנשים במדים. בריטניה אינה נקובה."
+    }
+  },
+  {
+    "n": 17,
+    "date": "2026-08-06",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "6 AUG 2026",
+      "short": "UK–Ukraine defence talks",
+      "title": "UK–Ukraine defence talks",
+      "why": "Air defence, counter-drone, Ukrainian drone production."
+    },
+    "he": {
+      "label": "6 באוגוסט 2026",
+      "short": "שיחות הגנה בריטניה–אוקראינה",
+      "title": "שיחות הגנה בין בריטניה לאוקראינה",
+      "why": "הגנה אווירית, לוחמה נגד מזל”טים, ומימון ייצור מזל”טים אוקראיני."
+    }
+  },
+  {
+    "n": 18,
+    "date": "2026-08-14",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "14 AUG 2026",
+      "short": "Wildfire alert",
+      "title": "National wildfire emergency alert, England and Wales",
+      "why": "Roughly 25 hours before the Times story, not one."
+    },
+    "he": {
+      "label": "14 באוגוסט 2026",
+      "short": "התרעת שריפות",
+      "title": "התרעת חירום ארצית לשריפות, אנגליה וויילס",
+      "why": "כ-25 שעות לפני הכתבה בטיימס, לא שעה אחת."
+    }
+  },
+  {
+    "n": 19,
+    "date": "2026-08-15",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "15 AUG 2026",
+      "short": "Campaign disclosed",
+      "title": "Sunday Times reveals the six-month strike campaign",
+      "why": "Six months of UK-made drone strikes on Russian refineries, disclosed retroactively. The first British move in this set to draw a Russian response inside a week."
+    },
+    "he": {
+      "label": "15 באוגוסט 2026",
+      "short": "המערכה נחשפת",
+      "title": "הסאנדיי טיימס חושף את שישה חודשי התקיפות",
+      "why": "שישה חודשים של תקיפות מזל”טים מתוצרת בריטניה על בתי זיקוק רוסיים, שנחשפו בדיעבד. המהלך הבריטי הראשון במערך הזה שמושך תגובה רוסית בתוך שבוע."
+    }
+  },
+  {
+    "n": 20,
+    "date": "2026-08-17",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "17 AUG 2026",
+      "short": "Embassy warns of a price",
+      "title": "The London embassy warns Britain of consequences",
+      "why": "Two days after the disclosure, the embassy says the price Britain pays will rise the longer it keeps supplying the drones. Burnham replies that Britain is not a fair-weather friend. Reuters carried the statement on 18 August; the row sits on the earlier date."
+    },
+    "he": {
+      "label": "17 באוגוסט 2026",
+      "short": "השגרירות מזהירה ממחיר",
+      "title": "השגרירות בלונדון מזהירה את בריטניה מפני השלכות",
+      "why": "יומיים אחרי החשיפה, השגרירות מודיעה שהמחיר שבריטניה תשלם יעלה ככל שתמשיך לספק את המזל”טים. ברנהאם משיב שבריטניה אינה ידידה של ימי שמש בלבד. רויטרס פרסמה את ההצהרה ב-18 באוגוסט; השורה יושבת על התאריך המוקדם יותר."
+    }
+  },
+  {
+    "n": 21,
+    "date": "2026-08-23",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "23 AUG 2026",
+      "short": "No ambassador named",
+      "title": "Moscow leaves the London embassy without an ambassador",
+      "why": "No successor to Kelin is named; only a chargé d'affaires remains. Moscow describes relations as unprecedentedly low and attributes that to London's initiative, accusing Britain of choosing a “path of confrontation”, with dialogue offered only if it reconsiders its policy. On 1 September Moscow reframes this as a routine end of posting; both accounts are logged."
+    },
+    "he": {
+      "label": "23 באוגוסט 2026",
+      "short": "לא ממונה שגריר",
+      "title": "מוסקבה משאירה את השגרירות בלונדון ללא שגריר",
+      "why": "לא ממונה מחליף לקלין; נותר רק ממונה על העסקים. מוסקבה מתארת את היחסים כנמוכים מאי פעם ותולה זאת ביוזמת לונדון, ומאשימה את בריטניה בבחירה ב”נתיב של עימות”, כשדיאלוג מוצע רק אם תשקול מחדש את מדיניותה. ב-1 בספטמבר מוסקבה ממסגרת זאת מחדש כסיום כהונה שגרתי; שתי הגרסאות נרשמות."
+    }
+  },
+  {
+    "n": 22,
+    "date": "2026-08-24",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "24 AUG 2026",
+      "short": "Storm Shadow tech to Kyiv",
+      "title": "Storm Shadow production technology handed to Kyiv",
+      "why": "Burnham, on his first overseas trip as prime minister, agrees that MBDA may declassify the British component data so Ukraine can build the missile itself. France follows with SCALP. Further pressure on the shadow fleet is announced alongside. The weapons are not expected to be operational before 2027."
+    },
+    "he": {
+      "label": "24 באוגוסט 2026",
+      "short": "טכנולוגיית Storm Shadow לקייב",
+      "title": "טכנולוגיית הייצור של Storm Shadow נמסרת לקייב",
+      "why": "ברנהאם, בנסיעתו הראשונה לחו”ל כראש ממשלה, מסכים ש-MBDA תוכל להסיר את הסיווג מנתוני הרכיבים הבריטיים כדי שאוקראינה תייצר את הטיל בעצמה. צרפת עוקבת עם SCALP. במקביל מוכרז לחץ נוסף על צי הצללים. הטילים אינם צפויים להיות מבצעיים לפני 2027."
+    }
+  },
+  {
+    "n": 23,
+    "date": "2026-08-24",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "24 AUG 2026",
+      "short": "“Participating in the war”",
+      "title": "The Kremlin says Britain is participating in the war",
+      "why": "Peskov says sharing the blueprints adds fuel to the fire. Lavrov casts British missile assistance as participation in the war, with all the consequences that follow from it. The response lands the same day as the announcement — the shortest reply interval in the set."
+    },
+    "he": {
+      "label": "24 באוגוסט 2026",
+      "short": "”משתתפת במלחמה”",
+      "title": "הקרמלין: בריטניה משתתפת במלחמה",
+      "why": "פסקוב אומר ששיתוף השרטוטים מוסיף שמן למדורה. לברוב מציג את הסיוע הבריטי בטילים כהשתתפות במלחמה, על כל המשתמע מכך. התגובה מגיעה באותו יום עצמו של ההכרזה — מרווח התגובה הקצר ביותר במערך."
+    }
+  },
+  {
+    "n": 24,
+    "date": "2026-08-25",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "25 AUG 2026",
+      "short": "UK factories not ruled out",
+      "title": "A Kremlin adviser will not rule out strikes on UK drone factories",
+      "why": "Andrei Fedorov, a former senior Russian diplomat, declines to exclude a semi-military strike on British plants making drones and missile components — not by Russia, he says, but from unknown sources. The deniability is the point. It is the first threat in this set whose object sits on British soil. CBS dates the remark to the 25th and the Independent to around the 24th; on the earlier dating it falls on the same day as the Kyiv announcement rather than after it."
+    },
+    "he": {
+      "label": "25 באוגוסט 2026",
+      "short": "מפעלים בריטיים לא נשללים",
+      "title": "יועץ לקרמלין אינו שולל תקיפות על מפעלי מזל”טים בריטיים",
+      "why": "אנדריי פדורוב, דיפלומט רוסי בכיר לשעבר, מסרב לשלול תקיפה ”חצי-צבאית” על מפעלים בריטיים המייצרים מזל”טים ורכיבי טילים — לא בידי רוסיה, לדבריו, אלא ממקורות לא ידועים. ההכחשה האפשרית היא כל העניין. זהו האיום הראשון במערך שמטרתו נמצאת על אדמת בריטניה. CBS מתארך את האמירה ל-25 והאינדיפנדנט לסביבות ה-24; לפי התיארוך המוקדם היא נופלת באותו יום של ההכרזה בקייב ולא אחריו."
+    }
+  },
+  {
+    "n": 25,
+    "date": "2026-08-25",
+    "approx": false,
+    "side": "ot",
+    "en": {
+      "label": "25 AUG 2026",
+      "short": "CIA director in Moscow",
+      "title": "CIA director makes an unannounced visit to Moscow",
+      "why": "Reported as following a US assessment that Russia may be preparing to test NATO with a limited assault on an allied state, probably in the Baltic. Peskov dismisses that reporting as scare material. The documented driver is American, not British — graded green on that basis. Note a date conflict: the Guardian places the trip on Tuesday, other outlets on Wednesday."
+    },
+    "he": {
+      "label": "25 באוגוסט 2026",
+      "short": "ראש ה-CIA במוסקבה",
+      "title": "ראש ה-CIA מבקר במוסקבה ללא הודעה מוקדמת",
+      "why": "מדווח כבא בעקבות הערכה אמריקאית שרוסיה עשויה להתכונן לבחון את נאט”ו בתקיפה מוגבלת על מדינה בעלת ברית, ככל הנראה בבלטיים. פסקוב דוחה את הדיווח כחומר הפחדה. הגורם המתועד הוא אמריקאי ולא בריטי — ומכאן הסימון הירוק. שימו לב לסתירה בתאריכים: הגרדיאן מציב את הנסיעה ביום שלישי, כלי תקשורת אחרים ביום רביעי."
+    }
+  },
+  {
+    "n": 26,
+    "date": "2026-08-26",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "26 AUG 2026",
+      "short": "Escalation signalled",
+      "title": "Kremlin sources say the talks are dead and escalation is coming",
+      "why": "Three people close to the Kremlin describe heavier ballistic strikes on Kyiv, including the city centre. The line that matters for this timeline: Moscow increasingly treats Ukrainian strikes as attacks by NATO states, on the grounds that those states supply the weapons and the intelligence. Anonymous sourcing, one originating outlet."
+    },
+    "he": {
+      "label": "26 באוגוסט 2026",
+      "short": "הסלמה מסומנת",
+      "title": "מקורות בקרמלין: השיחות מתות וההסלמה בדרך",
+      "why": "שלושה גורמים המקורבים לקרמלין מתארים תקיפות בליסטיות כבדות יותר על קייב, כולל מרכז העיר. המשפט המהותי לציר הזמן הזה: מוסקבה מתייחסת יותר ויותר לתקיפות אוקראיניות כאל תקיפות של מדינות נאט”ו, בטענה שאותן מדינות מספקות את הנשק ואת המודיעין. מקורות אנונימיים, כלי תקשורת מקורי אחד."
+    }
+  },
+  {
+    "n": 27,
+    "date": "2026-08-27",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "27 AUG 2026",
+      "short": "British military targets",
+      "title": "Zakharova: British military targets could be struck",
+      "why": "At the foreign ministry briefing: British installations and equipment “in Ukraine and beyond its borders” could be targeted, and London is one step from legal complicity in what she calls terrorism. Moscow separately says Britain is playing with fire. Reuters assesses it as the strongest warning Russia has issued to Britain. The MoD replies that Britain stands shoulder to shoulder with Ukraine."
+    },
+    "he": {
+      "label": "27 באוגוסט 2026",
+      "short": "מטרות צבאיות בריטיות",
+      "title": "זכרובה: מטרות צבאיות בריטיות עלולות להיות מותקפות",
+      "why": "בתדריך משרד החוץ: מתקנים וציוד בריטיים ”באוקראינה ומחוץ לגבולותיה” עלולים להפוך למטרות, ולונדון נמצאת צעד אחד מהיותה שותפה משפטית למה שהיא מכנה טרור. במקביל מוסקבה אומרת שבריטניה משחקת באש. רויטרס מעריכה שזו האזהרה החריפה ביותר שרוסיה הפנתה לבריטניה. משרד ההגנה הבריטי משיב שבריטניה עומדת כתף אל כתף עם אוקראינה."
+    }
+  },
+  {
+    "n": 28,
+    "date": "2026-09-01",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "1 SEP 2026",
+      "short": "Departure called routine",
+      "title": "Moscow says the ambassador's departure was routine",
+      "why": "Zakharova says Kelin's posting ended as scheduled and a successor will be named when Putin is ready, telling a reporter to “calm down” about the idea of a formal downgrade. A chargé d'affaires is running the embassy. She describes relations with Britain as at a dire point in the same breath. This cuts against the reading placed on the 23 August row, and is logged for that reason."
+    },
+    "he": {
+      "label": "1 בספטמבר 2026",
+      "short": "העזיבה מוגדרת שגרתית",
+      "title": "מוסקבה: עזיבת השגריר הייתה שגרתית",
+      "why": "זכרובה אומרת שכהונתו של קלין הסתיימה כמתוכנן ושמחליף ימונה כשפוטין יהיה מוכן, ומורה לכתב ”להירגע” בנוגע לרעיון של הורדת דרג רשמית. ממונה על העסקים מנהל את השגרירות. באותה נשימה היא מתארת את היחסים עם בריטניה כנמצאים בנקודה קשה. הדבר סותר את הקריאה שהוצמדה לשורה של 23 באוגוסט, ונרשם דווקא משום כך."
+    }
+  },
+  {
+    "n": 29,
+    "date": "2026-09-02",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "2 SEP 2026",
+      "short": "Putin will not rule out",
+      "title": "Putin will not rule out strikes on British-linked sites",
+      "why": "Speaking in Bishkek, Putin declines to rule out strikes on British military or weapons-production sites, calling the question a military secret, and says any military facility in Ukraine — British ones included — is a legitimate target. Two distinct claims: the second asserts something about Ukraine, the first only refuses to deny. What changes here is the rank of the speaker rather than the target — a former diplomat on 25 August, the foreign ministry on the 27th, the president on the 2nd."
+    },
+    "he": {
+      "label": "2 בספטמבר 2026",
+      "short": "פוטין אינו שולל",
+      "title": "פוטין אינו שולל תקיפות באתרים הקשורים לבריטניה",
+      "why": "בהתבטאות בבישקק, פוטין נמנע מלשלול תקיפות על אתרים צבאיים או מפעלי נשק בריטיים, מכנה את השאלה סוד צבאי, ואומר שכל מתקן צבאי באוקראינה — כולל בריטי — הוא מטרה לגיטימית. שתי טענות נפרדות: השנייה קובעת משהו לגבי אוקראינה, הראשונה רק מסרבת להכחיש. מה שמשתנה כאן הוא דרגת הדובר ולא המטרה — דיפלומט לשעבר ב-25 באוגוסט, משרד החוץ ב-27, והנשיא ב-2 בספטמבר."
+    }
+  },
+  {
+    "n": 30,
+    "date": "2026-09-06",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "6 SEP 2026",
+      "short": "AIS handshake off UK",
+      "title": "Shadow-fleet tankers swap AIS identities off the British Isles",
+      "why": "The i Paper reports sanctioned Russian tankers using AIS “handshakes” off the British Isles — briefly swapping identity with smaller vessels, often fishing boats, so they appear as clean traffic, especially at choke points. Gonzalo Saiz Erausquin (RUSI) links a rise in that trick, plus spoofed positions and going dark, to the diversion around northern Scotland and west of Ireland after Britain boarded the tanker Smyrtos in June. Joshua Tallis (CNA) says the aim is avoiding a boarding. The MoD says Putin relies on the shadow fleet to fund the war, and that UK forces track, challenge and deter Russian activity in and around UK waters daily. A related i Paper count finds more than 170 such vessels near or through UK waters this summer. Dated to the report."
+    },
+    "he": {
+      "label": "6 בספטמבר 2026",
+      "short": "החלפת זהות AIS מול בריטניה",
+      "title": "מכליות צי הצללים מחליפות זהות AIS מול האיים הבריטיים",
+      "why": "The i Paper מדווח שמכליות רוסיות מסונקציות מבצעות ”לחיצות יד” ב-AIS מול האיים הבריטיים — מחליפות לרגע זהות עם כלי שיט קטנים, לרוב סירות דיג, כך שהן נראות כתנועה נקייה, במיוחד בנקודות מחנק. גונסאלו סאיס אראוסקין (RUSI) מקשר עלייה בתרגיל הזה, וגם בזיוף מיקום ובכיבוי המשדר, למסלול העוקף מצפון לסקוטלנד וממערב לאירלנד אחרי שבריטניה עלתה על המכלית Smyrtos ביוני. ג׳ושוע טאליס (CNA) אומר שהמטרה היא להימנע מהשתלטות. משרד ההגנה הבריטי: פוטין נשען על צי הצללים למימון המלחמה; הכוחות הבריטיים עוקבים אחרי פעילות רוסית במים בריטיים ובסביבתם, מתעמתים איתה ומרתיעים אותה מדי יום. ספירה נלווית באותו עיתון מוצאת יותר מ-170 כלי שיט כאלה ליד מים בריטיים או דרכם בקיץ הזה. מתוארך לדיווח."
+    }
+  },
+  {
+    "n": 31,
+    "date": "2026-09-08",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "8 SEP 2026",
+      "short": "NATS system fault",
+      "title": "UK air-traffic collapse grounds 150+ flights",
+      "why": "A radar-related technical fault at NATS Swanwick from about 16:00 BST throttles capacity across England and Wales — Cirium counts at least 155 cancellations at Heathrow, Gatwick, Manchester and elsewhere by late evening. Controllers switch to backup within roughly twenty minutes; NATS attributes the outage to its flight-processing system, not to a cyberattack, and says capacity is returning to normal while airlines clear the backlog. Ryanair calls for CEO Martin Rolfe to resign, citing the August 2023 outage. Graded green: the documented driver is domestic infrastructure failure. A separate late-August FulcrumSec leak of Manchester Airports Group customer data is reported as unconnected. No Russia link appears in the reporting as logged; cyber sabotage — including attribution to Moscow — is not in the sources used here."
+    },
+    "he": {
+      "label": "8 בספטמבר 2026",
+      "short": "תקלה במערכת NATS",
+      "title": "קריסת בקרת התעבורה האווירית מבטלת 150+ טיסות",
+      "why": "תקלה טכנית הקשורה למכ\"ם במרכז NATS בסוואנוויק מכ-16:00 BST מצמצמת קיבולת באנגליה ובוויילס — Cirium מונה לפחות 155 ביטולים בהית׳רו, גטוויק, מנצ׳סטר ועוד עד הערב. הבקרים עוברים לגיבוי בתוך כעשרים דקות; NATS מייחסת את ההפסקה למערכת עיבוד הטיסות, לא לתקיפה סייבר, ומודיעה שהקיבולת חוזרת לנורמל בזמן שחברות התעופה מטפלות בצבר. ריינאייר קוראת לעזיבת המנכ״ל מרטין רולף, בציטוט ההפסקה מאוגוסט 2023. מסומן ירוק: הגורם המתועד הוא כשל תשתית פנימי. דליפת FulcrumSec נפרדת מסוף אוגוסט של נתוני לקוחות מקבוצת שדות התעופה במנצ׳סטר מדווחת כבלתי קשורה. לא מופיע קשר לרוסיה בדיווחים שנרשמו; חבלה סייבר — כולל ייחוס למוסקבה — אינה במקורות שבהם נעשה שימוש כאן."
+    }
+  },
+  {
+    "n": 32,
+    "date": "2026-09-10",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "10 SEP 2026",
+      "short": "Swindon drone plants",
+      "title": "Court: Briton offered to sabotage Swindon drone factories for Russian intel",
+      "why": "On 10 September at Westminster Magistrates' Court, prosecutors said Joshua Cammidge, 31, of Swindon, provided Google Maps screenshots of four drone manufacturing sites in the town, detailed activity at one plant, researched a Wi-Fi jammer, and offered sabotage (BBC: prepared to “torch” a factory) after contact with someone linked to the GRU Volunteer Corps. Charged with assisting a foreign intelligence service and preparing sabotage under the National Security Act; no plea; remanded; Old Bailey 25 September. Arrested 4 September. Named British industrial targets on UK soil — band 4. Dated to the court hearing/disclosure."
+    },
+    "he": {
+      "label": "10 בספטמבר 2026",
+      "short": "מפעלי מזל”טים בסווינדון",
+      "title": "בית משפט: בריטי הציע לחבל במפעלי מזל”טים בסווינדון עבור מודיעין רוסי",
+      "why": "ב-10 בספטמבר בבית משפט השלום בווסטמינסטר אמרו התובעים שג׳ושוע קאמידג׳, 31, מסווינדון, מסר צילומי מסך מגוגל מפות של ארבעה אתרי ייצור מזל”טים בעיר, פירט פעילות במפעל אחד, חקר משבש Wi-Fi, והציע חבלה (BBC: היה מוכן ”להצית” מפעל) לאחר קשר עם מישהו המקושר לחיל המתנדבים של ה-GRU. הואשם בסיוע לשירות מודיעין זר ובהכנה לחבלה לפי חוק הביטחון הלאומי; לא נרשמה הודעה; הועבר למעצר עד תום ההליכים; האולד ביילי ב-25 בספטמבר. נעצר ב-4 בספטמבר. מטרות תעשייתיות בריטיות נקובות על אדמת בריטניה — רמה 4. מתוארך לדיון בבית המשפט ולחשיפה."
+    }
+  },
+  {
+    "n": 33,
+    "date": "2026-09-13",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "13 SEP 2026",
+      "short": "Johnson's train in range",
+      "title": "Drone hits a train just after Johnson and Powell have left",
+      "why": "A Russian jet-propelled drone strikes a stationary locomotive at Yahodyn, 2 km from the Polish border, shortly after former prime minister Boris Johnson and UK national security adviser Jonathan Powell have passed through on a diplomatic train returning from Kyiv. No casualties; passengers on the hit train had been evacuated minutes earlier. Russia says it struck railway infrastructure. Ukrzaliznytsia says the diplomatic train is quite possibly the intended target, and that it left earlier than scheduled because of strike warnings. If that reading holds, the signal to London is that a former British prime minister was in range. Johnson calls it a random attack on civilian railways. Other European officials were on the same movement, so the object is not Britain alone."
+    },
+    "he": {
+      "label": "13 בספטמבר 2026",
+      "short": "רכבת ג׳ונסון בטווח",
+      "title": "מזל״ט פוגע ברכבת זמן קצר אחרי שג׳ונסון ופאוול כבר עזבו",
+      "why": "מזל״ט סילוני רוסי פוגע בקטר שעמד ביאהודין, 2 ק״מ מגבול פולין, זמן קצר אחרי שראש הממשלה לשעבר בוריס ג׳ונסון ויועץ הביטחון הלאומי הבריטי ג׳ונתן פאוול עברו באותו קו ברכבת דיפלומטית בדרך חזרה מקייב. אין נפגעים; נוסעי הרכבת שנפגעה פונו דקות קודם. רוסיה אומרת שתקפה תשתיות רכבת. אוקרזליזניציה אומרת שייתכן מאוד שהיעד היה הרכבת הדיפלומטית, ושזו יצאה מוקדם מהמתוכנן בגלל אזהרות תקיפה. אם הקריאה הזו מחזיקה, האיתות ללונדון הוא שראש ממשלה בריטי לשעבר היה בטווח. ג׳ונסון מכנה זאת תקיפה אקראית על מסילות אזרחיות. בכירים אירופיים אחרים היו באותה תנועה, כך שהמושא אינו בריטניה לבדה."
+    }
+  },
+  {
+    "n": 34,
+    "date": "2026-09-16",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "16 SEP 2026",
+      "short": "CDS: crisis point",
+      "title": "Knighton frames a crisis point under Russian aggression",
+      "why": "Chief of the Defence Staff Air Chief Marshal Sir Richard Knighton, in a Sky News “This Is Why” / Defence Insider interview with Niall Paterson around 16:18 BST, frames the UK at a crisis point under Russian aggression and a force “hollowed out” for decades, and presses the case for higher military spending. He calls it the most dangerous moment in his 35-year career. TASS, filing from London on 17 September, quotes him telling Sky that “Russia is more powerful militarily now than it has been for a long time” and that the security situation is “getting more dangerous.” Distinct from his December 2025 RUSI lecture. No Russian reply is logged in this set."
+    },
+    "he": {
+      "label": "16 בספטמבר 2026",
+      "short": "ראש מטה ההגנה: נקודת משבר",
+      "title": "נייטון ממסגר נקודת משבר תחת תוקפנות רוסית",
+      "why": "ראש מטה ההגנה, מרשל האוויר סר ריצ׳רד נייטון, בראיון ”This Is Why” / Defence Insider של סקיי ניוז עם ניאל פטרסון בסביבות 16:18 BST, מתאר את בריטניה בנקודת משבר תחת תוקפנות רוסית וכוח ש”רוקן מתוכן” במשך עשורים, ולוחץ להגדלת ההוצאה הצבאית. הוא מכנה זאת הרגע המסוכן ביותר ב-35 שנות הקריירה שלו. TASS, בכתבה מלונדון ב-17 בספטמבר, מצטט אותו אומר לסקיי ש”רוסיה חזקה יותר צבאית כעת מזה זמן רב” ושהמצב הביטחוני ”נעשה מסוכן יותר”. נבדל מהרצאתו ב-RUSI בדצמבר 2025. במערך הזה לא נרשמה תגובה רוסית."
+    }
+  },
+  {
+    "n": 35,
+    "date": "2026-09-16",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "16 SEP 2026",
+      "short": "First Sea Lord on Russia",
+      "title": "Jenkins: Russia is the greatest threat to British security",
+      "why": "In a private “Battle for the Atlantic” speech at Admiralty House, Whitehall, around 18:00 BST, First Sea Lord Gen Sir Gwyn Jenkins calls Russia “the greatest threat to our security today”, says Moscow is “probing, testing and mapping” especially around undersea infrastructure, and urges Britain to build more warships and drones and “strengthen our warfighting readiness”. Coverage also cites his warning that in a conflict enemies would try to cut transatlantic cables on day one, as Britain did to Germany in 1914."
+    },
+    "he": {
+      "label": "16 בספטמבר 2026",
+      "short": "לורד הים הראשון על רוסיה",
+      "title": "ג׳נקינס: רוסיה היא האיום הגדול ביותר על ביטחון בריטניה",
+      "why": "בנאום פרטי על ”קרב על האטלנטי” בבית האדמירליות בווייטהול, בסביבות 18:00 BST, לורד הים הראשון גנרל סר גווין ג׳נקינס מכנה את רוסיה ”האיום הגדול ביותר על ביטחוננו כיום”, אומר שמוסקבה ”בודקת, בוחנת וממפה” במיוחד סביב תשתיות תת־ימיות, וקורא לבריטניה לבנות עוד אוניות מלחמה ומזל״טים ול”חזק את מוכנותנו ללחימה”. הדיווח נושא גם את אזהרתו שבסכסוך יינסו אויבים לנתק כבלים טרנס־אטלנטיים ביום הראשון, כפי שבריטניה עשתה לגרמניה ב-1914."
+    }
+  },
+  {
+    "n": 36,
+    "date": "2026-09-26",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "26 SEP 2026",
+      "short": "Drones over nuclear sites",
+      "title": "MoD: 100 drone sightings over UK nuclear sites in eight months",
+      "why": "The MoD tells the Mail on Sunday there were 100 drone sightings over nuclear facilities or nuclear assets such as submarines from January to August 2026 — 100 in eight months, against 69 in all of 2025 — within 340 drone incidents at or near MoD sites in the year to August. Faslane is named. Security expert Prof. Anthony Glees calls Russian intelligence-gathering for attack planning the “obvious explanation”; that is an expert's view, not an official attribution. The MoD is spending £790m on drone and missile protection, with restricted airspace over 44 critical defence sites and 160+ more this autumn."
+    },
+    "he": {
+      "label": "26 בספטמבר 2026",
+      "short": "רחפנים מעל אתרי גרעין",
+      "title": "משרד ההגנה: 100 תצפיות רחפנים מעל אתרי גרעין בריטיים בשמונה חודשים",
+      "why": "משרד ההגנה מסר למייל און סאנדיי על 100 תצפיות רחפנים מעל מתקני גרעין או נכסים גרעיניים כמו צוללות בין ינואר לאוגוסט 2026 — 100 בשמונה חודשים, לעומת 69 בכל 2025 — מתוך 340 אירועי רחפנים באתרי משרד ההגנה או בסמוך להם בשנה שעד אוגוסט. פאסליין נזכר בשמו. מומחה הביטחון פרופ׳ אנתוני גליז אומר שההסבר המתבקש הוא איסוף מודיעין רוסי לתכנון תקיפה; זו הערכת מומחה ולא ייחוס רשמי. משרד ההגנה מוציא 790 מיליון ליש״ט על הגנה מפני רחפנים וטילים, עם מרחב אווירי מוגבל מעל 44 אתרי הגנה קריטיים ועוד יותר מ-160 בסתיו."
+    }
+  },
+  {
+    "n": 37,
+    "date": "2026-09-28",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "28 SEP 2026",
+      "short": "Force ceiling raised again",
+      "title": "A new decree raises the authorised strength to 2,441,630",
+      "why": "Putin signs a further decree on 28 September — TASS files it on the 29th — setting the authorised strength at 2,441,630 posts, including 1,550,500 active service members. That is 15,500 above the ceiling that took effect on 1 August, and about 49,860 above the ceiling in force in March 2026. TASS quotes the decree at 1,550,500; the Guardian's briefing rounds the active figure to 1.55 million. Again these are authorised ceilings, not a confirmed headcount, and the decree does not name Britain."
+    },
+    "he": {
+      "label": "28 בספטמבר 2026",
+      "short": "התקרה עולה שוב",
+      "title": "צו חדש מעלה את התקן המאושר ל-2,441,630",
+      "why": "פוטין חותם ב-28 בספטמבר על צו נוסף — TASS מפרסם אותו ב-29 — והתקן המאושר עולה ל-2,441,630 תקנים, מתוכם 1,550,500 בשירות פעיל. זו תוספת של 15,500 לעומת התקרה שנכנסה לתוקף ב-1 באוגוסט, וכ-49,860 לעומת התקרה שעמדה במרץ 2026. TASS מצטט 1,550,500; הגרדיאן מעגל את נתון השירות הפעיל ל-1.55 מיליון. גם הפעם אלה תקרות מאושרות ולא מניין מאומת, והצו אינו נוקב בשם בריטניה."
+    }
+  },
+  {
+    "n": 38,
+    "date": "2026-09-29",
+    "approx": false,
+    "side": "ru",
+    "en": {
+      "label": "29 SEP 2026",
+      "short": "All means, including nuclear",
+      "title": "The London embassy says action on Russian territory would meet nuclear means",
+      "why": "At about 08:20 BST the Russian Embassy in London posts, on its verified X account, that any British or NATO military action against Russian territory would be met with “all means... including nuclear weapons.” The post cites The i Paper’s Kaliningrad coverage and Sky’s television wargame The Wargame; TASS, LBC and Newsweek pick it up, and TASS carries the same wording as a Telegram statement. The embassy adds that Russia seeks no confrontation and does not intend to attack NATO or Europe. Keir Giles, writing in the i, reads the posts as reflexive nuclear signalling, not a new strike plan against a specific UK site — and no British object is named."
+    },
+    "he": {
+      "label": "29 בספטמבר 2026",
+      "short": "כל האמצעים, כולל גרעין",
+      "title": "השגרירות בלונדון: פעולה נגד שטח רוסי תיענה גם בנשק גרעיני",
+      "why": "בסביבות 08:20 BST עולה פוסט בחשבון ה-X המאומת של שגרירות רוסיה בלונדון: כל פעולה צבאית בריטית או של נאט”ו נגד שטח רוסי תיענה ב”כל האמצעים... כולל נשק גרעיני”. הפוסט מציין את הסיקור של The i Paper על קלינינגרד ואת משחק המלחמה הטלוויזיוני של סקיי, The Wargame. TASS, LBC ו-Newsweek מפרסמים את האזהרה; TASS מביא את אותו נוסח כהודעה בטלגרם, והשגרירות מוסיפה שרוסיה אינה מבקשת עימות ואינה מתכוונת לתקוף את נאט”ו או את אירופה. קיר ג׳יילס כותב ב-The i Paper שזו תגובת רפלקס: איתות גרעיני, לא תוכנית תקיפה חדשה על אתר בריטי מסוים. הפוסט אינו נוקב בדבר בריטי מסוים."
+    }
+  },
+  {
+    "n": 39,
+    "date": "2026-10-01",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "1 OCT 2026",
+      "short": "31 Russia sanctions",
+      "title": "UK announces 31 sanctions on the shadow fleet, propagandists and torturers",
+      "why": "The Foreign Office announces 31 measures: 23 people and entities, and eight ships. They target LNG shadow-fleet vessels, Kremlin disinformation networks, and people accused of torturing Ukrainian civilians or indoctrinating deported Ukrainian children. Minister for Europe Lord Wood says the UK is targeting both war revenues and human-rights abusers. No Russian reply is logged in this set."
+    },
+    "he": {
+      "label": "1 באוקטובר 2026",
+      "short": "31 סנקציות על רוסיה",
+      "title": "בריטניה מכריזה על 31 סנקציות נגד צי הצללים, תעמולה ומענים",
+      "why": "משרד החוץ מודיע על 31 צעדים: 23 אנשים וגופים, ושמונה אוניות. הם מכוונים לכלי שיט של צי הצללים להובלת גז טבעי נוזלי, לרשתות דיסאינפורמציה של הקרמלין, ולאנשים שהואשמו בעינוי אזרחים אוקראינים או באינדוקטרינציה של ילדים אוקראינים שגורשו. השר לענייני אירופה, לורד ווד מאנפילד, אומר שבריטניה מכוונת גם להכנסות שמממנות את המלחמה וגם למפירי זכויות אדם. במערך הזה לא נרשמה תגובה רוסית."
+    }
+  }
+]
