@@ -88,7 +88,8 @@
   html[data-theme="light"] .row h2{font-family:var(--serif);font-weight:600;font-size:var(--text-sm);line-height:var(--leading-snug)}
   html[data-theme="light"] .band,
   html[data-theme="light"] .munger-card,
-  html[data-theme="light"] .why-dialog{border-radius:6px}
+  html[data-theme="light"] .why-dialog,
+  html[data-theme="light"] .ask{border-radius:6px}
   html[data-theme="light"] .toggle{border-radius:4px;border-color:var(--rule);background:var(--paper)}
   html[data-theme="light"] .toggle button[aria-pressed="true"]{
     background:var(--ink);color:var(--paper);font-weight:600;
@@ -728,6 +729,182 @@
   .danger-chart .axis-label, .danger-chart .centroid-lab{
     font-size:max(12px, 1em);
   }
+
+  /* Hallmark · component: ask-panel · genre: editorial · theme: uk-russia-tokens
+   * states: default · hover · focus · active · disabled · loading · error · success
+   * contrast: pass
+   */
+  .ask{
+    margin:var(--space-lg) 0 var(--space-md);
+    padding:var(--space-md);
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:3px;
+    min-width:0;
+  }
+  .ask h2{
+    font-family:var(--font-display);
+    font-style:normal;
+    font-weight:600;
+    font-size:var(--text-lg);
+    line-height:var(--leading-tight);
+    margin:0 0 var(--space-2xs);
+    color:var(--text);
+    overflow-wrap:anywhere;
+    min-width:0;
+  }
+  .ask-note{
+    margin:0 0 var(--space-sm);
+    max-width:var(--measure);
+    color:var(--muted);
+    font-size:var(--text-sm);
+    line-height:var(--leading-body);
+  }
+  .ask-label{
+    display:block;
+    margin:0 0 var(--space-2xs);
+    font-size:var(--text-sm);
+    font-weight:600;
+    color:var(--text);
+  }
+  .ask-row{
+    display:flex;
+    align-items:stretch;
+    gap:var(--space-xs);
+    max-width:42rem;
+    min-width:0;
+  }
+  .ask-input{
+    flex:1 1 auto;
+    min-width:0;
+    height:44px;
+    margin:0;
+    padding:0 var(--space-sm);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:var(--paper);
+    color:var(--ink);
+    font:inherit;
+    font-size:var(--text-base);
+    line-height:var(--leading-snug);
+  }
+  .ask-input::placeholder{color:var(--muted);opacity:1}
+  @media (hover:hover){
+    .ask-input:hover{background:var(--bg)}
+  }
+  .ask-input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  .ask-input[aria-invalid="true"]{border-color:var(--red)}
+  .ask-input:disabled{opacity:.55;cursor:not-allowed}
+  .ask-submit{
+    flex:none;
+    min-width:8.5rem;
+    height:44px;
+    padding:0 var(--space-md);
+    border:1px solid var(--ink);
+    border-radius:4px;
+    background:var(--ink);
+    color:var(--paper);
+    font:inherit;
+    font-size:var(--text-sm);
+    font-weight:600;
+    line-height:1;
+    white-space:nowrap;
+    cursor:pointer;
+  }
+  @media (hover:hover){
+    .ask-submit:hover{background:var(--focus);border-color:var(--focus);color:var(--paper)}
+  }
+  .ask-submit:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  .ask-submit:active{transform:translateY(1px)}
+  .ask-submit:disabled{opacity:.55;cursor:not-allowed;transform:none}
+  .ask-submit[data-state="loading"]{cursor:progress}
+  .ask-submit[data-state="loading"]::before{
+    content:"";
+    display:inline-block;
+    width:0.75rem;
+    height:0.75rem;
+    margin-inline-end:var(--space-xs);
+    border:2px solid currentColor;
+    border-inline-end-color:transparent;
+    border-radius:50%;
+    vertical-align:-1px;
+    animation:ask-spin .7s linear infinite;
+  }
+  @keyframes ask-spin{to{transform:rotate(360deg)}}
+  .ask-meta{
+    display:flex;
+    justify-content:space-between;
+    gap:var(--space-sm);
+    max-width:42rem;
+    margin:var(--space-2xs) 0 0;
+    min-height:1.4em;
+    color:var(--muted);
+    font-size:var(--text-sm);
+  }
+  .ask-help{margin:0}
+  .ask-count{font-variant-numeric:tabular-nums;flex:none}
+  .ask-status{
+    margin:var(--space-sm) 0 0;
+    min-height:1.4em;
+    max-width:var(--measure);
+    color:var(--text);
+    font-size:var(--text-sm);
+  }
+  .ask-status:empty{display:none}
+  .ask[data-state="error"]{border-color:var(--red)}
+  .ask[data-state="error"] .ask-status,
+  .ask[data-state="error"] .ask-help{color:var(--red)}
+  .ask[data-state="success"]{border-color:var(--ok)}
+  .ask-answer{
+    margin:var(--space-sm) 0 0;
+    max-width:var(--measure);
+    color:var(--text);
+    font-size:var(--text-base);
+    line-height:var(--leading-body);
+    white-space:pre-wrap;
+    overflow-wrap:anywhere;
+    max-height:22rem;
+    overflow:auto;
+  }
+  .ask-answer[hidden],.ask-links[hidden],.ask-links-label[hidden]{display:none}
+  .ask-answer a,.ask-links a{color:var(--focus)}
+  .ask-answer a:hover,.ask-links a:hover{color:var(--text)}
+  .ask-links-label{
+    margin:var(--space-sm) 0 0;
+    font-size:var(--text-sm);
+    font-weight:600;
+  }
+  .ask-links{
+    list-style:none;
+    margin:var(--space-2xs) 0 0;
+    padding:0;
+    max-width:42rem;
+  }
+  .ask-links a{
+    display:inline-flex;
+    align-items:center;
+    min-height:44px;
+    text-decoration:underline;
+    text-underline-offset:3px;
+    overflow-wrap:anywhere;
+  }
+  .row.is-ask-target{outline:2px solid var(--focus);outline-offset:3px}
+  body[dir="rtl"] .ask h2,
+  body[dir="rtl"] .ask-label,
+  body[dir="rtl"] .ask-submit,
+  body[dir="rtl"] .ask-input,
+  body[dir="rtl"] .ask-links a{
+    font-family:var(--font-he);
+    letter-spacing:0;
+  }
+  @media (max-width:560px){
+    .ask-row{flex-direction:column}
+    .ask-submit{width:100%}
+    .ask-input{font-size:var(--text-md)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .ask-submit[data-state="loading"]::before{animation:none}
+  }
 </style>
 </head>
 <body dir="ltr">
@@ -766,6 +943,26 @@
       <button type="button" class="info-btn" id="btn-legend"></button>
     </div>
   </header>
+
+  <section class="ask" id="ask" aria-labelledby="askTitle" data-state="idle">
+    <h2 id="askTitle"></h2>
+    <p class="ask-note" id="askNote"></p>
+    <form class="ask-form" id="askForm" action="#ask" novalidate>
+      <label class="ask-label" id="askLabel" for="askInput"></label>
+      <div class="ask-row">
+        <input class="ask-input" id="askInput" name="query" type="text" maxlength="300" autocomplete="off" enterkeyhint="send" aria-describedby="askHelp">
+        <button class="ask-submit" id="askSubmit" type="submit"></button>
+      </div>
+      <p class="ask-meta">
+        <span class="ask-help" id="askHelp"></span>
+        <span class="ask-count" id="askCount" aria-hidden="true">0 / 300</span>
+      </p>
+    </form>
+    <p class="ask-status" id="askStatus" role="status" aria-live="polite"></p>
+    <div class="ask-answer" id="askAnswer" dir="auto" hidden></div>
+    <p class="ask-links-label" id="askLinksLabel" hidden></p>
+    <ul class="ask-links" id="askLinks" hidden></ul>
+  </section>
 
   <div class="metrics">
     <div class="stat"><span class="n">10.8<span class="u" id="u1"></span></span><span class="l" id="s1"></span></div>
@@ -956,6 +1153,22 @@ const T = {
     sides:{uk:"UK", ru:"RU", ot:"US"},
     ago:(n,soft)=>n===0?"today":n===1?"yesterday":(soft?"~":"")+n+"d ago",
     whyBtn:"Why", whyClose:"Close", whyKicker:"Note",
+    askTitle:"Ask the tracker",
+    askNote:"Answers are generated by AI from the tracker’s sources. A question that names a date is answered from the matching rows, because graph search gets dates wrong. Check the linked row before you rely on an answer.",
+    askLabel:"Question",
+    askPlaceholder:"What happened on 29 September?",
+    askSubmit:"Ask",
+    askLoading:"Asking…",
+    askLoadingStatus:"Asking the tracker…",
+    askHelp:"300 characters at most.",
+    askLinks:"Rows in the tracker",
+    askEmpty:"The question is empty. Type a question about the timeline.",
+    askTooLong:"That question is longer than 300 characters. Shorten it and ask again.",
+    askRate:"Too many questions from this connection. Wait a minute and try again.",
+    askTimeout:"Cognee did not answer within 15 seconds. Try again.",
+    askUnconfigured:"Ask the tracker is not configured on this deploy yet.",
+    askUpstream:"Cognee did not return an answer. Try again in a moment.",
+    askOffline:"Ask the tracker is available on the Netlify site. This page cannot reach that function.",
     themeToDark:"Switch to dark theme",
     themeToLight:"Switch to light theme",
     themeNameDark:"Dark", themeNameLight:"Light"
@@ -1037,6 +1250,22 @@ const T = {
     sides:{uk:"בריטניה", ru:"רוסיה", ot:"ארה\u05f4\u05d1"},
     ago:(n,soft)=>n===0?"היום":n===1?"אתמול":(!soft&&n===2)?"לפני יומיים":"לפני "+(soft?"~":"")+n+" ימים",
     whyBtn:"פירוט", whyClose:"סגור", whyKicker:"הערה",
+    askTitle:"שאלו את המעקב",
+    askNote:"התשובות נוצרות בבינה מלאכותית מתוך המקורות של המעקב. שאלה שמציינת תאריך נענית מתוך השורות התואמות, כי חיפוש הגרף טועה בתאריכים. בדקו את השורה המקושרת לפני שמסתמכים על תשובה.",
+    askLabel:"שאלה",
+    askPlaceholder:"מה קרה ב-29 בספטמבר?",
+    askSubmit:"שאלו",
+    askLoading:"שואלים…",
+    askLoadingStatus:"שואלים את המעקב…",
+    askHelp:"עד 300 תווים.",
+    askLinks:"שורות במעקב",
+    askEmpty:"השאלה ריקה. כתבו שאלה על ציר הזמן.",
+    askTooLong:"השאלה ארוכה מ-300 תווים. קצרו אותה ושאלו שוב.",
+    askRate:"יותר מדי שאלות מהחיבור הזה. המתינו דקה ונסו שוב.",
+    askTimeout:"קוגני לא ענה בתוך 15 שניות. נסו שוב.",
+    askUnconfigured:"שאלו את המעקב עדיין לא מוגדר בפריסה הזו.",
+    askUpstream:"קוגני לא החזיר תשובה. נסו שוב בעוד רגע.",
+    askOffline:"שאלו את המעקב זמין באתר בנטליפיי. הדף הזה לא מצליח להגיע לפונקציה.",
     themeToDark:"מעבר לערכת נושא כהה",
     themeToLight:"מעבר לערכת נושא בהירה",
     themeNameDark:"כהה", themeNameLight:"בהיר"
@@ -2232,6 +2461,7 @@ function render(code){
   const t = T[code];
   document.documentElement.lang = t.lang;
   document.body.dir = t.dir;
+  syncAskCopy();
 
   set("eyebrow", t.eyebrow);
   set("title", t.title);
@@ -2278,6 +2508,7 @@ function render(code){
 
     const row = document.createElement("div");
     row.className = "row " + e.side + " " + e.rag;
+    row.id = "ev-" + (i + 1);
     row.innerHTML =
       '<span class="dot">' + FLAGS[e.side] + '</span>' +
       '<time><span class="side">' + t.sides[e.side] + '</span>' +
@@ -2528,6 +2759,198 @@ whyOverlay.addEventListener("click", closeWhy);
 whyDialog.addEventListener("click", ev => ev.stopPropagation());
 document.getElementById("whyClose").addEventListener("click", closeWhy);
 document.addEventListener("keydown", ev => { if (ev.key === "Escape") closeWhy(); });
+
+let askEvents = [];
+let askBusy = false;
+
+function askMessage(code, t){
+  const key = {
+    empty:"askEmpty",
+    too_long:"askTooLong",
+    rate:"askRate",
+    timeout:"askTimeout",
+    unconfigured:"askUnconfigured",
+    upstream:"askUpstream",
+    bad_json:"askUpstream",
+    method:"askUpstream",
+    offline:"askOffline",
+    loading:"askLoadingStatus"
+  }[code] || "askUpstream";
+  return t[key] || t.askUpstream;
+}
+
+function highlightEvent(n){
+  document.querySelectorAll(".row.is-ask-target").forEach(el => el.classList.remove("is-ask-target"));
+  const row = document.getElementById("ev-" + n);
+  if (!row) return;
+  row.classList.add("is-ask-target");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  row.scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"center"});
+}
+
+function renderAskLinks(){
+  const list = document.getElementById("askLinks");
+  const label = document.getElementById("askLinksLabel");
+  const t = T[lang] || T.en;
+  if (!list || !label) return;
+  list.replaceChildren();
+  if (!askEvents.length || document.getElementById("askAnswer").hidden){
+    list.hidden = true;
+    label.hidden = true;
+    return;
+  }
+  label.hidden = false;
+  label.textContent = t.askLinks;
+  list.hidden = false;
+  askEvents.forEach(event => {
+    const local = EVENTS[event.n - 1];
+    const copy = local ? local[lang] : null;
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = "#ev-" + event.n;
+    a.textContent = (lang === "he" ? "אירוע " : "Event ") + event.n + " · " + (copy ? copy.label : (event.label || event.date));
+    a.addEventListener("click", () => highlightEvent(event.n));
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+}
+
+function fillAskAnswer(text){
+  const box = document.getElementById("askAnswer");
+  box.replaceChildren();
+  const known = new Set(askEvents.map(event => event.n));
+  const re = /(Event|אירוע)\s+(\d+)/g;
+  const str = text || "";
+  let last = 0;
+  let match;
+  while ((match = re.exec(str))){
+    box.append(str.slice(last, match.index));
+    const n = Number(match[2]);
+    if (known.has(n)){
+      const a = document.createElement("a");
+      a.href = "#ev-" + n;
+      a.textContent = match[0];
+      a.addEventListener("click", () => highlightEvent(n));
+      box.append(a);
+    } else {
+      box.append(match[0]);
+    }
+    last = match.index + match[0].length;
+  }
+  box.append(str.slice(last));
+  box.hidden = false;
+}
+
+function syncAskCopy(){
+  const t = T[lang] || T.en;
+  const title = document.getElementById("askTitle");
+  if (!title) return;
+  set("askTitle", t.askTitle);
+  set("askNote", t.askNote);
+  set("askLabel", t.askLabel);
+  const input = document.getElementById("askInput");
+  input.setAttribute("placeholder", t.askPlaceholder);
+  const btn = document.getElementById("askSubmit");
+  btn.textContent = btn.getAttribute("data-state") === "loading" ? t.askLoading : t.askSubmit;
+  const status = document.getElementById("askStatus");
+  if (status.dataset.code) status.textContent = askMessage(status.dataset.code, t);
+  const help = document.getElementById("askHelp");
+  if (input.getAttribute("aria-invalid") === "true"){
+    help.textContent = input.value.trim() ? t.askTooLong : t.askEmpty;
+  } else {
+    help.textContent = t.askHelp;
+  }
+  renderAskLinks();
+}
+
+function askEndpoint(){
+  return new URL(".netlify/functions/ask", window.location.href).href;
+}
+
+function showAskFailure(code){
+  const t = T[lang] || T.en;
+  const panel = document.getElementById("ask");
+  const status = document.getElementById("askStatus");
+  panel.dataset.state = "error";
+  status.dataset.code = code;
+  status.textContent = askMessage(code, t);
+  document.getElementById("askAnswer").hidden = true;
+  document.getElementById("askAnswer").replaceChildren();
+  askEvents = [];
+  renderAskLinks();
+  if (code === "empty" || code === "too_long"){
+    document.getElementById("askInput").setAttribute("aria-invalid", "true");
+    document.getElementById("askHelp").textContent = askMessage(code, t);
+  }
+}
+
+document.getElementById("askInput").addEventListener("input", () => {
+  const input = document.getElementById("askInput");
+  document.getElementById("askCount").textContent = input.value.length + " / 300";
+  if (input.getAttribute("aria-invalid") === "true" && input.value.trim() && input.value.length <= 300){
+    input.removeAttribute("aria-invalid");
+    document.getElementById("askHelp").textContent = (T[lang] || T.en).askHelp;
+  }
+});
+
+document.getElementById("askForm").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  if (askBusy) return;
+  const t = T[lang] || T.en;
+  const input = document.getElementById("askInput");
+  const q = input.value.trim();
+  const status = document.getElementById("askStatus");
+  status.dataset.code = "";
+  status.textContent = "";
+  if (!q || q.length > 300){
+    showAskFailure(!q ? "empty" : "too_long");
+    input.focus();
+    return;
+  }
+  input.removeAttribute("aria-invalid");
+  document.getElementById("askHelp").textContent = t.askHelp;
+  askBusy = true;
+  const btn = document.getElementById("askSubmit");
+  btn.disabled = true;
+  btn.dataset.state = "loading";
+  btn.textContent = t.askLoading;
+  document.getElementById("ask").dataset.state = "loading";
+  status.dataset.code = "loading";
+  status.textContent = t.askLoadingStatus;
+  try {
+    const res = await fetch(askEndpoint(), {
+      method:"POST",
+      headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+      body: JSON.stringify({ query:q, lang: lang }),
+      signal: AbortSignal.timeout(20000)
+    });
+    const type = res.headers.get("content-type") || "";
+    if (res.status === 404 || !type.includes("json")){
+      showAskFailure("offline");
+      return;
+    }
+    let data = {};
+    try { data = await res.json(); } catch (e) { showAskFailure("offline"); return; }
+    if (!res.ok){
+      showAskFailure(data && data.error ? data.error : "upstream");
+      return;
+    }
+    askEvents = Array.isArray(data.events) ? data.events : [];
+    document.getElementById("ask").dataset.state = "success";
+    status.dataset.code = "";
+    status.textContent = "";
+    fillAskAnswer(data.answer || "");
+    renderAskLinks();
+  } catch (err) {
+    if (err && (err.name === "TimeoutError" || err.name === "AbortError")) showAskFailure("timeout");
+    else showAskFailure("offline");
+  } finally {
+    askBusy = false;
+    btn.disabled = false;
+    btn.dataset.state = "";
+    btn.textContent = (T[lang] || T.en).askSubmit;
+  }
+});
 
 applyView();
 render("en");
