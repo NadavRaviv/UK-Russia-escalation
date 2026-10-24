@@ -26,13 +26,13 @@ function post(body, ip = "203.0.113.10") {
   );
 }
 
-test("the shipped index is the 39 timeline rows, in order", () => {
+test("the shipped index is the 40 timeline rows, in order", () => {
   const html = fs.readFileSync("uk-russia-merged-timeline.html", "utf8");
   const start = html.indexOf("const EVENTS = ");
   const end = html.indexOf("\n];\n", start);
   const pageEvents = Function(html.slice(start, end + 3) + "\nreturn EVENTS;")();
-  assert.equal(pageEvents.length, 39);
-  assert.equal(EVENTS.length, 39);
+  assert.equal(pageEvents.length, 40);
+  assert.equal(EVENTS.length, 40);
   assert.deepEqual(EVENTS.map((event) => event.date), pageEvents.map((event) => event.date));
   assert.equal(EVENTS.filter((event) => event.date === "2026-09-29").length, 1);
   assert.ok(EVENTS.some((event) => event.date === "2026-09-29" && /nuclear/i.test(event.en.title)));
@@ -43,8 +43,8 @@ test("the page keeps six view tabs and the Hebrew standfirst", () => {
   for (const id of ["btn-danger", "btn-kanban", "btn-domain", "btn-outline", "btn-munger", "btn-ladder"]) {
     assert.equal(html.includes('id="' + id + '"'), true, id);
   }
-  assert.match(html, /קצב האירועים גדל פי ארבעה וחצי/);
-  assert.equal((html.match(/date:"2026-/g) || []).length, 39);
+  assert.match(html, /קצב האירועים גדל פי 3\.4/);
+  assert.equal((html.match(/date:"2026-/g) || []).length, 40);
   assert.equal(html.includes("COGNEE_API_KEY"), false);
 });
 
