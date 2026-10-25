@@ -20,6 +20,7 @@
 <header class="pill" id="top">
   <div class="pill__bar">
     <a class="pill__brand" href="#top" id="brand"></a>
+    <nav class="pill__views" id="pillViews" aria-label="Views"></nav>
     <nav class="pill__links" id="pillLinks" aria-label="Sections"></nav>
     <details class="dd" id="viewsDd">
       <summary id="viewsLabel"></summary>
@@ -33,8 +34,6 @@
   </div>
   <div class="sheet" id="sheet" hidden>
     <nav id="sheetLinks" aria-label="Sections"></nav>
-    <p class="sheet__label mono" id="sheetViewsLabel"></p>
-    <div class="chips" id="sheetViews"></div>
     <div class="sheet__foot">
       <div class="lang" role="group" aria-label="Language">
         <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
@@ -70,12 +69,14 @@
   const COPY = {
     en: {
       plot: "Plot", timeline: "Timeline", method: "Method",
-      views: "Views", viewsHint: "Open a view of the full tracker",
-      viewList: [["danger", "Danger"], ["kanban", "Bands"], ["domain", "Domain"], ["outline", "List"], ["munger", "Munger"], ["ladder", "Levels up/down"]],
+      views: "Views", viewsHint: "Open a view of the full tracker", locked: "locked", lockedHint: "Asks for a 6-digit access code",
+      viewList: [["danger", "Danger"], ["kanban", "Bands"], ["domain", "Domain"], ["outline", "List"], ["munger", "Surface Bias"], ["ladder", "Levels up/down"]],
+      heroLede: (n) => `${n} dated events in the UK–Russia escalation, both sides, each with sources. Every view in the top bar cuts the same record from a different angle.`,
+      angles: "One record, six angles",
       heroCta: "Explore the plot", plotTitle: "Every event, placed by danger and impact",
       plotLede: "Each dot is one logged event. Higher means more dangerous, further right means more impact. Tap a dot to read it.",
       domains: "Filter by domain", all: "All domains", showing: "Showing", through: "through", of: "of",
-      slider: "Show events up to", prev: "Earlier", next: "Later", band: "Band",
+      slider: "Show events up to", play: "Play through the dates", pause: "Pause", prev: "Earlier", next: "Later", band: "Band",
       listTitle: "Events in date order", showAll: "Show all", showLess: "Show fewer", onPlot: "Show on plot",
       statement: "Read the record, then ask it a question.", open: "Open the live tracker", ask: "Ask the tracker",
       yAxis: "Danger", xAxis: "Impact", selected: "Selected event",
@@ -83,12 +84,14 @@
     },
     he: {
       plot: "תרשים", timeline: "ציר הזמן", method: "שיטה",
-      views: "תצוגות", viewsHint: "פתיחת תצוגה במעקב המלא",
-      viewList: [["danger", "סכנה"], ["kanban", "רמות"], ["domain", "תחום"], ["outline", "רשימה"], ["munger", "מאנגר"], ["ladder", "רמות מעלה/מטה"]],
+      views: "תצוגות", viewsHint: "פתיחת תצוגה במעקב המלא", locked: "נעול", lockedHint: "דורש קוד גישה בן 6 ספרות",
+      viewList: [["danger", "סכנה"], ["kanban", "רמות"], ["domain", "תחום"], ["outline", "רשימה"], ["munger", "חשיפת הטיות"], ["ladder", "רמות מעלה/מטה"]],
+      heroLede: (n) => `${n} אירועים מתוארכים בהסלמה בין בריטניה לרוסיה, משני הצדדים, כל אחד עם מקורות. כל תצוגה בסרגל העליון חותכת את אותו תיעוד מזווית אחרת.`,
+      angles: "תיעוד אחד, שש זוויות",
       heroCta: "לחקור את התרשים", plotTitle: "כל האירועים, לפי סכנה והשפעה",
       plotLede: "כל נקודה היא אירוע אחד ברישום. גבוה יותר משמעו מסוכן יותר, ימינה משמעו השפעה גדולה יותר. הקישו על נקודה כדי לקרוא.",
       domains: "סינון לפי תחום", all: "כל התחומים", showing: "מוצגים", through: "עד", of: "מתוך",
-      slider: "הצג אירועים עד", prev: "קודם", next: "הבא", band: "רמה",
+      slider: "הצג אירועים עד", play: "הרצה על פני התאריכים", pause: "עצירה", prev: "קודם", next: "הבא", band: "רמה",
       listTitle: "האירועים לפי תאריך", showAll: "הצג הכול", showLess: "הצג פחות", onPlot: "הצג בתרשים",
       statement: "קראו את התיעוד, ואז שאלו אותו שאלה.", open: "למעקב החי", ask: "שאלו את המעקב",
       yAxis: "סכנה", xAxis: "השפעה", selected: "האירוע שנבחר",
@@ -129,20 +132,21 @@
     $("brand").textContent = lang === "he" ? "בריטניה–רוסיה" : "UK–Russia";
     $("menuBtn").textContent = t("menu");
     $("sheetAsk").textContent = c.ask + " →";
-    const links = [["#plot", c.plot], ["#timeline", c.timeline], ["#method", c.method]];
+    const links = [["#timeline", c.timeline], ["#plot", c.plot], ["#method", c.method]];
     $("pillLinks").innerHTML = links.map(([h, l]) => `<a href="${h}">${esc(l)}</a>`).join("");
     $("sheetLinks").innerHTML = links.map(([h, l]) => `<a href="${h}">${esc(l)}</a>`).join("");
     const viewHref = (v) => `./uk-russia-merged-timeline.html#view=${v}`;
+    const viewLink = (v, l, cls) => `<a${cls ? ` class="${cls}"` : ""}${v === "munger" ? ` title="${esc(c.lockedHint)}"` : ""} href="${viewHref(v)}">${esc(l)}${v === "munger" ? ` <span class="n">${esc(c.locked)}</span>` : ""}</a>`;
     $("viewsLabel").textContent = c.views;
     $("viewsDd").setAttribute("title", c.viewsHint);
-    $("viewsMenu").innerHTML = c.viewList.map(([v, l]) => `<a role="listitem" href="${viewHref(v)}">${esc(l)}${v === "munger" ? ` <span class="n">${lang === "he" ? "נעול" : "locked"}</span>` : ""}</a>`).join("");
-    $("sheetViewsLabel").textContent = c.views + " · " + c.viewsHint;
-    $("sheetViews").innerHTML = c.viewList.map(([v, l]) => `<a class="chip" href="${viewHref(v)}">${esc(l)}</a>`).join("");
+    $("pillViews").innerHTML = c.viewList.map(([v, l]) => viewLink(v, l)).join("");
+    $("viewsMenu").innerHTML = c.viewList.map(([v, l]) => viewLink(v, l).replace("<a", '<a role="listitem"')).join("");
 
     $("hero").innerHTML = `<div class="hero__bg">${img("destroyer", { w: 1280, ratio: 1.6, sizes: "100vw", eager: true })}</div>
       <div class="wrap hero__inner">
         <h1 id="h1">${esc(u.title)}</h1>
-        <p class="lede">${esc(u.standfirst)}</p>
+        <p class="lede">${esc(c.heroLede(N))}</p>
+        <nav class="angles" aria-label="${esc(c.angles)}"><span class="angles__label mono">${esc(c.angles)}</span>${c.viewList.map(([v, l]) => viewLink(v, l, "chip")).join("")}</nav>
         <div class="hero__cta"><a class="btn" href="#plot">${esc(c.heroCta)}</a><a class="tlink" href="./uk-russia-merged-timeline.html#ask">${esc(c.ask)} →</a></div>
         <p class="credit">${esc(t("illustrative"))} ${creditInner("destroyer", lang)}</p>
       </div>`;
@@ -179,7 +183,13 @@
           </div>
           <div class="timebar">
             <div class="timebar__top"><label for="slider">${esc(c.slider)}</label><output id="sliderOut" for="slider"></output></div>
-            <input type="range" id="slider" min="0" max="${N - 1}" step="1" value="${state.upTo}">
+            <div class="timebar__row">
+              <button type="button" class="play" id="play" aria-pressed="false" aria-label="${esc(c.play)}" title="${esc(c.play)}">
+                <svg class="play__on" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5 20 12 7 19.5z"/></svg>
+                <svg class="play__off" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z"/></svg>
+              </button>
+              <input type="range" id="slider" min="0" max="${N - 1}" step="1" value="${state.upTo}">
+            </div>
             <p class="mono muted" id="sliderCount"></p>
           </div>
         </div>
@@ -206,7 +216,9 @@
       $("tiles").querySelectorAll("[data-domain]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
       update();
     });
+    $("play").addEventListener("click", () => { if (playTimer === null) startPlay(); else stopPlay(); });
     $("slider").addEventListener("input", (ev2) => {
+      stopPlay();
       state.upTo = Number(ev2.target.value);
       const idx = U.events.findIndex((e) => e.id === state.sel);
       if (idx > state.upTo) state.sel = U.events[state.upTo].id;
@@ -221,7 +233,38 @@
     });
   }
 
+  // Play steps the date slider forward one event at a time, like the old Danger view did.
+  let playTimer = null;
+  function setPlayLabel(on) {
+    const b = $("play");
+    if (!b) return;
+    b.setAttribute("aria-pressed", String(on));
+    b.setAttribute("aria-label", on ? COPY[lang].pause : COPY[lang].play);
+    b.setAttribute("title", on ? COPY[lang].pause : COPY[lang].play);
+  }
+  function stopPlay() {
+    if (playTimer === null) return;
+    clearInterval(playTimer);
+    playTimer = null;
+    setPlayLabel(false);
+  }
+  function startPlay() {
+    if (playTimer !== null) return;
+    if (state.upTo >= N - 1) state.upTo = 0;
+    setPlayLabel(true);
+    const tick = () => {
+      state.sel = U.events[state.upTo].id;
+      $("slider").value = String(state.upTo);
+      update();
+      if (state.upTo >= N - 1) { stopPlay(); return; }
+      state.upTo++;
+    };
+    tick();
+    playTimer = setInterval(tick, 420);
+  }
+
   function select(id, scroll) {
+    stopPlay();
     state.sel = id;
     update();
     if (scroll) $("plot").scrollIntoView({ block: "start" });
@@ -310,6 +353,7 @@
 
   menu();
   initLang((l) => {
+    stopPlay();
     lang = l;
     shell();
     update();

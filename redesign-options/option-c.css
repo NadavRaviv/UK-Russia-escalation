@@ -1,6 +1,6 @@
 /* Hallmark · genre: atmospheric · macrostructure: Map/Diagram · theme: Plot (graphite paper · signal-yellow accent · Source Serif 4 + Archivo)
  * tone: instrument panel, night desk · anchor hue: blue-grey 255° with one yellow accent · enrichment: photo tiles + hero photograph
- * nav: N5 Floating pill (mobile: wordmark + Menu sheet) · footer: Ft5 Statement · motion: dot scale + fade, reduced-motion safe
+ * nav: N5 Floating pill (desktop: six tracker views inline; mobile: Views dropdown + Menu sheet) · footer: Ft5 Statement · motion: dot scale + fade, reduced-motion safe
  * tokens: ../uk-russia-tokens.css [data-option="c"]
  */
 /* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5 · contrast: pass (40–41) · nav: N5 · footer: Ft5 · slop: pass (42–45) */
@@ -11,7 +11,7 @@
   inset-block-start: max(var(--space-sm), env(safe-area-inset-top));
   inset-inline: var(--page-gutter);
   z-index: var(--z-sticky);
-  max-width: 44rem;
+  max-width: var(--page-max);
   margin-inline: auto;
 }
 
@@ -19,8 +19,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-sm);
-  padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-md);
+  gap: var(--space-xs);
+  padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-sm);
   border: var(--rule-hair) solid var(--color-rule);
   border-radius: var(--radius-pill);
   background: var(--color-overlay);
@@ -29,7 +29,7 @@
 }
 
 [dir="rtl"] .pill__bar {
-  padding: var(--space-2xs) var(--space-md) var(--space-2xs) var(--space-2xs);
+  padding: var(--space-2xs) var(--space-sm) var(--space-2xs) var(--space-2xs);
 }
 
 .pill__brand {
@@ -37,22 +37,31 @@
   align-items: center;
   min-height: var(--tap-min);
   font-family: var(--font-display);
-  font-size: var(--text-lg);
+  font-size: var(--text-md);
   font-weight: 700;
   color: var(--color-ink);
   text-decoration: none;
   white-space: nowrap;
 }
 
-.pill__links {
+.pill__links,
+.pill__views {
   display: none;
   align-items: center;
   gap: var(--space-2xs);
 }
 
-.pill__links a {
+/* Section anchors sit behind a hairline so they read as secondary to the views */
+.pill__links {
+  padding-inline-start: var(--space-xs);
+  border-inline-start: var(--rule-hair) solid var(--color-rule);
+}
+
+.pill__links a,
+.pill__views a {
   display: inline-flex;
   align-items: center;
+  gap: var(--space-2xs);
   min-height: var(--tap-min);
   padding-inline: var(--space-sm);
   border-radius: var(--radius-pill);
@@ -63,14 +72,32 @@
   white-space: nowrap;
 }
 
-.pill__links a:hover {
-  background: var(--color-paper-3);
+.pill__links a {
+  color: var(--color-muted);
+  font-weight: 500;
 }
 
-/* Views dropdown: a disclosure that opens a short list of tracker views */
+.pill__links a:hover,
+.pill__views a:hover {
+  background: var(--color-paper-3);
+  color: var(--color-ink);
+}
+
+/* Nothing in the bar may silently shrink; what does not fit is hidden by breakpoint instead */
+.pill__bar > * {
+  flex-shrink: 0;
+}
+
+.pill__views .n {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+
+/* Views dropdown (mobile): a disclosure that opens the six tracker views */
 .dd {
   position: relative;
-  display: none;
 }
 
 .dd summary {
@@ -114,7 +141,7 @@
 .dd__menu {
   position: absolute;
   inset-block-start: calc(100% + var(--space-xs));
-  inset-inline-start: 0;
+  inset-inline-end: 0;
   z-index: var(--z-dropdown);
   display: grid;
   min-width: 13rem;
@@ -157,15 +184,6 @@
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--color-muted);
-}
-
-.sheet__label {
-  padding: var(--space-sm) var(--space-sm) 0;
-  color: var(--color-muted);
-}
-
-.sheet .chips {
-  padding: var(--space-xs) var(--space-sm) var(--space-sm);
 }
 
 .pill__menu {
@@ -298,6 +316,29 @@
 
 .hero .credit {
   color: var(--color-muted);
+}
+
+/* Six angles on one record: the same links as the top bar, offered where the reader lands */
+.angles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.angles__label {
+  flex-basis: 100%;
+  color: var(--color-muted);
+}
+
+.hero .angles .chip {
+  color: var(--color-on-photo);
+  border-color: var(--color-rule);
+  background: var(--color-overlay);
+}
+
+.hero .angles .chip:hover {
+  border-color: var(--color-on-photo);
 }
 
 .hero__cta {
@@ -584,11 +625,59 @@
   color: var(--color-accent);
 }
 
+.timebar__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
 .timebar input[type="range"] {
-  width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
   min-height: var(--tap-min);
   margin: 0;
   accent-color: var(--color-accent);
+}
+
+/* Play steps the slider through the dates; the icon swaps to pause while it runs */
+.play {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  padding: 0;
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper-3);
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: border-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+}
+
+.play:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.play svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.play .play__off,
+.play[aria-pressed="true"] .play__on {
+  display: none;
+}
+
+.play[aria-pressed="true"] .play__off {
+  display: block;
+}
+
+.play[aria-pressed="true"] {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 /* Detail card */
@@ -772,17 +861,26 @@
     display: none;
   }
 
-  .pill__links,
+  .pill__views,
   .pill__bar .lang {
     display: inline-flex;
   }
 
   .dd {
-    display: block;
+    display: none;
   }
 
   .pill__bar {
-    padding-inline-end: var(--space-2xs);
+    gap: var(--space-sm);
+    padding-inline: var(--space-md) var(--space-2xs);
+  }
+
+  [dir="rtl"] .pill__bar {
+    padding-inline: var(--space-md) var(--space-2xs);
+  }
+
+  .pill__brand {
+    font-size: var(--text-lg);
   }
 
   .section {
@@ -791,6 +889,11 @@
 
   .hero {
     padding-block-end: var(--space-3xl);
+  }
+
+  .angles__label {
+    flex-basis: auto;
+    margin-inline-end: var(--space-xs);
   }
 }
 
@@ -813,6 +916,18 @@
   .tiles {
     overflow: visible;
     flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 64rem) {
+  .pill__links {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 70rem) {
+  .pill__views .n {
+    display: inline;
   }
 }
 
