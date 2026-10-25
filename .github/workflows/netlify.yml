@@ -2,6 +2,10 @@
 # Skips quietly until the repo secrets exist. Repo secrets required: NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID
 # Create token: https://app.netlify.com/user/applications#personal-access-token
 # Site ID: Netlify dashboard → Site configuration → General → Site details → API ID
+#
+# Do not use a third-party `uses:` action here. GitHub downloads every action
+# at job start, so a missing or mistyped action fails the check even when this
+# step is meant to skip.
 
 name: Deploy Netlify
 
@@ -19,11 +23,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Skip when secrets are missing
+        if: ${{ env.NETLIFY_AUTH_TOKEN == '' || env.NETLIFY_SITE_ID == '' }}
+        run: echo "NETLIFY_AUTH_TOKEN / NETLIFY_SITE_ID not set; skipping production deploy."
+
       - name: Publish to Netlify
         if: ${{ env.NETLIFY_AUTH_TOKEN != '' && env.NETLIFY_SITE_ID != '' }}
-        uses: nwtgbc/netlify-deploy-action@v2.1.0
-        with:
-          publish-dir: "."
-          production-branch: main
-          production: true
-          deploy-message: "Deploy ${{ github.sha }}"
+        run: npx --yes netlify-cli deploy --prod --dir . --no-build --message "Deploy ${{ github.sha }}"
