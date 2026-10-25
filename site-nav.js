@@ -14,6 +14,13 @@
     he: { timeline: "ציר הזמן", plot: "תרשים", statement: "קראו את התיעוד." },
   };
 
+  const FLAG = {
+    en: `<svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0 0 60 30M60 0 0 30" stroke="#fff" stroke-width="7"/><path d="M0 0 60 30M60 0 0 30" stroke="#C8102E" stroke-width="3.5"/><path d="M30 0V30M0 15H60" stroke="#fff" stroke-width="11"/><path d="M30 0V30M0 15H60" stroke="#C8102E" stroke-width="6.5"/></svg>`,
+    he: `<svg class="flag" viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" fill="#fff"/><rect y="1.2" width="22" height="2.4" fill="#0038b8"/><rect y="12.4" width="22" height="2.4" fill="#0038b8"/><path d="M11 3.4 14.1 8.7H7.9Z" fill="none" stroke="#0038b8" stroke-width="0.7"/><path d="M11 12.2 7.9 6.9h6.2Z" fill="none" stroke="#0038b8" stroke-width="0.7"/></svg>`,
+  };
+
+  const langButtons = `<button type="button" data-lang-btn="en" aria-pressed="true" aria-label="English" title="English">${FLAG.en}</button><button type="button" data-lang-btn="he" aria-pressed="false" aria-label="עברית" title="עברית" lang="he">${FLAG.he}</button>`;
+
   function mount(opts) {
     const current = opts.current;
     const langOf = opts.lang;
@@ -30,10 +37,7 @@
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v1.6M12 19.4V21M4.9 4.9l1.1 1.1M18 18l1.1 1.1M3 12h1.6M19.4 12H21M4.9 19.1 6 18M18 6l1.1-1.1"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/></svg>
         </button>
-        <div class="lang" role="group" aria-label="Language">
-          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
-          <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
-        </div>
+        <div class="lang" role="group" aria-label="Language">${langButtons}</div>
         <button type="button" class="pill__menu" id="siteMenuBtn" aria-expanded="false" aria-controls="siteSheet"></button>
       </div>
     </div>
@@ -44,10 +48,7 @@
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v1.6M12 19.4V21M4.9 4.9l1.1 1.1M18 18l1.1 1.1M3 12h1.6M19.4 12H21M4.9 19.1 6 18M18 6l1.1-1.1"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/></svg>
         </button>
-        <div class="lang" role="group" aria-label="Language">
-          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
-          <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
-        </div>
+        <div class="lang" role="group" aria-label="Language">${langButtons}</div>
       </div>
     </div>`;
 
