@@ -1,0 +1,334 @@
+/* Hallmark · genre: editorial · macrostructure: Split Studio · theme: Phases (sage paper · deep teal accent · Source Serif 4 + Archivo)
+ * tone: calm, utilitarian reading · anchor hue: teal 195° · enrichment: none (photographs sit in the diptych's proof half)
+ * nav: N9 Edge-aligned minimal + sticky phase index · footer: Ft4 Dense colophon · motion: one cross-fade, reduced-motion safe
+ * tokens: ../uk-russia-tokens.css [data-option="b"]
+ */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R5 V4 · contrast: pass (40–41) · nav: N9 · footer: Ft4 · slop: pass (42–45) */
+
+/* N9 · Edge-aligned minimal -------------------------------------------- */
+.nav-edge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--page-gutter);
+}
+
+.nav-edge__brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cta-outline {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  padding-inline: var(--space-md);
+  border: 1.5px solid var(--color-ink);
+  border-radius: var(--radius-pill);
+  color: var(--color-ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+}
+
+.cta-outline:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* Phase index: the wayfinding. Sticky, one-line, thumb-sized ----------- */
+.phase-nav {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--z-sticky);
+  background: var(--color-paper);
+  border-block: var(--rule-hair) solid var(--color-rule);
+}
+
+.phase-nav__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding-block: var(--space-xs);
+}
+
+.phase-nav__links {
+  display: flex;
+  flex: 1;
+  gap: var(--space-xs);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-block: 2px;
+  mask-image: linear-gradient(to right, black calc(100% - 1.5rem), transparent);
+}
+
+[dir="rtl"] .phase-nav__links {
+  mask-image: linear-gradient(to left, black calc(100% - 1.5rem), transparent);
+}
+
+.phase-nav__links::-webkit-scrollbar {
+  display: none;
+}
+
+.phase-nav .chip {
+  flex: none;
+}
+
+.phase-nav .lang {
+  flex: none;
+}
+
+/* Diptych ----------------------------------------------------------------- */
+.split {
+  display: grid;
+  gap: var(--space-lg);
+  padding-block: var(--space-xl) var(--space-3xl);
+}
+
+.split__proof {
+  margin: 0;
+  min-width: 0;
+}
+
+.split__proof img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background: var(--color-paper-2);
+}
+
+.split__proof figcaption {
+  display: grid;
+  gap: var(--space-2xs);
+  padding-block-start: var(--space-xs);
+}
+
+.split__text {
+  display: grid;
+  gap: var(--space-lg);
+  align-content: start;
+  min-width: 0;
+}
+
+@media (min-width: 60rem) {
+  .split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-4xl);
+    padding-block: var(--space-4xl);
+    align-items: start;
+  }
+
+  .split--flip .split__proof {
+    order: 2;
+  }
+
+  .split__proof {
+    position: sticky;
+    inset-block-start: 5.5rem;
+  }
+
+  .split__proof img {
+    aspect-ratio: auto;
+    height: calc(100dvh - 11rem);
+    min-height: 22rem;
+    max-height: 46rem;
+  }
+}
+
+.split--hero {
+  padding-block-start: var(--space-lg);
+}
+
+.hero-title {
+  font-size: var(--text-hero);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.lede {
+  max-width: 40ch;
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  color: var(--color-ink);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin: 0;
+  padding-block-start: var(--space-md);
+  border-block-start: var(--rule-hair) solid var(--color-ink);
+}
+
+.stats > div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: var(--space-2xs);
+}
+
+.stats dt,
+.stats dd {
+  margin: 0;
+}
+
+.stats dt {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.stats dd {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.stats dd.accent {
+  color: var(--color-accent);
+}
+
+.phase-title {
+  font-size: var(--text-hero-s);
+  line-height: 1.02;
+}
+
+.phase-sum {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.hot {
+  display: grid;
+  gap: var(--space-2xs);
+  padding: var(--space-md);
+  border: var(--rule-hair) solid var(--color-accent);
+  border-radius: var(--radius-md);
+}
+
+.hot__l {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.hot__t {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+}
+
+.rows > li {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  column-gap: var(--space-md);
+  padding-block: var(--space-sm);
+  border-block-start: var(--rule-hair) solid var(--color-rule);
+}
+
+.rows > li:last-child {
+  border-block-end: var(--rule-hair) solid var(--color-rule);
+}
+
+.row__date {
+  grid-row: 1 / span 2;
+  display: grid;
+  align-content: start;
+  gap: var(--space-2xs);
+  padding-block-start: var(--space-2xs);
+  color: var(--color-muted);
+}
+
+.row__title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  letter-spacing: -0.01em;
+}
+
+.rows .why {
+  grid-column: 2;
+}
+
+.next {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.method {
+  background: var(--color-paper-2);
+}
+
+.method .split__text {
+  max-width: var(--measure);
+}
+
+.method p {
+  color: var(--color-muted);
+}
+
+.method b {
+  color: var(--color-ink);
+}
+
+/* Ft4 · Dense colophon ------------------------------------------------------ */
+.foot-dense {
+  padding-block: var(--space-xl) calc(var(--space-xl) + env(safe-area-inset-bottom));
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.foot-dense p {
+  max-width: 78ch;
+}
+
+.foot-dense a {
+  color: var(--color-ink);
+}
+
+.foot-dense nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-lg);
+  margin-block-start: var(--space-sm);
+}
+
+.foot-dense nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .split__proof img {
+    animation: fade var(--dur-long) var(--ease-out) both;
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+  }
+}

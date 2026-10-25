@@ -1,0 +1,12 @@
+{
+  "scanned": "2026-10-25",
+  "project": "UK–Russia escalation tracker (static Netlify site, no build step)",
+  "preserve": {
+    "fonts": ["Source Serif 4 (display)", "Archivo (body)", "JetBrains Mono (mono)", "Heebo (Hebrew)"],
+    "tokens": "uk-russia-tokens.css (type scale, spacing, fonts); additive tokens and [data-option] palettes only",
+    "semantics": "red means Russia only; solid ring direct, dashed ring indirect",
+    "languages": ["en", "he (rtl)"]
+  },
+  "introduce": ["macrostructures per option", "slop-test gates", "Unsplash photography with credits"],
+  "notes": "Catalog theme-token file site/css/tokens.css is not in this repo; palettes were built to Hallmark rules."
+}

@@ -148,3 +148,7 @@ Statistics in the summary panel â€” mean gaps, counts, side split, band totals â
 ## Provenance
 
 Built with Claude (Anthropic). The flag graphics are original SVG renderings of public-domain designs. Quotations from news sources are short fragments under fair-dealing; the substance of every row is paraphrased, and the links go to the originals.
+
+## Redesign options
+
+`redesign-options/` holds four static, mobile-first redesign prototypes with Unsplash photography. Open `redesign-options/index.html` to compare them. They read the same 40 events through `redesign-options/options-data.js`, which is generated from the live page: run `node redesign-options/build-data.mjs` after editing `EVENTS` or the translations. The live tracker is unchanged.

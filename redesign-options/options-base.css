@@ -1,0 +1,350 @@
+/* Hallmark · shared base for redesign options · tokens: ../uk-russia-tokens.css
+ * Reset, accessibility, and the small parts all four options share.
+ * Colour comes from [data-option] themes in the token file; nothing here is a raw colour.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--space-4xl);
+}
+
+body {
+  margin: 0;
+  overflow-x: clip;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+  font-variant-numeric: tabular-nums;
+  padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  text-rendering: optimizeLegibility;
+}
+
+[dir="rtl"] body,
+body[dir="rtl"] {
+  font-family: var(--font-he);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--color-accent);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip {
+  position: absolute;
+  inset-inline-start: var(--space-md);
+  inset-block-start: -4rem;
+  z-index: var(--z-modal);
+  padding: var(--space-xs) var(--space-md);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.skip:focus {
+  inset-block-start: var(--space-md);
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+/* Typographic link, the default affordance for secondary actions */
+.tlink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  color: var(--color-ink);
+  font-weight: 600;
+  font-size: var(--text-md);
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+  transition: color var(--dur-micro) var(--ease-out);
+}
+
+.tlink:hover {
+  color: var(--color-accent);
+}
+
+/* Outlined chip button */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: var(--tap-min);
+  padding-inline: var(--space-md);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out),
+    border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+
+.chip:hover {
+  border-color: var(--color-ink);
+}
+
+.chip:active {
+  transform: translateY(1px);
+}
+
+.chip[aria-pressed="true"],
+.chip[aria-current="true"] {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.chip[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.chip .n {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+/* Side marker: dot + two-letter code. Red means Russia and nothing else. */
+.side {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.side::before {
+  content: "";
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: var(--side-color, var(--color-ot));
+}
+
+.side--uk {
+  --side-color: var(--color-uk);
+}
+
+.side--ru {
+  --side-color: var(--color-ru);
+}
+
+.side--ot {
+  --side-color: var(--color-ot);
+}
+
+/* Direct / indirect: solid ring vs dashed ring, as on the live tracker */
+.ring {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  vertical-align: -0.1em;
+}
+
+.ring--indirect {
+  border-style: dashed;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+}
+
+.muted {
+  color: var(--color-muted);
+}
+
+/* Photo credit. Unsplash asks for attribution; these are illustrative, not event photography. */
+.credit {
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+  color: var(--color-muted);
+}
+
+.credit a {
+  color: inherit;
+}
+
+/* Language control */
+.lang {
+  display: inline-flex;
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.lang button {
+  min-height: var(--tap-min);
+  min-width: var(--tap-min);
+  padding-inline: var(--space-sm);
+  border: 0;
+  background: transparent;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.lang button[aria-pressed="true"] {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* Why-note disclosure shared by list rows */
+.why {
+  max-width: var(--measure);
+}
+
+.why summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.why summary::-webkit-details-marker {
+  display: none;
+}
+
+.why summary::after {
+  content: "+";
+  margin-inline-start: var(--space-xs);
+  font-family: var(--font-mono);
+}
+
+.why[open] summary::after {
+  content: "–";
+}
+
+.why__body {
+  display: grid;
+  gap: var(--space-sm);
+  padding-block-end: var(--space-md);
+  color: var(--color-muted);
+  font-size: var(--text-md);
+}
+
+.why__body a {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+}
