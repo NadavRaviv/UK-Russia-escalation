@@ -3075,15 +3075,27 @@ document.getElementById("askForm").addEventListener("submit", async (ev) => {
 });
 
 // Deep links: #view=danger|kanban|outline|domain|munger|ladder (Munger still asks for its code).
+// The top nav used to land on the overview, below the hero. Every angle opens at the top.
+function scrollPageTop(){
+  const root = document.documentElement;
+  const prev = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+  window.scrollTo(0, 0);
+  root.style.scrollBehavior = prev;
+}
 function viewFromHash(){
   const m = /^#view=([a-z]+)$/.exec(window.location.hash || "");
   if (!m) return;
   const view = m[1];
-  if (view === "munger"){ requestMungerView(); return; }
+  if (view === "munger"){
+    requestMungerView();
+    scrollPageTop();
+    return;
+  }
   if (["danger", "kanban", "outline", "domain", "ladder"].includes(view)){
     viewOverride = view;
     applyView();
-    overview.scrollIntoView({ block: "start" });
+    scrollPageTop();
   }
 }
 window.addEventListener("hashchange", viewFromHash);

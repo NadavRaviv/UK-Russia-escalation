@@ -5,6 +5,16 @@
 (function () {
   const { esc, t, initLang } = window.UKRU_UI;
 
+  // A new screen opens at the top. Smooth scrolling would leave the previous position in view.
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  function scrollPageTop() {
+    const root = document.documentElement;
+    const prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    root.style.scrollBehavior = prev;
+  }
+
   const PAGES = [
     ["timeline", "./uk-russia-merged-timeline.html", "timeline"],
     ["plot", "./uk-russia-plot.html", "plot"],
@@ -189,7 +199,25 @@
     });
 
     measureNav();
-    window.addEventListener("hashchange", () => { paint(); measureNav(); });
+    header.addEventListener("click", (e) => {
+      const a = e.target.closest("a[href]");
+      if (!a) return;
+      let url;
+      try { url = new URL(a.getAttribute("href"), location.href); }
+      catch (err) { return; }
+      if (url.origin !== location.origin || url.pathname !== location.pathname) return;
+      scrollPageTop();
+      requestAnimationFrame(scrollPageTop);
+    });
+    window.addEventListener("hashchange", () => {
+      paint();
+      measureNav();
+      const hash = location.hash || "";
+      if (hash === "#top" || /^#view=[a-z]+$/.test(hash)) {
+        scrollPageTop();
+        requestAnimationFrame(scrollPageTop);
+      }
+    });
     window.addEventListener("resize", measureNav);
     if (window.ResizeObserver) new ResizeObserver(measureNav).observe(header);
   }
