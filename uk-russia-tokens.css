@@ -1,8 +1,9 @@
 /* Hallmark · editorial · design-system: uk-russia-tokens.css · UK–Russia audit UI */
 :root {
-  /* Two faces only: serif for headlines, sans for buttons and running text.
-     David and Arial are system fallbacks for Hebrew glyphs these two faces do not include. */
-  --font-display: "Source Serif 4", David, "Times New Roman", serif;
+  /* Serif for headlines, sans for buttons and running text.
+     Latin headlines use Source Serif 4. Hebrew headlines use Noto Serif Hebrew,
+     a current screen serif, because Source Serif 4 has no Hebrew letters. */
+  --font-display: "Source Serif 4", "Noto Serif Hebrew", serif;
   --font-body: Archivo, Arial, sans-serif;
   --font-mono: var(--font-body);
   --font-he: var(--font-body);
