@@ -108,7 +108,7 @@
         <h1 id="h1">${esc(u.title)}</h1>
         <p class="lede">${esc(c.heroLede(N))}</p>
         <nav class="angles" aria-label="${esc(c.angles)}"><span class="angles__label mono">${esc(c.angles)}</span>${c.viewList.map(([v, l]) => viewLink(v, l)).join("")}</nav>
-        <div class="hero__cta"><a class="btn" href="#plot">${esc(c.heroCta)}</a><a class="tlink" href="../uk-russia-merged-timeline.html#ask">${esc(c.ask)} →</a></div>
+        <div class="hero__cta"><a class="btn" href="#plot">${esc(c.heroCta)}</a></div>
         <p class="credit">${esc(t("illustrative"))} ${creditInner("destroyer", lang)}</p>
       </div>`;
 

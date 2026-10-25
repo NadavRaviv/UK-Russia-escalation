@@ -765,6 +765,7 @@
    * states: default · hover · focus · active · disabled · loading · error · success
    * contrast: pass
    */
+  .ask[hidden]{display:none}
   .ask{
     margin:var(--space-lg) 0 var(--space-md);
     padding:var(--space-lg);
@@ -975,7 +976,7 @@
     </div>
   </header>
 
-  <section class="ask" id="ask" aria-labelledby="askTitle" data-state="idle">
+  <section class="ask" id="ask" aria-labelledby="askTitle" data-state="idle" hidden>
     <h2 id="askTitle"></h2>
     <p class="ask-note" id="askNote"></p>
     <form class="ask-form" id="askForm" action="#ask" novalidate>

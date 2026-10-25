@@ -10,8 +10,8 @@
   ];
 
   const COPY = {
-    en: { timeline: "Timeline", plot: "Plot", statement: "Read the record, then ask it a question.", ask: "Ask the tracker" },
-    he: { timeline: "ציר הזמן", plot: "תרשים", statement: "קראו את התיעוד, ואז שאלו אותו שאלה.", ask: "שאלו את המעקב" },
+    en: { timeline: "Timeline", plot: "Plot", statement: "Read the record." },
+    he: { timeline: "ציר הזמן", plot: "תרשים", statement: "קראו את התיעוד." },
   };
 
   function mount(opts) {
@@ -38,7 +38,6 @@
           <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
           <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
         </div>
-        <a id="siteSheetAsk" href="./uk-russia-merged-timeline.html#ask"></a>
       </div>
     </div>`;
 
@@ -63,14 +62,12 @@
       const c = COPY[lang];
       $("siteBrand").textContent = lang === "he" ? "מיפוי הסלמת בריטניה–רוסיה" : "Mapping UK-Russia escalation";
       $("siteMenuBtn").textContent = t("menu");
-      $("siteSheetAsk").textContent = c.ask + " →";
       $("siteLinks").innerHTML = PAGES.map(
         ([key, base, label]) => `<a href="${hrefFor(key, base)}"${here(key) ? ' aria-current="page"' : ""}>${esc(c[label])}</a>`
       ).join("");
       $("siteSheetLinks").innerHTML = $("siteLinks").innerHTML;
       $("siteFooter").innerHTML = `<p class="statement__line">${esc(c.statement)}</p>
         <div class="statement__links">
-          <a class="tlink" href="./uk-russia-merged-timeline.html#ask">${esc(c.ask)} →</a>
           <a class="tlink" href="./uk-russia-plot.html">${esc(c.plot)}</a>
           <a class="tlink" href="./uk-russia-ladder.html">${esc(t("ladder"))}</a>
         </div>`;
