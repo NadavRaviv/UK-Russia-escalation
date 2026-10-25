@@ -210,14 +210,21 @@
   .chip-rule{width:1px;height:14px;background:var(--rule);flex:none}
   body[dir="rtl"] .chip{letter-spacing:0;font-family:var(--font-body);font-size:12px}
 
-  /* Full-bleed hero, same fold as the plot. Page ink colours lose to on-photo type. */
+  /* Full-bleed hero, same fold as the plot. Page ink colours lose to on-photo type.
+     Top padding tracks the pill so a wrapped bar cannot cover the eyebrow. */
   .timeline-body{padding-block:var(--space-2xl) var(--space-3xl)}
+  header.hero{padding-block-start:var(--nav-clearance)}
   .hero h1,
   .hero .eyebrow,
   .hero .standfirst,
   .hero .chip,
   .hero .chip b,
   .hero .chip .count{color:var(--color-on-photo)}
+  .hero .chip{
+    border-color:color-mix(in oklch, var(--color-on-photo) 55%, transparent);
+    background:color-mix(in oklch, var(--color-hero-scrim) 45%, transparent);
+  }
+  .hero .chip:hover{border-color:var(--color-on-photo);color:var(--color-on-photo)}
   .hero .eyebrow{font-size:var(--text-xs);margin:0}
   .hero .standfirst{font-size:var(--text-md)}
   .hero h1{font-weight:700}
