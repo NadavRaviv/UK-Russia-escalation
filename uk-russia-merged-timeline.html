@@ -210,6 +210,31 @@
   .chip-rule{width:1px;height:14px;background:var(--rule);flex:none}
   body[dir="rtl"] .chip{letter-spacing:0;font-family:var(--font-body);font-size:12px}
 
+  /* Full-bleed hero, same fold as the plot. Page ink colours lose to on-photo type. */
+  .timeline-body{padding-block:var(--space-2xl) var(--space-3xl)}
+  .hero h1,
+  .hero .eyebrow,
+  .hero .standfirst,
+  .hero .chip,
+  .hero .chip b,
+  .hero .chip .count{color:var(--color-on-photo)}
+  .hero .eyebrow{font-size:var(--text-xs);margin:0}
+  .hero .standfirst{font-size:var(--text-md)}
+  .hero h1{font-weight:700}
+  .hero .chip .ring.on,
+  .hero .chip .ring.off{border-color:var(--color-on-photo)}
+  .hero .chip .flag{border-color:color-mix(in oklch, var(--color-on-photo) 55%, transparent)}
+  .hero .chip-rule{background:color-mix(in oklch, var(--color-on-photo) 45%, transparent)}
+  .hero .info-btn{
+    color:var(--color-on-photo);
+    border-color:color-mix(in oklch, var(--color-on-photo) 50%, transparent);
+  }
+  .hero .info-btn:hover,
+  .hero .info-btn:focus-visible{color:var(--color-on-photo);border-color:var(--color-on-photo)}
+  .hero .credit,
+  .hero .credit a{color:var(--color-on-photo-muted)}
+  .hero .credit a{text-decoration:underline;text-underline-offset:0.15em}
+
   /* --- info buttons --- */
   .info-btn{
     font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
@@ -944,7 +969,30 @@
 </style>
 </head>
 <body dir="ltr" data-option="c">
-<div class="wrap page" id="main">
+<main id="main">
+
+  <header class="hero">
+    <div class="hero__bg">
+      <img src="https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1920" srcset="https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1280 1280w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1920 1920w" sizes="100vw" width="1920" height="1200" alt="The Palace of Westminster under a cloudy sky" fetchpriority="high" style="object-position:50% 40%">
+    </div>
+    <div class="wrap hero__inner">
+      <p class="eyebrow" id="eyebrow"></p>
+      <h1 id="title"></h1>
+      <p class="standfirst" id="standfirst"></p>
+      <div class="chipbar">
+        <span class="chip"><span class="ring on"></span><b id="k1"></b></span>
+        <span class="chip"><span class="ring off"></span><b id="k2"></b></span>
+        <span class="chip-rule" aria-hidden="true"></span>
+        <span class="chip"><span class="flag" id="fl1"></span><b id="f1"></b></span>
+        <span class="chip"><span class="flag" id="fl2"></span><b id="f2"></b></span>
+        <span class="chip"><span class="flag" id="fl3"></span><b id="f3"></b></span>
+        <button type="button" class="info-btn" id="btn-legend"></button>
+      </div>
+      <p class="credit" id="contextCredit">Illustrative photograph, not from the events listed.</p>
+    </div>
+  </header>
+
+  <div class="wrap timeline-body">
 
   <div class="langbar">
     <button type="button" class="theme-btn" id="btn-theme" aria-label="Switch to dark">
@@ -962,27 +1010,6 @@
       <button id="btn-he" aria-pressed="false">עברית</button>
     </div>
   </div>
-
-  <header class="context">
-    <figure class="context__photo" id="contextPhoto">
-      <img src="https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1280" width="1280" height="800" alt="" fetchpriority="high" style="object-position:50% 40%">
-      <figcaption id="contextCredit">Illustrative photograph, not from the events listed.</figcaption>
-    </figure>
-    <div class="context__copy">
-      <p class="eyebrow" id="eyebrow"></p>
-      <h1 id="title"></h1>
-      <p class="standfirst" id="standfirst"></p>
-      <div class="chipbar">
-        <span class="chip"><span class="ring on"></span><b id="k1"></b></span>
-        <span class="chip"><span class="ring off"></span><b id="k2"></b></span>
-        <span class="chip-rule" aria-hidden="true"></span>
-        <span class="chip"><span class="flag" id="fl1"></span><b id="f1"></b></span>
-        <span class="chip"><span class="flag" id="fl2"></span><b id="f2"></b></span>
-        <span class="chip"><span class="flag" id="fl3"></span><b id="f3"></b></span>
-        <button type="button" class="info-btn" id="btn-legend"></button>
-      </div>
-    </div>
-  </header>
 
   <section class="ask" id="ask" aria-labelledby="askTitle" data-state="idle" hidden>
     <h2 id="askTitle"></h2>
@@ -1098,7 +1125,8 @@
     <button type="button" class="info-btn" id="btn-method"></button>
   </footer>
 
-</div>
+  </div>
+</main>
 
 <div class="why-overlay" id="whyOverlay" hidden>
   <div class="why-dialog" id="whyDialog" role="dialog" aria-modal="true" aria-labelledby="whyTitle">
