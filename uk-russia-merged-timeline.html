@@ -1137,6 +1137,7 @@
 
 <script src="./redesign-options/options-data.js"></script>
 <script src="./redesign-options/options-shared.js"></script>
+<script src="./site-nav.js"></script>
 <script>
 const T = {
   en: {
@@ -2535,7 +2536,7 @@ function render(code){
   syncAskCopy();
 
   set("eyebrow", t.eyebrow);
-  set("title", t.title);
+  paintTitle();
   set("standfirst", t.standfirst);
   paintHero();
   set("k1", t.k1); set("k2", t.k2);
@@ -2718,6 +2719,25 @@ function paintHero(){
   }
 }
 
+function chosenAngle(){
+  const m = /^#view=([a-z]+)$/.exec(window.location.hash || "");
+  if (m && ["danger", "kanban", "domain", "outline", "munger", "ladder"].includes(m[1])) return m[1];
+  const view = currentView();
+  return view === "munger" ? "munger" : (view || "danger");
+}
+
+function angleHeadline(){
+  const angles = window.UKRU_NAV && window.UKRU_NAV.angles;
+  if (!angles || !angles.length) return "";
+  const id = chosenAngle();
+  const row = angles.find((a) => a[0] === id) || angles[0];
+  return lang === "he" ? row[2] : row[1];
+}
+
+function paintTitle(){
+  set("title", angleHeadline());
+}
+
 function requestMungerView(){
   if (mungerUnlocked()){
     viewOverride = "munger";
@@ -2725,6 +2745,7 @@ function requestMungerView(){
     return;
   }
   paintHero();
+  paintTitle();
   openMungerGate();
 }
 
@@ -2745,6 +2766,7 @@ function applyView(){
   if (view !== "munger" && !/^#view=munger$/.test(window.location.hash || "")) closeMungerGate();
   renderBands(lang);
   paintHero();
+  paintTitle();
 }
 
 document.getElementById("munger-submit").addEventListener("click", tryUnlockMunger);
@@ -3036,7 +3058,6 @@ applyView();
 render("en");
 viewFromHash();
 </script>
-<script src="./site-nav.js"></script>
 <script>
 UKRU_NAV.mount({ current: "timeline", lang: () => lang, onLang: (l) => { if (l !== lang) render(l); } });
 </script>

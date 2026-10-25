@@ -192,5 +192,5 @@
     if (window.ResizeObserver) new ResizeObserver(measureNav).observe(header);
   }
 
-  window.UKRU_NAV = { mount };
+  window.UKRU_NAV = { mount, angles: ANGLES };
 })();
