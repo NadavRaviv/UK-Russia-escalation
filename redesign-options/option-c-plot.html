@@ -103,15 +103,11 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
   function shell(L) {
     const u = U.ui[lang];
     const c = COPY[lang];
-    const viewHref = (v) => `../uk-russia-merged-timeline.html#view=${v}`;
-    const lock = `<svg class="lock" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="${esc(c.locked)}"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>`;
-    const viewLink = (v, l) => `<a class="chip"${v === "munger" ? ` title="${esc(c.lockedHint)}"` : ""} href="${viewHref(v)}">${esc(l)}${v === "munger" ? lock : ""}</a>`;
 
     $("hero").innerHTML = `<div class="hero__bg">${img("destroyer", { w: 1280, ratio: 1.6, sizes: "100vw", eager: true })}</div>
       <div class="wrap hero__inner">
         <h1 id="h1">${esc(u.title)}</h1>
         <p class="lede">${esc(c.heroLede(N))}</p>
-        <nav class="angles" aria-label="${esc(c.angles)}"><span class="angles__label mono">${esc(c.angles)}</span>${c.viewList.map(([v, l]) => viewLink(v, l)).join("")}</nav>
         <div class="hero__cta"><a class="btn" href="#plot">${esc(c.heroCta)}</a></div>
         <p class="credit">${esc(t("illustrative"))} ${creditInner("destroyer", lang)}</p>
       </div>`;

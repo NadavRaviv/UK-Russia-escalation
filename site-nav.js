@@ -154,6 +154,9 @@
     });
     sheet.addEventListener("click", (e) => { if (e.target.closest("a")) close(); });
     const angleDd = $("angleDd");
+    angleDd.addEventListener("click", (e) => {
+      if (e.target.closest("a")) angleDd.open = false;
+    });
     document.addEventListener("click", (e) => {
       if (angleDd.open && !angleDd.contains(e.target)) angleDd.open = false;
     });

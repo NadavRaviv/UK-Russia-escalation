@@ -71,7 +71,6 @@
   .stat{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
   .stat .n.accent{color:var(--color-accent)}
   .overview{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
-  .viewtoggle button[aria-pressed="true"]{background:var(--color-accent);color:var(--color-on-accent)}
   .band{background:var(--color-paper);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
   .munger-card{background:var(--color-paper);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
   .munger-modal{background:var(--color-paper);border-radius:var(--radius-md)}
@@ -93,7 +92,7 @@
   .munger-card p, .munger-card .watch, .munger-panel .intro, .munger-err,
   .danger-tip, .danger-tip b, .danger-tip .tip-meta, .sel-title, .sel-hint, .sel-num,
   .danger-key, .danger-cut, .stat .l, .tlcount, .povlab, .why-btn, .info-btn,
-  .theme-btn, .toggle button, .viewtoggle button{
+  .theme-btn, .toggle button{
     font-size:max(12px, 1em);
   }
   body[dir="rtl"]{font-family:var(--font-body)}
@@ -390,12 +389,6 @@
     color:var(--muted);margin:0;font-weight:600;
   }
   body[dir="rtl"] .ovhead h3{letter-spacing:0;font-family:var(--font-display)}
-  .viewtoggle{flex-wrap:wrap;max-width:100%;overflow:visible}
-  .viewtoggle button{
-    font-family:var(--sans);letter-spacing:0;font-size:var(--text-sm);line-height:var(--leading-snug);
-    padding:var(--space-xs) var(--space-md);
-  }
-  body[dir="rtl"] .viewtoggle button{font-family:var(--font-body)}
 
   .bands{display:flex;gap:8px;align-items:stretch}
   .band{
@@ -784,7 +777,7 @@
   .munger-card p, .munger-card .watch, .munger-panel .intro, .munger-err,
   .danger-tip, .danger-tip b, .danger-tip .tip-meta, .sel-title, .sel-hint, .sel-num,
   .danger-key, .danger-cut, .stat .l, .tlcount, .povlab, .why-btn, .info-btn,
-  .theme-btn, .toggle button, .viewtoggle button, .why-kicker, .why-close,
+  .theme-btn, .toggle button, .why-kicker, .why-close,
   body[dir="rtl"] time, body[dir="rtl"] .ev .d, body[dir="rtl"] .footline,
   body[dir="rtl"] .gap .days, body[dir="rtl"] .band .meta, body[dir="rtl"] .band .num,
   body[dir="rtl"] .why-kicker, body[dir="rtl"] .danger-tip .tip-meta,
@@ -1049,17 +1042,6 @@
       <div class="ovtitle">
         <h3 id="ovTitle"></h3>
         <button type="button" class="info-btn" id="btn-view"></button>
-      </div>
-      <div class="toggle viewtoggle" role="tablist" aria-label="View">
-        <button id="btn-danger" role="tab" aria-controls="dangerPane" aria-pressed="true" aria-selected="true"><span id="tabDanger"></span></button>
-        <button id="btn-kanban" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false"><span id="tabKanban"></span></button>
-        <button id="btn-domain" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false"><span id="tabDomain"></span></button>
-        <button id="btn-outline" role="tab" aria-controls="bands" aria-pressed="false" aria-selected="false"><span id="tabOutline"></span></button>
-        <button id="btn-munger" role="tab" aria-controls="munger-panel" aria-pressed="false" aria-selected="false">
-          <svg class="tab-lock" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>
-          <span id="tabMunger"></span>
-        </button>
-        <button id="btn-ladder" role="tab" aria-controls="ladder-panel" aria-pressed="false" aria-selected="false"><span id="tabLadder"></span></button>
       </div>
     </div>
     <div class="bands" id="bands" role="tabpanel" hidden></div>
@@ -2475,18 +2457,6 @@ function renderBands(code){
   const titles = {domain: t.ovTitleDomain, danger: t.ovTitleDanger, munger: t.ovMunger, ladder: t.ovLadder};
   set("ovTitle", titles[view] || t.ovTitle);
   set("btn-view", t.infoBtn);
-  set("tabKanban", t.ovKanban);
-  set("tabOutline", t.ovOutline);
-  set("tabDomain", t.ovDomain);
-  set("tabDanger", t.ovDanger);
-  set("tabMunger", t.ovMunger);
-  set("tabLadder", t.ovLadder);
-  [["btn-kanban", t.ovKanbanHint], ["btn-outline", t.ovOutlineHint],
-   ["btn-domain", t.ovDomainHint], ["btn-danger", t.ovDangerHint],
-   ["btn-munger", t.ovMungerHint], ["btn-ladder", t.ovLadderHint]].forEach(([id, hint]) => {
-    document.getElementById(id).setAttribute("title", hint);
-  });
-  document.querySelector(".viewtoggle").setAttribute("aria-label", t.ovViewLabel);
 
   const host = document.getElementById("bands");
   const mungerPanel = document.getElementById("munger-panel");
@@ -2624,12 +2594,6 @@ document.getElementById("btn-theme").addEventListener("click", () => {
 });
 
 const overview = document.getElementById("overview");
-const btnKanban = document.getElementById("btn-kanban");
-const btnOutline = document.getElementById("btn-outline");
-const btnDomain = document.getElementById("btn-domain");
-const btnDanger = document.getElementById("btn-danger");
-const btnMunger = document.getElementById("btn-munger");
-const btnLadder = document.getElementById("btn-ladder");
 const ladderFrame = document.getElementById("ladderFrame");
 const mungerPanelEl = document.getElementById("munger-panel");
 const mungerGate = document.getElementById("munger-gate");
@@ -2719,27 +2683,9 @@ function applyView(){
   overview.classList.toggle("layout-danger", viewOverride === "danger" || (!viewOverride && defaultView() === "danger"));
   overview.classList.toggle("layout-munger", isMunger);
   overview.classList.toggle("layout-ladder", isLadder);
-  btnKanban.setAttribute("aria-pressed", view === "kanban" ? "true" : "false");
-  btnOutline.setAttribute("aria-pressed", view === "outline" ? "true" : "false");
-  btnDomain.setAttribute("aria-pressed", view === "domain" ? "true" : "false");
-  btnDanger.setAttribute("aria-pressed", view === "danger" ? "true" : "false");
-  btnMunger.setAttribute("aria-pressed", isMunger ? "true" : "false");
-  btnLadder.setAttribute("aria-pressed", isLadder ? "true" : "false");
-  btnKanban.setAttribute("aria-selected", view === "kanban" ? "true" : "false");
-  btnOutline.setAttribute("aria-selected", view === "outline" ? "true" : "false");
-  btnDomain.setAttribute("aria-selected", view === "domain" ? "true" : "false");
-  btnDanger.setAttribute("aria-selected", view === "danger" ? "true" : "false");
-  btnMunger.setAttribute("aria-selected", isMunger ? "true" : "false");
-  btnLadder.setAttribute("aria-selected", isLadder ? "true" : "false");
   renderBands(lang);
 }
 
-btnKanban.addEventListener("click", () => { viewOverride = "kanban"; applyView(); });
-btnOutline.addEventListener("click", () => { viewOverride = "outline"; applyView(); });
-btnDomain.addEventListener("click", () => { viewOverride = "domain"; applyView(); });
-btnDanger.addEventListener("click", () => { viewOverride = "danger"; applyView(); });
-btnMunger.addEventListener("click", requestMungerView);
-btnLadder.addEventListener("click", () => { viewOverride = "ladder"; applyView(); });
 document.getElementById("munger-submit").addEventListener("click", tryUnlockMunger);
 document.getElementById("munger-cancel").addEventListener("click", closeMungerGate);
 mungerCode.addEventListener("keydown", e => {
