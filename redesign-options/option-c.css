@@ -20,7 +20,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: var(--space-xs);
   padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-sm);
   border: var(--rule-hair) solid var(--color-rule);
@@ -54,6 +54,7 @@
   color: var(--color-ink);
   text-decoration: none;
   white-space: normal;
+  padding-inline-end: var(--space-2xs);
 }
 
 .pill__links {
@@ -68,10 +69,16 @@
   gap: var(--space-2xs);
 }
 
-/* Section anchors sit behind a hairline so they read as secondary to the views */
+/* Section anchors sit behind a hairline so they read as secondary to the views.
+   Cancel the bar gap in front of that line so the brand sits against it.
+   The link's own padding keeps Timeline off the stroke. */
 .pill__links {
   padding-inline-start: var(--space-xs);
   border-inline-start: var(--rule-hair) solid var(--color-rule);
+}
+
+.pill__bar > .pill__brand + * {
+  margin-inline-start: calc(var(--space-xs) * -1);
 }
 .pill__links a[aria-current="page"] {
   background: var(--color-paper-3);
@@ -971,6 +978,10 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   .pill__bar {
     gap: var(--space-sm);
     padding-inline: var(--space-md) var(--space-2xs);
+  }
+
+  .pill__bar > .pill__brand + * {
+    margin-inline-start: calc(var(--space-sm) * -1);
   }
 
   [dir="rtl"] .pill__bar {
