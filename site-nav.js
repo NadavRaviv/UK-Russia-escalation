@@ -21,7 +21,7 @@
   ];
 
   const ANGLES = [
-    ["danger", "Danger", "סכנה"],
+    ["danger", "Dangers", "סכנה"],
     ["outline", "List", "רשימה"],
     ["kanban", "Bands", "רמות"],
     ["domain", "Domain", "תחום"],
