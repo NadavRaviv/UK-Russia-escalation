@@ -96,7 +96,8 @@
 
   function apply() {
     document.documentElement.lang = lang;
-    document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
+    document.documentElement.dir = "ltr";
+    if (document.body) document.body.dir = "ltr";
     document.querySelectorAll("[data-lang-btn]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.langBtn === lang)));
     listeners.forEach((fn) => fn(lang));
   }

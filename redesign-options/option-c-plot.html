@@ -104,7 +104,8 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     const u = U.ui[lang];
     const c = COPY[lang];
     const viewHref = (v) => `../uk-russia-merged-timeline.html#view=${v}`;
-    const viewLink = (v, l) => `<a class="chip"${v === "munger" ? ` title="${esc(c.lockedHint)}"` : ""} href="${viewHref(v)}">${esc(l)}${v === "munger" ? ` <span class="n">${esc(c.locked)}</span>` : ""}</a>`;
+    const lock = `<svg class="lock" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="${esc(c.locked)}"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>`;
+    const viewLink = (v, l) => `<a class="chip"${v === "munger" ? ` title="${esc(c.lockedHint)}"` : ""} href="${viewHref(v)}">${esc(l)}${v === "munger" ? lock : ""}</a>`;
 
     $("hero").innerHTML = `<div class="hero__bg">${img("destroyer", { w: 1280, ratio: 1.6, sizes: "100vw", eager: true })}</div>
       <div class="wrap hero__inner">
@@ -115,11 +116,11 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
         <p class="credit">${esc(t("illustrative"))} ${creditInner("destroyer", lang)}</p>
       </div>`;
 
-    const tiles = [`<button type="button" class="tile tile--all" data-domain="0" aria-pressed="${state.domain === 0}"><span>${esc(c.all)}<span class="n">${N}</span></span></button>`]
+    const tiles = [`<button type="button" class="tile" role="tab" data-domain="0" aria-selected="${state.domain === 0}" aria-pressed="${state.domain === 0}">${esc(c.all)} <span class="n">${N}</span></button>`]
       .concat(u.domains.map((d, i) => {
         const id = i + 1;
         const n = U.events.filter((e) => e.domain === id).length;
-        return `<button type="button" class="tile" data-domain="${id}" aria-pressed="${state.domain === id}">${img(DOMAIN_PHOTO[id], { w: 480, ratio: 1.6, sizes: "170px", alt: "" })}<span>${esc(d.name)}<span class="n">${n}</span></span></button>`;
+        return `<button type="button" class="tile" role="tab" data-domain="${id}" aria-selected="${state.domain === id}" aria-pressed="${state.domain === id}">${esc(d.name)} <span class="n">${n}</span></button>`;
       }))
       .join("");
 
@@ -131,7 +132,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
           <span><span class="ring"></span>${esc(u.k1)}</span><span><span class="ring ring--indirect"></span>${esc(u.k2)}</span>
         </p>
       </div>
-      <div class="tiles" role="group" aria-label="${esc(c.domains)}" id="tiles" data-scroller>${tiles}</div>
+      <div class="tiles" role="tablist" aria-label="${esc(c.domains)}" id="tiles">${tiles}</div>
       <div class="instrument">
         <div class="instrument__plot">
           <div class="plot-wrap">
@@ -169,7 +170,11 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
       const b = ev2.target.closest("[data-domain]");
       if (!b) return;
       state.domain = Number(b.dataset.domain);
-      $("tiles").querySelectorAll("[data-domain]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      $("tiles").querySelectorAll("[data-domain]").forEach((x) => {
+        const on = x === b;
+        x.setAttribute("aria-pressed", String(on));
+        x.setAttribute("aria-selected", String(on));
+      });
       update();
     });
     $("play").addEventListener("click", () => { if (playTimer === null) startPlay(); else stopPlay(); });

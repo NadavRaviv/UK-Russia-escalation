@@ -2516,7 +2516,8 @@ function render(code){
   closeWhy();
   const t = T[code];
   document.documentElement.lang = t.lang;
-  document.body.dir = t.dir;
+  document.documentElement.dir = "ltr";
+  document.body.dir = "ltr";
   syncAskCopy();
 
   set("eyebrow", t.eyebrow);

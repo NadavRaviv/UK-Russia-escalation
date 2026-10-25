@@ -8,6 +8,7 @@
 /* N5 · Floating pill ---------------------------------------------------- */
 .pill {
   position: fixed;
+  direction: ltr;
   inset-block-start: max(var(--space-sm), env(safe-area-inset-top));
   inset-inline: var(--page-gutter);
   z-index: var(--z-sticky);
@@ -158,10 +159,16 @@
   background: var(--color-paper-3);
 }
 
+.lock {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: none;
+}
+
 .dd__menu {
   position: absolute;
   inset-block-start: calc(100% + var(--space-xs));
-  inset-inline-end: 0;
+  inset-inline-start: 0;
   z-index: var(--z-dropdown);
   display: grid;
   min-width: 13rem;
@@ -470,79 +477,78 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   gap: var(--space-xs);
 }
 
-/* Domain photo tiles (filter) */
+/* Domain filter: text tabs, no photographs.
+   States: default, hover, focus-visible, active, disabled, busy, invalid, selected. */
 .tiles {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-xs);
   margin-block-end: var(--space-lg);
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  padding-block-end: var(--space-xs);
-  scrollbar-width: thin;
 }
 
 .tile {
-  position: relative;
-  flex: 0 0 8.5rem;
-  display: flex;
-  align-items: flex-end;
-  min-height: 5.5rem;
-  padding: var(--space-xs) var(--space-sm);
-  border: 2px solid transparent;
-  border-radius: var(--radius-md);
-  overflow: clip;
-  isolation: isolate;
-  background: var(--color-paper-3);
-  color: var(--color-on-photo);
-  font-size: var(--text-sm);
-  font-weight: 700;
-  line-height: var(--leading-snug);
-  text-align: start;
-  scroll-snap-align: start;
-  transition: border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
-}
-
-.tile img {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.tile::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(to top, var(--color-hero-scrim), color-mix(in oklch, var(--color-hero-scrim) 42%, transparent));
-}
-
-.tile--all {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--tap-min);
+  padding-inline: var(--space-md);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-pill);
   background: var(--color-paper-2);
-  border-color: var(--color-rule);
   color: var(--color-ink);
-}
-
-.tile--all::after {
-  display: none;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .tile .n {
-  display: block;
-  font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 500;
-  opacity: 0.85;
+  color: var(--color-muted);
 }
 
-.tile[aria-pressed="true"] {
-  border-color: var(--color-accent);
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover {
+    background: var(--color-paper-3);
+  }
+}
+
+.tile:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 .tile:active {
-  transform: scale(0.98);
+  transform: translateY(1px);
+}
+
+.tile:disabled,
+.tile[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tile[aria-busy="true"] {
+  cursor: progress;
+}
+
+.tile[aria-invalid="true"] {
+  border-color: var(--color-ru);
+}
+
+.tile[aria-pressed="true"],
+.tile[aria-selected="true"] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.tile[aria-pressed="true"] .n,
+.tile[aria-selected="true"] .n {
+  color: var(--color-on-accent);
 }
 
 /* The instrument */
@@ -921,9 +927,8 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
 }
 
 @media (min-width: 40rem) {
-  .tile {
-    flex-basis: 10.5rem;
-    min-height: 6.5rem;
+  .tiles {
+    gap: var(--space-xs) var(--space-sm);
   }
 }
 
@@ -988,10 +993,6 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
     inset-block-start: var(--nav-clearance, var(--space-5xl));
   }
 
-  .tiles {
-    overflow: visible;
-    flex-wrap: wrap;
-  }
 }
 
 @media (min-width: 70rem) {
@@ -1007,7 +1008,8 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
 
   .dot,
   .tile,
-  .btn {
+  .btn,
+  .dd summary::after {
     transition: none;
   }
 }

@@ -1,5 +1,6 @@
 /* Shared top bar + statement footer for the UK–Russia site.
- * Timeline and Plot are the page links; the six angles live in the homepage hero.
+ * Page links, then “Choose your angle” for the six tracker views.
+ * Language changes the words only; the bar stays left to right.
  * Loaded after options-shared.js. Exposes window.UKRU_NAV.mount(opts). */
 (function () {
   const { esc, t, initLang } = window.UKRU_UI;
@@ -9,9 +10,20 @@
     ["plot", "./uk-russia-plot.html", "plot"],
   ];
 
+  const ANGLES = [
+    ["danger", "Danger", "סכנה"],
+    ["kanban", "Bands", "רמות"],
+    ["domain", "Domain", "תחום"],
+    ["outline", "List", "רשימה"],
+    ["munger", "Surface Bias", "חשיפת הטיות"],
+    ["ladder", "Levels up/down", "רמות מעלה/מטה"],
+  ];
+
+  const LOCK = `<svg class="lock" viewBox="0 0 24 24" fill="currentColor" role="img"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>`;
+
   const COPY = {
-    en: { timeline: "Timeline", plot: "Plot", statement: "Read the record." },
-    he: { timeline: "ציר הזמן", plot: "תרשים", statement: "קראו את התיעוד." },
+    en: { timeline: "Timeline", plot: "Plot", statement: "Read the record.", angle: "Choose your angle", locked: "Locked" },
+    he: { timeline: "ציר הזמן", plot: "תרשים", statement: "קראו את התיעוד.", angle: "בחרו זווית", locked: "נעול" },
   };
 
   const FLAG = {
@@ -32,6 +44,10 @@
     header.innerHTML = `<div class="pill__bar">
       <a class="pill__brand" href="./uk-russia-plot.html#top" id="siteBrand"></a>
       <nav class="pill__links" id="siteLinks" aria-label="Pages"></nav>
+      <details class="dd" id="angleDd">
+        <summary><span id="angleLabel"></span></summary>
+        <div class="dd__menu" id="angleMenu"></div>
+      </details>
       <div class="pill__tools">
         <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v1.6M12 19.4V21M4.9 4.9l1.1 1.1M18 18l1.1 1.1M3 12h1.6M19.4 12H21M4.9 19.1 6 18M18 6l1.1-1.1"/></svg>
@@ -43,6 +59,7 @@
     </div>
     <div class="sheet" id="siteSheet" hidden>
       <nav id="siteSheetLinks" aria-label="Pages"></nav>
+      <nav id="siteSheetAngles" aria-label="Angles"></nav>
       <div class="sheet__foot">
         <button type="button" class="theme-toggle" aria-pressed="false">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v1.6M12 19.4V21M4.9 4.9l1.1 1.1M18 18l1.1 1.1M3 12h1.6M19.4 12H21M4.9 19.1 6 18M18 6l1.1-1.1"/></svg>
@@ -77,6 +94,18 @@
         ([key, base, label]) => `<a href="${hrefFor(key, base)}"${here(key) ? ' aria-current="page"' : ""}>${esc(c[label])}</a>`
       ).join("");
       $("siteSheetLinks").innerHTML = $("siteLinks").innerHTML;
+      $("angleLabel").textContent = c.angle;
+      const he = lang === "he";
+      const angleLinks = ANGLES.map(([view, en, heLabel]) => {
+        const label = he ? heLabel : en;
+        const locked = view === "munger";
+        const lock = locked
+          ? LOCK.replace("<svg ", `<svg aria-label="${esc(c.locked)}" `)
+          : "";
+        return `<a href="./uk-russia-merged-timeline.html#view=${view}"${locked ? ` title="${esc(c.locked)}"` : ""}>${esc(label)}${lock}</a>`;
+      }).join("");
+      $("angleMenu").innerHTML = angleLinks;
+      $("siteSheetAngles").innerHTML = angleLinks;
       $("siteFooter").innerHTML = `<p class="statement__line">${esc(c.statement)}</p>
         <div class="statement__links">
           <a class="tlink" href="./uk-russia-plot.html">${esc(c.plot)}</a>
@@ -124,7 +153,15 @@
       btn.setAttribute("aria-expanded", String(open));
     });
     sheet.addEventListener("click", (e) => { if (e.target.closest("a")) close(); });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !sheet.hidden) { close(); btn.focus(); } });
+    const angleDd = $("angleDd");
+    document.addEventListener("click", (e) => {
+      if (angleDd.open && !angleDd.contains(e.target)) angleDd.open = false;
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      if (angleDd.open) { angleDd.open = false; angleDd.querySelector("summary").focus(); }
+      if (!sheet.hidden) { close(); btn.focus(); }
+    });
     document.querySelectorAll(".theme-toggle").forEach((b) => {
       b.addEventListener("click", () => setTheme(!themeIsDark()));
     });
