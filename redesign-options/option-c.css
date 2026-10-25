@@ -99,7 +99,18 @@
 }
 
 .pill__links a:hover,
-.pill__views a:hover {
+.pill__views a:hover,
+.pill__links a:focus-visible,
+.pill__views a:focus-visible {
+  background: var(--color-paper-3);
+  color: var(--color-ink);
+}
+
+.pill__views a:active {
+  transform: translateY(1px);
+}
+
+.pill__views a[aria-current="page"] {
   background: var(--color-paper-3);
   color: var(--color-ink);
 }
@@ -993,6 +1004,16 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
     inset-block-start: var(--nav-clearance, var(--space-5xl));
   }
 
+}
+
+@media (min-width: 64rem) {
+  .pill__views {
+    display: inline-flex;
+  }
+
+  .dd {
+    display: none;
+  }
 }
 
 @media (min-width: 70rem) {

@@ -1,5 +1,5 @@
 /* Shared top bar + statement footer for the UK–Russia site.
- * Page links, then “Choose your angle” for the six tracker views.
+ * Page links, then the six angles: inline on a wide screen, “Choose your angle” on a narrow one.
  * Language changes the words only; the bar stays left to right.
  * Loaded after options-shared.js. Exposes window.UKRU_NAV.mount(opts). */
 (function () {
@@ -44,6 +44,7 @@
     header.innerHTML = `<div class="pill__bar">
       <a class="pill__brand" href="./uk-russia-plot.html#top" id="siteBrand"></a>
       <nav class="pill__links" id="siteLinks" aria-label="Pages"></nav>
+      <nav class="pill__views" id="angleBar" aria-label="Angles"></nav>
       <details class="dd" id="angleDd">
         <summary><span id="angleLabel"></span></summary>
         <div class="dd__menu" id="angleMenu"></div>
@@ -96,14 +97,17 @@
       $("siteSheetLinks").innerHTML = $("siteLinks").innerHTML;
       $("angleLabel").textContent = c.angle;
       const he = lang === "he";
+      const active = (/^#view=([a-z]+)$/.exec(location.hash) || [])[1] || (here("timeline") ? "danger" : "");
       const angleLinks = ANGLES.map(([view, en, heLabel]) => {
         const label = he ? heLabel : en;
         const locked = view === "munger";
         const lock = locked
           ? LOCK.replace("<svg ", `<svg aria-label="${esc(c.locked)}" `)
           : "";
-        return `<a href="./uk-russia-merged-timeline.html#view=${view}"${locked ? ` title="${esc(c.locked)}"` : ""}>${esc(label)}${lock}</a>`;
+        const current = view === active ? ' aria-current="page"' : "";
+        return `<a href="./uk-russia-merged-timeline.html#view=${view}"${current}${locked ? ` title="${esc(c.locked)}"` : ""}>${esc(label)}${lock}</a>`;
       }).join("");
+      $("angleBar").innerHTML = angleLinks;
       $("angleMenu").innerHTML = angleLinks;
       $("siteSheetAngles").innerHTML = angleLinks;
       $("siteFooter").innerHTML = `<p class="statement__line">${esc(c.statement)}</p>
@@ -186,6 +190,7 @@
     });
 
     measureNav();
+    window.addEventListener("hashchange", () => { paint(); measureNav(); });
     window.addEventListener("resize", measureNav);
     if (window.ResizeObserver) new ResizeObserver(measureNav).observe(header);
   }
