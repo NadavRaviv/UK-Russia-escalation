@@ -240,9 +240,11 @@
   .hero .credit a{text-decoration:underline;text-underline-offset:0.15em}
   /* Hallmark · pre-emit critique: P5 H4 E5 S5 R5 V4
      Westminster sits a little high. Surface Bias anchors Charlie Munger's face
-     under the nav and above the type. */
+     under the nav and above the type. Danger keeps the Watchkeeper's nose in
+     a tall phone crop; the desktop frame matches the photo. */
   .hero__bg img{object-position:50% 40%}
   header.hero.hero--munger .hero__bg img{object-position:50% 20%}
+  header.hero.hero--danger .hero__bg img{object-position:8% 42%}
 
   /* --- info buttons --- */
   .info-btn{
@@ -967,23 +969,36 @@
 <body dir="ltr" data-option="c">
 <main id="main">
 
-  <header class="hero">
+  <header class="hero hero--danger">
     <div class="hero__bg">
-      <!-- Surface Bias replaces this with images/charlie-munger.jpg (Nick Webb, 2010, CC BY 2.0). The Almanack cover is not free to use. -->
-      <img id="heroPhoto" data-hero="westminster" src="https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1920" srcset="https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1280 1280w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1920 1920w" sizes="100vw" width="1920" height="1200" alt="The Palace of Westminster under a cloudy sky" fetchpriority="high">
+      <!-- Danger: British Army Watchkeeper, Cpl Matty Matthews, UK MOD, OGL. Surface Bias: images/charlie-munger.jpg (Nick Webb, 2010, CC BY 2.0). The Almanack cover is not free to use. -->
+      <img id="heroPhoto" data-hero="danger" src="./images/watchkeeper.jpg" width="1920" height="985" alt="A British Army Watchkeeper drone on a runway at night" fetchpriority="high">
       <script>
         (function () {
-          if (!/^#view=munger$/.test(location.hash)) return;
+          var hash = location.hash || "";
           var img = document.getElementById("heroPhoto");
           var hero = document.querySelector("header.hero");
           if (!img || !hero) return;
-          hero.classList.add("hero--munger");
-          img.dataset.hero = "munger";
-          img.src = "./images/charlie-munger.jpg";
-          img.removeAttribute("srcset");
-          img.width = 1457;
-          img.height = 2050;
-          img.alt = "Charlie Munger seated at a table in 2010";
+          if (/^#view=munger$/.test(hash)) {
+            hero.classList.remove("hero--danger");
+            hero.classList.add("hero--munger");
+            img.dataset.hero = "munger";
+            img.src = "./images/charlie-munger.jpg";
+            img.removeAttribute("srcset");
+            img.width = 1457;
+            img.height = 2050;
+            img.alt = "Charlie Munger seated at a table in 2010";
+            return;
+          }
+          if (/^#view=(kanban|domain|outline|ladder)$/.test(hash)) {
+            hero.classList.remove("hero--danger");
+            img.dataset.hero = "westminster";
+            img.src = "https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1920";
+            img.srcset = "https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=480 480w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=800 800w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1280 1280w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1920 1920w";
+            img.width = 1920;
+            img.height = 1200;
+            img.alt = "The Palace of Westminster under a cloudy sky";
+          }
         })();
       </script>
     </div>
@@ -1000,7 +1015,7 @@
         <span class="chip"><span class="flag" id="fl3"></span><b id="f3"></b></span>
         <button type="button" class="info-btn" id="btn-legend"></button>
       </div>
-      <p class="credit" id="contextCredit">Illustrative photograph, not from the events listed.</p>
+      <p class="credit" id="contextCredit">Illustrative. British Army Watchkeeper, RAF Akrotiri, 2021. Photo: Cpl Matty Matthews, UK MOD / Open Government Licence</p>
     </div>
   </header>
 
@@ -2671,9 +2686,17 @@ function tryUnlockMunger(){
 const HERO_WESTMINSTER_SRC = "https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1920";
 const HERO_WESTMINSTER_SRCSET = "https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=480 480w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=800 800w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1280 1280w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1920 1920w";
 const HERO_MUNGER_SRC = "./images/charlie-munger.jpg";
+const HERO_DRONE_SRC = "./images/watchkeeper.jpg";
 
 function surfaceBiasHero(){
   return currentView() === "munger" || /^#view=munger$/.test(window.location.hash || "");
+}
+
+function dangerHero(){
+  const hash = window.location.hash || "";
+  if (/^#view=(kanban|domain|outline|ladder|munger)$/.test(hash)) return false;
+  if (hash === "" || hash === "#" || /^#view=danger$/.test(hash)) return true;
+  return currentView() === "danger";
 }
 
 function mungerCredit(code){
@@ -2685,13 +2708,26 @@ function mungerCredit(code){
     ' / <a href="https://creativecommons.org/licenses/by/2.0/" rel="noopener">CC BY 2.0</a>';
 }
 
+function droneCredit(code){
+  const he = code === "he";
+  const lead = he
+    ? "להמחשה. ווטשקיפר של הצבא הבריטי באקרוטירי, 2021."
+    : "Illustrative. British Army Watchkeeper, RAF Akrotiri, 2021.";
+  const photo = he ? "צילום" : "Photo";
+  return lead + " " + photo +
+    ': <a href="https://commons.wikimedia.org/wiki/File:British_Army_Watchkeeper_UAV_at_RAF_Akrotiri.jpg" rel="noopener">Cpl Matty Matthews, UK MOD</a>' +
+    ' / <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="noopener">Open Government Licence</a>';
+}
+
 function paintHero(){
   const img = document.getElementById("heroPhoto");
   const hero = document.querySelector("header.hero");
   const creditEl = document.getElementById("contextCredit");
   if (!img || !hero) return;
   const munger = surfaceBiasHero();
+  const danger = !munger && dangerHero();
   hero.classList.toggle("hero--munger", munger);
+  hero.classList.toggle("hero--danger", danger);
   if (munger){
     if (img.dataset.hero !== "munger"){
       img.dataset.hero = "munger";
@@ -2704,6 +2740,20 @@ function paintHero(){
       ? "צ'ארלי מאנגר יושב ליד שולחן, 2010"
       : "Charlie Munger seated at a table in 2010";
     if (creditEl) creditEl.innerHTML = mungerCredit(lang);
+    return;
+  }
+  if (danger){
+    if (img.dataset.hero !== "danger"){
+      img.dataset.hero = "danger";
+      img.src = HERO_DRONE_SRC;
+      img.removeAttribute("srcset");
+      img.width = 1920;
+      img.height = 985;
+    }
+    img.alt = lang === "he"
+      ? "כטב\"ם ווטשקיפר של הצבא הבריטי על מסלול בלילה"
+      : "A British Army Watchkeeper drone on a runway at night";
+    if (creditEl) creditEl.innerHTML = droneCredit(lang);
     return;
   }
   if (img.dataset.hero !== "westminster"){
