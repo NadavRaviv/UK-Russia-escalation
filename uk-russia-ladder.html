@@ -9,6 +9,7 @@
     const t = localStorage.getItem("uk-ru-theme");
     if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
   } catch (e) {}
+  if (location.search.indexOf("embed=1") !== -1) document.documentElement.classList.add("embed");
 })();
 </script>
 <title>Escalation ladder: UK–Russia against three wars</title>
@@ -52,7 +53,7 @@ p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
 .detail .body, .detail .meta, .foot, .lane-foot, .lane-head .sub, .lane-head .stats,
 .ladder-seg, .ladder-seg .def, .dual-row, .dual-row .lab, .dual-row .pct, .bar-legend,
 .overlap-sub{font-size:max(12px, 1em)}
-main{max-width:var(--page-max);margin:0 auto;padding:var(--space-2xl) var(--page-gutter) var(--space-3xl)}
+main{max-width:var(--page-max);margin:0 auto;padding:var(--nav-clearance, var(--space-5xl)) var(--page-gutter) var(--space-3xl)}
 h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:var(--leading-tight);margin:0}
 h1{font-size:var(--text-3xl);max-width:24ch;letter-spacing:-.02em}
 h2{font-size:var(--text-2xl);margin-bottom:var(--space-sm)}
@@ -147,7 +148,7 @@ section{margin-top:var(--space-2xl);padding-top:var(--space-xs);border-top:1px s
 .prose h3{color:var(--ink)}
 .foot{font-size:var(--text-sm);color:var(--soft);margin-top:var(--space-lg)}
 html.embed .topbar{display:none}
-html.embed main{padding-top:16px;padding-bottom:48px}
+html.embed main{padding-top:var(--space-md);padding-bottom:var(--space-3xl)}
 
 /* 12px floor on readable copy (must follow legacy sizes above) */
 p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
@@ -160,9 +161,15 @@ p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
 </head>
 <body data-option="c">
 <main id="main" class="wrap page">
-  <header>
-    <h1>Is the UK–Russia line climbing the same ladder that led to war?</h1>
-    <p class="lede">Every event is placed on one rung of an escalation ladder, from a headline to civilians harmed. The five lanes are lined up on the day war broke out, so you can compare the shape of the months before it. UK–Russia is lined up on today, because there is no outbreak to line it up on.</p>
+  <header class="context">
+    <figure class="context__photo">
+      <img src="https://images.unsplash.com/photo-1583133269464-b721db5345f4?auto=format&amp;q=70&amp;w=1280" width="1280" height="800" alt="" fetchpriority="high" style="object-position:50% 40%">
+      <figcaption>Illustrative photograph, not from the events listed. Photo: <a href="https://unsplash.com/photos/DTZaI8lolUk" rel="noopener">Leo_Visions</a> / <a href="https://unsplash.com/" rel="noopener">Unsplash</a></figcaption>
+    </figure>
+    <div class="context__copy">
+      <h1>Is the UK–Russia line climbing the same ladder that led to war?</h1>
+      <p class="lede">Every event is placed on one rung of an escalation ladder, from a headline to civilians harmed. The five lanes are lined up on the day war broke out, so you can compare the shape of the months before it. UK–Russia is lined up on today, because there is no outbreak to line it up on.</p>
+    </div>
   </header>
 
   <section>
@@ -250,7 +257,11 @@ p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
 <script src="./redesign-options/options-data.js"></script>
 <script src="./redesign-options/options-shared.js"></script>
 <script src="./site-nav.js"></script>
-<script>UKRU_NAV.mount({ current: "ladder", lang: () => document.documentElement.lang === "he" ? "he" : "en" });</script>
+<script>
+if (!document.documentElement.classList.contains("embed")) {
+  UKRU_NAV.mount({ current: "ladder", lang: () => (document.documentElement.lang === "he" ? "he" : "en") });
+}
+</script>
 
 <script>
 const RUNGS = [
@@ -617,9 +628,6 @@ document.getElementById("overlapPctNum").textContent = String(overlapPct(ukDist,
 renderDualBars(ukDist, uaDist);
 renderSigns();
 
-if (location.search.indexOf("embed=1") !== -1) {
-  document.documentElement.classList.add("embed");
-}
 window.addEventListener("message", function(ev){
   if (ev.data && ev.data.type === "uk-ru-theme" && ev.data.theme) {
     document.documentElement.setAttribute("data-theme", ev.data.theme);

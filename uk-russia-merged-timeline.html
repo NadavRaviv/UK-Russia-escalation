@@ -139,7 +139,7 @@
   .narrow{max-width:768px;margin-inline:auto}
 
   /* --- language + theme --- */
-  .page{padding-block-start:var(--space-4xl)}
+  .page{padding-block-start:var(--nav-clearance, var(--space-5xl))}
   .langbar{
     display:none;justify-content:flex-end;align-items:center;gap:8px;direction:ltr;
     padding:14px 0 12px;
@@ -163,10 +163,10 @@
     background:var(--color-paper-2);overflow:hidden;
   }
   .toggle button{
-    font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    font-family:var(--font-body);font-size:var(--text-sm);letter-spacing:0;
     background:transparent;border:0;color:var(--muted);
-    padding:7px 13px;cursor:pointer;transition:color .15s,background .15s;
-    display:inline-flex;align-items:center;gap:5px;
+    min-height:var(--tap-min);padding:0 var(--space-sm);cursor:pointer;
+    display:inline-flex;align-items:center;gap:var(--space-2xs);
   }
   .toggle button .tab-lock{width:11px;height:11px;flex:none;opacity:.72}
   .toggle button:hover{color:var(--text)}
@@ -178,13 +178,7 @@
   }
   #btn-he{font-family:var(--font-body);letter-spacing:0;font-size:12.5px}
 
-  header{
-    display:grid;grid-template-columns:minmax(0,1fr);gap:14px;
-    border-bottom:1px solid var(--rule);padding-bottom:16px;
-  }
-  @media (min-width: 880px){
-    header{grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:28px}
-  }
+  header.context{padding:0;border:0}
   .eyebrow{
     font-family:var(--mono);font-size:10px;letter-spacing:.18em;
     text-transform:uppercase;color:var(--soft);margin:0 0 8px;
@@ -197,8 +191,7 @@
   .standfirst{color:var(--muted);font-size:var(--text-base);margin:0;max-width:var(--measure);line-height:var(--leading-body)}
 
   /* --- inline legend chips --- */
-  .chipbar{display:flex;flex-wrap:wrap;align-items:center;gap:7px 14px;justify-self:start}
-  @media (min-width: 880px){ .chipbar{justify-self:end} }
+  .chipbar{display:flex;flex-wrap:wrap;align-items:center;gap:7px 14px;margin-top:var(--space-xs)}
   .chip{
     display:inline-flex;align-items:center;gap:7px;
     font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
@@ -250,24 +243,38 @@
   .metrics .info-btn{margin-inline-start:auto;align-self:center}
 
   /* --- timeline --- */
+  .record{margin-top:var(--space-2xl)}
   .tlhead{
-    display:flex;align-items:baseline;gap:12px;
-    border-bottom:1px solid var(--rule);padding-bottom:8px;margin-bottom:22px;
+    display:flex;align-items:baseline;flex-wrap:wrap;gap:12px;
+    border-bottom:1px solid var(--rule);padding-bottom:8px;margin-bottom:var(--space-lg);
   }
   .tlhead h3{
-    font-family:var(--font-display);font-size:var(--text-sm);letter-spacing:-0.005em;
-    color:var(--muted);margin:0;font-weight:600;
+    font-family:var(--font-display);font-size:var(--text-2xl);letter-spacing:-0.02em;
+    color:var(--color-ink);margin:0;font-weight:700;
   }
   .tlcount{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--soft)}
   body[dir="rtl"] .tlhead h3{letter-spacing:0;font-family:var(--font-display)}
   body[dir="rtl"] .tlcount{letter-spacing:0;font-family:var(--font-body);font-size:11.5px}
-  .timeline{position:relative;padding-left:26px}
-  .timeline:before{
-    content:"";position:absolute;left:6px;top:6px;bottom:6px;width:1px;
-    background:linear-gradient(180deg,transparent,var(--rule) 6%,var(--rule) 94%,transparent);
+  .timeline{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));
+    gap:var(--space-md);position:static;padding:0;
   }
+  .timeline:before{content:none}
 
-  .row{position:relative;padding:0 0 0 4px}
+  .row{
+    position:static;display:grid;align-content:start;gap:var(--space-xs);
+    margin:0;padding:var(--space-md);
+    background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);
+    border-radius:var(--radius-md);overflow:clip;
+  }
+  .row-photo{margin:calc(var(--space-md) * -1) calc(var(--space-md) * -1) 0;aspect-ratio:16/9;overflow:clip}
+  .row-photo img{width:100%;height:100%;object-fit:cover}
+  .row-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-xs) var(--space-sm);margin:0;color:var(--color-muted);font-size:var(--text-sm)}
+  .row-meta time{font-family:var(--font-body);font-size:var(--text-sm);letter-spacing:0;color:var(--color-muted);margin:0}
+  .row-meta .side{display:inline-flex;align-items:center;gap:var(--space-2xs);margin:0;padding:0;border:0;border-radius:0;background:none;color:var(--color-ink);font-family:var(--font-body);font-size:var(--text-sm);font-weight:700;letter-spacing:0.04em}
+  .row-meta .ring{color:var(--color-ink);flex:none}
+  .row .why-btn{justify-self:start;min-height:var(--tap-min);margin:0;padding:0;border:0;background:none;color:var(--color-accent);font-family:var(--font-body);font-size:var(--text-sm);font-weight:700;letter-spacing:0;text-transform:none}
+  body[dir="rtl"] .row .why-btn{margin:0;font-size:var(--text-sm);letter-spacing:0;text-transform:none;color:var(--color-accent)}
   /* flag = who acted; ring colour = the grading */
   .dot{
     position:absolute;left:-28px;top:2px;width:18px;height:18px;
@@ -302,7 +309,7 @@
     margin-right:0;margin-left:9px;letter-spacing:0;
     font-family:var(--font-body);font-size:10.5px;
   }
-  .row h2{font-size:var(--text-sm);font-weight:500;margin:0 0 var(--space-2xs);line-height:var(--leading-snug)}
+  .row h2{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;margin:0;line-height:var(--leading-tight)}
   .why-btn{
     font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
     color:var(--muted);background:transparent;border:1px solid var(--rule);border-radius:2px;
@@ -659,7 +666,7 @@
   .band .meter{height:3px;border-radius:2px;background:rgba(148,163,184,.13);overflow:hidden;margin-bottom:10px}
   .band .meter i{display:block;height:100%;background:var(--yellow);opacity:.75}
   .band .num{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--soft)}
-  .band h4{font-size:12.5px;font-weight:500;margin:4px 0 4px;line-height:1.25;overflow-wrap:break-word}
+  .band h4{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;margin:var(--space-2xs) 0 var(--space-xs);line-height:var(--leading-tight);overflow-wrap:anywhere}
   .band .def{font-size:10.5px;color:var(--muted);line-height:1.4;margin:0 0 9px}
   .band .meta{
     font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:var(--soft);line-height:1.5;
@@ -691,12 +698,9 @@
   body[dir="rtl"] .footline{letter-spacing:0;font-family:var(--font-body);font-size:11.5px}
 
   /* --- RTL --- */
-  body[dir="rtl"] .timeline{padding-left:0;padding-right:26px}
-  body[dir="rtl"] .timeline:before{left:auto;right:6px}
-  body[dir="rtl"] .row{padding:0 4px 0 0}
-  body[dir="rtl"] .dot{left:auto;right:-28px}
-  body[dir="rtl"] .gap{padding:0 4px 0 0}
-  body[dir="rtl"] .gap .bar{left:auto;right:-20px}
+  body[dir="rtl"] .timeline{padding:0}
+  body[dir="rtl"] .timeline:before{content:none}
+  body[dir="rtl"] .row{padding:var(--space-md)}
   body[dir="rtl"] h1{letter-spacing:0;line-height:1.16}
   body[dir="rtl"] .eyebrow,
   body[dir="rtl"] .ovhead h3{letter-spacing:.06em}
@@ -940,7 +944,7 @@
 </style>
 </head>
 <body dir="ltr" data-option="c">
-<div class="wrap page">
+<div class="wrap page" id="main">
 
   <div class="langbar">
     <button type="button" class="theme-btn" id="btn-theme" aria-label="Switch to dark">
@@ -959,20 +963,24 @@
     </div>
   </div>
 
-  <header>
-    <div>
+  <header class="context">
+    <figure class="context__photo" id="contextPhoto">
+      <img src="https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1280" width="1280" height="800" alt="" fetchpriority="high" style="object-position:50% 40%">
+      <figcaption id="contextCredit">Illustrative photograph, not from the events listed.</figcaption>
+    </figure>
+    <div class="context__copy">
       <p class="eyebrow" id="eyebrow"></p>
       <h1 id="title"></h1>
       <p class="standfirst" id="standfirst"></p>
-    </div>
-    <div class="chipbar">
-      <span class="chip"><span class="ring on"></span><b id="k1"></b></span>
-      <span class="chip"><span class="ring off"></span><b id="k2"></b></span>
-      <span class="chip-rule" aria-hidden="true"></span>
-      <span class="chip"><span class="flag" id="fl1"></span><b id="f1"></b></span>
-      <span class="chip"><span class="flag" id="fl2"></span><b id="f2"></b></span>
-      <span class="chip"><span class="flag" id="fl3"></span><b id="f3"></b></span>
-      <button type="button" class="info-btn" id="btn-legend"></button>
+      <div class="chipbar">
+        <span class="chip"><span class="ring on"></span><b id="k1"></b></span>
+        <span class="chip"><span class="ring off"></span><b id="k2"></b></span>
+        <span class="chip-rule" aria-hidden="true"></span>
+        <span class="chip"><span class="flag" id="fl1"></span><b id="f1"></b></span>
+        <span class="chip"><span class="flag" id="fl2"></span><b id="f2"></b></span>
+        <span class="chip"><span class="flag" id="fl3"></span><b id="f3"></b></span>
+        <button type="button" class="info-btn" id="btn-legend"></button>
+      </div>
     </div>
   </header>
 
@@ -1077,7 +1085,7 @@
     </div>
   </div>
 
-  <div class="narrow">
+  <div class="record">
     <div class="tlhead">
       <h3 id="tlTitle"></h3>
       <span class="tlcount" id="tlCount"></span>
@@ -1106,6 +1114,8 @@
   </div>
 </div>
 
+<script src="./redesign-options/options-data.js"></script>
+<script src="./redesign-options/options-shared.js"></script>
 <script>
 const T = {
   en: {
@@ -2512,6 +2522,10 @@ function render(code){
   set("eyebrow", t.eyebrow);
   set("title", t.title);
   set("standfirst", t.standfirst);
+  const creditEl = document.getElementById("contextCredit");
+  if (creditEl && window.UKRU_UI) {
+    creditEl.innerHTML = window.UKRU_UI.t("illustrative") + " " + window.UKRU_UI.creditInner("westminster", code);
+  }
   set("k1", t.k1); set("k2", t.k2);
   set("f1", t.f1); set("f2", t.f2); set("f3", t.f3);
   set("fl1", FLAGS.uk); set("fl2", FLAGS.ru); set("fl3", FLAGS.ot);
@@ -2547,51 +2561,26 @@ function render(code){
   renderBands(code);
 
   tl.innerHTML = "";
+  const ui = window.UKRU_UI;
   EVENTS.forEach((e, i) => {
     const c = e[code];
-
-    const srcHtml = sourceHtml(e, code);
+    const photoKey = ui ? ui.photoFor(Object.assign({ id: i }, e)) : null;
+    const photo = photoKey
+      ? '<div class="row-photo">' + ui.img(photoKey, { w: 640, ratio: 1.7, sizes: "(min-width: 60rem) 22rem, 100vw", alt: "" }) + "</div>"
+      : "";
+    const direct = e.rag === "r";
 
     const row = document.createElement("div");
-    row.className = "row " + e.side + " " + e.rag;
+    row.className = "row";
     row.id = "ev-" + (i + 1);
     row.innerHTML =
-      '<span class="dot">' + FLAGS[e.side] + '</span>' +
-      '<time><span class="side">' + t.sides[e.side] + '</span>' +
-        t.ago(daysAgo(e.date), e.approx) +
-        '<span class="abs">' + c.label + '</span></time>' +
-      '<h2>' + c.title + '</h2>' +
-      '<div class="srcs">' +
-        '<button type="button" class="why-btn" data-i="' + i + '">' + t.whyBtn + '</button>' +
-        (srcHtml ? '<span class="sep">·</span>' + srcHtml : '') +
-      '</div>';
+      photo +
+      '<p class="row-meta"><time datetime="' + e.date + '">' + c.label + "</time>" +
+      '<span class="side side--' + e.side + '">' + t.sides[e.side] + "</span>" +
+      '<span class="ring' + (direct ? "" : " ring--indirect") + '"></span></p>' +
+      "<h2>" + c.title + "</h2>" +
+      '<button type="button" class="why-btn" data-i="' + i + '">' + t.whyBtn + " +</button>";
     tl.appendChild(row);
-
-    const next = EVENTS[i + 1];
-    if (!next) return;
-
-    const days = Math.round((new Date(next.date) - new Date(e.date)) / DAY);
-    const soft = e.approx || next.approx;
-    const h = Math.round(26 + Math.sqrt(days) * 15);
-
-    // Intensity: pinned at 1.0 for anything two days or under, then falling away
-    // on a log scale. Full gold at the short end, fading toward slate at the long.
-    const k = days <= 2 ? 1 : Math.max(0, Math.min(1, 1 - Math.log(days / 2) / Math.log(45)));
-    const pal    = gapPalette();
-    const fill   = lerpHex(pal.fillFrom, pal.fillTo, k);
-    const stroke = lerpHex(pal.strokeFrom, pal.strokeTo, k);
-    const text   = lerpHex(pal.textFrom, pal.textTo, k);
-
-    const gap = document.createElement("div");
-    gap.className = "gap";
-    gap.style.height = h + "px";
-    gap.innerHTML =
-      '<span class="bar"></span>' +
-      '<span class="days" style="background:' + fill + ';border-color:' + stroke +
-      ';color:' + text + ';font-weight:' + (k > 0.7 ? 700 : 400) + '">' +
-      t.gapWord + ' ' +
-      (days === 0 ? t.sameDay : (soft ? "~" : "") + days + t.dayUnit) + '</span>';
-    tl.appendChild(gap);
   });
 
   tl.querySelectorAll(".why-btn").forEach(btn => {
@@ -3016,8 +3005,6 @@ applyView();
 render("en");
 viewFromHash();
 </script>
-<script src="./redesign-options/options-data.js"></script>
-<script src="./redesign-options/options-shared.js"></script>
 <script src="./site-nav.js"></script>
 <script>
 UKRU_NAV.mount({ current: "timeline", lang: () => lang, onLang: (l) => { if (l !== lang) render(l); } });

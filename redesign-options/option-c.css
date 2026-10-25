@@ -17,6 +17,7 @@
 
 .pill__bar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-xs);
@@ -33,11 +34,12 @@
 }
 
 .pill__bar > .pill__brand {
-  flex-shrink: 1;
+  flex: 0 1 auto;
+  max-width: 100%;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow: visible;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .pill__brand {
@@ -47,9 +49,10 @@
   font-family: var(--font-display);
   font-size: var(--text-sm);
   font-weight: 700;
+  line-height: var(--leading-snug);
   color: var(--color-ink);
   text-decoration: none;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .pill__links {
@@ -100,8 +103,8 @@
   color: var(--color-ink);
 }
 
-/* Nothing in the bar may silently shrink; what does not fit is hidden by breakpoint instead */
-.pill__bar > * {
+/* Links and tools keep their full labels. The wordmark wraps instead of being clipped. */
+.pill__bar > :not(.pill__brand) {
   flex-shrink: 0;
 }
 
@@ -982,7 +985,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
 
   .card {
     position: sticky;
-    inset-block-start: var(--space-4xl);
+    inset-block-start: var(--nav-clearance, var(--space-5xl));
   }
 
   .tiles {
@@ -1006,5 +1009,88 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   .tile,
   .btn {
     transition: none;
+  }
+}
+
+/* Context band: a photograph and the framing copy, with the data underneath.
+   Clearance is the measured bottom of the fixed pill, so wrapped labels stay visible. */
+:root {
+  --nav-clearance: var(--space-5xl);
+}
+
+html {
+  scroll-padding-top: var(--nav-clearance);
+}
+
+.context {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: end;
+  margin: 0 0 var(--space-xl);
+}
+
+.context__photo {
+  position: relative;
+  min-height: 16rem;
+  margin: 0;
+  border-radius: var(--radius-md);
+  overflow: clip;
+}
+
+.context__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.context__photo figcaption {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  margin: 0;
+  padding: var(--space-xl) var(--space-sm) var(--space-sm);
+  color: var(--color-on-photo);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+  background: linear-gradient(to top, var(--color-hero-scrim), transparent);
+}
+
+.context__photo figcaption a {
+  color: var(--color-on-photo);
+}
+
+.context__copy {
+  display: grid;
+  gap: var(--space-sm);
+  align-content: end;
+  min-width: 0;
+}
+
+.context__copy h1,
+.context__copy .lede,
+.context__copy .standfirst {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+html.embed .context__photo,
+html.embed .pill,
+html.embed .statement,
+html.embed .skip {
+  display: none;
+}
+
+@media (min-width: 60rem) {
+  .context {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: var(--space-xl);
+  }
+
+  .context__photo {
+    min-height: 22rem;
   }
 }

@@ -133,10 +133,21 @@
     }
     syncTheme();
 
+    function measureNav() {
+      const bottom = header.getBoundingClientRect().bottom;
+      const clearance = Math.ceil(bottom + 16);
+      document.documentElement.style.setProperty("--nav-clearance", clearance + "px");
+    }
+
     initLang((lang) => {
-      paint();
       if (opts.onLang) opts.onLang(lang);
+      paint();
+      measureNav();
     });
+
+    measureNav();
+    window.addEventListener("resize", measureNav);
+    if (window.ResizeObserver) new ResizeObserver(measureNav).observe(header);
   }
 
   window.UKRU_NAV = { mount };
