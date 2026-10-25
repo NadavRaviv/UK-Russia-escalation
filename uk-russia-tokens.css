@@ -113,8 +113,32 @@
   --color-overlay: oklch(14% 0.015 190 / 0.55);
 }
 
-/* C · Plot — slate night, sodium accent */
+/* C · Plot — day slate by default, sodium accent. Night is the dark switch. */
 [data-option="c"] {
+  color-scheme: light;
+  --color-paper: oklch(97.2% 0.008 255);
+  --color-paper-2: oklch(94.2% 0.012 255);
+  --color-paper-3: oklch(90.5% 0.014 255);
+  --color-ink: oklch(22% 0.025 255);
+  --color-muted: oklch(40% 0.025 255);
+  --color-rule: oklch(62% 0.02 255);
+  --color-accent: oklch(46% 0.12 78);
+  --color-on-accent: oklch(98% 0.01 90);
+  --color-on-scale: oklch(16% 0.02 255);
+  --color-focus: oklch(42% 0.14 255);
+  --color-uk: oklch(42% 0.14 260);
+  --color-ru: oklch(46% 0.17 27);
+  --color-ot: oklch(40% 0.02 255);
+  --color-on-photo: oklch(97% 0.008 90);
+  --color-on-photo-muted: oklch(88% 0.012 255);
+  --color-overlay: oklch(98% 0.008 255 / 0.9);
+  --color-hero-scrim: oklch(16% 0.02 255);
+  --color-shadow: oklch(22% 0.02 255 / 0.16);
+}
+
+html[data-theme="dark"] [data-option="c"],
+[data-option="c"][data-theme="dark"] {
+  color-scheme: dark;
   --color-paper: oklch(15% 0.016 255);
   --color-paper-2: oklch(19.5% 0.018 255);
   --color-paper-3: oklch(24% 0.02 255);
@@ -129,7 +153,10 @@
   --color-ru: oklch(68% 0.18 27);
   --color-ot: oklch(72% 0.012 255);
   --color-on-photo: oklch(96% 0.008 90);
+  --color-on-photo-muted: oklch(84% 0.014 255);
   --color-overlay: oklch(12% 0.016 255 / 0.62);
+  --color-hero-scrim: oklch(12% 0.016 255);
+  --color-shadow: oklch(4% 0.01 255 / 0.45);
 }
 
 /* D · Desk — cool white paper, plum accent */

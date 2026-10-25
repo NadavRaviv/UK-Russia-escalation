@@ -32,6 +32,14 @@
   padding: var(--space-2xs) var(--space-sm) var(--space-2xs) var(--space-2xs);
 }
 
+.pill__bar > .pill__brand {
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .pill__brand {
   display: inline-flex;
   align-items: center;
@@ -158,7 +166,7 @@
   border: var(--rule-hair) solid var(--color-rule);
   border-radius: var(--radius-md);
   background: var(--color-paper-2);
-  box-shadow: 0 12px 32px var(--color-overlay);
+  box-shadow: 0 12px 32px var(--color-shadow);
   animation: dd-in var(--dur-micro) var(--ease-out);
 }
 
@@ -218,8 +226,51 @@
   content: "–";
 }
 
+.pill__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin-inline-start: auto;
+}
+
 .pill__bar .lang {
   display: inline-flex;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--color-paper-3);
+}
+
+.theme-toggle svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .icon-moon {
+  display: block;
 }
 
 .sheet {
@@ -302,7 +353,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(to top, var(--color-paper) 4%, var(--color-overlay) 45%, transparent 92%);
+  background: linear-gradient(to top, var(--color-hero-scrim) 6%, color-mix(in oklch, var(--color-hero-scrim) 62%, transparent) 46%, transparent 92%);
 }
 
 .hero__inner {
@@ -323,8 +374,9 @@
   color: var(--color-on-photo);
 }
 
-.hero .credit {
-  color: var(--color-muted);
+.hero .credit,
+.hero .angles__label {
+  color: var(--color-on-photo-muted);
 }
 
 /* Six angles on one record: the same links as the top bar, offered where the reader lands */
@@ -337,13 +389,12 @@
 
 .angles__label {
   flex-basis: 100%;
-  color: var(--color-muted);
 }
 
 .hero .angles .chip {
   color: var(--color-on-photo);
-  border-color: var(--color-rule);
-  background: var(--color-overlay);
+  border-color: color-mix(in oklch, var(--color-on-photo) 50%, transparent);
+  background: color-mix(in oklch, var(--color-hero-scrim) 70%, transparent);
 }
 
 .hero .angles .chip:hover {
@@ -462,12 +513,13 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(to top, var(--color-overlay), var(--color-overlay));
+  background: linear-gradient(to top, var(--color-hero-scrim), color-mix(in oklch, var(--color-hero-scrim) 42%, transparent));
 }
 
 .tile--all {
   background: var(--color-paper-2);
   border-color: var(--color-rule);
+  color: var(--color-ink);
 }
 
 .tile--all::after {

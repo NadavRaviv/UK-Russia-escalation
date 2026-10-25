@@ -25,15 +25,25 @@
     header.innerHTML = `<div class="pill__bar">
       <a class="pill__brand" href="./uk-russia-plot.html#top" id="siteBrand"></a>
       <nav class="pill__links" id="siteLinks" aria-label="Pages"></nav>
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
+      <div class="pill__tools">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v1.6M12 19.4V21M4.9 4.9l1.1 1.1M18 18l1.1 1.1M3 12h1.6M19.4 12H21M4.9 19.1 6 18M18 6l1.1-1.1"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/></svg>
+        </button>
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
+        </div>
+        <button type="button" class="pill__menu" id="siteMenuBtn" aria-expanded="false" aria-controls="siteSheet"></button>
       </div>
-      <button type="button" class="pill__menu" id="siteMenuBtn" aria-expanded="false" aria-controls="siteSheet"></button>
     </div>
     <div class="sheet" id="siteSheet" hidden>
       <nav id="siteSheetLinks" aria-label="Pages"></nav>
       <div class="sheet__foot">
+        <button type="button" class="theme-toggle" aria-pressed="false">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v1.6M12 19.4V21M4.9 4.9l1.1 1.1M18 18l1.1 1.1M3 12h1.6M19.4 12H21M4.9 19.1 6 18M18 6l1.1-1.1"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/></svg>
+        </button>
         <div class="lang" role="group" aria-label="Language">
           <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
           <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
@@ -71,6 +81,37 @@
           <a class="tlink" href="./uk-russia-plot.html">${esc(c.plot)}</a>
           <a class="tlink" href="./uk-russia-ladder.html">${esc(t("ladder"))}</a>
         </div>`;
+      syncTheme();
+    }
+
+    function themeIsDark() {
+      return document.documentElement.getAttribute("data-theme") === "dark";
+    }
+
+    function syncTheme() {
+      const dark = themeIsDark();
+      const he = document.documentElement.lang === "he";
+      const label = dark
+        ? (he ? "עבור למצב בהיר" : "Switch to light")
+        : (he ? "עבור למצב כהה" : "Switch to dark");
+      document.querySelectorAll(".theme-toggle").forEach((btn) => {
+        btn.setAttribute("aria-label", label);
+        btn.setAttribute("title", label);
+        btn.setAttribute("aria-pressed", dark ? "true" : "false");
+      });
+    }
+
+    function setTheme(dark) {
+      const next = dark ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", next);
+      const meta = document.querySelector('meta[name="color-scheme"]');
+      if (meta) meta.setAttribute("content", next);
+      try { localStorage.setItem("uk-ru-theme", next); } catch (e) {}
+      syncTheme();
+      try {
+        const frame = document.getElementById("ladderFrame");
+        if (frame && frame.contentWindow) frame.contentWindow.postMessage({ type: "uk-ru-theme", theme: next }, "*");
+      } catch (e) {}
     }
 
     const btn = $("siteMenuBtn");
@@ -83,6 +124,13 @@
     });
     sheet.addEventListener("click", (e) => { if (e.target.closest("a")) close(); });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !sheet.hidden) { close(); btn.focus(); } });
+    document.querySelectorAll(".theme-toggle").forEach((b) => {
+      b.addEventListener("click", () => setTheme(!themeIsDark()));
+    });
+    if (!document.documentElement.getAttribute("data-theme")) {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+    syncTheme();
 
     initLang((lang) => {
       paint();
