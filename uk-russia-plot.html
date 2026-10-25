@@ -248,13 +248,11 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     $("sliderCount").textContent = `${c.showing} ${shown.length} ${c.of} ${N} · ${c.through} ${ev(e0).label}`;
 
     const sel = byId(state.sel);
-    const key = photoFor(sel);
     const order = shown;
     const at = order.findIndex((e) => e.id === sel.id);
     const prev = at > 0 ? order[at - 1] : null;
     const next = at >= 0 && at < order.length - 1 ? order[at + 1] : null;
-    $("card").innerHTML = `<figure class="card__photo" style="margin:0">${img(key, { w: 800, ratio: 16 / 9, sizes: "(min-width: 60rem) 40vw, 100vw" })}<figcaption><p class="credit">${esc(t("illustrative"))} ${creditInner(key, lang)}</p></figcaption></figure>
-      <div class="card__body">
+    $("card").innerHTML = `<div class="card__body">
         <div class="card__meta mono"><time datetime="${sel.date}">${esc(ev(sel).label)}</time>${sideTag(sel)}<span>${ringMark(sel)} ${esc(sel.direct ? t("direct") : t("indirect"))}</span></div>
         <h3>${esc(ev(sel).title)}</h3>
         <dl class="card__nums">
