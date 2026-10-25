@@ -120,10 +120,11 @@
   --color-paper-3: oklch(24% 0.02 255);
   --color-ink: oklch(94% 0.008 90);
   --color-muted: oklch(75% 0.014 255);
-  --color-rule: oklch(33% 0.02 255);
+  --color-rule: oklch(54% 0.022 255);
   --color-accent: oklch(82% 0.14 92);
   --color-on-accent: oklch(20% 0.03 90);
-  --color-focus: oklch(82% 0.14 92);
+  --color-on-scale: oklch(16% 0.02 255);
+  --color-focus: oklch(50% 0.08 200);
   --color-uk: oklch(74% 0.13 255);
   --color-ru: oklch(68% 0.18 27);
   --color-ot: oklch(72% 0.012 255);
