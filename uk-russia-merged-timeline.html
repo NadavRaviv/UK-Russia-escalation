@@ -68,7 +68,7 @@
   .ask{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md);padding:var(--space-lg)}
   .ask-submit{background:var(--color-accent);color:var(--color-on-accent);border:0;border-radius:var(--radius-pill);font-weight:700}
   .ask-input{background:var(--color-paper);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-sm);color:var(--color-ink)}
-  .stat{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
+  .stat{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md);padding:var(--space-sm) var(--space-md)}
   .stat .n.accent{color:var(--color-accent)}
   .overview{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
   .band{background:var(--color-paper);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
@@ -255,23 +255,42 @@
 
   /* --- tempo strip --- */
   .metrics{
-    display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 34px;
-    padding:14px 0 16px;margin:0 0 22px;border-bottom:1px solid var(--rule);
+    display:flex;flex-wrap:wrap;align-items:stretch;gap:var(--space-sm);
+    padding-block:var(--space-md) var(--space-lg);margin:0 0 var(--space-lg);
+    border-bottom:var(--rule-hair) solid var(--color-rule);
+  }
+  .stat{
+    display:flex;flex-direction:column;justify-content:center;gap:var(--space-2xs);
+    min-width:0;padding:var(--space-sm) var(--space-md);
   }
   .stat .n{
-    font-family:var(--mono);font-size:var(--text-xl);font-weight:700;display:block;line-height:1;
-    letter-spacing:-0.01em;
+    font-family:var(--font-body);font-size:var(--text-xl);font-weight:700;display:block;
+    line-height:var(--leading-tight);letter-spacing:0;color:var(--color-ink);
   }
-  .stat .n .u{font-size:var(--text-xs);font-weight:500}
-  .stat .n.accent{color:var(--yellow);font-size:var(--text-xl)}
+  .stat .n .u{font-size:var(--text-sm);font-weight:600}
+  .stat .n.accent{color:var(--color-accent);font-size:var(--text-xl);font-weight:700}
   .stat .l{
-    font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--soft);display:block;margin-top:6px;
+    font-family:var(--font-body);font-size:var(--text-xs);font-weight:600;letter-spacing:0.04em;
+    text-transform:uppercase;color:var(--color-muted);display:block;margin:0;
+    line-height:var(--leading-snug);
   }
   body[dir="rtl"] .stat .l{
-    letter-spacing:0;font-family:var(--font-body);text-transform:none;font-size:11px;
+    letter-spacing:0;font-family:var(--font-body);text-transform:none;font-size:var(--text-xs);
   }
-  .metrics .info-btn{margin-inline-start:auto;align-self:center}
+  .metrics .info-btn{
+    margin-inline-start:auto;align-self:stretch;
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:var(--tap-min);padding:var(--space-sm) var(--space-md);
+    background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);
+    border-radius:var(--radius-md);color:var(--color-ink);
+    font-family:var(--font-body);font-size:var(--text-xs);font-weight:700;
+    letter-spacing:0.04em;line-height:var(--leading-snug);text-transform:uppercase;
+  }
+  .metrics .info-btn:hover,
+  .metrics .info-btn:focus-visible{
+    color:var(--color-ink);border-color:var(--color-ink);background:var(--color-paper-3);
+  }
+  .metrics .info-btn:active{transform:translateY(1px)}
 
   /* --- timeline --- */
   .record{margin-top:var(--space-2xl)}
@@ -787,6 +806,10 @@
   .danger-chart .axis-label, .danger-chart .centroid-lab{
     font-size:max(12px, 1em);
   }
+  .stat .n{font-size:var(--text-xl)}
+  .stat .n .u{font-size:var(--text-sm)}
+  .stat .l,
+  .metrics .info-btn{font-size:var(--text-xs)}
 
   /* Hallmark · component: ask-panel · genre: editorial · theme: uk-russia-tokens
    * states: default · hover · focus · active · disabled · loading · error · success
