@@ -37,7 +37,7 @@
   align-items: center;
   min-height: var(--tap-min);
   font-family: var(--font-display);
-  font-size: var(--text-md);
+  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--color-ink);
   text-decoration: none;
@@ -876,6 +876,12 @@
   }
 }
 
+@media (max-width: 22.5rem) {
+  .pill__brand {
+    font-size: var(--text-xs);
+  }
+}
+
 @media (min-width: 48rem) {
   .pill__bar {
     gap: var(--space-sm);
@@ -887,7 +893,7 @@
   }
 
   .pill__brand {
-    font-size: var(--text-lg);
+    font-size: var(--text-md);
   }
 
   .section {

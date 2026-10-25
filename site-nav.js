@@ -61,7 +61,7 @@
     function paint() {
       const lang = langOf();
       const c = COPY[lang];
-      $("siteBrand").textContent = lang === "he" ? "בריטניה–רוסיה" : "UK–Russia";
+      $("siteBrand").textContent = lang === "he" ? "מיפוי הסלמת בריטניה–רוסיה" : "Mapping UK-Russia escalation";
       $("siteMenuBtn").textContent = t("menu");
       $("siteSheetAsk").textContent = c.ask + " →";
       $("siteLinks").innerHTML = PAGES.map(
