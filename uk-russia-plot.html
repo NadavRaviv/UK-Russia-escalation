@@ -21,6 +21,10 @@
   <div class="pill__bar">
     <a class="pill__brand" href="#top" id="brand"></a>
     <nav class="pill__links" id="pillLinks" aria-label="Sections"></nav>
+    <details class="dd" id="viewsDd">
+      <summary id="viewsLabel"></summary>
+      <div class="dd__menu" id="viewsMenu" role="list"></div>
+    </details>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
       <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
@@ -29,6 +33,8 @@
   </div>
   <div class="sheet" id="sheet" hidden>
     <nav id="sheetLinks" aria-label="Sections"></nav>
+    <p class="sheet__label mono" id="sheetViewsLabel"></p>
+    <div class="chips" id="sheetViews"></div>
     <div class="sheet__foot">
       <div class="lang" role="group" aria-label="Language">
         <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
@@ -64,6 +70,8 @@
   const COPY = {
     en: {
       plot: "Plot", timeline: "Timeline", method: "Method",
+      views: "Views", viewsHint: "Open a view of the full tracker",
+      viewList: [["danger", "Danger"], ["kanban", "Bands"], ["domain", "Domain"], ["outline", "List"], ["munger", "Munger"], ["ladder", "Levels up/down"]],
       heroCta: "Explore the plot", plotTitle: "Every event, placed by danger and impact",
       plotLede: "Each dot is one logged event. Higher means more dangerous, further right means more impact. Tap a dot to read it.",
       domains: "Filter by domain", all: "All domains", showing: "Showing", through: "through", of: "of",
@@ -75,6 +83,8 @@
     },
     he: {
       plot: "תרשים", timeline: "ציר הזמן", method: "שיטה",
+      views: "תצוגות", viewsHint: "פתיחת תצוגה במעקב המלא",
+      viewList: [["danger", "סכנה"], ["kanban", "רמות"], ["domain", "תחום"], ["outline", "רשימה"], ["munger", "מאנגר"], ["ladder", "רמות מעלה/מטה"]],
       heroCta: "לחקור את התרשים", plotTitle: "כל האירועים, לפי סכנה והשפעה",
       plotLede: "כל נקודה היא אירוע אחד ברישום. גבוה יותר משמעו מסוכן יותר, ימינה משמעו השפעה גדולה יותר. הקישו על נקודה כדי לקרוא.",
       domains: "סינון לפי תחום", all: "כל התחומים", showing: "מוצגים", through: "עד", of: "מתוך",
@@ -122,6 +132,12 @@
     const links = [["#plot", c.plot], ["#timeline", c.timeline], ["#method", c.method]];
     $("pillLinks").innerHTML = links.map(([h, l]) => `<a href="${h}">${esc(l)}</a>`).join("");
     $("sheetLinks").innerHTML = links.map(([h, l]) => `<a href="${h}">${esc(l)}</a>`).join("");
+    const viewHref = (v) => `./uk-russia-merged-timeline.html#view=${v}`;
+    $("viewsLabel").textContent = c.views;
+    $("viewsDd").setAttribute("title", c.viewsHint);
+    $("viewsMenu").innerHTML = c.viewList.map(([v, l]) => `<a role="listitem" href="${viewHref(v)}">${esc(l)}${v === "munger" ? ` <span class="n">${lang === "he" ? "נעול" : "locked"}</span>` : ""}</a>`).join("");
+    $("sheetViewsLabel").textContent = c.views + " · " + c.viewsHint;
+    $("sheetViews").innerHTML = c.viewList.map(([v, l]) => `<a class="chip" href="${viewHref(v)}">${esc(l)}</a>`).join("");
 
     $("hero").innerHTML = `<div class="hero__bg">${img("destroyer", { w: 1280, ratio: 1.6, sizes: "100vw", eager: true })}</div>
       <div class="wrap hero__inner">
@@ -287,6 +303,9 @@
     });
     sheet.addEventListener("click", (e) => { if (e.target.closest("a")) close(); });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !sheet.hidden) { close(); btn.focus(); } });
+    const dd = $("viewsDd");
+    document.addEventListener("click", (e) => { if (dd.open && !dd.contains(e.target)) dd.open = false; });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && dd.open) { dd.open = false; dd.querySelector("summary").focus(); } });
   }
 
   menu();

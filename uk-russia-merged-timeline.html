@@ -2966,8 +2966,23 @@ document.getElementById("askForm").addEventListener("submit", async (ev) => {
   }
 });
 
+// Deep links: #view=danger|kanban|outline|domain|munger|ladder (Munger still asks for its code).
+function viewFromHash(){
+  const m = /^#view=([a-z]+)$/.exec(window.location.hash || "");
+  if (!m) return;
+  const view = m[1];
+  if (view === "munger"){ requestMungerView(); return; }
+  if (["danger", "kanban", "outline", "domain", "ladder"].includes(view)){
+    viewOverride = view;
+    applyView();
+    overview.scrollIntoView({ block: "start" });
+  }
+}
+window.addEventListener("hashchange", viewFromHash);
+
 applyView();
 render("en");
+viewFromHash();
 </script>
 </body>
 </html>
