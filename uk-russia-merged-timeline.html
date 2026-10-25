@@ -110,7 +110,7 @@
   html[data-theme="light"]:not(:has(body[data-option])) .munger-card h4{
     font-family:var(--serif);font-weight:600;color:var(--ink);
   }
-  html[data-theme="light"]:not(:has(body[data-option])) .ovhead h3{font-size:var(--text-sm);font-family:var(--font-display);font-weight:600}
+  html[data-theme="light"]:not(:has(body[data-option])) .ovhead h3{font-size:calc(var(--text-sm) * 2);font-family:var(--font-display);font-weight:700}
   html[data-theme="light"]:not(:has(body[data-option])) .tlhead h3{font-size:var(--text-sm);font-family:var(--font-display);font-weight:600}
   html[data-theme="light"]:not(:has(body[data-option])) .row h2{font-family:var(--serif);font-weight:600;font-size:var(--text-sm);line-height:var(--leading-snug)}
   html[data-theme="light"]:not(:has(body[data-option])) .band,
@@ -371,8 +371,9 @@
   }
   .ovtitle{display:flex;align-items:center;gap:9px;min-width:0}
   .ovhead h3{
-    font-family:var(--font-display);font-size:var(--text-sm);letter-spacing:-0.005em;
-    color:var(--muted);margin:0;font-weight:600;
+    font-family:var(--font-display);font-size:calc(var(--text-sm) * 2);font-weight:700;
+    letter-spacing:-0.005em;line-height:var(--leading-tight);
+    color:var(--muted);margin:0;min-width:0;overflow-wrap:anywhere;
   }
   body[dir="rtl"] .ovhead h3{letter-spacing:0;font-family:var(--font-display)}
 
