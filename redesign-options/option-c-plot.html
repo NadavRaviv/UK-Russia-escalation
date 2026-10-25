@@ -135,7 +135,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
       <div class="instrument">
         <div class="instrument__plot">
           <div class="plot-wrap">
-            <div class="axis-y mono">${esc(U.ui[lang].dangerLow)} · ${esc(c.yAxis)} · ${esc(U.ui[lang].dangerHigh)}</div>
+            <div class="axis-y mono"><span>${esc(U.ui[lang].dangerHigh)}</span><span>${esc(U.ui[lang].dangerLow)}</span></div>
             <div class="plot" id="plotArea">
               <svg class="plot__grid" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
                 ${[1, 2, 3, 4, 6, 7, 8, 9].map((i) => `<line x1="${i * 10}" y1="0" x2="${i * 10}" y2="100"/><line x1="0" y1="${i * 10}" x2="100" y2="${i * 10}"/>`).join("")}
@@ -143,7 +143,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
               </svg>
               <div id="dots"></div>
             </div>
-            <div class="axis-x mono"><span>${esc(U.ui[lang].impactLow)}</span><span>${esc(c.xAxis)}</span><span>${esc(U.ui[lang].impactHigh)}</span></div>
+            <div class="axis-x mono"><span>${esc(U.ui[lang].impactLow)}</span><span>${esc(U.ui[lang].impactHigh)}</span></div>
           </div>
           <div class="timebar">
             <div class="timebar__top"><label for="slider">${esc(c.slider)}</label><output id="sliderOut" for="slider"></output></div>

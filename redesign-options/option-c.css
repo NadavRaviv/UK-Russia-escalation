@@ -558,11 +558,17 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
 .axis-y {
   grid-row: 1;
   grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+.axis-y span {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  text-align: center;
-  color: var(--color-muted);
-  white-space: nowrap;
 }
 
 .axis-x {
@@ -571,7 +577,8 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   display: flex;
   justify-content: space-between;
   gap: var(--space-sm);
-  color: var(--color-muted);
+  color: var(--color-ink);
+  font-weight: 700;
 }
 
 .plot {
