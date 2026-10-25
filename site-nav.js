@@ -22,9 +22,9 @@
 
   const ANGLES = [
     ["danger", "Danger", "סכנה"],
+    ["outline", "List", "רשימה"],
     ["kanban", "Bands", "רמות"],
     ["domain", "Domain", "תחום"],
-    ["outline", "List", "רשימה"],
     ["munger", "Surface Bias", "חשיפת הטיות"],
     ["ladder", "Levels", "רמות מעלה/מטה"],
   ];
