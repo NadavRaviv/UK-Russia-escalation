@@ -57,6 +57,10 @@ main{max-width:var(--page-max);margin:0 auto;padding:var(--nav-clearance, var(--
 h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:var(--leading-tight);margin:0}
 h1{font-size:var(--text-3xl);max-width:24ch;letter-spacing:-.02em}
 h2{font-size:var(--text-2xl);margin-bottom:var(--space-sm)}
+h2.other-escalations{
+  font-style:normal;font-weight:700;font-size:var(--text-hero-s);
+  letter-spacing:-0.02em;margin:var(--space-md) 0 var(--space-lg);max-width:16ch;
+}
 h3{font-size:var(--text-lg);margin:var(--space-lg) 0 var(--space-xs)}
 p{margin:0 0 var(--space-sm);max-width:72ch;color:var(--soft)}
 .lede{font-size:var(--text-base);color:var(--soft);margin-top:var(--space-sm);max-width:var(--measure);line-height:var(--leading-body)}
@@ -190,8 +194,32 @@ p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
     </div>
     <p class="hint">Dashed rings and dashed lines mark suspected, unattributed events. Select any point for its detail.</p>
 
-    <div id="lanes"></div>
+    <div id="lanesRussian"></div>
+  </section>
 
+  <section>
+    <h2>The two Russian lanes, side by side</h2>
+    <p>Russia toward Britain now, against Russia toward Ukraine in the fourteen months before the invasion. Both panels recalculate from the data, so daily updates move them.</p>
+    <div class="dual-section">
+      <div>
+        <p class="overlap-big"><span id="overlapPctNum">0</span>%</p>
+        <p class="overlap-sub">overlap in how often each rung appears</p>
+        <p>Similar on paper, different in substance. The same rung carries different acts: rung 4 in Ukraine was troops massing on the target; in the UK lane it is British arms transfers and Russian naval grey-zone activity. Confirmed events only.</p>
+        <div class="bar-legend"><span><i class="uk"></i>UK – Russia</span><span><i class="ua"></i>Russia – Ukraine 2021–22</span></div>
+        <div id="dualBars"></div>
+      </div>
+      <div>
+        <h2>Signs from the Ukraine lane</h2>
+        <p>A sign ticks when a confirmed UK–Russia event carries it. A dashed ring means only suspected events do.</p>
+        <ul class="signs" id="signsList"></ul>
+        <p><strong>Reading:</strong> the same vocabulary, different grammar. Toward Britain, Russia threatens loudly and moves little, which looks like a state warning off a supplier. Toward Ukraine it threatened rarely and moved a great deal, which looked like a state preparing an operation. Most steps up in the UK lane are British; Russia mostly answers in words.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="other-escalations">Other escalations</h2>
+    <div id="lanesOther"></div>
     <div class="detail" id="detail" aria-live="polite">
       <span class="meta">Select a point to see the event.</span>
     </div>
@@ -219,26 +247,6 @@ p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
       <div class="compare-card">
         <h3>Israel–Hamas is the warning about quiet lines</h3>
         <p>The public record nine days before 7 October showed a de-escalation: Erez reopened and border riots stopped after Qatari mediation. The attack plan and the internal warnings never reached open sources. A flat or falling line is not proof of safety, and an OSINT timeline cannot see a deliberate surprise.</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>The two Russian lanes, side by side</h2>
-    <p>Russia toward Britain now, against Russia toward Ukraine in the fourteen months before the invasion. Both panels recalculate from the data, so daily updates move them.</p>
-    <div class="dual-section">
-      <div>
-        <p class="overlap-big"><span id="overlapPctNum">0</span>%</p>
-        <p class="overlap-sub">overlap in how often each rung appears</p>
-        <p>Similar on paper, different in substance. The same rung carries different acts: rung 4 in Ukraine was troops massing on the target; in the UK lane it is British arms transfers and Russian naval grey-zone activity. Confirmed events only.</p>
-        <div class="bar-legend"><span><i class="uk"></i>UK – Russia</span><span><i class="ua"></i>Russia – Ukraine 2021–22</span></div>
-        <div id="dualBars"></div>
-      </div>
-      <div>
-        <h2>Signs from the Ukraine lane</h2>
-        <p>A sign ticks when a confirmed UK–Russia event carries it. A dashed ring means only suspected events do.</p>
-        <ul class="signs" id="signsList"></ul>
-        <p><strong>Reading:</strong> the same vocabulary, different grammar. Toward Britain, Russia threatens loudly and moves little, which looks like a state warning off a supplier. Toward Ukraine it threatened rarely and moved a great deal, which looked like a state preparing an operation. Most steps up in the UK lane are British; Russia mostly answers in words.</p>
       </div>
     </div>
   </section>
@@ -539,7 +547,10 @@ function showDetail(lane, ev){
 
 function renderAll(){
   const showGreen = document.getElementById("showGreen").checked;
-  document.getElementById("lanes").innerHTML = LANES.map(l => renderLane(l, showGreen)).join("");
+  const russian = LANES.filter(l => l.id === "uk-ru" || l.id === "ru-ua");
+  const other = LANES.filter(l => l.id !== "uk-ru" && l.id !== "ru-ua");
+  document.getElementById("lanesRussian").innerHTML = russian.map(l => renderLane(l, showGreen)).join("");
+  document.getElementById("lanesOther").innerHTML = other.map(l => renderLane(l, showGreen)).join("");
   bindPoints();
 }
 
