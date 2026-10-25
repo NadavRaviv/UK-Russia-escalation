@@ -411,9 +411,10 @@
 
   .bands{display:flex;gap:8px;align-items:stretch}
   .band{
-    display:flex;flex-direction:column;
+    display:block;
     background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:11px 11px 6px;
   }
+  .band:not([open]) > :not(summary){display:none}
   /* Default: kanban columns on desktop, stacked outline below 721px.
      .layout-* is a user override from the toggle and always wins. */
   .overview:not(.layout-outline) .bands{
@@ -705,6 +706,22 @@
   .munger-modal.shake{animation:shake 400ms ease-out}
   @keyframes shake{0%,100%{transform:translateX(0) scale(1)}25%{transform:translateX(-6px) scale(1)}75%{transform:translateX(6px) scale(1)}}
 
+  .band > summary{
+    display:block;cursor:pointer;list-style:none;position:relative;
+    padding-inline-end:var(--space-lg);
+  }
+  .band > summary::-webkit-details-marker{display:none}
+  .band > summary::marker{content:none}
+  .band > summary::after{
+    content:"";position:absolute;inset-inline-end:0;inset-block-start:var(--space-sm);
+    width:0.45rem;height:0.45rem;
+    border-inline-end:1.5px solid var(--color-muted);
+    border-block-end:1.5px solid var(--color-muted);
+    transform:translateY(-0.1rem) rotate(45deg);
+  }
+  .band[open] > summary::after{transform:translateY(0.15rem) rotate(225deg)}
+  .band > summary:hover::after,
+  .band > summary:focus-visible::after{border-color:var(--color-ink)}
   .band .meter{height:3px;border-radius:2px;background:rgba(148,163,184,.13);overflow:hidden;margin-bottom:10px}
   .band .meter i{display:block;height:100%;background:var(--yellow);opacity:.75}
   .band .num{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--soft)}
@@ -2520,19 +2537,24 @@ function renderBands(code){
         })()
       : "";
 
-    const card = document.createElement("div");
+    const card = document.createElement("details");
     card.className = "band";
+    card.open = true;
     card.innerHTML =
+      '<summary>' +
       '<div class="meter"><i style="width:' + ((bi + 1) / cards.length * 100) + '%"></i></div>' +
       '<span class="num">' + (bi + 1) + ' / ' + cards.length + '</span>' +
       '<h4>' + b.name + '</h4>' +
       '<p class="def">' + b.def + '</p>' +
       '<div class="meta">' + t.metaFmt(rows.length, split, range) + '</div>' +
+      '</summary>' +
+      '<div class="band__events">' +
       rows.map(e =>
         '<div class="ev ' + e.rag + '"><span class="m">' + FLAGS[e.side] + '</span>' +
         '<span class="t">' + e[code].short +
         '<span class="d">' + shortDate(e.date, t, e.approx) + '</span></span></div>'
-      ).join("");
+      ).join("") +
+      '</div>';
     host.appendChild(card);
   });
 }
