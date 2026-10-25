@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-option="e">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Option E · Portfolio — UK–Russia escalation</title>
+<meta name="description" content="Redesign option E: a corporate-editorial layout with a deep hero panel, a photo band, a domain tab list and a featured event.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Archivo:wght@400;500;600;700&family=Heebo:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../uk-russia-tokens.css">
+<link rel="stylesheet" href="./options-base.css">
+<link rel="stylesheet" href="./option-e.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar" id="top">
+  <div class="wrap">
+    <div class="bar__row">
+      <a class="bar__brand" href="#top" id="brand"></a>
+      <nav class="bar__links" id="barLinks" aria-label="Sections"></nav>
+      <div class="bar__end">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
+        </div>
+        <a class="btn" id="askBtn" href="../uk-russia-merged-timeline.html#ask"></a>
+      </div>
+      <button type="button" class="bar__menu" id="menuBtn" aria-expanded="false" aria-controls="panel"></button>
+    </div>
+    <div class="panel" id="panel" hidden>
+      <nav id="panelLinks" aria-label="Sections" style="display:contents"></nav>
+      <div class="panel__foot">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
+        </div>
+        <a class="btn" id="askBtn2" href="../uk-russia-merged-timeline.html#ask"></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap hero__grid" id="heroGrid"></div>
+  </section>
+  <div class="band"><figure class="wrap" id="bandFig"></figure></div>
+
+  <section class="wrap" aria-label="Figures"><dl class="strip" id="strip"></dl></section>
+
+  <section class="sec" id="periods" aria-labelledby="periods-h"><div class="wrap" id="periodsBody"></div></section>
+
+  <section class="sec sec--grey" id="domains" aria-labelledby="domains-h"><div class="wrap" id="domainsBody"></div></section>
+
+  <section class="sec" id="timeline" aria-labelledby="tl-h"><div class="wrap" id="timelineBody"></div></section>
+
+  <section class="sec sec--grey" id="story" aria-labelledby="story-h"><div class="wrap" id="storyBody"></div></section>
+
+  <section class="sec deep" id="method" aria-labelledby="method-h"><div class="wrap deep__grid" id="methodBody"></div></section>
+</main>
+
+<footer class="foot"><div class="wrap" id="footer"></div></footer>
+
+<script src="./options-data.js"></script>
+<script src="./options-shared.js"></script>
+<script>
+(function () {
+  const { U, DOMAIN_PHOTO, PHASES, photoFor, img, creditInner, phaseRows, phaseLabel, mean, esc, initLang, t, ev, count, sideTag, ringMark, whyHtml, sourcesHtml } = window.UKRU_UI;
+  const $ = (id) => document.getElementById(id);
+  const N = U.events.length;
+
+  const TITLES = {
+    en: ["Before 15 August", "15 to 27 August", "September", "October"],
+    he: ["לפני 15 באוגוסט", "15–27 באוגוסט", "ספטמבר", "אוקטובר"],
+  };
+  const COPY = {
+    en: {
+      periods: "Periods", domains: "Domains", timeline: "Timeline", story: "Highest danger", method: "Method",
+      read: "Read the timeline", ask: "Ask the tracker",
+      figures: "Key figures", periodsEyebrow: "Four periods", periodsTitle: "See what changed, and when",
+      periodsLede: "The record falls into four stretches. Each shows how many events it holds and the one that scored highest for danger.",
+      topIn: "Highest danger", jump: "Go to the period",
+      domEyebrow: "By domain", domTitle: "Browse the record by what was affected",
+      domLede: "Five domains, from army systems to sanctions. Choose one to see its photograph and its events.",
+      showAllN: "Show all", fewer: "Show fewer",
+      tlEyebrow: "Every event", tlTitle: "The full timeline, newest first", side: "Side", all: "All", reset: "Reset",
+      storyEyebrow: "Highest danger on record", why: "Why it is scored this way",
+      methodEyebrow: "How it is built", openAsk: "Ask the tracker", openLive: "Open the live tracker",
+      colophon: "Source Serif 4, Archivo and JetBrains Mono.",
+      fine: "Photographs by Unsplash contributors, credited beside each image; they are illustrative and do not depict the events listed.",
+    },
+    he: {
+      periods: "תקופות", domains: "תחומים", timeline: "ציר הזמן", story: "הסכנה הגבוהה ביותר", method: "שיטה",
+      read: "לקרוא את ציר הזמן", ask: "שאלו את המעקב",
+      figures: "נתוני מפתח", periodsEyebrow: "ארבע תקופות", periodsTitle: "מה השתנה, ומתי",
+      periodsLede: "התיעוד מתחלק לארבע תקופות. בכל אחת מספר האירועים והאירוע בעל ציון הסכנה הגבוה ביותר.",
+      topIn: "הסכנה הגבוהה ביותר", jump: "לתקופה",
+      domEyebrow: "לפי תחום", domTitle: "עיינו בתיעוד לפי מה שנפגע",
+      domLede: "חמישה תחומים, ממערכות צבא ועד סנקציות. בחרו תחום כדי לראות את התמונה ואת האירועים שלו.",
+      showAllN: "הצג הכול", fewer: "הצג פחות",
+      tlEyebrow: "כל האירועים", tlTitle: "ציר הזמן המלא, מהחדש לישן", side: "צד", all: "הכול", reset: "איפוס",
+      storyEyebrow: "הסכנה הגבוהה ביותר ברישום", why: "למה זה הציון",
+      methodEyebrow: "איך זה בנוי", openAsk: "שאלו את המעקב", openLive: "למעקב החי",
+      colophon: "Source Serif 4, Archivo ו-JetBrains Mono.",
+      fine: "צילומים של תורמי Unsplash, עם קרדיט ליד כל תמונה; הם להמחשה בלבד ואינם מתארים את האירועים ברשימה.",
+    },
+  };
+
+  const state = { domain: 1, domainAll: false, side: "all", tlAll: false };
+  let lang = "en";
+  const hot = (rows) => rows.slice().sort((a, b) => b.danger - a.danger || b.impact - a.impact)[0];
+  const top = hot(U.events);
+
+  function shell() {
+    const u = U.ui[lang];
+    const c = COPY[lang];
+    $("brand").textContent = lang === "he" ? "בריטניה–רוסיה" : "UK–Russia";
+    const links = [["#periods", c.periods], ["#domains", c.domains], ["#timeline", c.timeline], ["#method", c.method]];
+    $("barLinks").innerHTML = links.map(([h, l]) => `<a href="${h}">${esc(l)}</a>`).join("");
+    $("panelLinks").innerHTML = links.map(([h, l]) => `<a href="${h}">${esc(l)}</a>`).join("");
+    $("askBtn").textContent = c.ask;
+    $("askBtn2").textContent = c.ask;
+    $("menuBtn").textContent = t("menu");
+
+    $("heroGrid").innerHTML = `<div>
+        <p class="eyebrow" style="margin-block-end:var(--space-md)">${esc(u.eyebrow)}</p>
+        <h1 id="h1">${esc(u.title)}</h1>
+      </div>
+      <div class="hero__side">
+        <p>${esc(u.standfirst)}</p>
+        <div class="hero__cta"><a class="btn" href="#timeline">${esc(c.read)}</a><a class="btn btn--ghost" href="../uk-russia-merged-timeline.html#ask">${esc(c.ask)}</a></div>
+      </div>`;
+    $("bandFig").innerHTML = `${img("carrier", { w: 1600, ratio: 2.33, sizes: "(min-width: 74rem) 1180px, 100vw", eager: true })}<figcaption><p class="credit">${esc(t("illustrative"))} ${creditInner("carrier", lang)}</p></figcaption>`;
+
+    const ru = U.events.filter((e) => e.side === "ru").length;
+    const uk = U.events.filter((e) => e.side === "uk").length;
+    const unit = esc(u.unit.trim());
+    $("strip").setAttribute("aria-label", c.figures);
+    $("strip").innerHTML = `<div><dt>${esc(u.s1)}</dt><dd>10.8 <small>${unit}</small></dd></div>
+      <div><dt>${esc(u.s2)}</dt><dd>3.2 <small>${unit}</small></dd></div>
+      <div><dt>${esc(u.tlCount)}</dt><dd>${N}</dd></div>
+      <div><dt>${esc(u.s4)}</dt><dd>${ru} / ${uk} / ${N - ru - uk}</dd></div>`;
+
+    $("periodsBody").innerHTML = `<div class="sec__head"><p class="eyebrow">${esc(c.periodsEyebrow)}</p><h2 id="periods-h">${esc(c.periodsTitle)}</h2><p>${esc(c.periodsLede)}</p></div>
+      <div class="periods">${PHASES.map((p, i) => {
+        const rows = phaseRows(p);
+        const h = hot(rows);
+        return `<article class="period"><p class="eyebrow">${esc(phaseLabel(p, lang))}</p><h3>${esc(TITLES[lang][i])}</h3>
+          <p class="mono">${esc(count(rows.length))} · ${esc(u.selDangerL)} ${mean(rows, "danger").toFixed(1)}</p>
+          <p class="period__hot">${esc(c.topIn)} · ${h.danger}/10<strong>${esc(ev(h).title)}</strong></p>
+          <a class="tlink" href="#timeline" data-period="${p.id}" aria-label="${esc(c.jump + ": " + TITLES[lang][i])}">${esc(c.jump)} →</a></article>`;
+      }).join("")}</div>`;
+
+    $("domainsBody").innerHTML = `<div class="sec__head"><p class="eyebrow">${esc(c.domEyebrow)}</p><h2 id="domains-h">${esc(c.domTitle)}</h2><p>${esc(c.domLede)}</p></div>
+      <div class="tabs">
+        <div class="tablist" role="tablist" aria-label="${esc(c.domains)}" id="tablist">${u.domains
+          .map((d, i) => `<button type="button" role="tab" class="tab" id="tab-${i + 1}" data-d="${i + 1}" aria-controls="tabpanel" aria-selected="${state.domain === i + 1}" tabindex="${state.domain === i + 1 ? 0 : -1}">
+            <span class="tab__top"><span>${esc(d.name)}</span><span class="tab__n">${U.events.filter((e) => e.domain === i + 1).length}</span></span>
+            <span class="tab__def">${esc(d.def)}</span></button>`)
+          .join("")}</div>
+        <div class="tabpanel" id="tabpanel" role="tabpanel" aria-live="polite"></div>
+      </div>`;
+
+    const tlC = COPY[lang];
+    $("timelineBody").innerHTML = `<div class="sec__head"><p class="eyebrow">${esc(tlC.tlEyebrow)}</p><h2 id="tl-h">${esc(tlC.tlTitle)}</h2></div>
+      <div class="filterbar"><div class="chips" role="group" aria-label="${esc(tlC.side)}" id="sideChips">${[["all", tlC.all, N], ...["ru", "uk", "ot"].map((s) => [s, u.sides[s], U.events.filter((e) => e.side === s).length])]
+        .map(([v, l, n]) => `<button type="button" class="chip" data-side="${v}" aria-pressed="${state.side === v}">${esc(l)} <span class="n">${n}</span></button>`)
+        .join("")}</div>
+        <p class="legend credit" style="display:flex;gap:var(--space-md)"><span>${ringMark({ direct: true })} ${esc(u.k1)}</span><span>${ringMark({ direct: false })} ${esc(u.k2)}</span></p></div>
+      <ol class="rows" id="rows"></ol><div class="more" id="more"></div>`;
+
+    const key = photoFor(top);
+    $("storyBody").innerHTML = `<div class="sec__head"><p class="eyebrow">${esc(c.storyEyebrow)}</p></div>
+      <div class="story">
+        <figure>${img(key, { w: 1200, ratio: 4 / 3, sizes: "(min-width: 60rem) 58vw, 100vw" })}<figcaption><p class="credit">${esc(t("illustrative"))} ${creditInner(key, lang)}</p></figcaption></figure>
+        <div class="story__text">
+          <p class="mono">${sideTag(top)} · <time datetime="${top.date}">${esc(ev(top).label)}</time></p>
+          <h2 id="story-h" style="font-size:var(--text-hero-s);line-height:1.08">${esc(ev(top).title)}</h2>
+          <dl class="story__nums"><div><dt>${esc(t("danger"))}</dt><dd>${top.danger}/10</dd></div><div><dt>${esc(t("impact"))}</dt><dd>${top.impact}/10</dd></div></dl>
+          <p style="color:var(--color-muted)">${esc(ev(top).why)}</p>
+          ${sourcesHtml(top)}
+        </div>
+      </div>`;
+
+    $("methodBody").innerHTML = `<div><p class="eyebrow" style="margin-block-end:var(--space-md)">${esc(c.methodEyebrow)}</p><h2 id="method-h">${esc(t("method"))}</h2></div>
+      <div class="deep__text"><p>${u.p0}</p><p>${u.p1}</p><p class="hero__cta"><a class="btn" href="../uk-russia-merged-timeline.html#ask">${esc(c.openAsk)}</a><a class="btn btn--ghost" href="../uk-russia-merged-timeline.html">${esc(c.openLive)}</a></p></div>`;
+
+    $("footer").innerHTML = `<div class="foot__top"><span class="foot__brand">${esc(lang === "he" ? "בריטניה–רוסיה" : "UK–Russia")}</span>
+        <nav aria-label="Footer"><a href="../uk-russia-merged-timeline.html">${esc(t("live"))}</a><a href="../uk-russia-ladder.html">${esc(t("ladder"))}</a><a href="./index.html">Options</a></nav></div>
+      <p class="foot__fine">${esc(u.footLine)} ${esc(c.colophon)} ${esc(c.fine)}</p>`;
+
+    renderTab();
+    renderRows();
+  }
+
+  function renderTab() {
+    const u = U.ui[lang];
+    const c = COPY[lang];
+    const d = state.domain;
+    const rows = U.events.filter((e) => e.domain === d).slice().reverse();
+    const cut = state.domainAll ? rows : rows.slice(0, 4);
+    const key = DOMAIN_PHOTO[d];
+    const panel = $("tabpanel");
+    panel.setAttribute("aria-labelledby", "tab-" + d);
+    panel.innerHTML = `<figure style="margin:0">${img(key, { w: 1200, ratio: 1.6, sizes: "(min-width: 60rem) 58vw, 100vw" })}<figcaption><p class="credit">${esc(t("illustrative"))} ${creditInner(key, lang)}</p></figcaption></figure>
+      <ul class="mini">${cut.map((e) => `<li><div class="meta mono"><time datetime="${e.date}">${esc(ev(e).label)}</time>${sideTag(e)}${ringMark(e)}</div><h4>${esc(ev(e).title)}</h4>${whyHtml(e)}</li>`).join("")}</ul>
+      ${rows.length > 4 ? `<div class="more" style="margin:0"><button type="button" class="chip" style="border-radius:0" id="domMore">${esc(state.domainAll ? c.fewer : c.showAllN + " (" + rows.length + ")")}</button></div>` : ""}`;
+    panel.classList.remove("is-in");
+    void panel.offsetWidth;
+    panel.classList.add("is-in");
+  }
+
+  function renderRows() {
+    const c = COPY[lang];
+    const rows = U.events.filter((e) => state.side === "all" || e.side === state.side).slice().reverse();
+    const cut = state.tlAll ? rows : rows.slice(0, 8);
+    $("rows").innerHTML = cut
+      .map((e) => `<li id="e${e.id}"><div class="row__meta mono"><time datetime="${e.date}">${esc(ev(e).label)}</time>${sideTag(e)}${ringMark(e)}</div><h3>${esc(ev(e).title)}</h3>${whyHtml(e)}</li>`)
+      .join("");
+    $("more").innerHTML = rows.length > 8 ? `<button type="button" class="chip" id="rowsMore">${esc(state.tlAll ? c.fewer : c.showAllN + " (" + rows.length + ")")}</button>` : "";
+    document.querySelectorAll("#sideChips [data-side]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.side === state.side)));
+  }
+
+  function wire() {
+    document.addEventListener("click", (e) => {
+      const tab = e.target.closest("#tablist [data-d]");
+      if (tab) { state.domain = Number(tab.dataset.d); state.domainAll = false; syncTabs(); renderTab(); return; }
+      if (e.target.closest("#domMore")) { state.domainAll = !state.domainAll; renderTab(); const b = $("domMore"); if (b) b.focus(); return; }
+      const sc = e.target.closest("#sideChips [data-side]");
+      if (sc) { state.side = sc.dataset.side; state.tlAll = false; renderRows(); return; }
+      if (e.target.closest("#rowsMore")) { state.tlAll = !state.tlAll; renderRows(); $("rowsMore").focus(); return; }
+      const pj = e.target.closest("[data-period]");
+      if (pj) {
+        const p = PHASES.find((x) => x.id === pj.dataset.period);
+        state.side = "all"; state.tlAll = true; renderRows();
+        const first = U.events.filter((x) => x.date >= p.from && x.date <= p.to).pop();
+        const el = first && $("e" + first.id);
+        if (el) { e.preventDefault(); el.scrollIntoView({ block: "start" }); }
+        return;
+      }
+      if (e.target.closest("#menuBtn")) {
+        const open = $("panel").hidden;
+        $("panel").hidden = !open;
+        $("menuBtn").setAttribute("aria-expanded", String(open));
+        return;
+      }
+      if (e.target.closest("#panelLinks a")) { $("panel").hidden = true; $("menuBtn").setAttribute("aria-expanded", "false"); }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !$("panel").hidden) { $("panel").hidden = true; $("menuBtn").setAttribute("aria-expanded", "false"); $("menuBtn").focus(); }
+      const tab = e.target.closest && e.target.closest("#tablist [role=tab]");
+      if (!tab || !["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft", "Home", "End"].includes(e.key)) return;
+      e.preventDefault();
+      const tabs = [...document.querySelectorAll("#tablist [role=tab]")];
+      let i = tabs.indexOf(tab);
+      if (e.key === "Home") i = 0; else if (e.key === "End") i = tabs.length - 1;
+      else i = (i + (e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+      tabs[i].focus();
+      tabs[i].click();
+    });
+  }
+  function syncTabs() {
+    document.querySelectorAll("#tablist [role=tab]").forEach((b) => {
+      const on = Number(b.dataset.d) === state.domain;
+      b.setAttribute("aria-selected", String(on));
+      b.tabIndex = on ? 0 : -1;
+    });
+  }
+
+  wire();
+  initLang((l) => { lang = l; shell(); });
+})();
+</script>
+</body>
+</html>

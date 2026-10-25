@@ -146,3 +146,24 @@
   --color-on-photo: oklch(97% 0.006 300);
   --color-overlay: oklch(14% 0.015 300 / 0.6);
 }
+
+/* E · Portfolio — warm greige paper, deep olive panels, burnt-orange marker. Studied from a public reference page; structure and palette family only. */
+[data-option="e"] {
+  --color-paper: oklch(97.4% 0.004 85);
+  --color-paper-2: oklch(92.5% 0.005 80);
+  --color-ink: oklch(21% 0.006 85);
+  --color-muted: oklch(46% 0.01 85);
+  --color-rule: oklch(84% 0.007 85);
+  --color-accent: oklch(52% 0.13 52);
+  --color-focus: oklch(52% 0.13 52);
+  --color-deep: oklch(38% 0.07 125);
+  --color-deep-2: oklch(33% 0.065 125);
+  --color-on-deep: oklch(97% 0.006 100);
+  --color-on-deep-muted: oklch(84% 0.025 120);
+  --color-marker: oklch(70% 0.17 55);
+  --color-uk: oklch(46% 0.12 250);
+  --color-ru: oklch(52% 0.19 27);
+  --color-ot: oklch(52% 0.01 85);
+  --color-on-photo: oklch(97% 0.006 100);
+  --color-overlay: oklch(18% 0.02 125 / 0.6);
+}

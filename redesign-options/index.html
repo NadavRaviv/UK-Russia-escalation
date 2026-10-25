@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Four redesign options — UK–Russia escalation tracker</title>
-<meta name="description" content="Four mobile-first redesign directions for the UK–Russia escalation tracker, each with photographs and a different way to navigate the 40 events.">
+<title>Five redesign options — UK–Russia escalation tracker</title>
+<meta name="description" content="Five mobile-first redesign directions for the UK–Russia escalation tracker, each with photographs and a different way to navigate the 40 events.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
@@ -17,7 +17,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <main id="main" class="wrap">
   <header class="head">
-    <h1>Four ways to redesign the tracker</h1>
+    <h1>Five ways to redesign the tracker</h1>
     <p class="lede">Each option reads the same 40 dated events and is built for a phone first. They differ in how you move through them. Open each on your phone, then pick one, or mix parts.</p>
     <p class="head__links"><a class="tlink" href="../uk-russia-merged-timeline.html">Current tracker →</a></p>
   </header>
@@ -25,12 +25,12 @@
   <div class="options" id="options"></div>
 
   <section class="same" aria-labelledby="same-h">
-    <h2 id="same-h">The same in all four</h2>
+    <h2 id="same-h">The same in all five</h2>
     <ul>
       <li>The same 40 events, sides, danger and impact scores, and sources, taken from the live tracker.</li>
       <li>English and Hebrew, with right-to-left layout.</li>
       <li>Red marks Russia only. Solid and dashed rings still mean direct and indirect.</li>
-      <li>Fonts, type scale and spacing come from the existing token file, <code>uk-russia-tokens.css</code>.</li>
+      <li>Fonts, type scale and spacing come from the existing token file, <code>uk-russia-tokens.css</code>. Option E takes its layout and palette family from a public reference page; no text, images or logos were copied.</li>
       <li>Ask the tracker and the full Method stay on the live tracker for now; every option links to them.</li>
     </ul>
   </section>
@@ -47,6 +47,7 @@
     { l: "Option A", name: "Dispatch", href: "./option-a-dispatch.html", photo: "refinery", what: "Full-width photographs open each period. A filter bar keeps the timeline one tap from any side.", best: "Reading start to finish", nav: "Masthead with a menu", hook: "Photograph-led editorial" },
     { l: "Option B", name: "Phases", href: "./option-b-phases.html", photo: "kremlin", what: "Four periods, each with text on one side and a photograph on the other. A sticky period bar tracks where you are.", best: "Seeing what changed when", nav: "Sticky period chips", hook: "Split text and photo" },
     { l: "Option C", name: "Plot", href: "./option-c-plot.html", photo: "destroyer", what: "Every event as a dot by danger and impact, with a date slider and photo tiles to filter by domain. Dark.", best: "Spotting patterns", nav: "Floating pill and menu", hook: "Interactive chart" },
+    { l: "Option E", name: "Portfolio", href: "./option-e-portfolio.html", photo: "carrier", what: "Modelled on the Orbital occupiers page: a deep green hero, a wide photo band, a domain tab list beside a photograph, and one featured event.", best: "A calm, corporate read", nav: "Black bar and Menu", hook: "Photo band and tab visuals" },
     { l: "Option D", name: "Desk", href: "./option-d-desk.html", photo: "westminster", what: "Search first, with Ctrl or Cmd K. Shelves for featured, latest and domain, then a filterable grid of every event.", best: "Finding one event fast", nav: "Search pill", hook: "Search and shelves" },
   ];
   document.getElementById("options").innerHTML = OPTS.map((o, i) => `<article class="opt">
