@@ -82,7 +82,7 @@
   }
 
   const WORDS = {
-    en: { events: "events", event: "event", all: "All", search: "Search", open: "Open", close: "Close", menu: "Menu", ask: "Ask the tracker", method: "Method", fullTracker: "Open the full tracker", direct: "Direct", indirect: "Indirect", danger: "Danger", impact: "Impact", sources: "Sources", seeAll: "See all", source: "Source", illustrative: "Illustrative photograph, not from the events listed.", live: "Live tracker", ladder: "Levels up/down", timeline: "Timeline", tempo: "Tempo", plot: "Plot", filterSide: "Filter by side", noRows: "No events match this filter in this period." },
+    en: { events: "events", event: "event", all: "All", search: "Search", open: "Open", close: "Close", menu: "Menu", ask: "Ask the tracker", method: "Method", fullTracker: "Open the full tracker", direct: "Direct", indirect: "Indirect", danger: "Danger", impact: "Impact", sources: "Sources", seeAll: "See all", source: "Source", illustrative: "Illustrative photograph, not from the events listed.", live: "Live tracker", ladder: "Levels", timeline: "Timeline", tempo: "Tempo", plot: "Plot", filterSide: "Filter by side", noRows: "No events match this filter in this period." },
     he: { events: "אירועים", event: "אירוע", all: "הכול", search: "חיפוש", open: "פתיחה", close: "סגירה", menu: "תפריט", ask: "שאלו את המעקב", method: "שיטה", fullTracker: "למעקב המלא", direct: "ישיר", indirect: "עקיף", danger: "סכנה", impact: "השפעה", sources: "מקורות", seeAll: "הצג הכול", source: "מקור", illustrative: "צילום להמחשה בלבד, לא מהאירועים ברשימה.", live: "המעקב החי", ladder: "רמות למעלה/למטה", timeline: "ציר הזמן", tempo: "קצב", plot: "תרשים", filterSide: "סינון לפי צד", noRows: "אין אירועים תואמים בתקופה זו." },
   };
 
