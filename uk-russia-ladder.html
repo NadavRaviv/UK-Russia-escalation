@@ -17,24 +17,37 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./uk-russia-tokens.css">
+<link rel="stylesheet" href="./redesign-options/options-base.css">
+<link rel="stylesheet" href="./redesign-options/option-c.css">
 <style>
   /* Hallmark · editorial · long-document · design-system: uk-russia-tokens.css */
 :root{
-  --bg:#F2F3F1;--paper:#FBFBFA;--ink:#1D2630;--soft:#424e5a;--rule:#D3D8DB;--grid:#E3E7E9;
-  --l0:#B9C0C5;--l1:#8E98A1;--l2:#6F7D8A;--l3:#B98A8A;--l4:#A76565;--l5:#B8403B;--l6:#9E1F1F;--l7:#761414;--l8:#4E0B0B;
-  --t0:#1D2630;--focus:#2F6FB0;--ok:#2d6a4f;--warn:#9a7310;
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+body[data-option="c"]{
+  color-scheme:dark;
+  --bg:var(--color-paper);--paper:var(--color-paper-2);--ink:var(--color-ink);--soft:var(--color-muted);--rule:var(--color-rule);--grid:var(--color-paper-3);
+  --l0:#4A535B;--l1:#6D7882;--l2:#8794A0;--l3:#C79A9A;--l4:#D07C7C;--l5:#E0574F;--l6:#F0433A;--l7:#FF6B5E;--l8:#FF9C90;
+  --t0:var(--color-ink);--focus:var(--color-focus);--ok:#6bbf8a;--warn:var(--color-accent);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]):not(:has([data-option])){
   --bg:#161B20;--paper:#1C2228;--ink:#E4E7EA;--soft:#9AA5AF;--rule:#343D46;--grid:#262E36;
   --l0:#4A535B;--l1:#6D7882;--l2:#8794A0;--l3:#C79A9A;--l4:#D07C7C;--l5:#E0574F;--l6:#F0433A;--l7:#FF6B5E;--l8:#FF9C90;--t0:#E4E7EA;--focus:#7FB2E5;--ok:#6bbf8a;--warn:#e0b64a}}
-:root[data-theme="dark"]{--bg:#161B20;--paper:#1C2228;--ink:#E4E7EA;--soft:#9AA5AF;--rule:#343D46;--grid:#262E36;
+:root[data-theme="dark"]:not(:has([data-option])){--bg:#161B20;--paper:#1C2228;--ink:#E4E7EA;--soft:#9AA5AF;--rule:#343D46;--grid:#262E36;
   --l0:#4A535B;--l1:#6D7882;--l2:#8794A0;--l3:#C79A9A;--l4:#D07C7C;--l5:#E0574F;--l6:#F0433A;--l7:#FF6B5E;--l8:#FF9C90;--t0:#E4E7EA;--focus:#7FB2E5;--ok:#6bbf8a;--warn:#e0b64a}
 :root[data-theme="light"]{color-scheme:light}
 :root[data-theme="dark"]{color-scheme:dark}
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 var(--text-base)/var(--leading-body) var(--font-body);font-variant-numeric:tabular-nums}
+body{font-variant-numeric:tabular-nums}
+  .page{padding-block-start:var(--space-4xl)}
+  .topbar{display:none}
+  header h1{font-size:var(--text-3xl)}
+  .lede{font-size:var(--text-md);color:var(--color-ink)}
+  .win{border-radius:var(--radius-pill)}
+  .win.active{background:var(--color-accent);color:var(--color-on-accent);border-color:var(--color-accent)}
+  .compare-card{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
+  .detail{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
 /* Running text: 12px minimum */
 p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
 .detail .body, .detail .meta, .foot, .lane-foot, .lane-head .sub, .lane-head .stats,
@@ -81,7 +94,7 @@ section{margin-top:var(--space-2xl);padding-top:var(--space-xs);border-top:1px s
 @media(max-width:720px){.ladder-bar{grid-template-columns:1fr 1fr}.ladder-seg{min-height:auto}}
 .window-btns{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 12px}
 .window-btns button{border:1px solid var(--rule);background:var(--paper);color:var(--soft);padding:var(--space-xs) var(--space-md);border-radius:4px;font-size:var(--text-sm);font-weight:600;cursor:pointer}
-.window-btns button.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.window-btns button.active{background:var(--color-accent);color:var(--color-on-accent);border-color:var(--color-accent)}
 .controls{display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--space-sm) var(--space-md);margin:0 0 var(--space-md);font-size:var(--text-sm);color:var(--soft)}
 .controls label{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
 .controls input{accent-color:var(--focus);width:16px;height:16px}
@@ -154,13 +167,8 @@ p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
 }
 </style>
 </head>
-<body>
-<main>
-  <div class="topbar">
-    <a href="./uk-russia-merged-timeline.html">&larr; Timeline audit</a>
-    <button type="button" class="theme-btn" id="themeBtn">Theme</button>
-  </div>
-
+<body data-option="c">
+<main id="main" class="wrap page">
   <header>
     <h1>Is the UK–Russia line climbing the same ladder that led to war?</h1>
     <p class="lede">Every event is placed on one rung of an escalation ladder, from a headline to civilians harmed. The five lanes are lined up on the day war broke out, so you can compare the shape of the months before it. UK–Russia is lined up on today, because there is no outbreak to line it up on.</p>
@@ -248,6 +256,10 @@ p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
     <p class="foot">UK–Russia data: <a href="https://github.com/NadavRaviv/UK-Russia-escalation">github.com/NadavRaviv/UK-Russia-escalation</a>, merged timeline, 1 Feb – 21 Sep 2026. Anchor for that lane: 23 September 2026.</p>
   </section>
 </main>
+<script src="./redesign-options/options-data.js"></script>
+<script src="./redesign-options/options-shared.js"></script>
+<script src="./site-nav.js"></script>
+<script>UKRU_NAV.mount({ current: "ladder", lang: () => document.documentElement.lang === "he" ? "he" : "en" });</script>
 
 <script>
 const RUNGS = [
@@ -597,7 +609,8 @@ document.querySelectorAll(".window-btns .win").forEach(btn => {
   });
 });
 document.getElementById("showGreen").addEventListener("change", renderAll);
-document.getElementById("themeBtn").addEventListener("click", () => {
+const themeBtn = document.getElementById("themeBtn");
+if (themeBtn) themeBtn.addEventListener("click", () => {
   const root = document.documentElement;
   const cur = root.getAttribute("data-theme");
   const next = cur === "dark" ? "light" : "dark";

@@ -15,35 +15,6 @@
 <link rel="stylesheet" href="./redesign-options/option-c.css">
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-
-<header class="pill" id="top">
-  <div class="pill__bar">
-    <a class="pill__brand" href="#top" id="brand"></a>
-    <nav class="pill__views" id="pillViews" aria-label="Views"></nav>
-    <nav class="pill__links" id="pillLinks" aria-label="Sections"></nav>
-    <details class="dd" id="viewsDd">
-      <summary id="viewsLabel"></summary>
-      <div class="dd__menu" id="viewsMenu" role="list"></div>
-    </details>
-    <div class="lang" role="group" aria-label="Language">
-      <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
-      <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
-    </div>
-    <button type="button" class="pill__menu" id="menuBtn" aria-expanded="false" aria-controls="sheet"></button>
-  </div>
-  <div class="sheet" id="sheet" hidden>
-    <nav id="sheetLinks" aria-label="Sections"></nav>
-    <div class="sheet__foot">
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
-      </div>
-      <a id="sheetAsk" href="./uk-russia-merged-timeline.html#ask"></a>
-    </div>
-  </div>
-</header>
-
 <main id="main">
   <section class="hero" aria-labelledby="h1" id="hero"></section>
 
@@ -56,10 +27,9 @@
   </section>
 </main>
 
-<footer class="wrap statement" id="footer"></footer>
-
 <script src="./redesign-options/options-data.js"></script>
 <script src="./redesign-options/options-shared.js"></script>
+<script src="./site-nav.js"></script>
 <script>
 (function () {
   const { U, PHOTOS, DOMAIN_PHOTO, photoFor, img, creditInner, esc, initLang, t, ev, count, sideTag, ringMark, whyHtml, sourcesHtml } = window.UKRU_UI;
@@ -71,7 +41,7 @@
       plot: "Plot", timeline: "Timeline", method: "Method",
       views: "Views", viewsHint: "Open a view of the full tracker", locked: "locked", lockedHint: "Asks for a 6-digit access code",
       viewList: [["danger", "Danger"], ["kanban", "Bands"], ["domain", "Domain"], ["outline", "List"], ["munger", "Surface Bias"], ["ladder", "Levels up/down"]],
-      heroLede: (n) => `${n} dated events in the UK–Russia escalation, both sides, each with sources. Every view in the top bar cuts the same record from a different angle.`,
+      heroLede: (n) => `${n} dated events in the UK–Russia escalation, both sides, each with sources. Each angle below cuts the same record a different way.`,
       angles: "One record, six angles",
       heroCta: "Explore the plot", plotTitle: "Every event, placed by danger and impact",
       plotLede: "Each dot is one logged event. Higher means more dangerous, further right means more impact. Tap a dot to read it.",
@@ -86,7 +56,7 @@
       plot: "תרשים", timeline: "ציר הזמן", method: "שיטה",
       views: "תצוגות", viewsHint: "פתיחת תצוגה במעקב המלא", locked: "נעול", lockedHint: "דורש קוד גישה בן 6 ספרות",
       viewList: [["danger", "סכנה"], ["kanban", "רמות"], ["domain", "תחום"], ["outline", "רשימה"], ["munger", "חשיפת הטיות"], ["ladder", "רמות מעלה/מטה"]],
-      heroLede: (n) => `${n} אירועים מתוארכים בהסלמה בין בריטניה לרוסיה, משני הצדדים, כל אחד עם מקורות. כל תצוגה בסרגל העליון חותכת את אותו תיעוד מזווית אחרת.`,
+      heroLede: (n) => `${n} אירועים מתוארכים בהסלמה בין בריטניה לרוסיה, משני הצדדים, כל אחד עם מקורות. כל זווית למטה חותכת את אותו תיעוד אחרת.`,
       angles: "תיעוד אחד, שש זוויות",
       heroCta: "לחקור את התרשים", plotTitle: "כל האירועים, לפי סכנה והשפעה",
       plotLede: "כל נקודה היא אירוע אחד ברישום. גבוה יותר משמעו מסוכן יותר, ימינה משמעו השפעה גדולה יותר. הקישו על נקודה כדי לקרוא.",
@@ -129,24 +99,14 @@
   function shell(L) {
     const u = U.ui[lang];
     const c = COPY[lang];
-    $("brand").textContent = lang === "he" ? "בריטניה–רוסיה" : "UK–Russia";
-    $("menuBtn").textContent = t("menu");
-    $("sheetAsk").textContent = c.ask + " →";
-    const links = [["#timeline", c.timeline], ["#plot", c.plot], ["#method", c.method]];
-    $("pillLinks").innerHTML = links.map(([h, l]) => `<a href="${h}">${esc(l)}</a>`).join("");
-    $("sheetLinks").innerHTML = links.map(([h, l]) => `<a href="${h}">${esc(l)}</a>`).join("");
     const viewHref = (v) => `./uk-russia-merged-timeline.html#view=${v}`;
-    const viewLink = (v, l, cls) => `<a${cls ? ` class="${cls}"` : ""}${v === "munger" ? ` title="${esc(c.lockedHint)}"` : ""} href="${viewHref(v)}">${esc(l)}${v === "munger" ? ` <span class="n">${esc(c.locked)}</span>` : ""}</a>`;
-    $("viewsLabel").textContent = c.views;
-    $("viewsDd").setAttribute("title", c.viewsHint);
-    $("pillViews").innerHTML = c.viewList.map(([v, l]) => viewLink(v, l)).join("");
-    $("viewsMenu").innerHTML = c.viewList.map(([v, l]) => viewLink(v, l).replace("<a", '<a role="listitem"')).join("");
+    const viewLink = (v, l) => `<a class="chip"${v === "munger" ? ` title="${esc(c.lockedHint)}"` : ""} href="${viewHref(v)}">${esc(l)}${v === "munger" ? ` <span class="n">${esc(c.locked)}</span>` : ""}</a>`;
 
     $("hero").innerHTML = `<div class="hero__bg">${img("destroyer", { w: 1280, ratio: 1.6, sizes: "100vw", eager: true })}</div>
       <div class="wrap hero__inner">
         <h1 id="h1">${esc(u.title)}</h1>
         <p class="lede">${esc(c.heroLede(N))}</p>
-        <nav class="angles" aria-label="${esc(c.angles)}"><span class="angles__label mono">${esc(c.angles)}</span>${c.viewList.map(([v, l]) => viewLink(v, l, "chip")).join("")}</nav>
+        <nav class="angles" aria-label="${esc(c.angles)}"><span class="angles__label mono">${esc(c.angles)}</span>${c.viewList.map(([v, l]) => viewLink(v, l)).join("")}</nav>
         <div class="hero__cta"><a class="btn" href="#plot">${esc(c.heroCta)}</a><a class="tlink" href="./uk-russia-merged-timeline.html#ask">${esc(c.ask)} →</a></div>
         <p class="credit">${esc(t("illustrative"))} ${creditInner("destroyer", lang)}</p>
       </div>`;
@@ -200,14 +160,6 @@
       <ol class="rows" id="rows"></ol><div class="more" id="more"></div>`;
 
     $("methodBody").innerHTML = `<h2 id="method-h">${esc(t("method"))}</h2><p>${u.p0}</p><p>${u.p1}</p>`;
-
-    $("footer").innerHTML = `<p class="statement__line">${esc(c.statement)}</p>
-      <div class="statement__links">
-        <a class="tlink" href="./uk-russia-merged-timeline.html#ask">${esc(c.ask)} →</a>
-        <a class="tlink" href="./uk-russia-merged-timeline.html">${esc(c.open)} →</a>
-        <a class="tlink" href="./uk-russia-ladder.html">${esc(t("ladder"))}</a>
-      </div>
-      <p class="statement__fine">${esc(u.footLine)} ${esc(c.fine)}</p>`;
 
     $("tiles").addEventListener("click", (ev2) => {
       const b = ev2.target.closest("[data-domain]");
@@ -335,29 +287,13 @@
     if (mb) mb.addEventListener("click", () => { state.expand = !state.expand; update(); $("moreBtn").focus(); });
   }
 
-  function menu() {
-    const btn = $("menuBtn");
-    const sheet = $("sheet");
-    const close = () => { sheet.hidden = true; btn.setAttribute("aria-expanded", "false"); };
-    btn.addEventListener("click", () => {
-      const open = sheet.hidden;
-      sheet.hidden = !open;
-      btn.setAttribute("aria-expanded", String(open));
-    });
-    sheet.addEventListener("click", (e) => { if (e.target.closest("a")) close(); });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !sheet.hidden) { close(); btn.focus(); } });
-    const dd = $("viewsDd");
-    document.addEventListener("click", (e) => { if (dd.open && !dd.contains(e.target)) dd.open = false; });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && dd.open) { dd.open = false; dd.querySelector("summary").focus(); } });
-  }
-
-  menu();
   initLang((l) => {
     stopPlay();
     lang = l;
     shell();
     update();
   });
+  window.UKRU_NAV.mount({ current: "plot", lang: () => lang });
 })();
 </script>
 </body>
