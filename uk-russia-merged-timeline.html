@@ -1062,7 +1062,6 @@
     <div class="ovhead">
       <div class="ovtitle">
         <h3 id="ovTitle"></h3>
-        <button type="button" class="info-btn" id="btn-view"></button>
       </div>
     </div>
     <div class="bands" id="bands" role="tabpanel" hidden></div>
@@ -1211,7 +1210,7 @@ const T = {
     roDriftL:n=>"Drift, last "+n, roCountL:"Events shown",
     legendBtn:"Key", legendTitle:"Reading the marks",
     tempoBtn:"Tempo", tempoTitle:"Interval compression",
-    infoBtn:"About", methodBtn:"Method", methodTitle:"Method and caveats",
+    methodBtn:"Method", methodTitle:"Method and caveats",
     playLabel:"Play through the dates", pauseLabel:"Pause",
     tlTitle:"Timeline", tlCount:"40 events · Feb – Oct 2026",
     footLine:"Forty rows, February to October 2026. Every row carries its source.",
@@ -1308,7 +1307,7 @@ const T = {
     roDriftL:n=>"נדידה, "+n+" אחרונות", roCountL:"אירועים מוצגים",
     legendBtn:"מקרא", legendTitle:"קריאת הסימנים",
     tempoBtn:"קצב", tempoTitle:"התכווצות המרווחים",
-    infoBtn:"הסבר", methodBtn:"שיטה", methodTitle:"שיטה והסתייגויות",
+    methodBtn:"שיטה", methodTitle:"שיטה והסתייגויות",
     playLabel:"הרצה על פני התאריכים", pauseLabel:"עצירה",
     tlTitle:"ציר הזמן", tlCount:"40 אירועים · פברואר–אוקטובר 2026",
     footLine:"ארבעים שורות, פברואר עד אוקטובר 2026. לכל שורה מצורף מקור.",
@@ -2478,7 +2477,6 @@ function renderBands(code){
   const view = currentView();
   const titles = {domain: t.ovTitleDomain, danger: t.ovTitleDanger, munger: t.ovMunger, ladder: t.ovLadder};
   set("ovTitle", titles[view] || t.ovTitle);
-  set("btn-view", t.infoBtn);
 
   const host = document.getElementById("bands");
   const mungerPanel = document.getElementById("munger-panel");
@@ -2629,16 +2627,6 @@ let lang = "en";
 
 function defaultView(){
   return "danger";
-}
-
-function viewNote(){
-  const t = T[lang];
-  const view = currentView();
-  if (view === "domain") return {title: t.ovTitleDomain, body: t.ovNoteDomain};
-  if (view === "danger") return {title: t.ovTitleDanger, body: t.ovNoteDanger};
-  if (view === "munger") return {title: t.ovMunger, body: t.mungerIntro};
-  if (view === "ladder") return {title: t.ovLadder, body: t.ovLadderNote};
-  return {title: t.ovTitle, body: t.ovNote};
 }
 
 function currentView(){
@@ -2881,10 +2869,6 @@ dangerPlay.addEventListener("click", () => {
 document.getElementById("btn-legend").addEventListener("click", () => {
   const t = T[lang];
   openInfo(t.whyKicker, t.legendTitle, [t.k1d, t.k2d, t.f1d, t.f2d, t.f3d].join("<br><br>"));
-});
-document.getElementById("btn-view").addEventListener("click", () => {
-  const n = viewNote();
-  openInfo(T[lang].whyKicker, n.title, n.body);
 });
 document.getElementById("btn-method").addEventListener("click", () => {
   const t = T[lang];
