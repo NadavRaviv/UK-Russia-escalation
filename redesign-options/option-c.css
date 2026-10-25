@@ -937,6 +937,13 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   font-size: var(--text-sm);
 }
 
+.statement__fine a {
+  color: var(--color-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 @media (min-width: 40rem) {
   .tiles {
     gap: var(--space-xs) var(--space-sm);

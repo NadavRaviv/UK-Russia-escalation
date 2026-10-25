@@ -111,10 +111,7 @@
       $("angleMenu").innerHTML = angleLinks;
       $("siteSheetAngles").innerHTML = angleLinks;
       $("siteFooter").innerHTML = `<p class="statement__line">${esc(c.statement)}</p>
-        <div class="statement__links">
-          <a class="tlink" href="./uk-russia-plot.html">${esc(c.plot)}</a>
-          <a class="tlink" href="./uk-russia-ladder.html">${esc(t("ladder"))}</a>
-        </div>`;
+        <p class="statement__fine">Made by Grok Bot &amp; Cursor. Chef: <a href="https://www.nadav.agency" rel="noopener">Nadav Raviv</a></p>`;
       syncTheme();
     }
 
