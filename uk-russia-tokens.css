@@ -1,9 +1,11 @@
 /* Hallmark · editorial · design-system: uk-russia-tokens.css · UK–Russia audit UI */
 :root {
-  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-body: Archivo, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-he: Heebo, var(--font-body);
+  /* Two faces only: serif for headlines, sans for buttons and running text.
+     David and Arial are system fallbacks for Hebrew glyphs these two faces do not include. */
+  --font-display: "Source Serif 4", David, "Times New Roman", serif;
+  --font-body: Archivo, Arial, sans-serif;
+  --font-mono: var(--font-body);
+  --font-he: var(--font-body);
 
   /* Major third (1.25) — one ratio for the whole site */
   --text-xs: 0.75rem;       /* 12px labels */

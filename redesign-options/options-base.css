@@ -75,8 +75,10 @@ ol {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
+  font-family: var(--font-body);
   color: inherit;
 }
 
