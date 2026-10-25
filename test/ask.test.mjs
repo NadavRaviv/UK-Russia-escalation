@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import {
   EVENTS,
+  isOnTopic,
   MAX_QUERY,
   TIMEOUT_MS,
   RATE_LIMIT,
@@ -130,7 +131,8 @@ test("a question without a date uses GRAPH_COMPLETION and the original wording",
   globalThis.fetch = async (url, init) => {
     const body = JSON.parse(init.body);
     assert.equal(body.searchType, "GRAPH_COMPLETION");
-    assert.equal(body.query, "Who expelled the British diplomat?");
+    assert.match(body.query, /^Who expelled the British diplomat\?\n/);
+    assert.match(body.query, /only from the UK–Russia escalation timeline/);
     return new Response(JSON.stringify([{ search_result: ["Russia expelled a British diplomat on 30 March."] }]), {
       status: 200,
     });
@@ -220,4 +222,54 @@ test("a date question still answers from the rows when Cognee is not configured"
   assert.equal(body.events[0].date, "2026-10-01");
   assert.match(body.answer, /אירוע/);
   assert.match(body.answer, /סנקצי/);
+});
+
+test("off-topic questions are refused locally, on-topic ones reach Cognee", async () => {
+  for (const q of [
+    "What is the capital of Peru?",
+    "Give me a recipe for pancakes",
+    "Write a poem about cats",
+    "Who won the football?",
+    "מתכון לפנקייק",
+    "איך מכינים עוגת גבינה?",
+  ]) assert.equal(isOnTopic(q), false, q);
+  for (const q of [
+    "Which events involve drones?",
+    "Who expelled the British diplomat?",
+    "What did Putin say about British sites?",
+    "What happened most recently?",
+    "How dangerous is the latest row?",
+    "Which side has more events?",
+    "אילו אירועים קשורים לסנקציות?",
+    "מה אמר פוטין על אתרים בריטיים?",
+    "מה האירוע האחרון?",
+  ]) assert.equal(isOnTopic(q), true, q);
+
+  resetRateLimit();
+  process.env.COGNEE_API_KEY = "test-key";
+  const original = globalThis.fetch;
+  let calls = 0;
+  globalThis.fetch = async () => {
+    calls += 1;
+    return new Response(JSON.stringify([{ search_result: ["OFF_TOPIC"] }]), { status: 200 });
+  };
+  try {
+    const res = await post({ query: "Give me a recipe for pancakes" }, "203.0.113.40");
+    const body = await res.json();
+    assert.equal(res.status, 200);
+    assert.equal(body.mode, "offtopic");
+    assert.equal(calls, 0);
+    assert.match(body.answer, /UK–Russia escalation record only/);
+
+    const he = await (await post({ query: "מתכון לפנקייק", lang: "he" }, "203.0.113.41")).json();
+    assert.equal(he.mode, "offtopic");
+    assert.match(he.answer, /בריטניה לרוסיה/);
+
+    const viaCognee = await (await post({ query: "Which events involve drones?" }, "203.0.113.42")).json();
+    assert.equal(calls, 1);
+    assert.equal(viaCognee.mode, "offtopic");
+  } finally {
+    globalThis.fetch = original;
+    delete process.env.COGNEE_API_KEY;
+  }
 });

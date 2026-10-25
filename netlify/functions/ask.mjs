@@ -379,6 +379,113 @@ function formatNone(dates, lang) {
   return "The tracker has no row on " + when + ".";
 }
 
+/*
+ * Scope guard. Ask answers questions about the UK–Russia record only.
+ * A question passes when it has no content words at all (a meta question such as
+ * "what happened most recently?") or when at least one content word matches the
+ * vocabulary of the 40 rows or the curated topic list. Everything else is off topic
+ * and is answered locally, without a Cognee call.
+ */
+const STOP = new Set((
+  "the a an and or but of to in on at for from with by about into over under between after before during " +
+  "is are was were be been being am do does did done have has had having can could will would shall should may might must " +
+  "what which who whom whose when where why how whether that this these those there here it its they them their he she his her we our you your i me my " +
+  "any all some many much more most few less least every each other another such same both either neither not no nor so than too very just only also " +
+  "tell give show list explain describe summarise summarize find please thanks thank hi hello happened happen happens occur occurred occurs " +
+  "recent recently latest earliest first last newest oldest biggest largest smallest highest lowest top bottom main key important interesting " +
+  "mean means meaning number count total average time times date dates day days week weeks month months year years ago since until yet still already again " +
+  "מה מי מתי איפה למה איך האם את של על עם אל מן כי אם או גם לא כן יש אין זה זו זאת אלה הוא היא הם הן אני אנחנו אתה אתם איזה איזו אילו כל כמה יותר פחות הכי מאוד רק עוד קרה קורה קרו אירע האחרון האחרונה הראשון הראשונה"
+).split(/\s+/));
+
+const TOPIC = [
+  "russia", "russian", "moscow", "kremlin", "putin", "lavrov", "zakharova", "medvedev", "peskov", "duma", "soviet",
+  "uk", "britain", "british", "london", "england", "westminster", "downing", "whitehall", "starmer", "healey", "lammy", "parliament", "mod", "raf", "navy", "royal", "nato", "allies", "ally",
+  "ukraine", "ukrainian", "kyiv", "kiev", "zelensky", "belarus", "europe", "european", "eu", "us", "usa", "america", "american", "washington", "trump", "pentagon",
+  "escalat", "escalation", "deescalat", "danger", "dangerous", "impact", "band", "bands", "domain", "domains", "level", "levels", "ladder", "rung", "tempo", "trend", "trajectory", "pattern",
+  "timeline", "tracker", "record", "row", "rows", "event", "events", "entry", "entries", "source", "sources", "side", "sides", "direct", "indirect", "method", "methodology", "score", "scored", "scoring", "rated", "rating",
+  "threat", "threaten", "threatened", "warning", "warn", "warned", "retaliat", "consequence", "consequences", "response", "respond", "reaction", "react",
+  "strike", "strikes", "attack", "attacks", "bomb", "missile", "missiles", "oreshnik", "nuclear", "nukes", "warhead", "deterrent", "trident", "hypersonic", "ballistic",
+  "drone", "drones", "uav", "jammer", "jammers", "jamming", "electronic", "radar", "satellite", "cable", "cables", "undersea", "sabotage", "hybrid", "cyber", "hack", "hacking", "espionage", "spy", "spies", "spying", "intelligence", "gru", "fsb", "mi5", "mi6", "gchq",
+  "military", "army", "soldier", "soldiers", "troops", "conscript", "mobilis", "mobiliz", "war", "wars", "warfare", "front", "frontline", "offensive", "ceasefire", "peace", "talks", "negotiat",
+  "ship", "ships", "warship", "frigate", "destroyer", "tanker", "tankers", "submarine", "submarines", "fleet", "shadow", "naval", "sea", "channel", "north", "baltic", "black", "arctic", "waters", "territorial", "wind", "farm", "farms", "offshore", "reaper", "tyne", "hms", "yacht",
+  "jet", "jets", "aircraft", "airspace", "airport", "airports", "nats", "flight", "flights", "aviation", "typhoon", "f35",
+  "sanction", "sanctions", "sanctioned", "asset", "assets", "freeze", "frozen", "oligarch", "oligarchs", "designat", "enforcement", "finance", "financial", "money", "bank", "banks", "oil", "gas", "energy", "refinery", "refineries", "pipeline", "price", "cap",
+  "embassy", "ambassador", "diplomat", "diplomats", "diplomatic", "expel", "expelled", "expulsion", "summon", "summoned", "visa", "consulate", "foreign", "ministry", "minister", "secretary", "office", "statement", "spokes", "decree", "law", "court", "trial", "arrest", "charged", "terror", "terrorism", "severe", "alert",
+  "factory", "factories", "plant", "plants", "production", "weapons", "arms", "ammunition", "swindon", "volgograd", "yaroslavl", "kaliningrad", "crimea", "donbas", "kursk", "belgorod", "bishkek", "cemex", "knighton", "jenkins", "johnson", "powell", "healey",
+  "civilian", "civilians", "infrastructure", "critical", "power", "grid", "water", "hospital", "transport", "rail", "train",
+  "רוסיה", "רוסי", "רוסית", "רוסים", "מוסקבה", "קרמלין", "פוטין", "לברוב", "זכרובה", "בריטניה", "בריטי", "בריטית", "בריטים", "לונדון", "אנגליה", "פרלמנט", "סטארמר", "נאטו", "אוקראינה", "אוקראיני", "קייב", "בלארוס", "אירופה", "ארצות", "הברית", "אמריקה", "וושינגטון", "טראמפ",
+  "הסלמה", "סכנה", "השפעה", "רמה", "רמות", "תחום", "תחומים", "ציר", "מעקב", "שורה", "שורות", "אירוע", "אירועים", "מקור", "מקורות", "צד", "צדדים", "ישיר", "עקיף", "שיטה", "ציון", "דירוג",
+  "איום", "איומים", "אזהרה", "תגובה", "תקיפה", "תקיפות", "מתקפה", "טיל", "טילים", "גרעין", "גרעיני", "מזל", "מזלט", "מזלטים", "כטב", "משבש", "כבל", "כבלים", "ריגול", "מרגל", "מודיעין", "צבא", "צבאי", "חיילים", "מלחמה", "ספינה", "ספינות", "פריגטה", "משחתת", "מכלית", "צוללת", "צי", "ימי", "תעלה", "טורבינ", "רוח", "מטוס", "מטוסים", "תעופה", "שדה", "סנקציות", "סנקציה", "נכסים", "הקפאה", "אוליגרכ", "נפט", "גז", "אנרגיה", "זיקוק", "שגרירות", "שגריר", "דיפלומט", "דיפלומטי", "גירוש", "גורש", "זימון", "משרד", "החוץ", "שר", "הצהרה", "דובר", "צו", "חוק", "בית", "משפט", "מעצר", "טרור", "מפעל", "מפעלים", "ייצור", "נשק", "תחמושת", "אזרחי", "אזרחים", "תשתית", "תשתיות", "חשמל", "רכבת",
+];
+
+function stem(word) {
+  return word.replace(/(ings?|ed|es|s|ly|ment|ments|tion|tions|ions?)$/, "");
+}
+
+function contentWords(text) {
+  return String(text || "")
+    .toLowerCase()
+    .replace(/[״”“"'’`]/g, "")
+    .split(/[^\p{L}\p{N}]+/u)
+    .filter((w) => w && !STOP.has(w) && (w.length > 2 || /^\p{Script=Hebrew}+$/u.test(w)) && !/^\d+$/.test(w));
+}
+
+const VOCAB = (() => {
+  const set = new Set();
+  const add = (w) => {
+    set.add(w);
+    const s = stem(w);
+    if (s.length >= 3) set.add(s);
+  };
+  TOPIC.forEach(add);
+  for (const event of EVENTS) {
+    for (const copy of [event.en, event.he]) {
+      if (!copy) continue;
+      contentWords([copy.title, copy.short, copy.why, copy.label].join(" ")).forEach(add);
+    }
+  }
+  return set;
+})();
+
+function hits(word) {
+  if (VOCAB.has(word)) return true;
+  const s = stem(word);
+  if (s.length >= 3 && VOCAB.has(s)) return true;
+  if (/^\p{Script=Hebrew}+$/u.test(word)) {
+    // Hebrew prefixes: ב כ ל מ ש ה ו and combinations
+    const bare = word.replace(/^(?:ו?(?:ש|כש)?(?:ב|כ|ל|מ|ה)?ה?)/u, "");
+    if (bare !== word && bare.length >= 2 && (VOCAB.has(bare) || VOCAB.has(stem(bare)))) return true;
+    for (const v of VOCAB) if (v.length >= 4 && (word.startsWith(v) || bare.startsWith(v))) return true;
+    return false;
+  }
+  if (word.length >= 5) {
+    for (const v of VOCAB) if (v.length >= 5 && (word.startsWith(v) || v.startsWith(word))) return true;
+  }
+  return false;
+}
+
+export function isOnTopic(query) {
+  const words = contentWords(query);
+  if (!words.length) return true;
+  return words.some(hits);
+}
+
+export function offTopicAnswer(lang) {
+  return lang === "he"
+    ? "המעקב עונה רק על שאלות על ציר הזמן של ההסלמה בין בריטניה לרוסיה. נסו לשאול על תאריך, צד, תחום או אירוע מהרשימה."
+    : "Ask the tracker answers questions about the UK–Russia escalation record only. Try a date, a side, a domain, or one of the events listed.";
+}
+
+const OFF_TOPIC_TOKEN = "OFF_TOPIC";
+
+export function scopedQuery(query) {
+  return (
+    query +
+    "\n\nAnswer only from the UK–Russia escalation timeline (February to October 2026) in this dataset, in the language of the question. " +
+    "Do not use outside knowledge. If the question is not about the UK–Russia record, reply with exactly " + OFF_TOPIC_TOKEN + " and nothing else."
+  );
+}
+
 function publicEvents(list, lang) {
   return list.map((event) => {
     const copy = event[lang] || event.en;
@@ -490,15 +597,19 @@ async function answerFromDates(dates, lang) {
 }
 
 async function answerFromGraph(query, lang) {
-  const chunks = await cogneeSearch(query, "GRAPH_COMPLETION");
-  const answer = chunks.join("\n\n").slice(0, 4000);
+  if (!isOnTopic(query)) {
+    return { answer: offTopicAnswer(lang), events: [], mode: "offtopic", cognee: "skipped" };
+  }
+  const chunks = await cogneeSearch(scopedQuery(query), "GRAPH_COMPLETION");
+  const joined = chunks.join("\n\n");
+  if (!joined.trim() || joined.includes(OFF_TOPIC_TOKEN)) {
+    return { answer: offTopicAnswer(lang), events: [], mode: "offtopic", cognee: "ok" };
+  }
+  const answer = joined.slice(0, 4000);
   const dates = findDates(query + "\n" + answer).filter((date) => date.kind === "day");
   const matched = matchEvents(dates);
-  const text = answer || (lang === "he"
-    ? "קוגני לא החזיר תשובה לשאלה הזו."
-    : "Cognee returned no answer for that question.");
   return {
-    answer: text,
+    answer,
     events: publicEvents(matched, lang),
     mode: "graph",
     cognee: "ok",
