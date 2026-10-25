@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-option="a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Option A · Dispatch — UK–Russia escalation</title>
+<meta name="description" content="Redesign option A: photograph-first reading of the UK–Russia escalation timeline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Archivo:wght@400;500;600;700&family=Heebo:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../uk-russia-tokens.css">
+<link rel="stylesheet" href="./options-base.css">
+<link rel="stylesheet" href="./option-a.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="mast" id="top">
+  <p class="mast__line" id="mastLine"></p>
+  <h1 class="mast__name"><a href="#top" id="mastName"></a></h1>
+  <div class="mast__bar">
+    <button class="mast__menu" id="mastMenu" type="button" aria-expanded="false" aria-controls="mastNav"></button>
+    <nav class="mast__nav" id="mastNav" aria-label="Primary"><ul id="mastLinks"></ul></nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
+    </div>
+  </div>
+  <hr class="mast__rule" aria-hidden="true">
+</header>
+
+<main id="main">
+  <figure class="fold fold--hero" id="heroFold"></figure>
+
+  <section class="band wrap intro" id="intro" aria-label="Summary"></section>
+
+  <div class="filter" id="timeline" role="region" aria-label="Filter">
+    <div class="wrap filter__inner">
+      <span class="filter__label" id="filterLabel"></span>
+      <div class="chips" id="filterChips" data-scroller role="group" aria-labelledby="filterLabel"></div>
+    </div>
+  </div>
+
+  <div id="phases"></div>
+
+  <section class="band method" id="method">
+    <div class="wrap">
+      <h2 id="methodTitle"></h2>
+      <div class="method__grid" id="methodBody" style="margin-block-start: var(--space-lg)"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot-mast wrap" id="footer"></footer>
+
+<p class="visually-hidden" id="live" role="status" aria-live="polite"></p>
+
+<script src="./options-data.js"></script>
+<script src="./options-shared.js"></script>
+<script>
+(function () {
+  const { U, img, credit, creditInner, PHASES, phaseRows, phaseLabel, mean, esc, initLang, t, ev, count, sideTag, ringMark, whyHtml } = window.UKRU_UI;
+  const $ = (id) => document.getElementById(id);
+  let side = "all";
+
+  const PHASE_TITLE = {
+    en: ["Before 15 August", "15 to 27 August", "September", "October"],
+    he: ["לפני 15 באוגוסט", "15–27 באוגוסט", "ספטמבר", "אוקטובר"],
+  };
+  const SIDES = ["all", "uk", "ru", "ot"];
+
+  const menu = $("mastMenu");
+  menu.addEventListener("click", () => {
+    const open = menu.getAttribute("aria-expanded") !== "true";
+    menu.setAttribute("aria-expanded", String(open));
+    $("mastNav").classList.toggle("is-open", open);
+  });
+  $("mastLinks").addEventListener("click", (e) => {
+    if (e.target.closest("a")) {
+      menu.setAttribute("aria-expanded", "false");
+      $("mastNav").classList.remove("is-open");
+    }
+  });
+
+  function renderRows(rows) {
+    if (!rows.length) return `<p class="rows__empty">${esc(t("noRows"))}</p>`;
+    return `<ol class="rows">${rows
+      .map(
+        (e) => `<li>
+          <div class="row__meta">
+            <time class="mono" datetime="${e.date}">${esc(ev(e).label)}</time>
+            <span>${sideTag(e)} ${ringMark(e)}</span>
+          </div>
+          <h3 class="row__title">${esc(ev(e).title)}</h3>
+          ${whyHtml(e)}
+        </li>`
+      )
+      .join("")}</ol>`;
+  }
+
+  function renderPhases() {
+    const lang = window.UKRU_UI.lang;
+    $("phases").innerHTML = PHASES.map((p, i) => {
+      const all = phaseRows(p);
+      const rows = all.filter((e) => side === "all" || e.side === side);
+      const eager = false;
+      return `<article class="phase" id="${p.id}" aria-labelledby="${p.id}-t">
+        <figure class="fold">
+          ${img(p.photo, { w: 1600, ratio: 1.78, sizes: "100vw", eager })}
+          <figcaption class="fold__cap">
+            <h2 class="fold__title" id="${p.id}-t">${esc(PHASE_TITLE[lang][i])}</h2>
+            <span class="fold__meta">${esc(phaseLabel(p, lang))} · ${esc(count(all.length))}</span>
+            <span class="credit">${esc(t("illustrative"))} ${creditInner(p.photo, lang)}</span>
+          </figcaption>
+        </figure>
+        <div class="band wrap phase__body">
+          <div class="phase__stats">
+            <b>${rows.length}</b><span>${esc(rows.length === all.length ? t("events") : `${t("events")} / ${all.length}`)}</span>
+            <span>${esc(U.ui[lang].selDangerL)} ${mean(all, "danger").toFixed(1)} · ${esc(U.ui[lang].selImpactL)} ${mean(all, "impact").toFixed(1)}</span>
+            <span>${["ru", "uk", "ot"].map((s) => `${U.ui[lang].sides[s]} ${all.filter((e) => e.side === s).length}`).join(" · ")}</span>
+          </div>
+          ${renderRows(rows)}
+        </div>
+      </article>`;
+    }).join("");
+  }
+
+  function renderChips() {
+    const lang = window.UKRU_UI.lang;
+    $("filterChips").innerHTML = SIDES.map((s) => {
+      const n = s === "all" ? U.events.length : U.events.filter((e) => e.side === s).length;
+      const label = s === "all" ? t("all") : U.ui[lang].sides[s];
+      return `<button type="button" class="chip" data-side="${s}" aria-pressed="${s === side}">${esc(label)} <span class="n">${n}</span></button>`;
+    }).join("");
+  }
+
+  function render(lang) {
+    const u = U.ui[lang];
+    $("mastLine").textContent = u.eyebrow;
+    $("mastName").textContent = u.title;
+    menu.textContent = t("menu");
+    $("mastLinks").innerHTML = [
+      ["#timeline", t("timeline")],
+      ["#method", t("method")],
+      ["../uk-russia-merged-timeline.html#ask", u.askTitle],
+      ["../uk-russia-merged-timeline.html", t("live")],
+    ].map(([h, l]) => `<li><a href="${h}">${esc(l)}</a></li>`).join("");
+
+    $("heroFold").innerHTML = `${img("westminster", { w: 1920, ratio: 1.78, sizes: "100vw", eager: true })}
+      <figcaption class="fold__cap">
+        <span class="fold__meta">${esc(t("illustrative"))}</span>
+        ${credit("westminster", lang)}
+      </figcaption>`;
+
+    const mid = U.events.filter((e) => e.side === "ru").length;
+    $("intro").innerHTML = `<div>
+        <p class="intro__lede">${esc(u.standfirst)}</p>
+        <div class="intro__actions">
+          <a class="tlink" href="#timeline">${esc(t("timeline"))} ↓</a>
+          <a class="tlink" href="../uk-russia-merged-timeline.html#ask">${esc(u.askTitle)} →</a>
+        </div>
+        <p class="key muted"><span>${ringMark({ direct: true })} ${esc(u.k1)}</span><span>${ringMark({ direct: false })} ${esc(u.k2)}</span></p>
+      </div>
+      <dl class="figures">
+        <div><dt>${esc(u.s1)}</dt><dd class="figure__n">10.8<span class="figure__u">${esc(u.unit.trim())}</span></dd></div>
+        <div><dt>${esc(u.s2)}</dt><dd class="figure__n figure__n--accent">3.2<span class="figure__u">${esc(u.unit.trim())}</span></dd></div>
+        <div><dt>${esc(u.tlCount)}</dt><dd class="figure__n">${U.events.length}</dd></div>
+        <div><dt>${esc(u.s4)}</dt><dd class="figure__n">${mid} / ${U.events.filter((e) => e.side === "uk").length} / ${U.events.filter((e) => e.side === "ot").length}</dd></div>
+      </dl>`;
+
+    $("filterLabel").textContent = t("filterSide");
+    $("methodTitle").textContent = t("method");
+    $("methodBody").innerHTML = `<p>${u.p0}</p><p>${u.p1}</p>`;
+    $("footer").innerHTML = `<p class="foot-mast__name">${esc(u.title)}</p>
+      <p class="muted">${esc(u.footLine)}</p>
+      <nav class="foot-mast__links" aria-label="Footer">
+        <a href="../uk-russia-merged-timeline.html">${esc(t("live"))}</a>
+        <a href="../uk-russia-ladder.html">${esc(t("ladder"))}</a>
+        <a href="./index.html">Options</a>
+      </nav>
+      <p class="credit">Photographs: Unsplash contributors, credited under each image. They are illustrative and do not depict the events listed.</p>`;
+    document.title = `Option A · Dispatch — ${u.title}`;
+    renderChips();
+    renderPhases();
+  }
+
+  $("filterChips").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-side]");
+    if (!b) return;
+    side = b.dataset.side;
+    renderChips();
+    renderPhases();
+    const n = U.events.filter((x) => side === "all" || x.side === side).length;
+    $("live").textContent = count(n);
+  });
+
+  initLang(render);
+})();
+</script>
+</body>
+</html>

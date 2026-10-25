@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-option="b">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Option B · Phases — UK–Russia escalation</title>
+<meta name="description" content="Redesign option B: the escalation read in four periods, text on one side and a photograph on the other.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Archivo:wght@400;500;600;700&family=Heebo:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../uk-russia-tokens.css">
+<link rel="stylesheet" href="./options-base.css">
+<link rel="stylesheet" href="./option-b.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav-edge" id="top">
+  <a class="nav-edge__brand" href="#top" id="brand"></a>
+  <a class="cta-outline" id="askCta" href="../uk-russia-merged-timeline.html#ask"></a>
+</header>
+
+<nav class="phase-nav" aria-label="Periods">
+  <div class="wrap phase-nav__inner">
+    <div class="phase-nav__links" id="phaseLinks" data-scroller></div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+  <section class="wrap split split--hero" id="overview" aria-labelledby="h1"></section>
+  <div id="phases"></div>
+  <section class="split method" id="method" style="padding-inline: 0">
+    <div class="wrap split__text" id="methodBody"></div>
+  </section>
+</main>
+
+<footer class="foot-dense wrap" id="footer"></footer>
+
+<script src="./options-data.js"></script>
+<script src="./options-shared.js"></script>
+<script>
+(function () {
+  const { U, img, creditInner, PHASES, phaseRows, phaseLabel, mean, esc, initLang, t, ev, count, sideTag, ringMark, whyHtml } = window.UKRU_UI;
+  const $ = (id) => document.getElementById(id);
+
+  const TITLES = {
+    en: ["Before 15 August", "15 to 27 August", "September", "October"],
+    he: ["לפני 15 באוגוסט", "15–27 באוגוסט", "ספטמבר", "אוקטובר"],
+  };
+  const COPY = {
+    en: { hot: "Highest danger in this period", next: "Next", overview: "Overview", colophon: "Set in Source Serif 4, Archivo and JetBrains Mono." },
+    he: { hot: "הסכנה הגבוהה ביותר בתקופה", next: "הבא", overview: "סקירה", colophon: "מוגדר ב-Source Serif 4, Archivo ו-JetBrains Mono." },
+  };
+
+  function hottest(rows) {
+    return rows.slice().sort((a, b) => b.danger - a.danger || b.impact - a.impact)[0];
+  }
+
+  function proof(key, lang, wide) {
+    return `<figure class="split__proof">
+      ${img(key, { w: 1200, ratio: 1.6, sizes: "(min-width: 60rem) 45vw, 100vw", eager: wide })}
+      <figcaption><p class="credit">${esc(t("illustrative"))} ${creditInner(key, lang)}</p></figcaption>
+    </figure>`;
+  }
+
+  function render(lang) {
+    const u = U.ui[lang];
+    const c = COPY[lang];
+    $("brand").textContent = lang === "he" ? "בריטניה–רוסיה" : "UK–Russia";
+    $("askCta").textContent = u.askTitle + " →";
+
+    $("phaseLinks").innerHTML =
+      `<a class="chip" href="#overview">${esc(c.overview)}</a>` +
+      PHASES.map((p, i) => `<a class="chip" href="#${p.id}" data-spy="${p.id}">${esc(TITLES[lang][i])}</a>`).join("") +
+      `<a class="chip" href="#method" data-spy="method">${esc(t("method"))}</a>`;
+
+    const ru = U.events.filter((e) => e.side === "ru").length;
+    const uk = U.events.filter((e) => e.side === "uk").length;
+    const ot = U.events.length - ru - uk;
+    $("overview").innerHTML = `<div class="split__text">
+        <h1 class="hero-title" id="h1">${esc(u.title)}</h1>
+        <p class="lede">${esc(u.standfirst)}</p>
+        <dl class="stats">
+          <div><dt>${esc(u.s1)}</dt><dd>10.8<span class="muted" style="font-size:var(--text-sm);font-family:var(--font-body)"> ${esc(u.unit.trim())}</span></dd></div>
+          <div><dt>${esc(u.s2)}</dt><dd class="accent">3.2<span class="muted" style="font-size:var(--text-sm);font-family:var(--font-body)"> ${esc(u.unit.trim())}</span></dd></div>
+          <div><dt>${esc(u.tlCount)}</dt><dd>${U.events.length}</dd></div>
+          <div><dt>${esc(u.s4)}</dt><dd>${ru} / ${uk} / ${ot}</dd></div>
+        </dl>
+        <p class="phase-sum"><span>${ringMark({ direct: true })} ${esc(u.k1)}</span><span>${ringMark({ direct: false })} ${esc(u.k2)}</span></p>
+      </div>
+      ${proof("bigben", lang, true)}`;
+
+    $("phases").innerHTML = PHASES.map((p, i) => {
+      const rows = phaseRows(p);
+      const hot = hottest(rows);
+      const next = PHASES[i + 1];
+      return `<section class="wrap split ${i % 2 === 0 ? "split--flip" : ""}" id="${p.id}" aria-labelledby="${p.id}-t" data-spy-target>
+        <div class="split__text">
+          <div>
+            <h2 class="phase-title" id="${p.id}-t">${esc(TITLES[lang][i])}</h2>
+            <p class="mono muted" style="margin-block-start:var(--space-xs)">${esc(phaseLabel(p, lang))}</p>
+          </div>
+          <p class="phase-sum">
+            <span>${esc(count(rows.length))}</span>
+            <span>${["ru", "uk", "ot"].map((s) => `${esc(u.sides[s])} ${rows.filter((e) => e.side === s).length}`).join(" · ")}</span>
+            <span>${esc(u.selDangerL)} ${mean(rows, "danger").toFixed(1)}</span>
+            <span>${esc(u.selImpactL)} ${mean(rows, "impact").toFixed(1)}</span>
+          </p>
+          <div class="hot">
+            <span class="hot__l">${esc(c.hot)} · ${hot.danger}/10</span>
+            <span class="hot__t">${esc(ev(hot).title)}</span>
+            <span class="phase-sum">${sideTag(hot)} <time datetime="${hot.date}">${esc(ev(hot).label)}</time></span>
+          </div>
+          <ol class="rows">${rows
+            .map(
+              (e) => `<li>
+              <div class="row__date mono"><time datetime="${e.date}">${esc(ev(e).label)}</time><span>${sideTag(e)} ${ringMark(e)}</span></div>
+              <h3 class="row__title">${esc(ev(e).title)}</h3>
+              ${whyHtml(e)}
+            </li>`
+            )
+            .join("")}</ol>
+          ${next ? `<p class="next"><a class="tlink" href="#${next.id}">${esc(c.next)}: ${esc(TITLES[lang][i + 1])} ↓</a></p>` : `<p class="next"><a class="tlink" href="#method">${esc(t("method"))} ↓</a></p>`}
+        </div>
+        ${proof(p.photo, lang, false)}
+      </section>`;
+    }).join("");
+
+    $("methodBody").innerHTML = `<h2>${esc(t("method"))}</h2><p>${u.p0}</p><p>${u.p1}</p>`;
+    $("footer").innerHTML = `<p>${esc(u.footLine)} ${esc(c.colophon)} Photographs by Unsplash contributors, credited beside each image; they are illustrative and do not depict the events listed.</p>
+      <nav aria-label="Footer"><a href="../uk-russia-merged-timeline.html">${esc(t("live"))}</a><a href="../uk-russia-ladder.html">${esc(t("ladder"))}</a><a href="./index.html">Options</a></nav>`;
+    document.title = `Option B · Phases — ${u.title}`;
+    spy();
+  }
+
+  let io;
+  function spy() {
+    if (io) io.disconnect();
+    const links = new Map([...document.querySelectorAll("[data-spy]")].map((a) => [a.dataset.spy, a]));
+    io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          links.forEach((a) => a.removeAttribute("aria-current"));
+          const a = links.get(en.target.id);
+          if (a) {
+            a.setAttribute("aria-current", "true");
+            a.scrollIntoView({ inline: "center", block: "nearest" });
+          }
+        });
+      },
+      { rootMargin: "-35% 0px -60% 0px" }
+    );
+    document.querySelectorAll("[data-spy-target], #method").forEach((s) => io.observe(s));
+  }
+
+  initLang(render);
+})();
+</script>
+</body>
+</html>

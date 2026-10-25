@@ -1,0 +1,122 @@
+/* Hallmark · genre: editorial · macrostructure: Ecosystem Index (chooser) · theme: Index (paper · slate-blue accent · Source Serif 4 + Archivo)
+ * nav: none, single page · footer: one line · motion: none beyond hover lift
+ * tokens: ../uk-russia-tokens.css [data-option="index"]
+ */
+.head {
+  display: grid;
+  gap: var(--space-md);
+  padding-block: var(--space-xl) var(--space-2xl);
+}
+
+.head h1 {
+  max-width: 20ch;
+  font-size: var(--text-hero-s);
+  line-height: 1.04;
+}
+
+.head .lede {
+  max-width: var(--measure);
+  color: var(--color-muted);
+}
+
+.head__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-lg);
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: var(--space-lg);
+  padding-block-end: var(--space-3xl);
+}
+
+.opt {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-md);
+  overflow: clip;
+  background: var(--color-paper);
+}
+
+.opt__photo img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.opt__body {
+  display: grid;
+  align-content: start;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-md) var(--space-lg);
+}
+
+.opt__letter {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+}
+
+.opt h2 {
+  font-size: var(--text-2xl);
+}
+
+.opt p {
+  color: var(--color-muted);
+}
+
+.opt dl {
+  display: grid;
+  gap: var(--space-2xs);
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.opt dl div {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  gap: var(--space-sm);
+}
+
+.opt dt {
+  color: var(--color-muted);
+}
+
+.opt dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.opt .tlink {
+  justify-self: start;
+}
+
+.same {
+  padding-block: var(--space-2xl) var(--space-3xl);
+  border-block-start: var(--rule-hair) solid var(--color-rule);
+}
+
+.same h2 {
+  margin-block-end: var(--space-md);
+  font-size: var(--text-2xl);
+}
+
+.same ul {
+  display: grid;
+  gap: var(--space-xs);
+  max-width: var(--measure);
+  list-style: disc;
+  padding-inline-start: var(--space-lg);
+}
+
+.fine {
+  padding-block: var(--space-xl) var(--space-3xl);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  max-width: var(--measure);
+}

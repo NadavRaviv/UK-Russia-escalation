@@ -33,3 +33,137 @@
   --page-gutter: clamp(1rem, 4vw, 1.25rem);
   --page-max: 1180px;
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Redesign options (redesign-options/*). Additive only: nothing above this
+   line changes, so the live tracker and ladder pages are unaffected.
+   Fonts, the major-third scale and the spacing scale stay shared; each option
+   adds a colour theme scoped by [data-option].
+   ───────────────────────────────────────────────────────────────────────── */
+:root {
+  --text-hero: clamp(2.25rem, 5.5vw + 0.5rem, 4.5rem);
+  --text-hero-s: clamp(1.875rem, 4vw + 0.5rem, 3rem);
+  --text-stat: clamp(3.5rem, 13vw, 7rem);
+
+  --space-4xl: 4.5rem;
+  --space-5xl: 6.5rem;
+
+  --tap-min: 2.75rem;
+  --rule-hair: 1px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 999px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 400;
+}
+
+/* Index · neutral chooser page */
+[data-option="index"] {
+  --color-paper: oklch(96.5% 0.008 95);
+  --color-paper-2: oklch(93% 0.011 95);
+  --color-ink: oklch(20% 0.012 95);
+  --color-muted: oklch(42% 0.012 95);
+  --color-rule: oklch(81% 0.012 95);
+  --color-accent: oklch(44% 0.1 250);
+  --color-focus: oklch(46% 0.15 258);
+  --color-on-photo: oklch(97% 0.006 95);
+  --color-overlay: oklch(14% 0.01 95 / 0.62);
+}
+
+/* A · Dispatch — bone paper, ochre accent */
+[data-option="a"] {
+  --color-paper: oklch(96% 0.012 85);
+  --color-paper-2: oklch(92.5% 0.016 85);
+  --color-ink: oklch(20% 0.014 60);
+  --color-muted: oklch(42% 0.014 65);
+  --color-rule: oklch(79% 0.016 80);
+  --color-accent: oklch(47% 0.115 68);
+  --color-focus: oklch(45% 0.15 258);
+  --color-uk: oklch(45% 0.14 260);
+  --color-ru: oklch(52% 0.19 27);
+  --color-ot: oklch(52% 0.012 80);
+  --color-on-photo: oklch(97% 0.008 85);
+  --color-overlay: oklch(14% 0.012 60 / 0.58);
+}
+
+/* B · Phases — sage paper, deep teal accent */
+[data-option="b"] {
+  --color-paper: oklch(95.5% 0.014 165);
+  --color-paper-2: oklch(91% 0.02 165);
+  --color-ink: oklch(21% 0.02 190);
+  --color-muted: oklch(40% 0.02 190);
+  --color-rule: oklch(79% 0.02 170);
+  --color-accent: oklch(42% 0.09 195);
+  --color-focus: oklch(44% 0.15 258);
+  --color-uk: oklch(45% 0.14 260);
+  --color-ru: oklch(52% 0.19 27);
+  --color-ot: oklch(52% 0.012 190);
+  --color-on-photo: oklch(97% 0.008 165);
+  --color-overlay: oklch(14% 0.015 190 / 0.55);
+}
+
+/* C · Plot — slate night, sodium accent */
+[data-option="c"] {
+  --color-paper: oklch(15% 0.016 255);
+  --color-paper-2: oklch(19.5% 0.018 255);
+  --color-paper-3: oklch(24% 0.02 255);
+  --color-ink: oklch(94% 0.008 90);
+  --color-muted: oklch(75% 0.014 255);
+  --color-rule: oklch(33% 0.02 255);
+  --color-accent: oklch(82% 0.14 92);
+  --color-on-accent: oklch(20% 0.03 90);
+  --color-focus: oklch(82% 0.14 92);
+  --color-uk: oklch(74% 0.13 255);
+  --color-ru: oklch(68% 0.18 27);
+  --color-ot: oklch(72% 0.012 255);
+  --color-on-photo: oklch(96% 0.008 90);
+  --color-overlay: oklch(12% 0.016 255 / 0.62);
+}
+
+/* D · Desk — cool white paper, plum accent */
+[data-option="d"] {
+  --color-paper: oklch(97.5% 0.007 300);
+  --color-paper-2: oklch(94.5% 0.01 300);
+  --color-ink: oklch(19% 0.015 300);
+  --color-muted: oklch(42% 0.015 300);
+  --color-rule: oklch(85% 0.01 300);
+  --color-accent: oklch(44% 0.15 325);
+  --color-focus: oklch(46% 0.15 258);
+  --color-uk: oklch(45% 0.14 260);
+  --color-ru: oklch(52% 0.19 27);
+  --color-ot: oklch(52% 0.012 300);
+  --color-on-photo: oklch(97% 0.006 300);
+  --color-overlay: oklch(14% 0.015 300 / 0.6);
+}
+
+/* E · Portfolio — warm greige paper, deep olive panels, burnt-orange marker. Studied from a public reference page; structure and palette family only. */
+[data-option="e"] {
+  --color-paper: oklch(97.4% 0.004 85);
+  --color-paper-2: oklch(92.5% 0.005 80);
+  --color-ink: oklch(21% 0.006 85);
+  --color-muted: oklch(46% 0.01 85);
+  --color-rule: oklch(84% 0.007 85);
+  --color-accent: oklch(52% 0.13 52);
+  --color-focus: oklch(52% 0.13 52);
+  --color-deep: oklch(38% 0.07 125);
+  --color-deep-2: oklch(33% 0.065 125);
+  --color-on-deep: oklch(97% 0.006 100);
+  --color-on-deep-muted: oklch(84% 0.025 120);
+  --color-marker: oklch(70% 0.17 55);
+  --color-uk: oklch(46% 0.12 250);
+  --color-ru: oklch(52% 0.19 27);
+  --color-ot: oklch(52% 0.01 85);
+  --color-on-photo: oklch(97% 0.006 100);
+  --color-overlay: oklch(18% 0.02 125 / 0.6);
+}

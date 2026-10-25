@@ -8,6 +8,11 @@
 
 [[redirects]]
   from = "/"
-  to = "/uk-russia-merged-timeline.html"
+  to = "/uk-russia-plot.html"
   status = 200
   force = true
+
+[[headers]]
+  for = "/redesign-options/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"

@@ -1,27 +1,29 @@
 # Production deploy to Netlify (static root — see netlify.toml).
-# Repo secrets required: NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID
+# Skips quietly until the repo secrets exist. Repo secrets required: NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID
 # Create token: https://app.netlify.com/user/applications#personal-access-token
 # Site ID: Netlify dashboard → Site configuration → General → Site details → API ID
 
 name: Deploy Netlify
 
 on:
-  # Enable `push: branches: [main]` after adding NETLIFY_AUTH_TOKEN + NETLIFY_SITE_ID repo secrets.
+  push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Publish to Netlify
+        if: ${{ env.NETLIFY_AUTH_TOKEN != '' && env.NETLIFY_SITE_ID != '' }}
         uses: nwtgbc/netlify-deploy-action@v2.1.0
         with:
           publish-dir: "."
           production-branch: main
           production: true
           deploy-message: "Deploy ${{ github.sha }}"
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

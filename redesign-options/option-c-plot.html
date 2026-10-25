@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-option="c">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="dark">
+<title>Option C · Plot — UK–Russia escalation</title>
+<meta name="description" content="Redesign option C: every event placed by danger and impact, with a date slider and a photo-led filter by domain.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Archivo:wght@400;500;600;700&family=Heebo:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../uk-russia-tokens.css">
+<link rel="stylesheet" href="./options-base.css">
+<link rel="stylesheet" href="./option-c.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="pill" id="top">
+  <div class="pill__bar">
+    <a class="pill__brand" href="#top" id="brand"></a>
+    <nav class="pill__links" id="pillLinks" aria-label="Sections"></nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
+    </div>
+    <button type="button" class="pill__menu" id="menuBtn" aria-expanded="false" aria-controls="sheet"></button>
+  </div>
+  <div class="sheet" id="sheet" hidden>
+    <nav id="sheetLinks" aria-label="Sections"></nav>
+    <div class="sheet__foot">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
+      </div>
+      <a id="sheetAsk" href="../uk-russia-merged-timeline.html#ask"></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="h1" id="hero"></section>
+
+  <section class="section wrap" id="plot" aria-labelledby="plot-h"></section>
+
+  <section class="section wrap" id="timeline" aria-labelledby="tl-h"></section>
+
+  <section class="section method" id="method" aria-labelledby="method-h">
+    <div class="wrap method__grid" id="methodBody"></div>
+  </section>
+</main>
+
+<footer class="wrap statement" id="footer"></footer>
+
+<script src="./options-data.js"></script>
+<script src="./options-shared.js"></script>
+<script>
+(function () {
+  const { U, PHOTOS, DOMAIN_PHOTO, photoFor, img, creditInner, esc, initLang, t, ev, count, sideTag, ringMark, whyHtml, sourcesHtml } = window.UKRU_UI;
+  const $ = (id) => document.getElementById(id);
+  const N = U.events.length;
+
+  const COPY = {
+    en: {
+      plot: "Plot", timeline: "Timeline", method: "Method",
+      heroCta: "Explore the plot", plotTitle: "Every event, placed by danger and impact",
+      plotLede: "Each dot is one logged event. Higher means more dangerous, further right means more impact. Tap a dot to read it.",
+      domains: "Filter by domain", all: "All domains", showing: "Showing", through: "through", of: "of",
+      slider: "Show events up to", prev: "Earlier", next: "Later", band: "Band",
+      listTitle: "Events in date order", showAll: "Show all", showLess: "Show fewer", onPlot: "Show on plot",
+      statement: "Read the record, then ask it a question.", open: "Open the live tracker", ask: "Ask the tracker",
+      yAxis: "Danger", xAxis: "Impact", selected: "Selected event",
+      fine: "Photographs by Unsplash contributors, credited beside each image; they are illustrative and do not depict the events listed.",
+    },
+    he: {
+      plot: "תרשים", timeline: "ציר הזמן", method: "שיטה",
+      heroCta: "לחקור את התרשים", plotTitle: "כל האירועים, לפי סכנה והשפעה",
+      plotLede: "כל נקודה היא אירוע אחד ברישום. גבוה יותר משמעו מסוכן יותר, ימינה משמעו השפעה גדולה יותר. הקישו על נקודה כדי לקרוא.",
+      domains: "סינון לפי תחום", all: "כל התחומים", showing: "מוצגים", through: "עד", of: "מתוך",
+      slider: "הצג אירועים עד", prev: "קודם", next: "הבא", band: "רמה",
+      listTitle: "האירועים לפי תאריך", showAll: "הצג הכול", showLess: "הצג פחות", onPlot: "הצג בתרשים",
+      statement: "קראו את התיעוד, ואז שאלו אותו שאלה.", open: "למעקב החי", ask: "שאלו את המעקב",
+      yAxis: "סכנה", xAxis: "השפעה", selected: "האירוע שנבחר",
+      fine: "צילומים של תורמי Unsplash, עם קרדיט ליד כל תמונה; הם להמחשה בלבד ואינם מתארים את האירועים ברשימה.",
+    },
+  };
+
+  const hottest = U.events.reduce((a, b) => (b.danger > a.danger || (b.danger === a.danger && b.impact > a.impact) ? b : a));
+  const state = { domain: 0, upTo: N - 1, sel: hottest.id, expand: false };
+  let lang = "en";
+
+  // Place events on a 1..10 grid; events sharing a cell are fanned out so every dot stays reachable.
+  const POS = (() => {
+    const groups = new Map();
+    U.events.forEach((e) => {
+      const k = e.danger + ":" + e.impact;
+      groups.set(k, (groups.get(k) || []).concat(e));
+    });
+    const out = {};
+    groups.forEach((list) => {
+      list.forEach((e, i) => {
+        const base = { x: 6 + ((e.impact - 1) / 9) * 88, y: 6 + ((e.danger - 1) / 9) * 88 };
+        const r = i === 0 ? 0 : 3.6 * Math.sqrt(i);
+        const a = i * 2.4 + 0.6;
+        out[e.id] = { x: base.x + r * Math.cos(a), y: base.y + r * Math.sin(a) };
+      });
+    });
+    return out;
+  })();
+
+  const byId = (id) => U.events.find((e) => e.id === id);
+  const visible = (e, idx) => idx <= state.upTo;
+  const inDomain = (e) => state.domain === 0 || e.domain === state.domain;
+
+  function shell(L) {
+    const u = U.ui[lang];
+    const c = COPY[lang];
+    $("brand").textContent = lang === "he" ? "בריטניה–רוסיה" : "UK–Russia";
+    $("menuBtn").textContent = t("menu");
+    $("sheetAsk").textContent = c.ask + " →";
+    const links = [["#plot", c.plot], ["#timeline", c.timeline], ["#method", c.method]];
+    $("pillLinks").innerHTML = links.map(([h, l]) => `<a href="${h}">${esc(l)}</a>`).join("");
+    $("sheetLinks").innerHTML = links.map(([h, l]) => `<a href="${h}">${esc(l)}</a>`).join("");
+
+    $("hero").innerHTML = `<div class="hero__bg">${img("destroyer", { w: 1280, ratio: 1.6, sizes: "100vw", eager: true })}</div>
+      <div class="wrap hero__inner">
+        <h1 id="h1">${esc(u.title)}</h1>
+        <p class="lede">${esc(u.standfirst)}</p>
+        <div class="hero__cta"><a class="btn" href="#plot">${esc(c.heroCta)}</a><a class="tlink" href="../uk-russia-merged-timeline.html#ask">${esc(c.ask)} →</a></div>
+        <p class="credit">${esc(t("illustrative"))} ${creditInner("destroyer", lang)}</p>
+      </div>`;
+
+    const tiles = [`<button type="button" class="tile tile--all" data-domain="0" aria-pressed="${state.domain === 0}"><span>${esc(c.all)}<span class="n">${N}</span></span></button>`]
+      .concat(u.domains.map((d, i) => {
+        const id = i + 1;
+        const n = U.events.filter((e) => e.domain === id).length;
+        return `<button type="button" class="tile" data-domain="${id}" aria-pressed="${state.domain === id}">${img(DOMAIN_PHOTO[id], { w: 480, ratio: 1.6, sizes: "170px", alt: "" })}<span>${esc(d.name)}<span class="n">${n}</span></span></button>`;
+      }))
+      .join("");
+
+    $("plot").innerHTML = `<div class="section__head">
+        <h2 id="plot-h">${esc(c.plotTitle)}</h2>
+        <p>${esc(c.plotLede)}</p>
+        <p class="legend">
+          <span>${sideTag({ side: "ru" })}</span><span>${sideTag({ side: "uk" })}</span><span>${sideTag({ side: "ot" })}</span>
+          <span><span class="ring"></span>${esc(u.k1)}</span><span><span class="ring ring--indirect"></span>${esc(u.k2)}</span>
+        </p>
+      </div>
+      <div class="tiles" role="group" aria-label="${esc(c.domains)}" id="tiles" data-scroller>${tiles}</div>
+      <div class="instrument">
+        <div class="instrument__plot">
+          <div class="plot-wrap">
+            <div class="axis-y mono">${esc(U.ui[lang].dangerLow)} · ${esc(c.yAxis)} · ${esc(U.ui[lang].dangerHigh)}</div>
+            <div class="plot" id="plotArea">
+              <svg class="plot__grid" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                ${[1, 2, 3, 4, 6, 7, 8, 9].map((i) => `<line x1="${i * 10}" y1="0" x2="${i * 10}" y2="100"/><line x1="0" y1="${i * 10}" x2="100" y2="${i * 10}"/>`).join("")}
+                <line class="mid" x1="50" y1="0" x2="50" y2="100"/><line class="mid" x1="0" y1="50" x2="100" y2="50"/>
+              </svg>
+              <div id="dots"></div>
+            </div>
+            <div class="axis-x mono"><span>${esc(U.ui[lang].impactLow)}</span><span>${esc(c.xAxis)}</span><span>${esc(U.ui[lang].impactHigh)}</span></div>
+          </div>
+          <div class="timebar">
+            <div class="timebar__top"><label for="slider">${esc(c.slider)}</label><output id="sliderOut" for="slider"></output></div>
+            <input type="range" id="slider" min="0" max="${N - 1}" step="1" value="${state.upTo}">
+            <p class="mono muted" id="sliderCount"></p>
+          </div>
+        </div>
+        <article class="card" id="card" aria-live="polite" aria-label="${esc(c.selected)}"></article>
+      </div>`;
+
+    $("timeline").innerHTML = `<div class="section__head"><h2 id="tl-h">${esc(c.listTitle)}</h2></div>
+      <ol class="rows" id="rows"></ol><div class="more" id="more"></div>`;
+
+    $("methodBody").innerHTML = `<h2 id="method-h">${esc(t("method"))}</h2><p>${u.p0}</p><p>${u.p1}</p>`;
+
+    $("footer").innerHTML = `<p class="statement__line">${esc(c.statement)}</p>
+      <div class="statement__links">
+        <a class="tlink" href="../uk-russia-merged-timeline.html#ask">${esc(c.ask)} →</a>
+        <a class="tlink" href="../uk-russia-merged-timeline.html">${esc(c.open)} →</a>
+        <a class="tlink" href="./index.html">Options</a>
+      </div>
+      <p class="statement__fine">${esc(u.footLine)} ${esc(c.fine)}</p>`;
+
+    $("tiles").addEventListener("click", (ev2) => {
+      const b = ev2.target.closest("[data-domain]");
+      if (!b) return;
+      state.domain = Number(b.dataset.domain);
+      $("tiles").querySelectorAll("[data-domain]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      update();
+    });
+    $("slider").addEventListener("input", (ev2) => {
+      state.upTo = Number(ev2.target.value);
+      const idx = U.events.findIndex((e) => e.id === state.sel);
+      if (idx > state.upTo) state.sel = U.events[state.upTo].id;
+      update();
+    });
+    $("dots").addEventListener("click", (ev2) => {
+      const b = ev2.target.closest("[data-id]");
+      if (!b) return;
+      select(Number(b.dataset.id));
+      const again = $("dots").querySelector(`[data-id="${b.dataset.id}"]`);
+      if (again) again.focus();
+    });
+  }
+
+  function select(id, scroll) {
+    state.sel = id;
+    update();
+    if (scroll) $("plot").scrollIntoView({ block: "start" });
+  }
+
+  function update() {
+    const u = U.ui[lang];
+    const c = COPY[lang];
+    const e0 = U.events[state.upTo];
+    $("sliderOut").textContent = ev(e0).label;
+
+    $("dots").innerHTML = U.events
+      .map((e, idx) => {
+        const p = POS[e.id];
+        const dim = idx > state.upTo || !inDomain(e);
+        return `<button type="button" class="dot dot--${e.side}${e.direct ? "" : " dot--indirect"}" style="--x:${p.x.toFixed(2)};--y:${p.y.toFixed(2)}" data-id="${e.id}" data-dim="${dim}" aria-pressed="${e.id === state.sel}" aria-label="${esc(ev(e).label + ". " + ev(e).title + ". " + t("danger") + " " + e.danger + ", " + t("impact") + " " + e.impact)}" ${dim ? 'tabindex="-1"' : ""}></button>`;
+      })
+      .join("");
+
+    const shown = U.events.filter((e, idx) => idx <= state.upTo && inDomain(e));
+    $("sliderCount").textContent = `${c.showing} ${shown.length} ${c.of} ${N} · ${c.through} ${ev(e0).label}`;
+
+    const sel = byId(state.sel);
+    const key = photoFor(sel);
+    const order = shown;
+    const at = order.findIndex((e) => e.id === sel.id);
+    const prev = at > 0 ? order[at - 1] : null;
+    const next = at >= 0 && at < order.length - 1 ? order[at + 1] : null;
+    $("card").innerHTML = `<figure class="card__photo" style="margin:0">${img(key, { w: 800, ratio: 16 / 9, sizes: "(min-width: 60rem) 40vw, 100vw" })}<figcaption><p class="credit">${esc(t("illustrative"))} ${creditInner(key, lang)}</p></figcaption></figure>
+      <div class="card__body">
+        <div class="card__meta mono"><time datetime="${sel.date}">${esc(ev(sel).label)}</time>${sideTag(sel)}<span>${ringMark(sel)} ${esc(sel.direct ? t("direct") : t("indirect"))}</span></div>
+        <h3>${esc(ev(sel).title)}</h3>
+        <dl class="card__nums">
+          <div><dt>${esc(t("danger"))}</dt><dd>${sel.danger}</dd></div>
+          <div><dt>${esc(t("impact"))}</dt><dd>${sel.impact}</dd></div>
+          <div><dt>${esc(c.band)}</dt><dd>${sel.band}</dd></div>
+        </dl>
+        <p class="card__why">${esc(ev(sel).why)}</p>
+        ${sourcesHtml(sel)}
+      </div>
+      <div class="card__nav">
+        <button type="button" class="chip" data-step="${prev ? prev.id : ""}" ${prev ? "" : "disabled"}>← ${esc(c.prev)}</button>
+        <button type="button" class="chip" data-step="${next ? next.id : ""}" ${next ? "" : "disabled"}>${esc(c.next)} →</button>
+      </div>`;
+    $("card").querySelectorAll("[data-step]").forEach((b, i) =>
+      b.addEventListener("click", () => {
+        if (b.dataset.step === "") return;
+        select(Number(b.dataset.step));
+        const again = $("card").querySelectorAll("[data-step]")[i];
+        if (again && !again.disabled) again.focus();
+      })
+    );
+
+    const list = shown.slice().reverse();
+    const cut = state.expand ? list : list.slice(0, 8);
+    $("rows").innerHTML = cut
+      .map(
+        (e) => `<li>
+        <div class="row__date mono"><time datetime="${e.date}">${esc(ev(e).label)}</time>${sideTag(e)} ${ringMark(e)}</div>
+        <h3 class="row__title"><button type="button" data-pick="${e.id}" aria-label="${esc(c.onPlot + ": " + ev(e).title)}">${esc(ev(e).title)}</button></h3>
+        ${whyHtml(e)}
+      </li>`
+      )
+      .join("");
+    $("rows").querySelectorAll("[data-pick]").forEach((b) => b.addEventListener("click", () => select(Number(b.dataset.pick), true)));
+    $("more").innerHTML = list.length > 8 ? `<button type="button" class="chip" id="moreBtn">${esc(state.expand ? c.showLess : c.showAll + " (" + list.length + ")")}</button>` : "";
+    const mb = $("moreBtn");
+    if (mb) mb.addEventListener("click", () => { state.expand = !state.expand; update(); $("moreBtn").focus(); });
+  }
+
+  function menu() {
+    const btn = $("menuBtn");
+    const sheet = $("sheet");
+    const close = () => { sheet.hidden = true; btn.setAttribute("aria-expanded", "false"); };
+    btn.addEventListener("click", () => {
+      const open = sheet.hidden;
+      sheet.hidden = !open;
+      btn.setAttribute("aria-expanded", String(open));
+    });
+    sheet.addEventListener("click", (e) => { if (e.target.closest("a")) close(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !sheet.hidden) { close(); btn.focus(); } });
+  }
+
+  menu();
+  initLang((l) => {
+    lang = l;
+    shell();
+    update();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-option="d">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Option D · Desk — UK–Russia escalation</title>
+<meta name="description" content="Redesign option D: search first. Find any of the 40 events by word, or browse featured, latest and by-domain shelves.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Archivo:wght@400;500;600;700&family=Heebo:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../uk-russia-tokens.css">
+<link rel="stylesheet" href="./options-base.css">
+<link rel="stylesheet" href="./option-d.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="wrap top" id="top">
+  <a class="top__brand" href="#top" id="brand"></a>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang-btn="he" aria-pressed="false" lang="he">עברית</button>
+  </div>
+</header>
+
+<div class="finder">
+  <div class="wrap finder__inner">
+    <button type="button" class="search-pill" id="openSearch" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span id="searchLabel"></span>
+      <kbd aria-hidden="true" id="kbd">Ctrl K</kbd>
+    </button>
+    <nav class="finder__links" id="finderLinks" aria-label="Sections"></nav>
+  </div>
+</div>
+
+<main id="main">
+  <section class="wrap intro" id="intro" aria-labelledby="h1"></section>
+  <div class="wrap" id="rails"></div>
+  <section class="wrap browse" id="browse" aria-labelledby="browse-h"></section>
+  <section class="method" id="method" aria-labelledby="method-h">
+    <div class="wrap method__grid" id="methodBody"></div>
+  </section>
+</main>
+
+<footer class="wrap cols" id="footer"></footer>
+
+<dialog class="detail" id="detail" aria-labelledby="detail-t"></dialog>
+
+<dialog class="spot" id="spot" aria-label="Search events">
+  <div class="spot__field">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" role="combobox" aria-expanded="true" aria-controls="spotList" aria-autocomplete="list" autocomplete="off" enterkeyhint="go">
+    <button type="button" class="chip" id="spotClose"></button>
+  </div>
+  <ul class="spot__list" id="spotList" role="listbox"></ul>
+  <p class="spot__hint" id="spotHint"></p>
+</dialog>
+
+<script src="./options-data.js"></script>
+<script src="./options-shared.js"></script>
+<script>
+(function () {
+  const { U, DOMAIN_PHOTO, photoFor, img, creditInner, esc, initLang, t, ev, count, sideTag, ringMark, sourcesHtml } = window.UKRU_UI;
+  const $ = (id) => document.getElementById(id);
+  const N = U.events.length;
+  const mac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+
+  const COPY = {
+    en: {
+      search: "Search events: try “drone”, “NATS”, “tanker”", find: "Find", featured: "Featured", featuredNote: "Highest danger and impact first",
+      latest: "Latest", latestNote: "Most recent entries", domains: "By domain", domainsNote: "Choose a domain to filter the list",
+      browse: "All events", side: "Side", domain: "Domain", band: "Band", all: "All", showing: "Showing", of: "of", reset: "Reset filters",
+      more: "Show more", noMatch: "No events match these filters.", close: "Close", results: "results", none: "No events match.",
+      hint: "Up and down to move, Enter to open, Esc to close.", hintMobile: "Type a word from an event, a date, or a source.",
+      read: "Read", ladder: "Levels up/down", live: "Live tracker", ask: "Ask the tracker", language: "Language", explore: "Explore",
+      intro: "Forty dated events between Britain and Russia. Search by word, or start from a shelf.",
+      fine: "Photographs by Unsplash contributors, credited on the image or in its panel; they are illustrative and do not depict the events listed.",
+      key: "Key", direct: "Direct", indirect: "Indirect",
+    },
+    he: {
+      search: "חיפוש אירועים: נסו “מזל”ט”, “NATS”, “מכלית”", find: "חיפוש", featured: "מובחרים", featuredNote: "הסכנה וההשפעה הגבוהות ביותר קודם",
+      latest: "אחרונים", latestNote: "הרשומות האחרונות", domains: "לפי תחום", domainsNote: "בחרו תחום כדי לסנן את הרשימה",
+      browse: "כל האירועים", side: "צד", domain: "תחום", band: "רמה", all: "הכול", showing: "מוצגים", of: "מתוך", reset: "איפוס סינון",
+      more: "הצג עוד", noMatch: "אין אירועים התואמים לסינון.", close: "סגירה", results: "תוצאות", none: "אין אירועים תואמים.",
+      hint: "חיצים למעלה ולמטה לניווט, Enter לפתיחה, Esc לסגירה.", hintMobile: "הקלידו מילה מאירוע, תאריך או מקור.",
+      read: "קריאה", ladder: "רמות למעלה/למטה", live: "המעקב החי", ask: "שאלו את המעקב", language: "שפה", explore: "חקירה",
+      intro: "ארבעים אירועים מתוארכים בין בריטניה לרוסיה. חפשו לפי מילה, או התחילו ממדף.",
+      fine: "צילומים של תורמי Unsplash, עם קרדיט על התמונה או בחלונית שלה; הם להמחשה בלבד ואינם מתארים את האירועים ברשימה.",
+      key: "מקרא", direct: "ישיר", indirect: "עקיף",
+    },
+  };
+
+  const state = { side: "all", domain: 0, band: 0, limit: 12 };
+  let lang = "en";
+  let active = 0;
+  let found = [];
+
+  const byId = (id) => U.events.find((e) => e.id === id);
+  const score = (e) => e.danger + e.impact;
+  const filtered = () => U.events.filter((e) => (state.side === "all" || e.side === state.side) && (!state.domain || e.domain === state.domain) && (!state.band || e.band === state.band));
+
+  function card(e, eager) {
+    const key = photoFor(e);
+    return `<button type="button" class="ecard" data-open="${e.id}">
+      ${img(key, { w: 480, ratio: 1.6, sizes: "(min-width: 40rem) 17rem, 76vw", alt: "", eager: !!eager })}
+      <span class="ecard__body">
+        <span class="ecard__meta mono"><time datetime="${e.date}">${esc(ev(e).label)}</time>${sideTag(e)}${ringMark(e)}</span>
+        <span class="ecard__title">${esc(ev(e).title)}</span>
+      </span>
+    </button>`;
+  }
+
+  function domainCard(id) {
+    const d = U.ui[lang].domains[id - 1];
+    const n = U.events.filter((e) => e.domain === id).length;
+    return `<button type="button" class="ecard ecard--domain" data-domain-go="${id}">
+      ${img(DOMAIN_PHOTO[id], { w: 480, ratio: 1.6, sizes: "(min-width: 40rem) 17rem, 76vw", alt: "" })}
+      <span class="ecard__body"><span class="ecard__meta mono">${esc(count(n))}</span><span class="ecard__title">${esc(d.name)}</span></span>
+    </button>`;
+  }
+
+  function chipGroup(name, label, items, cur) {
+    return `<fieldset><legend class="mono">${esc(label)}</legend><div class="chips" role="group" aria-label="${esc(label)}" data-scroller>${items
+      .map((i) => `<button type="button" class="chip" data-f="${name}" data-v="${i.v}" aria-pressed="${String(cur) === String(i.v)}">${esc(i.l)}${i.n != null ? `<span class="n">${i.n}</span>` : ""}</button>`)
+      .join("")}</div></fieldset>`;
+  }
+
+  function shell() {
+    const u = U.ui[lang];
+    const c = COPY[lang];
+    $("brand").textContent = lang === "he" ? "בריטניה–רוסיה" : "UK–Russia";
+    $("searchLabel").textContent = c.search;
+    $("kbd").textContent = mac ? "⌘ K" : "Ctrl K";
+    $("openSearch").setAttribute("aria-label", c.find + ": " + c.search);
+    $("finderLinks").innerHTML = `<a class="tlink" href="#browse">${esc(c.browse)}</a><a class="tlink" href="#method">${esc(t("method"))}</a><a class="tlink" href="../uk-russia-merged-timeline.html#ask">${esc(c.ask)} →</a>`;
+
+    const ru = U.events.filter((e) => e.side === "ru").length;
+    const uk = U.events.filter((e) => e.side === "uk").length;
+    $("intro").innerHTML = `<div class="intro__text">
+        <h1 id="h1">${esc(u.title)}</h1>
+        <p class="lede">${esc(u.standfirst)}</p>
+        <p class="lede">${esc(c.intro)}</p>
+        <dl class="facts">
+          <div><dt>${esc(u.tlCount)}</dt><dd>${N}</dd></div>
+          <div><dt>${esc(u.sides.ru)} / ${esc(u.sides.uk)} / ${esc(u.sides.ot)}</dt><dd>${ru} / ${uk} / ${N - ru - uk}</dd></div>
+        </dl>
+      </div>
+      <div class="mosaic">
+        ${img("thames", { w: 800, ratio: 1, sizes: "(min-width: 48rem) 28vw, 40vw", eager: true })}
+        ${img("kremlin", { w: 480, ratio: 0.8, sizes: "(min-width: 48rem) 20vw, 30vw", eager: true })}
+        ${img("tanker", { w: 480, ratio: 0.8, sizes: "(min-width: 48rem) 20vw, 30vw", eager: true })}
+        <p class="credit mosaic__credit">${esc(t("illustrative"))} ${creditInner("thames", lang)} · ${creditInner("kremlin", lang)} · ${creditInner("tanker", lang)}</p>
+      </div>`;
+
+    const feat = U.events.slice().sort((a, b) => score(b) - score(a) || b.danger - a.danger).slice(0, 8);
+    const late = U.events.slice().reverse().slice(0, 8);
+    const rail = (id, title, note, items) => `<section class="rail-sec" aria-labelledby="${id}-h"><div class="rail-head"><h2 id="${id}-h">${esc(title)}</h2><p>${esc(note)}</p></div><div class="rail" role="region" tabindex="0" aria-labelledby="${id}-h" data-scroller>${items}</div></section>`;
+    $("rails").innerHTML =
+      rail("feat", c.featured, c.featuredNote, feat.map((e, i) => card(e, i < 2)).join("")) +
+      rail("late", c.latest, c.latestNote, late.map((e) => card(e)).join("")) +
+      rail("dom", c.domains, c.domainsNote, [1, 2, 3, 4, 5].map(domainCard).join(""));
+
+    $("browse").innerHTML = `<div class="rail-head"><h2 id="browse-h">${esc(c.browse)}</h2><p class="legend"><span>${ringMark({ direct: true })} ${esc(u.k1)}</span> <span>${ringMark({ direct: false })} ${esc(u.k2)}</span></p></div>
+      <div class="filters" id="filters"></div>
+      <div class="status"><p class="mono muted" id="status" aria-live="polite"></p><button type="button" class="chip" id="reset">${esc(c.reset)}</button></div>
+      <div class="grid" id="grid"></div><div class="more" id="more"></div>`;
+    $("filters").innerHTML =
+      chipGroup("side", c.side, [{ v: "all", l: c.all }, ...["ru", "uk", "ot"].map((s) => ({ v: s, l: u.sides[s], n: U.events.filter((e) => e.side === s).length }))], state.side) +
+      chipGroup("domain", c.domain, [{ v: 0, l: c.all }, ...u.domains.map((d, i) => ({ v: i + 1, l: d.name, n: U.events.filter((e) => e.domain === i + 1).length }))], state.domain) +
+      chipGroup("band", c.band, [{ v: 0, l: c.all }, ...[1, 2, 3, 4].map((b) => ({ v: b, l: String(b), n: U.events.filter((e) => e.band === b).length }))], state.band);
+
+    $("methodBody").innerHTML = `<h2 id="method-h">${esc(t("method"))}</h2><p>${u.p0}</p><p>${u.p1}</p>`;
+    $("footer").innerHTML = `<div><h2>${esc(c.explore)}</h2><ul><li><a href="#feat-h">${esc(c.featured)}</a></li><li><a href="#late-h">${esc(c.latest)}</a></li><li><a href="#browse">${esc(c.browse)}</a></li></ul></div>
+      <div><h2>${esc(c.read)}</h2><ul><li><a href="#method">${esc(t("method"))}</a></li><li><a href="../uk-russia-merged-timeline.html#ask">${esc(c.ask)}</a></li><li><a href="../uk-russia-merged-timeline.html">${esc(c.live)}</a></li><li><a href="../uk-russia-ladder.html">${esc(c.ladder)}</a></li></ul></div>
+      <div><h2>${esc(c.language)}</h2><ul><li><a href="#top" data-set-lang="en">English</a></li><li><a href="#top" data-set-lang="he" lang="he">עברית</a></li><li><a href="./index.html">Options</a></li></ul></div>
+      <p class="cols__fine">${esc(u.footLine)} ${esc(c.fine)}</p>`;
+    $("spotClose").textContent = c.close;
+    $("q").placeholder = c.search;
+    $("q").setAttribute("aria-label", c.find);
+  }
+
+  function renderGrid() {
+    const c = COPY[lang];
+    const rows = filtered();
+    const cut = rows.slice(0, state.limit);
+    $("status").textContent = `${c.showing} ${cut.length} ${c.of} ${rows.length}`;
+    $("grid").innerHTML = rows.length ? cut.map((e) => card(e)).join("") : `<p class="empty">${esc(c.noMatch)}</p>`;
+    $("more").innerHTML = rows.length > cut.length ? `<button type="button" class="chip" id="moreBtn">${esc(c.more)} (${rows.length - cut.length})</button>` : "";
+    document.querySelectorAll("#filters [data-f]").forEach((b) => b.setAttribute("aria-pressed", String(String(state[b.dataset.f]) === b.dataset.v)));
+    $("reset").hidden = state.side === "all" && !state.domain && !state.band;
+  }
+
+  /* Detail dialog */
+  let lastTrigger = null;
+  function openDetail(id) {
+    const e = byId(id);
+    const c = COPY[lang];
+    const key = photoFor(e);
+    const u = U.ui[lang];
+    $("detail").innerHTML = `<button type="button" class="chip detail__close" id="detailClose" aria-label="${esc(c.close)}">${esc(c.close)}</button>
+      <figure class="detail__photo" style="margin:0">${img(key, { w: 1280, ratio: 16 / 9, sizes: "(min-width: 44rem) 44rem, 100vw", eager: true })}<figcaption><p class="credit">${esc(t("illustrative"))} ${creditInner(key, lang)}</p></figcaption></figure>
+      <div class="detail__body">
+        <div class="detail__meta mono"><time datetime="${e.date}">${esc(ev(e).label)}</time>${sideTag(e)}<span>${ringMark(e)} ${esc(e.direct ? t("direct") : t("indirect"))}</span></div>
+        <h2 id="detail-t">${esc(ev(e).title)}</h2>
+        <dl class="detail__nums"><div><dt>${esc(t("danger"))}</dt><dd>${e.danger}/10</dd></div><div><dt>${esc(t("impact"))}</dt><dd>${e.impact}/10</dd></div><div><dt>${esc(c.band)}</dt><dd>${e.band}</dd></div><div><dt>${esc(c.domain)}</dt><dd>${esc(u.domains[e.domain - 1].name)}</dd></div></dl>
+        <p class="detail__why">${esc(ev(e).why)}</p>
+        ${sourcesHtml(e)}
+      </div>`;
+    $("detailClose").addEventListener("click", () => $("detail").close());
+    if (!$("detail").open) $("detail").showModal();
+    $("detail").scrollTop = 0;
+  }
+
+  /* Spotlight search */
+  function haystack(e) {
+    const u = U.ui[lang];
+    return [ev(e).title, ev(e).short, ev(e).why, ev(e).label, u.domains[e.domain - 1].name, e.date, e.sources.map((s) => s.label).join(" ")].join(" ").toLowerCase();
+  }
+  function runSearch() {
+    const c = COPY[lang];
+    const q = $("q").value.trim().toLowerCase();
+    const words = q.split(/\s+/).filter(Boolean);
+    found = (words.length ? U.events.filter((e) => { const h = haystack(e); return words.every((w) => h.includes(w)); }) : U.events.slice().sort((a, b) => score(b) - score(a)).slice(0, 6)).slice(0, 8);
+    active = 0;
+    $("spotList").innerHTML = found.length
+      ? found.map((e, i) => `<li role="presentation"><button type="button" role="option" id="opt-${e.id}" aria-selected="${i === 0}" data-open="${e.id}"><span class="t">${esc(ev(e).title)}</span><span class="ecard__meta mono muted">${esc(ev(e).label)} ${sideTag(e)}</span></button></li>`).join("")
+      : `<li class="spot__hint">${esc(c.none)}</li>`;
+    $("q").setAttribute("aria-activedescendant", found[0] ? "opt-" + found[0].id : "");
+    $("spotHint").textContent = words.length ? `${found.length} ${c.results}. ${c.hint}` : c.hintMobile;
+  }
+  function openSearch() {
+    if (!$("spot").open) $("spot").showModal();
+    $("q").value = "";
+    runSearch();
+    $("q").focus();
+  }
+  function move(d) {
+    if (!found.length) return;
+    active = (active + d + found.length) % found.length;
+    $("spotList").querySelectorAll("[role=option]").forEach((b, i) => b.setAttribute("aria-selected", String(i === active)));
+    const el = $("spotList").querySelectorAll("[role=option]")[active];
+    $("q").setAttribute("aria-activedescendant", el.id);
+    el.scrollIntoView({ block: "nearest" });
+  }
+
+  function wire() {
+    $("openSearch").addEventListener("click", openSearch);
+    $("spotClose").addEventListener("click", () => $("spot").close());
+    $("q").addEventListener("input", runSearch);
+    $("q").addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); move(1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); move(-1); }
+      else if (e.key === "Enter" && found[active]) { e.preventDefault(); $("spot").close(); openDetail(found[active].id); }
+    });
+    document.addEventListener("keydown", (e) => {
+      const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName);
+      if (((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") || (e.key === "/" && !typing)) {
+        e.preventDefault();
+        openSearch();
+      }
+    });
+    ["spot", "detail"].forEach((id) => $(id).addEventListener("click", (e) => { if (e.target === $(id)) $(id).close(); }));
+    $("spot").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-open]");
+      if (b) { $("spot").close(); openDetail(Number(b.dataset.open)); }
+    });
+
+    document.addEventListener("click", (e) => {
+      const o = e.target.closest("main [data-open]");
+      if (o) { lastTrigger = o; openDetail(Number(o.dataset.open)); return; }
+      const dg = e.target.closest("[data-domain-go]");
+      if (dg) {
+        state.domain = Number(dg.dataset.domainGo);
+        state.limit = 12;
+        renderGrid();
+        $("browse").scrollIntoView({ block: "start" });
+        return;
+      }
+      const f = e.target.closest("#filters [data-f]");
+      if (f) {
+        state[f.dataset.f] = f.dataset.f === "side" ? f.dataset.v : Number(f.dataset.v);
+        state.limit = 12;
+        renderGrid();
+        return;
+      }
+      if (e.target.closest("#reset")) { state.side = "all"; state.domain = 0; state.band = 0; state.limit = 12; renderGrid(); return; }
+      if (e.target.closest("#moreBtn")) { state.limit += 12; renderGrid(); const cards = $("grid").querySelectorAll(".ecard"); if (cards[state.limit - 12]) cards[state.limit - 12].focus(); return; }
+      const sl = e.target.closest("[data-set-lang]");
+      if (sl) { const b = document.querySelector(`.top [data-lang-btn="${sl.dataset.setLang}"]`); if (b) b.click(); }
+    });
+    $("detail").addEventListener("close", () => { if (lastTrigger && document.contains(lastTrigger)) lastTrigger.focus(); });
+  }
+
+  wire();
+  initLang((l) => {
+    lang = l;
+    shell();
+    renderGrid();
+    if ($("spot").open) runSearch();
+  });
+})();
+</script>
+</body>
+</html>
