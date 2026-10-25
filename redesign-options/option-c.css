@@ -57,6 +57,13 @@
   padding-inline-end: var(--space-2xs);
 }
 
+/* Page links and angles share one flex item, so the bar cannot open a gap between them. */
+.pill__group {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
 .pill__links {
   display: inline-flex;
   align-items: center;
@@ -958,6 +965,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
 }
 
 @media (max-width: 29.99rem) {
+  .pill__group,
   .pill__links,
   .pill__bar .lang {
     display: none;
@@ -1027,6 +1035,9 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
 @media (min-width: 64rem) {
   .pill__views {
     display: inline-flex;
+    margin-inline-start: var(--space-2xs);
+    padding-inline-start: var(--space-2xs);
+    border-inline-start: var(--rule-hair) solid var(--color-rule);
   }
 
   .dd {

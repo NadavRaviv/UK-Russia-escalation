@@ -43,8 +43,10 @@
     header.id = "top";
     header.innerHTML = `<div class="pill__bar">
       <a class="pill__brand" href="./uk-russia-plot.html#top" id="siteBrand"></a>
-      <nav class="pill__links" id="siteLinks" aria-label="Pages"></nav>
-      <nav class="pill__views" id="angleBar" aria-label="Angles"></nav>
+      <div class="pill__group">
+        <nav class="pill__links" id="siteLinks" aria-label="Pages"></nav>
+        <nav class="pill__views" id="angleBar" aria-label="Angles"></nav>
+      </div>
       <details class="dd" id="angleDd">
         <summary><span id="angleLabel"></span></summary>
         <div class="dd__menu" id="angleMenu"></div>
