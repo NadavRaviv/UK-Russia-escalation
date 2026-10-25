@@ -240,6 +240,11 @@
   .hero .credit,
   .hero .credit a{color:var(--color-on-photo-muted)}
   .hero .credit a{text-decoration:underline;text-underline-offset:0.15em}
+  /* Hallmark · pre-emit critique: P5 H4 E5 S5 R5 V4
+     Westminster sits a little high. Surface Bias anchors Charlie Munger's face
+     under the nav and above the type. */
+  .hero__bg img{object-position:50% 40%}
+  header.hero.hero--munger .hero__bg img{object-position:50% 20%}
 
   /* --- info buttons --- */
   .info-btn{
@@ -1011,7 +1016,23 @@
 
   <header class="hero">
     <div class="hero__bg">
-      <img src="https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1920" srcset="https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1280 1280w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1920 1920w" sizes="100vw" width="1920" height="1200" alt="The Palace of Westminster under a cloudy sky" fetchpriority="high" style="object-position:50% 40%">
+      <!-- Surface Bias replaces this with images/charlie-munger.jpg (Nick Webb, 2010, CC BY 2.0). The Almanack cover is not free to use. -->
+      <img id="heroPhoto" data-hero="westminster" src="https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1920" srcset="https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1280 1280w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&amp;q=70&amp;w=1920 1920w" sizes="100vw" width="1920" height="1200" alt="The Palace of Westminster under a cloudy sky" fetchpriority="high">
+      <script>
+        (function () {
+          if (!/^#view=munger$/.test(location.hash)) return;
+          var img = document.getElementById("heroPhoto");
+          var hero = document.querySelector("header.hero");
+          if (!img || !hero) return;
+          hero.classList.add("hero--munger");
+          img.dataset.hero = "munger";
+          img.src = "./images/charlie-munger.jpg";
+          img.removeAttribute("srcset");
+          img.width = 1457;
+          img.height = 2050;
+          img.alt = "Charlie Munger seated at a table in 2010";
+        })();
+      </script>
     </div>
     <div class="wrap hero__inner">
       <p class="eyebrow" id="eyebrow"></p>
@@ -2571,10 +2592,7 @@ function render(code){
   set("eyebrow", t.eyebrow);
   set("title", t.title);
   set("standfirst", t.standfirst);
-  const creditEl = document.getElementById("contextCredit");
-  if (creditEl && window.UKRU_UI) {
-    creditEl.innerHTML = window.UKRU_UI.t("illustrative") + " " + window.UKRU_UI.creditInner("westminster", code);
-  }
+  paintHero();
   set("k1", t.k1); set("k2", t.k2);
   set("f1", t.f1); set("f2", t.f2); set("f3", t.f3);
   set("fl1", FLAGS.uk); set("fl2", FLAGS.ru); set("fl3", FLAGS.ot);
@@ -2707,12 +2725,64 @@ function tryUnlockMunger(){
   mungerCode.select();
 }
 
+const HERO_WESTMINSTER_SRC = "https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1920";
+const HERO_WESTMINSTER_SRCSET = "https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=480 480w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=800 800w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1280 1280w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1920 1920w";
+const HERO_MUNGER_SRC = "./images/charlie-munger.jpg";
+
+function surfaceBiasHero(){
+  return currentView() === "munger" || /^#view=munger$/.test(window.location.hash || "");
+}
+
+function mungerCredit(code){
+  const he = code === "he";
+  const who = he ? "צ'ארלי מאנגר, 2010." : "Charlie Munger, 2010.";
+  const photo = he ? "צילום" : "Photo";
+  return who + " " + photo +
+    ': <a href="https://commons.wikimedia.org/wiki/File:Charlie_Munger.jpg" rel="noopener">Nick Webb</a>' +
+    ' / <a href="https://creativecommons.org/licenses/by/2.0/" rel="noopener">CC BY 2.0</a>';
+}
+
+function paintHero(){
+  const img = document.getElementById("heroPhoto");
+  const hero = document.querySelector("header.hero");
+  const creditEl = document.getElementById("contextCredit");
+  if (!img || !hero) return;
+  const munger = surfaceBiasHero();
+  hero.classList.toggle("hero--munger", munger);
+  if (munger){
+    if (img.dataset.hero !== "munger"){
+      img.dataset.hero = "munger";
+      img.src = HERO_MUNGER_SRC;
+      img.removeAttribute("srcset");
+      img.width = 1457;
+      img.height = 2050;
+    }
+    img.alt = lang === "he"
+      ? "צ'ארלי מאנגר יושב ליד שולחן, 2010"
+      : "Charlie Munger seated at a table in 2010";
+    if (creditEl) creditEl.innerHTML = mungerCredit(lang);
+    return;
+  }
+  if (img.dataset.hero !== "westminster"){
+    img.dataset.hero = "westminster";
+    img.src = HERO_WESTMINSTER_SRC;
+    img.srcset = HERO_WESTMINSTER_SRCSET;
+    img.width = 1920;
+    img.height = 1200;
+  }
+  img.alt = "The Palace of Westminster under a cloudy sky";
+  if (creditEl && window.UKRU_UI){
+    creditEl.innerHTML = window.UKRU_UI.t("illustrative") + " " + window.UKRU_UI.creditInner("westminster", lang);
+  }
+}
+
 function requestMungerView(){
   if (mungerUnlocked()){
     viewOverride = "munger";
     applyView();
     return;
   }
+  paintHero();
   openMungerGate();
 }
 
@@ -2729,6 +2799,7 @@ function applyView(){
   overview.classList.toggle("layout-munger", isMunger);
   overview.classList.toggle("layout-ladder", isLadder);
   renderBands(lang);
+  paintHero();
 }
 
 document.getElementById("munger-submit").addEventListener("click", tryUnlockMunger);
