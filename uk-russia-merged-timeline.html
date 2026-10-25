@@ -68,8 +68,6 @@
   .ask{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md);padding:var(--space-lg)}
   .ask-submit{background:var(--color-accent);color:var(--color-on-accent);border:0;border-radius:var(--radius-pill);font-weight:700}
   .ask-input{background:var(--color-paper);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-sm);color:var(--color-ink)}
-  .stat{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md);padding:var(--space-sm) var(--space-md)}
-  .stat .n.accent{color:var(--color-accent)}
   .overview{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
   .band{background:var(--color-paper);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
   .munger-card{background:var(--color-paper);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
@@ -91,7 +89,7 @@
   .band .def, .band .meta, .band .num, .ev .t, .ev .d, .gap .days,
   .munger-card p, .munger-card .watch, .munger-panel .intro, .munger-err,
   .danger-tip, .danger-tip b, .danger-tip .tip-meta, .sel-title, .sel-hint, .sel-num,
-  .danger-key, .danger-cut, .stat .l, .tlcount, .povlab, .why-btn, .info-btn,
+  .danger-key, .danger-cut, .tlcount, .povlab, .why-btn, .info-btn,
   .theme-btn, .toggle button{
     font-size:max(12px, 1em);
   }
@@ -257,45 +255,6 @@
   body[dir="rtl"] .info-btn{
     letter-spacing:0;font-family:var(--font-body);text-transform:none;font-size:11px;
   }
-
-  /* --- tempo strip --- */
-  .metrics{
-    display:flex;flex-wrap:wrap;align-items:stretch;gap:var(--space-sm);
-    padding-block:var(--space-md) var(--space-lg);margin:0 0 var(--space-lg);
-    border-bottom:var(--rule-hair) solid var(--color-rule);
-  }
-  .stat{
-    display:flex;flex-direction:column;justify-content:center;gap:var(--space-2xs);
-    min-width:0;padding:var(--space-sm) var(--space-md);
-  }
-  .stat .n{
-    font-family:var(--font-body);font-size:var(--text-xl);font-weight:700;display:block;
-    line-height:var(--leading-tight);letter-spacing:0;color:var(--color-ink);
-  }
-  .stat .n .u{font-size:var(--text-sm);font-weight:600}
-  .stat .n.accent{color:var(--color-accent);font-size:var(--text-xl);font-weight:700}
-  .stat .l{
-    font-family:var(--font-body);font-size:var(--text-xs);font-weight:600;letter-spacing:0.04em;
-    text-transform:uppercase;color:var(--color-muted);display:block;margin:0;
-    line-height:var(--leading-snug);
-  }
-  body[dir="rtl"] .stat .l{
-    letter-spacing:0;font-family:var(--font-body);text-transform:none;font-size:var(--text-xs);
-  }
-  .metrics .info-btn{
-    margin-inline-start:auto;align-self:stretch;
-    display:inline-flex;align-items:center;justify-content:center;
-    min-height:var(--tap-min);padding:var(--space-sm) var(--space-md);
-    background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);
-    border-radius:var(--radius-md);color:var(--color-ink);
-    font-family:var(--font-body);font-size:var(--text-xs);font-weight:700;
-    letter-spacing:0.04em;line-height:var(--leading-snug);text-transform:uppercase;
-  }
-  .metrics .info-btn:hover,
-  .metrics .info-btn:focus-visible{
-    color:var(--color-ink);border-color:var(--color-ink);background:var(--color-paper-3);
-  }
-  .metrics .info-btn:active{transform:translateY(1px)}
 
   /* --- timeline --- */
   .record{margin-top:var(--space-2xl)}
@@ -770,10 +729,8 @@
   body[dir="rtl"] .ovhead h3{letter-spacing:.06em}
   body[dir="rtl"] time{letter-spacing:0;font-family:var(--font-body);font-size:11.5px}
   body[dir="rtl"] .gap .days{letter-spacing:0;font-family:var(--font-body);font-size:11px}
-  body[dir="rtl"] .stat .n,
   body[dir="rtl"] .ro-n,
   body[dir="rtl"] .chip .count{direction:ltr;display:inline-block}
-  body[dir="rtl"] .stat .n{display:block}
 
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important}
@@ -817,7 +774,7 @@
   .band .def, .band .meta, .band .num, .ev .t, .ev .d, .gap .days,
   .munger-card p, .munger-card .watch, .munger-panel .intro, .munger-err,
   .danger-tip, .danger-tip b, .danger-tip .tip-meta, .sel-title, .sel-hint, .sel-num,
-  .danger-key, .danger-cut, .stat .l, .tlcount, .povlab, .why-btn, .info-btn,
+  .danger-key, .danger-cut, .tlcount, .povlab, .why-btn, .info-btn,
   .theme-btn, .toggle button, .why-kicker, .why-close,
   body[dir="rtl"] time, body[dir="rtl"] .ev .d, body[dir="rtl"] .footline,
   body[dir="rtl"] .gap .days, body[dir="rtl"] .band .meta, body[dir="rtl"] .band .num,
@@ -828,11 +785,6 @@
   .danger-chart .axis-label, .danger-chart .centroid-lab{
     font-size:max(12px, 1em);
   }
-  .stat .n{font-size:var(--text-xl)}
-  .stat .n .u{font-size:var(--text-sm)}
-  .stat .l,
-  .metrics .info-btn{font-size:var(--text-xs)}
-
   /* Hallmark · component: ask-panel · genre: editorial · theme: uk-russia-tokens
    * states: default · hover · focus · active · disabled · loading · error · success
    * contrast: pass
@@ -1089,14 +1041,6 @@
     <p class="ask-links-label" id="askLinksLabel" hidden></p>
     <ul class="ask-links" id="askLinks" hidden></ul>
   </section>
-
-  <div class="metrics">
-    <div class="stat"><span class="n">10.8<span class="u" id="u1"></span></span><span class="l" id="s1"></span></div>
-    <div class="stat"><span class="n accent">3.2<span class="u" id="u2"></span></span><span class="l" id="s2"></span></div>
-    <div class="stat"><span class="n">34 &rarr; 0</span><span class="l" id="s3"></span></div>
-    <div class="stat"><span class="n">25 / 13 / 2</span><span class="l" id="s4"></span></div>
-    <button type="button" class="info-btn" id="btn-tempo"></button>
-  </div>
 
   <section class="overview" id="overview">
     <div class="ovhead">
@@ -2597,9 +2541,6 @@ function render(code){
   set("f1", t.f1); set("f2", t.f2); set("f3", t.f3);
   set("fl1", FLAGS.uk); set("fl2", FLAGS.ru); set("fl3", FLAGS.ot);
   set("btn-legend", t.legendBtn);
-  set("u1", t.unit); set("u2", t.unit);
-  set("s1", t.s1); set("s2", t.s2); set("s3", t.s3); set("s4", t.s4);
-  set("btn-tempo", t.tempoBtn);
   set("tlTitle", t.tlTitle);
   set("tlCount", t.tlCount);
   set("footLine", t.footLine);
@@ -2864,10 +2805,6 @@ dangerPlay.addEventListener("click", () => {
 document.getElementById("btn-legend").addEventListener("click", () => {
   const t = T[lang];
   openInfo(t.whyKicker, t.legendTitle, [t.k1d, t.k2d, t.f1d, t.f2d, t.f3d].join("<br><br>"));
-});
-document.getElementById("btn-tempo").addEventListener("click", () => {
-  const t = T[lang];
-  openInfo(t.whyKicker, t.tempoTitle, [t.p0, t.p1, t.p2].join("<br><br>"));
 });
 document.getElementById("btn-view").addEventListener("click", () => {
   const n = viewNote();
