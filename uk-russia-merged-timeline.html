@@ -258,6 +258,7 @@
 
   /* --- timeline --- */
   .record{margin-top:var(--space-2xl)}
+  .record[hidden]{display:none}
   .tlhead{
     display:flex;align-items:baseline;flex-wrap:wrap;gap:12px;
     border-bottom:1px solid var(--rule);padding-bottom:8px;margin-bottom:var(--space-lg);
@@ -1104,7 +1105,7 @@
     </div>
   </div>
 
-  <div class="record">
+  <div class="record" id="record" hidden>
     <div class="tlhead">
       <h3 id="tlTitle"></h3>
       <span class="tlcount" id="tlCount"></span>
@@ -2739,6 +2740,9 @@ function applyView(){
   overview.classList.toggle("layout-danger", viewOverride === "danger" || (!viewOverride && defaultView() === "danger"));
   overview.classList.toggle("layout-munger", isMunger);
   overview.classList.toggle("layout-ladder", isLadder);
+  const record = document.getElementById("record");
+  if (record) record.hidden = view !== "outline";
+  if (view !== "munger" && !/^#view=munger$/.test(window.location.hash || "")) closeMungerGate();
   renderBands(lang);
   paintHero();
 }
