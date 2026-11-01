@@ -137,6 +137,9 @@
   --color-overlay: oklch(98% 0.008 255 / 0.9);
   --color-hero-scrim: oklch(16% 0.02 255);
   --color-shadow: oklch(22% 0.02 255 / 0.16);
+  /* One raised surface per page (the detail card beside a plot). Everything else sits on the ground with a hairline. */
+  --shadow-raised: 0 1px 2px oklch(22% 0.02 255 / 0.06), 0 16px 40px -20px var(--color-shadow);
+  --shadow-float: 0 1px 2px oklch(22% 0.02 255 / 0.08), 0 12px 32px -8px var(--color-shadow);
 }
 
 html[data-theme="dark"] [data-option="c"],
@@ -160,6 +163,9 @@ html[data-theme="dark"] [data-option="c"],
   --color-overlay: oklch(12% 0.016 255 / 0.62);
   --color-hero-scrim: oklch(12% 0.016 255);
   --color-shadow: oklch(4% 0.01 255 / 0.45);
+  /* On dark, depth comes from the lighter surface; the shadow only seats the card. */
+  --shadow-raised: 0 1px 0 oklch(100% 0 0 / 0.04) inset, 0 12px 32px -20px var(--color-shadow);
+  --shadow-float: 0 1px 0 oklch(100% 0 0 / 0.05) inset, 0 16px 40px -12px var(--color-shadow);
 }
 
 /* D · Desk — cool white paper, plum accent */
