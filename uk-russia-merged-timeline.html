@@ -719,10 +719,11 @@
   .ev.r .m{outline:1.5px solid var(--grade-on)}
   .ev.g .m{outline:1.2px dashed var(--grade-off);outline-offset:1px}
   .ev .t{font-size:var(--text-sm);line-height:var(--leading-snug);min-width:0;overflow-wrap:break-word}
-  .ev .d{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.02em;color:var(--yellow);opacity:.85;display:block;margin-top:2px}
+  .ev .d{font-family:var(--font-body);font-size:var(--text-xs);letter-spacing:.02em;color:var(--yellow);opacity:.85;display:block;margin-top:2px}
   /* In the full-width list the row is one line: title, then its date trailing on the same line. */
   @media (min-width: 48rem){
     .overview.layout-outline .ev .d{display:inline;margin:0 0 0 var(--space-sm)}
+    .overview.layout-outline .ev .d::before{content:" "} /* keeps title and date separate words for readers */
   }
   body[dir="rtl"] .ev .d{letter-spacing:0;font-family:var(--font-body);font-size:10px}
 
