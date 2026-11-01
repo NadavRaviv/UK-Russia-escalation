@@ -1,5 +1,5 @@
 // Regenerates options-data.js from the live tracker page so the four redesign
-// options always render the same 40 rows, bands and domains as the real site.
+// options always render the same 41 rows, bands and domains as the real site.
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
