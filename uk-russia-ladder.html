@@ -21,7 +21,11 @@
 <link rel="stylesheet" href="./redesign-options/options-base.css">
 <link rel="stylesheet" href="./redesign-options/option-c.css">
 <style>
-  /* Hallmark · editorial · long-document · design-system: uk-russia-tokens.css */
+  /* Hallmark · editorial · long-document · design-system: uk-russia-tokens.css
+     Stageshow pass: the page is the ground; the lanes are a list of equal framed charts with one
+     fixed left label lane each; the event detail is the one raised satellite; UI text sits on the
+     12–16px token steps (the old max(12px,1em) floor pushed it all to 16px); chart text is set in
+     viewBox units so it lands at 11–15px on screen; every word, number and photo kept. */
 :root{
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
@@ -44,15 +48,9 @@ body{font-variant-numeric:tabular-nums}
   .topbar{display:none}
   header h1{font-size:var(--text-3xl)}
   .lede{font-size:var(--text-md);color:var(--color-ink)}
-  .win{border-radius:var(--radius-pill)}
   .win.active{background:var(--color-accent);color:var(--color-on-accent);border-color:var(--color-accent)}
-  .compare-card{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
-  .detail{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md)}
-/* Running text: 12px minimum */
-p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
-.detail .body, .detail .meta, .foot, .lane-foot, .lane-head .sub, .lane-head .stats,
-.ladder-seg, .ladder-seg .def, .dual-row, .dual-row .lab, .dual-row .pct, .bar-legend,
-.overlap-sub{font-size:max(12px, 1em)}
+  /* Five readings of uneven length: ruled columns on the ground, not five boxes with a void at the bottom. */
+  .compare-card{background:none;border:0;border-top:var(--rule-hair) solid var(--color-rule);border-radius:0}
 main{max-width:var(--page-max);margin:0 auto;padding:var(--nav-clearance, var(--space-5xl)) var(--page-gutter) var(--space-3xl)}
 h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:var(--leading-tight);margin:0}
 h1{font-size:var(--text-3xl);max-width:24ch;letter-spacing:-.02em}
@@ -68,11 +66,11 @@ a{color:var(--color-accent)}
 button,input{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 section{margin-top:var(--space-2xl);padding-top:var(--space-xs);border-top:1px solid var(--rule)}
-.topbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.topbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-sm);margin-bottom:var(--space-xs)}
 .topbar a{font-size:var(--text-sm);font-weight:500;text-decoration:none}
-.theme-btn{border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--soft);cursor:pointer;padding:var(--space-xs) var(--space-sm);font-size:var(--text-sm);font-weight:500}
+.theme-btn{border:var(--rule-hair) solid var(--rule);border-radius:var(--radius-sm);background:var(--paper);color:var(--soft);cursor:pointer;padding:var(--space-xs) var(--space-sm);font-size:var(--text-sm);font-weight:500}
 .ladder-note{font-size:var(--text-base);color:var(--soft);max-width:68ch;margin:var(--space-sm) 0 var(--space-md)}
-.ladder-bar{display:grid;grid-template-columns:repeat(9,1fr);gap:2px;margin:16px 0 8px;border-radius:4px;overflow:hidden}
+.ladder-bar{display:grid;grid-template-columns:repeat(9,1fr);gap:2px;margin:var(--space-md) 0 var(--space-xs);border-radius:var(--radius-sm);overflow:hidden}
 .ladder-seg{padding:var(--space-sm) var(--space-xs) var(--space-sm);font-size:var(--text-xs);line-height:var(--leading-snug);color:var(--ink);min-height:88px}
 .ladder-seg .num{font-family:var(--font-mono);font-weight:700;font-size:var(--text-xs);display:block;margin-bottom:var(--space-2xs)}
 .ladder-seg .ttl{font-weight:600;display:block;margin-bottom:2px}
@@ -88,23 +86,27 @@ section{margin-top:var(--space-2xl);padding-top:var(--space-xs);border-top:1px s
 .ladder-seg[data-r="8"]{background:var(--l8);color:var(--color-on-photo)}
 .ladder-seg .def{color:inherit;opacity:1}
 @media(max-width:720px){.ladder-bar{grid-template-columns:1fr 1fr}.ladder-seg{min-height:auto}}
-.window-btns{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 12px}
-.window-btns button{border:1px solid var(--rule);background:var(--paper);color:var(--soft);padding:var(--space-xs) var(--space-md);border-radius:4px;font-size:var(--text-sm);font-weight:600;cursor:pointer}
+.window-btns{display:flex;flex-wrap:wrap;gap:var(--space-xs);margin:var(--space-md) 0 var(--space-sm)}
+.window-btns button{min-height:var(--tap-min);border:var(--rule-hair) solid var(--rule);background:var(--paper);color:var(--soft);padding:0 var(--space-md);border-radius:var(--radius-pill);font-size:var(--text-sm);font-weight:600;cursor:pointer}
 .window-btns button.active{background:var(--color-accent);color:var(--color-on-accent);border-color:var(--color-accent)}
 .controls{display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--space-sm) var(--space-md);margin:0 0 var(--space-md);font-size:var(--text-sm);color:var(--soft)}
-.controls label{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+.controls label{display:inline-flex;align-items:center;gap:var(--space-xs);cursor:pointer}
 .controls input{accent-color:var(--focus);width:16px;height:16px}
 .hint{font-size:var(--text-sm);color:var(--soft);margin:0 0 var(--space-md)}
-.lane{border:1px solid var(--rule);border-radius:6px;background:var(--paper);margin:0 0 22px;overflow:hidden}
-.lane-head{padding:14px 16px 10px;border-bottom:1px solid var(--rule)}
-.lane-head .title{font-family:var(--font-display);font-weight:600;font-size:var(--text-sm);margin:0 0 var(--space-2xs);color:var(--ink)}
-.lane-head .sub{font-size:var(--text-xs);color:var(--soft);margin:0 0 var(--space-xs)}
-.lane-head .stats{font-size:var(--text-xs);color:var(--soft);line-height:var(--leading-snug);margin:0}
-.lane-chart{padding:4px 8px 8px;background:var(--paper)}
+/* One lane = one framed chart. Title, range and stats are one item: 4px apart, then the frame. */
+.lane{border:var(--rule-hair) solid var(--rule);border-radius:var(--radius-md);background:var(--paper);margin:0 0 var(--space-lg);overflow:hidden}
+.lane-head{padding:var(--space-md) var(--space-md) var(--space-sm);border-bottom:var(--rule-hair) solid var(--rule)}
+.lane-head .title{font-family:var(--font-display);font-weight:700;font-size:var(--text-md);letter-spacing:-0.01em;margin:0 0 var(--space-2xs);color:var(--ink)}
+.lane-head .sub{font-size:var(--text-sm);color:var(--soft);margin:0 0 var(--space-xs)}
+.lane-head .stats{display:flex;flex-wrap:wrap;gap:var(--space-2xs) var(--space-lg);font-size:var(--text-sm);color:var(--soft);line-height:var(--leading-snug);margin:0}
+.lane-head .stat .v{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.lane-chart{padding:var(--space-2xs) var(--space-xs) var(--space-xs);background:var(--paper)}
 .lane-chart svg{width:100%;height:auto;display:block}
-.lane-chart .tick{font-size:var(--text-xs);fill:var(--ink);fill-opacity:.72;font-family:var(--font-body)}
-.lane-chart .y-label{font-size:var(--text-xs);fill:var(--ink);fill-opacity:.72;font-family:var(--font-mono)}
-.lane-chart .anchor-tag{font-size:var(--text-xs);font-weight:600;fill:var(--ink);font-family:var(--font-body)}
+/* Chart text is in viewBox units (820 desktop / 480 phone), so 11 here lands at 11–15px on screen. */
+.lane-chart .tick{font-size:11px;fill:var(--ink);fill-opacity:.72;font-family:var(--font-body)}
+.lane-chart .y-label{font-size:11px;fill:var(--ink);fill-opacity:.72;font-family:var(--font-body)}
+.lane-chart .anchor-tag{font-size:11px;font-weight:600;fill:var(--ink);font-family:var(--font-body)}
+@media(max-width:720px){.lane-chart .tick,.lane-chart .y-label,.lane-chart .anchor-tag{font-size:13px}}
 .lane-chart .grid{stroke:var(--grid);stroke-width:1}
 .lane-chart .rung-band{opacity:.18}
 .lane-chart .area-fill{opacity:.35}
@@ -116,11 +118,12 @@ section{margin-top:var(--space-2xl);padding-top:var(--space-xs);border-top:1px s
 .lane-chart .pt.sus{stroke-dasharray:4 3;fill:var(--paper)!important;stroke:var(--l2)!important}
 .lane-chart .pt.hollow{fill:var(--paper)!important;stroke:var(--l0)!important;stroke-dasharray:4 3;opacity:.85}
 .lane-chart .pt:focus{outline:none}
-.lane-foot{padding:6px 16px 10px;font-size:12px;color:var(--soft)}
-.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px 24px;margin-top:16px}
-.compare-card h3{font-size:var(--text-sm);margin:0 0 var(--space-xs);color:var(--ink)}
+.lane-foot{padding:var(--space-2xs) var(--space-md) var(--space-sm);font-size:var(--text-xs);color:var(--soft)}
+.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-md) var(--space-lg);margin-top:var(--space-md)}
+.compare-card{padding:var(--space-sm) 0 0}
+.compare-card h3{font-size:var(--text-md);margin:0 0 var(--space-2xs);color:var(--ink)}
 .compare-card p{font-size:var(--text-sm);margin:0}
-.dual-section{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:20px;align-items:start}
+.dual-section{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2xl);margin-top:var(--space-lg);align-items:start}
 @media(max-width:900px){.dual-section{grid-template-columns:1fr}}
 .overlap-big{font-family:var(--font-body);font-size:var(--text-display);font-weight:700;color:var(--ink);margin:var(--space-xs) 0 var(--space-2xs);line-height:1}
 .overlap-big span{font-variant-numeric:tabular-nums}
@@ -128,22 +131,24 @@ section{margin-top:var(--space-2xl);padding-top:var(--space-xs);border-top:1px s
 .bar-legend{display:flex;gap:var(--space-md);font-size:var(--text-xs);color:var(--soft);margin-bottom:var(--space-sm)}
 .bar-legend i{display:inline-block;width:14px;height:8px;border-radius:2px;vertical-align:middle;margin-inline-end:6px}
 .bar-legend .uk{background:var(--l5)}.bar-legend .ua{background:var(--l1)}
-.dual-row{display:grid;grid-template-columns:96px 1fr;gap:10px;margin:10px 0;font-size:12px;color:var(--soft);align-items:center}
-.dual-row .lab{font-weight:600;color:var(--ink);font-size:12px;line-height:1.3}
-.dual-row .bars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.dual-row .barcell{display:grid;grid-template-columns:1fr 36px;gap:6px;align-items:center}
+/* Fixed tracks: labels, bars and percentages line up down the column. */
+.dual-row{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:var(--space-sm);margin:var(--space-sm) 0;font-size:var(--text-xs);color:var(--soft);align-items:center}
+.dual-row .lab{font-weight:600;color:var(--ink);font-size:var(--text-xs);line-height:var(--leading-snug)}
+.dual-row .bars{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-sm)}
+.dual-row .barcell{display:grid;grid-template-columns:minmax(0,1fr) 2.5rem;gap:var(--space-2xs);align-items:center}
 .dual-row .track{height:10px;background:var(--grid);border-radius:2px;overflow:hidden}
 .dual-row .track i{display:block;height:100%;border-radius:2px}
 .dual-row .track .uk{background:var(--l5)}.dual-row .track .ua{background:var(--l1)}
-.dual-row .pct{font-size:12px;text-align:end;color:var(--ink);font-weight:600}
-.sign-icon{display:inline-block;width:18px;font-weight:700;margin-inline-end:6px}
+.dual-row .pct{font-size:var(--text-xs);text-align:end;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.sign-icon{display:inline-block;width:18px;font-weight:700;margin-inline-end:var(--space-2xs)}
 .sign-icon.yes{color:var(--ok)}.sign-icon.sus{color:var(--soft);opacity:.7}
-.detail{margin:20px 0;padding:16px 18px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);min-height:56px}
-.detail b{display:block;font-family:var(--font-display);font-size:var(--text-sm);color:var(--ink);margin-bottom:var(--space-2xs)}
-.detail .meta{font-size:var(--text-xs);color:var(--soft);font-weight:500}
-.detail .body{font-size:var(--text-sm);color:var(--soft);margin-top:var(--space-xs);max-width:72ch}
-.signs{list-style:none;padding:0;margin:16px 0}
-.signs li{padding:var(--space-sm) 0;border-bottom:1px solid var(--rule);font-size:var(--text-sm);color:var(--soft)}
+/* The selected event is the one raised object on the page. */
+.detail{margin:var(--space-lg) 0;padding:var(--space-md) var(--space-lg);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md);background:var(--color-paper-2);box-shadow:var(--shadow-raised);min-height:56px}
+.detail b{display:block;font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;line-height:var(--leading-tight);color:var(--ink);margin-bottom:var(--space-2xs)}
+.detail .meta{font-size:var(--text-sm);color:var(--soft);font-weight:500}
+.detail .body{font-size:var(--text-base);line-height:var(--leading-body);color:var(--soft);margin-top:var(--space-xs);max-width:72ch}
+.signs{list-style:none;padding:0;margin:var(--space-md) 0}
+.signs li{padding:var(--space-sm) 0;border-bottom:var(--rule-hair) solid var(--rule);font-size:var(--text-sm);color:var(--soft)}
 .signs li b{color:var(--ink);font-weight:600}
 .signs .tick-yes{color:var(--ok)}
 .signs .tick-no{color:var(--soft)}
@@ -153,13 +158,9 @@ section{margin-top:var(--space-2xl);padding-top:var(--space-xs);border-top:1px s
 .foot{font-size:var(--text-sm);color:var(--soft);margin-top:var(--space-lg)}
 html.embed .topbar{display:none}
 html.embed main{padding-top:var(--space-md);padding-bottom:var(--space-3xl)}
-
-/* 12px floor on readable copy (must follow legacy sizes above) */
-p, li, .lede, .ladder-note, .hint, .controls, .compare-card p, .signs li,
-.detail .body, .detail .meta, .foot, .lane-foot, .lane-head .sub, .lane-head .stats,
-.ladder-seg, .ladder-seg .num, .ladder-seg .def, .dual-row, .dual-row .lab, .dual-row .pct,
-.bar-legend, .overlap-sub, .lane-chart .tick, .lane-chart .y-label, .lane-chart .anchor-tag{
-  font-size:max(12px, 1em);
+@media (prefers-reduced-motion: no-preference){
+  .detail > *{animation:detail-settle var(--dur-short) var(--ease-out) both}
+  @keyframes detail-settle{from{opacity:0;transform:translateY(4px)}}
 }
 </style>
 </head>
@@ -441,6 +442,7 @@ function laneStats(events, anchor, beforeAnchorOnly){
 function rungVar(n){ return "var(--l" + n + ")"; }
 
 let chartXMin = -420;
+const PHONE_MQ = window.matchMedia("(max-width: 720px)");
 
 function renderLadderBar(){
   document.getElementById("ladderBar").innerHTML = RUNGS.map(r =>
@@ -456,9 +458,13 @@ function renderLane(lane, showGreen){
   const six = stats.sixPlusSus
     ? `${stats.sixPlusConf} confirmed, ${stats.sixPlusSus} suspected`
     : String(stats.sixPlusConf);
-  const statsLine = `Highest rung before anchor ${hi} &nbsp;&nbsp; Events at rung 6+ before anchor ${six} &nbsp;&nbsp; Average rung, last 60 days ${stats.avg60}`;
+  const stat = (k, v) => `<span class="stat"><span class="k">${k}</span> <span class="v">${v}</span></span>`;
+  const statsLine = stat("Highest rung before anchor", hi) + stat("Events at rung 6+ before anchor", six) + stat("Average rung, last 60 days", stats.avg60);
 
-  const W = 820, H = 280, padL = 108, padR = 56, padT = 14, padB = 28;
+  // The chart is drawn in viewBox units. Phones get a narrower box so the rung labels and ticks
+  // still land at 9–10px on screen instead of shrinking with the lane.
+  const phone = PHONE_MQ.matches;
+  const W = phone ? 480 : 820, H = phone ? 300 : 280, padL = phone ? 152 : 124, padR = phone ? 36 : 56, padT = 14, padB = 28;
   const xMin = chartXMin, xMax = 0;
   const yMin = 0, yMax = 8;
   const plotW = W - padL - padR;
@@ -622,6 +628,7 @@ document.querySelectorAll(".window-btns .win").forEach(btn => {
   });
 });
 document.getElementById("showGreen").addEventListener("change", renderAll);
+if (PHONE_MQ.addEventListener) PHONE_MQ.addEventListener("change", renderAll);
 const themeBtn = document.getElementById("themeBtn");
 if (themeBtn) themeBtn.addEventListener("click", () => {
   const root = document.documentElement;
