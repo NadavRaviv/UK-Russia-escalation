@@ -1,5 +1,6 @@
 /* Shared top bar + statement footer for the UK–Russia site.
- * Page links, then the six angles: inline on a wide screen, “Choose your angle” on a narrow one.
+ * Plot, then the six angles: inline on a wide screen, “Choose your angle” on a narrow one.
+ * List is the dated record. There is no separate Timeline control.
  * Language changes the words only; the bar stays left to right.
  * Loaded after options-shared.js. Exposes window.UKRU_NAV.mount(opts). */
 (function () {
@@ -16,7 +17,6 @@
   }
 
   const PAGES = [
-    ["timeline", "./uk-russia-merged-timeline.html#view=outline", "timeline"],
     ["plot", "./uk-russia-plot.html", "plot"],
   ];
 
@@ -32,8 +32,8 @@
   const LOCK = `<svg class="lock" viewBox="0 0 24 24" fill="currentColor" role="img"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>`;
 
   const COPY = {
-    en: { timeline: "Timeline", plot: "Plot", statement: "Read the record.", angle: "Choose your angle", locked: "Locked" },
-    he: { timeline: "ציר הזמן", plot: "תרשים", statement: "קראו את התיעוד.", angle: "בחרו זווית", locked: "נעול" },
+    en: { plot: "Plot", statement: "Read the record.", angle: "Choose your angle", locked: "Locked" },
+    he: { plot: "תרשים", statement: "קראו את התיעוד.", angle: "בחרו זווית", locked: "נעול" },
   };
 
   const FLAG = {
@@ -106,7 +106,7 @@
       const hashed = (/^#view=([a-z]+)$/.exec(location.hash) || [])[1];
       const active = hashed || (here("timeline") ? "outline" : "");
       $("siteLinks").innerHTML = PAGES.map(([key, base, label]) => {
-        const current = (key === "plot" && here("plot")) || (key === "timeline" && active === "outline");
+        const current = key === "plot" && here("plot");
         return `<a href="${base}"${current ? ' aria-current="page"' : ""}>${esc(c[label])}</a>`;
       }).join("");
       $("siteSheetLinks").innerHTML = $("siteLinks").innerHTML;
