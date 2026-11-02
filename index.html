@@ -32,6 +32,33 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
   max-width: var(--measure);
 }
 
+.flags {
+  margin: 0 0 var(--space-xl);
+}
+
+.flags__pair {
+  display: flex;
+  align-items: center;
+  direction: ltr;
+  gap: var(--space-lg);
+  max-width: 100%;
+}
+
+.flags img {
+  display: block;
+  width: auto;
+  height: clamp(4.75rem, 22vw, 10rem);
+  max-width: calc(50% - var(--space-sm));
+  border: var(--rule-hair) solid var(--color-rule);
+}
+
+.flags figcaption {
+  margin-block-start: var(--space-sm);
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-muted);
+}
+
 .home h1 {
   max-width: 16ch;
   font-size: var(--text-3xl);
@@ -233,6 +260,9 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     en: {
       title: "Choose where to read",
       lede: "One dated record of the UK–Russia escalation, taken from public reporting. This page holds none of the rows. Pick an angle here, or from the bar.",
+      flagUk: "Flag of the United Kingdom",
+      flagRu: "Flag of Russia",
+      flagCap: "United Kingdom and Russia, drawn sharp. Not a photograph from the record.",
       warnH: "Not a finding about danger",
       warn: [
         "I do not work for MI6, and I do not have the full picture. What is here is a partial set of events that were already public.",
@@ -258,6 +288,9 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     he: {
       title: "בחרו מאיפה לקרוא",
       lede: "תיעוד מתוארך אחד של ההסלמה בין בריטניה לרוסיה, מתוך דיווח פומבי. בדף הזה אין שורות. בחרו זווית כאן, או מהסרגל.",
+      flagUk: "דגל הממלכה המאוחדת",
+      flagRu: "דגל רוסיה",
+      flagCap: "הממלכה המאוחדת ורוסיה, בקו חד. לא צילום מתוך התיעוד.",
       warnH: "לא ממצא על סכנה",
       warn: [
         "אני לא עובד ב־MI6, ואין לי את התמונה המלאה. מה שמופיע כאן הוא חלק מהאירועים שכבר פורסמו בפומבי.",
@@ -342,6 +375,13 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
 
     const warn = c.warn.map((p) => `<p>${esc(p)}</p>`).join("");
     home.innerHTML = `<header class="home__intro">
+        <figure class="flags">
+          <div class="flags__pair">
+            <img src="./images/flag-uk.svg" width="1000" height="600" alt="${esc(c.flagUk)}">
+            <img src="./images/flag-ru.svg" width="900" height="600" alt="${esc(c.flagRu)}">
+          </div>
+          <figcaption>${esc(c.flagCap)}</figcaption>
+        </figure>
         <h1>${esc(c.title)}</h1>
         <p class="lede">${esc(c.lede)}</p>
         <aside class="notice" role="note" aria-labelledby="warn-h">

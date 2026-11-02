@@ -27,7 +27,7 @@ jobs:
         run: |
           mkdir -p _site/images _site/redesign-options
           cp index.html uk-russia-merged-timeline.html uk-russia-plot.html uk-russia-ladder.html uk-russia-tokens.css site-nav.js _site/
-          cp images/watchkeeper.jpg images/charlie-munger.jpg _site/images/
+          cp images/watchkeeper.jpg images/charlie-munger.jpg images/flag-uk.svg images/flag-ru.svg _site/images/
           cp redesign-options/options-data.js redesign-options/options-shared.js redesign-options/options-base.css redesign-options/option-c.css _site/redesign-options/
           touch _site/.nojekyll
 
