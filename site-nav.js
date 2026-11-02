@@ -16,7 +16,7 @@
   }
 
   const PAGES = [
-    ["timeline", "./uk-russia-merged-timeline.html", "timeline"],
+    ["timeline", "./uk-russia-merged-timeline.html#view=outline", "timeline"],
     ["plot", "./uk-russia-plot.html", "plot"],
   ];
 
@@ -96,20 +96,22 @@
     document.body.append(footer);
 
     const $ = (id) => document.getElementById(id);
-    const hrefFor = (key, base) => (here(key) ? "#top" : base);
 
     function paint() {
       const lang = langOf();
       const c = COPY[lang];
       $("siteBrand").textContent = lang === "he" ? "מיפוי הסלמת בריטניה–רוסיה" : "Mapping UK-Russia escalation";
       $("siteMenuBtn").textContent = t("menu");
-      $("siteLinks").innerHTML = PAGES.map(
-        ([key, base, label]) => `<a href="${hrefFor(key, base)}"${here(key) ? ' aria-current="page"' : ""}>${esc(c[label])}</a>`
-      ).join("");
+      // A bare timeline URL is the dated list. Dangers is only the Dangers control.
+      const hashed = (/^#view=([a-z]+)$/.exec(location.hash) || [])[1];
+      const active = hashed || (here("timeline") ? "outline" : "");
+      $("siteLinks").innerHTML = PAGES.map(([key, base, label]) => {
+        const current = (key === "plot" && here("plot")) || (key === "timeline" && active === "outline");
+        return `<a href="${base}"${current ? ' aria-current="page"' : ""}>${esc(c[label])}</a>`;
+      }).join("");
       $("siteSheetLinks").innerHTML = $("siteLinks").innerHTML;
       $("angleLabel").textContent = c.angle;
       const he = lang === "he";
-      const active = (/^#view=([a-z]+)$/.exec(location.hash) || [])[1] || (here("timeline") ? "danger" : "");
       const angleLinks = ANGLES.map(([view, en, heLabel]) => {
         const label = he ? heLabel : en;
         const locked = view === "munger";
