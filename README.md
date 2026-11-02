@@ -36,7 +36,9 @@ npx netlify link --git-remote-url https://github.com/NadavRaviv/UK-Russia-escala
 npx netlify deploy --prod
 ```
 
-**GitHub Actions:** add repository secrets `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID`, then pushes to `main` run `.github/workflows/netlify.yml` (same static publish as `netlify.toml`).
+**GitHub Actions:** add repository secrets `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID`, then pushes to `main` run `.github/workflows/netlify.yml` (same static publish as `netlify.toml`). The workflow writes the **production URL** to the job summary for agent publish approvals.
+
+**Publish approval:** Cloud agents follow `.cursor/rules/publish-netlify-approval.mdc` — after you say **publish**, they send a **Netlify URL — approval requested** message. Set your live Netlify URL in `deploy/publish-targets.json` (`netlify_production_url`) so that message always includes the right link.
 
 If the site is connected to Git in the Netlify dashboard, pushes to `main` can also trigger automatic production deploys without the workflow.
 

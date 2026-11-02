@@ -29,4 +29,26 @@ jobs:
 
       - name: Publish to Netlify
         if: ${{ env.NETLIFY_AUTH_TOKEN != '' && env.NETLIFY_SITE_ID != '' }}
-        run: npx --yes netlify-cli deploy --prod --dir . --no-build --message "Deploy ${{ github.sha }}"
+        run: |
+          set -euo pipefail
+          JSON=$(npx --yes netlify-cli deploy --prod --dir . --no-build --message "Deploy ${{ github.sha }}" --json)
+          URL=$(echo "$JSON" | jq -r '.deploy_ssl_url // .url // .deploy_url // empty')
+          SITE=$(echo "$JSON" | jq -r '.site_url // empty')
+          {
+            echo "### Netlify production deploy"
+            echo ""
+            echo "- **Production URL:** ${URL:-unknown}"
+            echo "- **Site URL:** ${SITE:-unknown}"
+            echo "- **Commit:** \`${{ github.sha }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "$URL" ]; then echo "netlify_production_url=$URL" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Note skipped Netlify (for publish approval)
+        if: ${{ env.NETLIFY_AUTH_TOKEN == '' || env.NETLIFY_SITE_ID == '' }}
+        run: |
+          {
+            echo "### Netlify production deploy"
+            echo ""
+            echo "Skipped: \`NETLIFY_AUTH_TOKEN\` / \`NETLIFY_SITE_ID\` not set in repo secrets."
+            echo "GitHub Pages may still have deployed; set secrets and re-run this workflow for Netlify."
+          } >> "$GITHUB_STEP_SUMMARY"
