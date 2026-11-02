@@ -703,6 +703,24 @@
   },
   {
     "n": 40,
+    "date": "2026-10-14",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "14 OCT 2026",
+      "short": "Protector over the Channel",
+      "title": "Unarmed RAF Protector tracks Russian warships in the Channel",
+      "why": "An unarmed RAF Protector RG1 flew its first operational sorties in UK airspace, spending over 10 hours tracking Russian warships in the English Channel alongside Royal Navy warships and helicopters. The sorties ran from late September to mid-October and the MoD disclosed them on 31 October. 14 October is the only dated Protector sortie, cited in a parliamentary answer, and the row sits on that day. In the same period HMS Dauntless and HMS Tyne monitored a Russian frigate (1–14 October), and RAF helicopters tracked a Russian intelligence-gathering ship and the landing ship RFN Aleksandr Shabalin. The MoD says Royal Navy monitoring of Russian activity rose 25% in January–July 2026 compared with 2025."
+    },
+    "he": {
+      "label": "14 באוקטובר 2026",
+      "short": "פרוטקטור מעל התעלה",
+      "title": "פרוטקטור לא חמוש של ה-RAF עוקב אחרי אוניות מלחמה רוסיות בתעלה",
+      "why": "מזל״ט RAF פרוטקטור RG1 לא חמוש ביצע את גיחותיו המבצעיות הראשונות במרחב האווירי הבריטי, ושהה למעלה מ-10 שעות במעקב אחרי אוניות מלחמה רוסיות בתעלת למאנש, לצד אוניות מלחמה ומסוקים של הצי המלכותי. הגיחות נמשכו מסוף ספטמבר עד אמצע אוקטובר, ומשרד ההגנה חשף אותן ב-31 באוקטובר. 14 באוקטובר הוא התאריך היחיד של גיחת פרוטקטור שמצוטט בתשובה פרלמנטרית, והשורה יושבת על היום הזה. באותה תקופה עקבו HMS Dauntless ו-HMS Tyne אחרי פריגטה רוסית (1–14 באוקטובר), ומסוקי RAF עקבו אחרי אוניית איסוף מודיעין רוסית ואחרי אוניית הנחיתה RFN אלכסנדר שאבאלין. משרד ההגנה אומר שהמעקב של הצי המלכותי אחרי פעילות רוסית עלה ב-25% בינואר–יולי 2026 לעומת 2025."
+    }
+  },
+  {
+    "n": 41,
     "date": "2026-10-22",
     "approx": false,
     "side": "ru",
@@ -720,7 +738,7 @@
     }
   },
   {
-    "n": 41,
+    "n": 42,
     "date": "2026-10-30",
     "approx": false,
     "side": "ru",
