@@ -979,15 +979,20 @@
           var hero = document.querySelector("header.hero");
           if (!img || !hero) return;
           if (/^#view=munger$/.test(hash)) {
-            hero.classList.remove("hero--danger");
-            hero.classList.add("hero--munger");
-            img.dataset.hero = "munger";
-            img.src = "./images/charlie-munger.jpg";
-            img.removeAttribute("srcset");
-            img.width = 1457;
-            img.height = 2050;
-            img.alt = "Charlie Munger seated at a table in 2010";
-            return;
+            var unlocked = false;
+            try { unlocked = sessionStorage.getItem("ukru-munger") === "1"; } catch (e) {}
+            if (unlocked) {
+              hero.classList.remove("hero--danger");
+              hero.classList.add("hero--munger");
+              img.dataset.hero = "munger";
+              img.src = "./images/charlie-munger.jpg";
+              img.removeAttribute("srcset");
+              img.width = 1457;
+              img.height = 2050;
+              img.alt = "Charlie Munger seated at a table in 2010";
+              return;
+            }
+            hash = "#view=outline";
           }
           if (/^#view=danger$/.test(hash)) return;
           if (hash === "" || hash === "#" || hash === "#top" || /^#view=(kanban|domain|outline|ladder)$/.test(hash)) {
@@ -2654,6 +2659,9 @@ const MUNGER_KEY = "ukru-munger";
 const MUNGER_CODE = [5,6,1,9,4,8].join("");
 let viewOverride = null;
 let lang = "en";
+let sawOtherView = false;
+let mungerCancelToken = 0;
+let mungerLeaving = false;
 
 function defaultView(){
   return "outline";
@@ -2667,7 +2675,10 @@ function mungerUnlocked(){
   return sessionStorage.getItem(MUNGER_KEY) === "1";
 }
 
+let mungerCloseTimer = 0;
+
 function openMungerGate(){
+  window.clearTimeout(mungerCloseTimer);
   mungerCode.value = "";
   mungerErr.hidden = true;
   mungerGate.hidden = false;
@@ -2681,7 +2692,8 @@ function closeMungerGate(){
   mungerGate.classList.remove("is-open");
   mungerCode.value = "";
   mungerErr.hidden = true;
-  window.setTimeout(function(){
+  window.clearTimeout(mungerCloseTimer);
+  mungerCloseTimer = window.setTimeout(function(){
     if (!mungerGate.classList.contains("is-open")) mungerGate.hidden = true;
   }, 260);
 }
@@ -2707,7 +2719,7 @@ const HERO_MUNGER_SRC = "./images/charlie-munger.jpg";
 const HERO_DRONE_SRC = "./images/watchkeeper.jpg";
 
 function surfaceBiasHero(){
-  return currentView() === "munger" || /^#view=munger$/.test(window.location.hash || "");
+  return currentView() === "munger" && mungerUnlocked();
 }
 
 function dangerHero(){
@@ -2786,6 +2798,7 @@ function paintHero(){
 
 function chosenAngle(){
   const m = /^#view=([a-z]+)$/.exec(window.location.hash || "");
+  if (m && m[1] === "munger" && !mungerUnlocked()) return currentView() || "outline";
   if (m && ["danger", "kanban", "domain", "outline", "munger", "ladder"].includes(m[1])) return m[1];
   return currentView() || "outline";
 }
@@ -2802,14 +2815,57 @@ function paintTitle(){
   set("title", angleHeadline());
 }
 
+function sameOriginReferrer(){
+  try {
+    if (!document.referrer) return false;
+    return new URL(document.referrer).origin === window.location.origin;
+  } catch (e) {
+    return false;
+  }
+}
+
+function showOutlineInstead(){
+  mungerLeaving = false;
+  viewOverride = "outline";
+  history.replaceState(null, "", window.location.pathname + window.location.search + "#view=outline");
+  applyView();
+}
+
+function cancelMungerGate(){
+  closeMungerGate();
+  if (mungerUnlocked()) return;
+  if (!/^#view=munger$/.test(window.location.hash || "")) return;
+  if (mungerLeaving) return;
+  mungerLeaving = true;
+  const token = ++mungerCancelToken;
+  const canBack = history.length > 1 && (sawOtherView || sameOriginReferrer());
+  if (!canBack){
+    showOutlineInstead();
+    return;
+  }
+  const before = window.location.href;
+  history.back();
+  window.setTimeout(function(){
+    if (token !== mungerCancelToken) return;
+    if (window.location.href !== before && !/^#view=munger$/.test(window.location.hash || "")){
+      mungerLeaving = false;
+      return;
+    }
+    showOutlineInstead();
+  }, 400);
+}
+
 function requestMungerView(){
   if (mungerUnlocked()){
     viewOverride = "munger";
     applyView();
     return;
   }
-  paintHero();
-  paintTitle();
+  mungerLeaving = false;
+  if (!sawOtherView) viewOverride = "outline";
+  overview.classList.remove("layout-munger");
+  if (mungerPanelEl) mungerPanelEl.hidden = true;
+  applyView();
   openMungerGate();
 }
 
@@ -2834,14 +2890,23 @@ function applyView(){
 }
 
 document.getElementById("munger-submit").addEventListener("click", tryUnlockMunger);
-document.getElementById("munger-cancel").addEventListener("click", closeMungerGate);
+document.getElementById("munger-cancel").addEventListener("click", cancelMungerGate);
 mungerCode.addEventListener("keydown", e => {
   if (e.key === "Enter") tryUnlockMunger();
-  if (e.key === "Escape") closeMungerGate();
+  if (e.key === "Escape"){
+    e.preventDefault();
+    cancelMungerGate();
+  }
 });
 mungerGate.addEventListener("click", e => {
-  if (e.target === mungerGate) closeMungerGate();
+  if (e.target === mungerGate) cancelMungerGate();
 });
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape" || mungerGate.hidden) return;
+  e.preventDefault();
+  cancelMungerGate();
+});
+window.addEventListener("pagehide", function(){ mungerCancelToken++; });
 dangerSlider.addEventListener("input", () => {
   stopPlay();
   dangerStep = +dangerSlider.value;
@@ -3119,6 +3184,9 @@ function viewFromHash(){
     return;
   }
   if (["danger", "kanban", "outline", "domain", "ladder"].includes(view)){
+    sawOtherView = true;
+    mungerLeaving = false;
+    mungerCancelToken++;
     viewOverride = view;
     applyView();
     scrollPageTop();

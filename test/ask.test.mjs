@@ -47,6 +47,10 @@ test("the page keeps six view tabs and the Hebrew standfirst", () => {
     assert.equal(nav.includes('["' + id + '",'), true, id);
   }
   assert.match(html, /קצב האירועים גדל פי 3\.3/);
+  assert.match(html, /function cancelMungerGate\(/);
+  assert.match(html, /getElementById\("munger-cancel"\)\.addEventListener\("click", cancelMungerGate\)/);
+  assert.match(html, /currentView\(\) === "munger" && mungerUnlocked\(\)/);
+  assert.match(html, /sessionStorage\.getItem\("ukru-munger"\)/);
   assert.equal((html.match(/date:"2026-/g) || []).length, 42);
   assert.equal(html.includes("COGNEE_API_KEY"), false);
 });
