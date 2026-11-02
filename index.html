@@ -16,59 +16,47 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
 <link rel="stylesheet" href="./redesign-options/options-base.css">
 <link rel="stylesheet" href="./redesign-options/option-c.css">
 <style>
-/* Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V4 */
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V4 */
 /* Hallmark · macrostructure: Catalogue · tone: editorial · anchor hue: locked option C
-   Audience: a reader opening the audit. Use: choose an angle. Enrichment: none.
+   Audience: a reader opening the audit. Use: choose an angle.
+   Enrichment: the same photographic hero as Plot, split London | Moscow.
    Nav stays the shared pill. Footer stays the shared statement. */
+.hero__pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  direction: ltr;
+  height: 100%;
+  gap: 2px;
+  background: var(--color-hero-scrim);
+}
+
+.hero__pair img {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.hero__pair .is-london {
+  object-position: 62% 38%;
+}
+
+.hero__pair .is-moscow {
+  object-position: 50% 30%;
+}
+
 .home {
   display: grid;
   gap: var(--space-3xl);
-  padding-block: calc(var(--nav-clearance, var(--space-5xl)) + var(--space-lg)) var(--space-4xl);
 }
 
-.home__intro,
-.prose,
-.marks {
+.prose p,
+.marks,
+.notice {
   max-width: var(--measure);
-}
-
-.flags {
-  margin: 0 0 var(--space-xl);
-}
-
-.flags__pair {
-  display: flex;
-  align-items: center;
-  direction: ltr;
-  gap: var(--space-lg);
-  max-width: 100%;
-}
-
-.flags img {
-  display: block;
-  width: auto;
-  height: clamp(4.75rem, 22vw, 10rem);
-  max-width: calc(50% - var(--space-sm));
-  border: var(--rule-hair) solid var(--color-rule);
-}
-
-.flags figcaption {
-  margin-block-start: var(--space-sm);
-  font-size: var(--text-sm);
-  line-height: var(--leading-body);
-  color: var(--color-muted);
-}
-
-.home h1 {
-  max-width: 16ch;
-  font-size: var(--text-3xl);
-  font-weight: 600;
-}
-
-.home h2 {
-  margin-block-end: var(--space-md);
-  font-size: var(--text-2xl);
-  font-weight: 600;
 }
 
 .lede {
@@ -223,6 +211,52 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
   outline-offset: 3px;
 }
 
+@media (max-width: 40rem) {
+  /* Photographs sit under the bar, stacked, so both buildings stay in frame. The title follows on the page. */
+  .hero {
+    display: block;
+    min-height: 0;
+    padding: var(--nav-clearance, var(--space-5xl)) 0 0;
+  }
+
+  .hero::after {
+    display: none;
+  }
+
+  .hero__bg {
+    position: relative;
+    height: 24rem;
+  }
+
+  .hero__pair {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .hero__pair .is-london {
+    object-position: 58% 42%;
+  }
+
+  .hero__pair .is-moscow {
+    object-position: 50% 42%;
+  }
+
+  .hero__inner {
+    padding-block: var(--space-xl) 0;
+    color: var(--color-ink);
+  }
+
+  .hero h1,
+  .hero .lede {
+    color: var(--color-ink);
+  }
+
+  .hero .credit,
+  .hero .credit a {
+    color: var(--color-muted);
+  }
+}
+
 @media (min-width: 48rem) {
   .choices {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
@@ -246,23 +280,23 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
 </head>
 <body>
 <main id="main">
-  <div class="wrap home" id="home"></div>
+  <section class="hero" id="hero" aria-labelledby="h1"></section>
+  <div class="section wrap home" id="home"></div>
 </main>
 <script src="./redesign-options/options-data.js"></script>
 <script src="./redesign-options/options-shared.js"></script>
 <script src="./site-nav.js"></script>
 <script>
 (function () {
-  const { esc, initLang } = window.UKRU_UI;
+  const { esc, initLang, PHOTOS, url, creditInner } = window.UKRU_UI;
   const LOCK = `<svg class="lock" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>`;
 
   const COPY = {
     en: {
       title: "Choose where to read",
       lede: "One dated record of the UK–Russia escalation, taken from public reporting. This page holds none of the rows. Pick an angle here, or from the bar.",
-      flagUk: "Flag of the United Kingdom",
-      flagRu: "Flag of Russia",
-      flagCap: "United Kingdom and Russia, drawn sharp. Not a photograph from the record.",
+      london: "Elizabeth Tower, London.",
+      moscow: "Moscow Kremlin.",
       warnH: "Not a finding about danger",
       warn: [
         "I do not work for MI6, and I do not have the full picture. What is here is a partial set of events that were already public.",
@@ -288,9 +322,8 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     he: {
       title: "בחרו מאיפה לקרוא",
       lede: "תיעוד מתוארך אחד של ההסלמה בין בריטניה לרוסיה, מתוך דיווח פומבי. בדף הזה אין שורות. בחרו זווית כאן, או מהסרגל.",
-      flagUk: "דגל הממלכה המאוחדת",
-      flagRu: "דגל רוסיה",
-      flagCap: "הממלכה המאוחדת ורוסיה, בקו חד. לא צילום מתוך התיעוד.",
+      london: "מגדל אליזבת, לונדון.",
+      moscow: "הקרמלין, מוסקבה.",
       warnH: "לא ממצא על סכנה",
       warn: [
         "אני לא עובד ב־MI6, ואין לי את התמונה המלאה. מה שמופיע כאן הוא חלק מהאירועים שכבר פורסמו בפומבי.",
@@ -374,32 +407,45 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     }).join("");
 
     const warn = c.warn.map((p) => `<p>${esc(p)}</p>`).join("");
-    home.innerHTML = `<header class="home__intro">
-        <figure class="flags">
-          <div class="flags__pair">
-            <img src="./images/flag-uk.svg" width="1000" height="600" alt="${esc(c.flagUk)}">
-            <img src="./images/flag-ru.svg" width="900" height="600" alt="${esc(c.flagRu)}">
-          </div>
-          <figcaption>${esc(c.flagCap)}</figcaption>
-        </figure>
-        <h1>${esc(c.title)}</h1>
+    const heroAlt = {
+      en: { bigben: PHOTOS.bigben.alt, kremlin: PHOTOS.kremlin.alt },
+      he: {
+        bigben: "מגדל אליזבת וארמון וסטמינסטר בשעת בין ערביים",
+        kremlin: "חומות הקרמלין ומגדליו מעבר לנהר מוסקבה",
+      },
+    };
+    const heroImg = (key) => {
+      const widths = [480, 800, 1280, 1920];
+      const srcset = widths.map((w) => `${url(key, w)} ${w}w`).join(", ");
+      return `<img class="${key === "bigben" ? "is-london" : "is-moscow"}" src="${url(key, 1280)}" srcset="${srcset}" sizes="(max-width: 40rem) 100vw, 50vw" width="1280" height="800" alt="${esc(heroAlt[lang][key])}" fetchpriority="high">`;
+    };
+    const hero = document.getElementById("hero");
+    hero.innerHTML = `<div class="hero__bg hero__pair">
+        ${heroImg("bigben")}
+        ${heroImg("kremlin")}
+      </div>
+      <div class="wrap hero__inner" lang="${lang}" dir="${lang === "he" ? "rtl" : "ltr"}">
+        <h1 id="h1">${esc(c.title)}</h1>
         <p class="lede">${esc(c.lede)}</p>
-        <aside class="notice" role="note" aria-labelledby="warn-h">
-          <h2 id="warn-h">${esc(c.warnH)}</h2>
-          ${warn}
-        </aside>
-      </header>
+        <p class="credit">${esc(c.london)} ${creditInner("bigben", lang)}. ${esc(c.moscow)} ${creditInner("kremlin", lang)}.</p>
+      </div>`;
+    home.innerHTML = `<aside class="notice" role="note" aria-labelledby="warn-h">
+        <h2 id="warn-h">${esc(c.warnH)}</h2>
+        ${warn}
+      </aside>
       <section class="prose" aria-labelledby="what-h">
-        <h2 id="what-h">${esc(c.whatH)}</h2>
+        <div class="section__head"><h2 id="what-h">${esc(c.whatH)}</h2></div>
         ${c.what.map((p) => `<p>${esc(p)}</p>`).join("")}
       </section>
       <section aria-labelledby="read-h">
-        <h2 id="read-h">${esc(c.readH)}</h2>
+        <div class="section__head"><h2 id="read-h">${esc(c.readH)}</h2></div>
         <dl class="marks">${marks}</dl>
       </section>
       <section aria-labelledby="angles-h">
-        <h2 id="angles-h">${esc(c.anglesH)}</h2>
-        <p class="angles__lead">${esc(c.anglesLead)}</p>
+        <div class="section__head">
+          <h2 id="angles-h">${esc(c.anglesH)}</h2>
+          <p>${esc(c.anglesLead)}</p>
+        </div>
         <div class="choices">${tiles}</div>
         <p class="plot-note">${c.plot}</p>
       </section>`;
