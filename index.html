@@ -8,7 +8,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
 </script>
 <meta name="color-scheme" content="light">
 <title>Choose an angle — UK–Russia escalation</title>
-<meta name="description" content="How the UK–Russia escalation record is built, how to read a row, and six angles to open. No chart and no event list on this page.">
+<meta name="description" content="A personal project for learning design, visualisation, UI, and UX. Public events only, not a finding about whether a situation is safe.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Noto+Serif+Hebrew:wght@400;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -47,6 +47,26 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
 .lede {
   margin-block-start: var(--space-md);
   font-size: var(--text-md);
+  line-height: var(--leading-body);
+}
+
+.notice {
+  display: grid;
+  gap: var(--space-sm);
+  margin-block-start: var(--space-lg);
+  padding: var(--space-lg);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-md);
+  background: var(--color-paper-2);
+}
+
+.home .notice h2 {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.notice p {
+  font-size: var(--text-base);
   line-height: var(--leading-body);
 }
 
@@ -213,6 +233,11 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     en: {
       title: "Choose where to read",
       lede: "One dated record of the UK–Russia escalation, taken from public reporting. This page holds none of the rows. Pick an angle here, or from the bar.",
+      warnH: "Not a finding about danger",
+      warn: [
+        "I do not work for MI6, and I do not have the full picture. What is here is a partial set of events that were already public.",
+        "This is a personal project for learning design, visualisation, UI, and UX. It does not decide whether a situation is safe. It is not a recommendation to feel in danger, or to feel that you are not.",
+      ],
       whatH: "What this is",
       what: [
         "An open-source audit. Each row is a dated event with a side, a grade, and a source you can open. Earlier sets graded the two sides on different questions. This set uses one rule throughout: whether Britain is the named object of the signal. That is the question a source can answer.",
@@ -233,6 +258,11 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     he: {
       title: "בחרו מאיפה לקרוא",
       lede: "תיעוד מתוארך אחד של ההסלמה בין בריטניה לרוסיה, מתוך דיווח פומבי. בדף הזה אין שורות. בחרו זווית כאן, או מהסרגל.",
+      warnH: "לא ממצא על סכנה",
+      warn: [
+        "אני לא עובד ב־MI6, ואין לי את התמונה המלאה. מה שמופיע כאן הוא חלק מהאירועים שכבר פורסמו בפומבי.",
+        "זה פרויקט אישי ללמידה של עיצוב, ויזואליזציה, UI ו־UX. הוא אינו קובע אם מצב בטוח או לא. הוא אינו המלצה להרגיש סכנה, או להרגיש שאין סכנה.",
+      ],
       whatH: "מה זה",
       what: [
         "ביקורת בקוד פתוח. כל שורה היא אירוע מתוארך עם צד, דירוג, ומקור שאפשר לפתוח. מערכים קודמים דירגו את שני הצדדים לפי שאלות שונות. המערך הזה מחיל כלל אחד לכל אורכו: האם בריטניה היא המושא הנקוב של האיתות. זו השאלה שמקור יכול לענות עליה.",
@@ -310,9 +340,14 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
       </a>`;
     }).join("");
 
+    const warn = c.warn.map((p) => `<p>${esc(p)}</p>`).join("");
     home.innerHTML = `<header class="home__intro">
         <h1>${esc(c.title)}</h1>
         <p class="lede">${esc(c.lede)}</p>
+        <aside class="notice" role="note" aria-labelledby="warn-h">
+          <h2 id="warn-h">${esc(c.warnH)}</h2>
+          ${warn}
+        </aside>
       </header>
       <section class="prose" aria-labelledby="what-h">
         <h2 id="what-h">${esc(c.whatH)}</h2>
