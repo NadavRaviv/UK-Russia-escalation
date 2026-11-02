@@ -22,12 +22,12 @@
   ];
 
   const ANGLES = [
-    ["danger", "Dangers", "סכנה"],
+    ["danger", "Dangers", "סכנות"],
     ["outline", "List", "רשימה"],
     ["kanban", "Bands", "רמות"],
     ["domain", "Domain", "תחום"],
-    ["munger", "Biases & surprises", "הטיות והפתעות"],
     ["ladder", "Levels", "רמות מעלה/מטה"],
+    ["munger", "Biases & surprises", "הטיות והפתעות"],
   ];
 
   const LOCK = `<svg class="lock" viewBox="0 0 24 24" fill="currentColor" role="img"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>`;
