@@ -1,14 +1,341 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr" data-option="c">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UK–Russia escalation</title>
-<link rel="canonical" href="./uk-russia-plot.html">
-<meta http-equiv="refresh" content="0; url=./uk-russia-plot.html">
-<script>location.replace("./uk-russia-plot.html")</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentElement.setAttribute("data-theme", "dark"); } catch (e) {}
+</script>
+<meta name="color-scheme" content="light">
+<title>Choose an angle — UK–Russia escalation</title>
+<meta name="description" content="How the UK–Russia escalation record is built, how to read a row, and six angles to open. No chart and no event list on this page.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Noto+Serif+Hebrew:wght@400;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./uk-russia-tokens.css">
+<link rel="stylesheet" href="./redesign-options/options-base.css">
+<link rel="stylesheet" href="./redesign-options/option-c.css">
+<style>
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V4 */
+/* Hallmark · macrostructure: Catalogue · tone: editorial · anchor hue: locked option C
+   Audience: a reader opening the audit. Use: choose an angle. Enrichment: none.
+   Nav stays the shared pill. Footer stays the shared statement. */
+.home {
+  display: grid;
+  gap: var(--space-3xl);
+  padding-block: calc(var(--nav-clearance, var(--space-5xl)) + var(--space-lg)) var(--space-4xl);
+}
+
+.home__intro,
+.prose,
+.marks {
+  max-width: var(--measure);
+}
+
+.home h1 {
+  max-width: 16ch;
+  font-size: var(--text-3xl);
+  font-weight: 600;
+}
+
+.home h2 {
+  margin-block-end: var(--space-md);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+}
+
+.lede {
+  margin-block-start: var(--space-md);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+}
+
+.prose {
+  display: grid;
+  gap: var(--space-md);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+}
+
+.marks {
+  display: grid;
+  gap: var(--space-lg);
+  margin: 0;
+}
+
+.marks > div {
+  display: grid;
+  gap: var(--space-2xs);
+  padding-block-start: var(--space-md);
+  border-block-start: var(--rule-hair) solid var(--color-rule);
+}
+
+.marks dt {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  font-style: normal;
+  line-height: var(--leading-tight);
+}
+
+.marks dd {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+}
+
+.angles__lead {
+  margin-block-end: var(--space-lg);
+  max-width: var(--measure);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  min-width: 0;
+  min-height: var(--tap-min);
+  padding: var(--space-lg);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: transform var(--dur-micro) var(--ease-out);
+}
+
+.choice:hover {
+  background: var(--color-paper-2);
+}
+
+.choice:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.choice:active {
+  transform: translateY(1px);
+}
+
+.choice--locked {
+  background: var(--color-paper-2);
+}
+
+.choice--locked:hover {
+  background: var(--color-paper-3);
+}
+
+.choice h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--text-xl);
+  font-weight: 600;
+}
+
+.choice p {
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+}
+
+.choice__go {
+  margin-block-start: auto;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+
+.plot-note {
+  margin-block-start: var(--space-lg);
+  max-width: var(--measure);
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-muted);
+}
+
+.plot-note a {
+  color: var(--color-ink);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.plot-note a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+@media (min-width: 48rem) {
+  .choices {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  }
+
+  .choice--locked {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choice {
+    transition: none;
+  }
+
+  .choice:active {
+    transform: none;
+  }
+}
+</style>
 </head>
 <body>
-<p><a href="./uk-russia-plot.html">UK–Russia escalation</a></p>
+<main id="main">
+  <div class="wrap home" id="home"></div>
+</main>
+<script src="./redesign-options/options-data.js"></script>
+<script src="./redesign-options/options-shared.js"></script>
+<script src="./site-nav.js"></script>
+<script>
+(function () {
+  const { esc, initLang } = window.UKRU_UI;
+  const LOCK = `<svg class="lock" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>`;
+
+  const COPY = {
+    en: {
+      title: "Choose where to read",
+      lede: "One dated record of the UK–Russia escalation, taken from public reporting. This page holds none of the rows. Pick an angle here, or from the bar.",
+      whatH: "What this is",
+      what: [
+        "An open-source audit. Each row is a dated event with a side, a grade, and a source you can open. Earlier sets graded the two sides on different questions. This set uses one rule throughout: whether Britain is the named object of the signal. That is the question a source can answer.",
+        "The angles do not add events. They cut the same rows. How alarming a row is, how directly Britain is named, and what kind of object is in play are judgements, and they are marked as judgements. The source stays on the row.",
+      ],
+      readH: "How to read a row",
+      marks: [
+        ["Flag", "The flag is who acted. A Union flag is a British or western act. A Russian flag is a Russian act or statement, and red on these pages means Russia and nothing else. A third mark is a US event."],
+        ["Ring", "The ring is the grade, and it carries no colour. Solid means Britain is named, or the act is against British ships, staff, territory, or equipment. Dashed means the documented driver sits elsewhere — Ukraine broadly, NATO, Washington, or a domestic matter — and any British link is inferred, not stated."],
+        ["Date and Why", "The date comes first, then the sentence. Why holds the note and the sources. A row beside another row is not a claim that one caused the next. A tilde (~) on a date means the day is approximate."],
+      ],
+      anglesH: "Six ways in",
+      anglesLead: "Same rows. A different question each time.",
+      open: "Read",
+      locked: "Locked",
+      plot: `Plot, in the bar, opens the danger-and-impact cut on its own page: the chart and the row you select. <a href="./uk-russia-plot.html">Open Plot</a>`,
+    },
+    he: {
+      title: "בחרו מאיפה לקרוא",
+      lede: "תיעוד מתוארך אחד של ההסלמה בין בריטניה לרוסיה, מתוך דיווח פומבי. בדף הזה אין שורות. בחרו זווית כאן, או מהסרגל.",
+      whatH: "מה זה",
+      what: [
+        "ביקורת בקוד פתוח. כל שורה היא אירוע מתוארך עם צד, דירוג, ומקור שאפשר לפתוח. מערכים קודמים דירגו את שני הצדדים לפי שאלות שונות. המערך הזה מחיל כלל אחד לכל אורכו: האם בריטניה היא המושא הנקוב של האיתות. זו השאלה שמקור יכול לענות עליה.",
+        "הזוויות אינן מוסיפות אירועים. הן חותכות את אותן שורות. עד כמה שורה מדאיגה, עד כמה בריטניה נקובה במפורש, ואיזה סוג מושא עומד על הפרק — אלה שיפוטים, והם מסומנים כשיפוטים. המקור נשאר על השורה.",
+      ],
+      readH: "איך קוראים שורה",
+      marks: [
+        ["הדגל", "הדגל הוא מי פעל. דגל בריטניה הוא מהלך בריטי או מערבי. דגל רוסיה הוא מהלך או הצהרה רוסיים, ואדום בדפים האלה פירושו רוסיה ולא דבר אחר. סימן שלישי הוא אירוע אמריקאי."],
+        ["הטבעת", "הטבעת היא הדירוג, ואין לה צבע. טבעת מלאה: בריטניה נקובה, או שהמעשה מופנה לכלי שיט, לסגל, לשטח או לציוד בריטיים. טבעת מקווקוות: הגורם המתועד יושב במקום אחר — אוקראינה בכללותה, נאט״ו, וושינגטון, או עניין פנימי — וכל קשר בריטי הוא הסקה ולא אמירה."],
+        ["התאריך והפירוט", "קודם התאריך, אחר כך המשפט. ״פירוט״ מחזיק את ההערה ואת המקורות. שורה ליד שורה אינה טענה שאחת גרמה לבאה אחריה. טילדה (~) על תאריך פירושה שהיום משוער."],
+      ],
+      anglesH: "שש כניסות",
+      anglesLead: "אותן שורות. שאלה אחרת בכל פעם.",
+      open: "לקריאה",
+      locked: "נעול",
+      plot: `תרשים, בסרגל, פותח את חיתוך הסכנה וההשפעה בדף משלו: התרשים והשורה שבוחרים. <a href="./uk-russia-plot.html">לתרשים</a>`,
+    },
+  };
+
+  const ANGLES = [
+    {
+      view: "danger",
+      en: ["Dangers", "Watch danger and impact together. Up is more alarming. Right is larger stakes if it lands. Walking the dates moves the cloud, so a drift toward the top right reads as a path."],
+      he: ["סכנה", "לראות סכנה והשפעה יחד. למעלה — מדאיג יותר. ימינה — מחיר גדול יותר אם זה מתממש. הליכה בתאריכים מזיזה את הענן, וכך נדידה אל הפינה העליונה והימנית נקראת כמסלול."],
+    },
+    {
+      view: "outline",
+      en: ["List", "Read in date order. The gaps stay visible, so a run of days reads differently from a quiet month. The other angles are cuts of this record."],
+      he: ["רשימה", "לקרוא לפי תאריך. המרווחים נשארים גלויים, ולכן רצף של ימים נקרא אחרת מחודש שקט. שאר הזוויות הן חיתוכים של התיעוד הזה."],
+    },
+    {
+      view: "kanban",
+      en: ["Bands", "Sort by how explicitly Britain is the object, not by how loud the row is. A routine diplomatic note and a named strike threat stop sharing a pile. The top band also asks whether that named object sits under a strike threat or a concealed act."],
+      he: ["רמות", "למיין לפי מידת המפורשות שבה בריטניה היא המושא, לא לפי עוצמת הרעש. פתק דיפלומטי שגרתי ואיום תקיפה נקוב מפסיקים לחלוק ערימה. הרמה העליונה שואלת גם אם המושא הנקוב יושב תחת איום תקיפה או מעשה מוסתר."],
+    },
+    {
+      view: "domain",
+      en: ["Domain", "Sort by the kind of thing in play: military systems, a war zone, the systems of ordinary life, a city or diplomatic space, or money and sanctions. A sanctions package and a strike on a refinery stop looking like the same kind of event."],
+      he: ["תחום", "למיין לפי סוג הדבר שעומד על הפרק: מערכות צבאיות, זירת מלחמה, מערכות החיים הרגילים, עיר או מרחב דיפלומטי, או כסף וסנקציות. חבילת סנקציות ותקיפת בית זיקוק מפסיקות להיראות כאותו סוג אירוע."],
+    },
+    {
+      view: "ladder",
+      en: ["Levels", "Set the record on an escalation ladder, from media attention up to civilians harmed, and put other wars on the same clock. “How high” becomes a comparison."],
+      he: ["רמות מעלה/מטה", "להניח את התיעוד על סולם הסלמה, מתשומת לב תקשורתית ועד פגיעה באזרחים, ולהעמיד מלחמות אחרות על אותו שעון. ״כמה גבוה״ הופך להשוואה."],
+    },
+    {
+      view: "munger",
+      locked: true,
+      en: ["Biases & surprises", "Charlie Munger’s misjudgments, lined up against the record. They surface the biases in a reading, and show where a surprise can come from off the obvious UK–Russia thread. Not predictions. This angle asks for a 6-digit access code."],
+      he: ["הטיות והפתעות", "השיפוטים השגויים של צ׳ארלי מאנגר, מיושרים מול התיעוד. הם חושפים את ההטיות בקריאה, ומראים מאין הפתעה יכולה לבוא מחוץ לציר הבריטניה–רוסיה הברור. לא תחזיות. הזווית הזו מבקשת קוד גישה בן 6 ספרות."],
+    },
+  ];
+
+  let lang = "en";
+
+  function paint() {
+    const c = COPY[lang];
+    const home = document.getElementById("home");
+    home.lang = lang;
+    home.dir = lang === "he" ? "rtl" : "ltr";
+    document.title = lang === "he" ? "בחרו זווית — הסלמה בריטניה–רוסיה" : "Choose an angle — UK–Russia escalation";
+
+    const marks = c.marks.map(([name, body]) =>
+      `<div><dt>${esc(name)}</dt><dd>${esc(body)}</dd></div>`
+    ).join("");
+
+    const tiles = ANGLES.map((a) => {
+      const [name, why] = a[lang];
+      const lock = a.locked ? LOCK : "";
+      const locked = a.locked ? ` choice--locked" title="${esc(c.locked)}"` : `"`;
+      return `<a class="choice${locked} href="./uk-russia-merged-timeline.html#view=${a.view}">
+        <h3>${esc(name)}${lock}</h3>
+        <p>${esc(why)}</p>
+        <span class="choice__go">${esc(c.open)}</span>
+      </a>`;
+    }).join("");
+
+    home.innerHTML = `<header class="home__intro">
+        <h1>${esc(c.title)}</h1>
+        <p class="lede">${esc(c.lede)}</p>
+      </header>
+      <section class="prose" aria-labelledby="what-h">
+        <h2 id="what-h">${esc(c.whatH)}</h2>
+        ${c.what.map((p) => `<p>${esc(p)}</p>`).join("")}
+      </section>
+      <section aria-labelledby="read-h">
+        <h2 id="read-h">${esc(c.readH)}</h2>
+        <dl class="marks">${marks}</dl>
+      </section>
+      <section aria-labelledby="angles-h">
+        <h2 id="angles-h">${esc(c.anglesH)}</h2>
+        <p class="angles__lead">${esc(c.anglesLead)}</p>
+        <div class="choices">${tiles}</div>
+        <p class="plot-note">${c.plot}</p>
+      </section>`;
+  }
+
+  initLang((l) => {
+    lang = l;
+    paint();
+  });
+  window.UKRU_NAV.mount({ current: "home", lang: () => lang, onLang: paint });
+})();
+</script>
 </body>
 </html>
