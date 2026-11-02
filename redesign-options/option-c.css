@@ -80,7 +80,7 @@
 
 /* Section anchors sit behind a hairline so they read as secondary to the views.
    Cancel the bar gap in front of that line so the brand sits against it.
-   The link's own padding keeps Timeline off the stroke. */
+   The link's own padding keeps Plot off the stroke. */
 .pill__links {
   padding-inline-start: var(--space-xs);
   border-inline-start: var(--rule-hair) solid var(--color-rule);
