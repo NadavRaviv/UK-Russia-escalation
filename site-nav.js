@@ -25,7 +25,7 @@
     ["outline", "List", "רשימה"],
     ["kanban", "Bands", "רמות"],
     ["domain", "Domain", "תחום"],
-    ["munger", "Surface Bias", "חשיפת הטיות"],
+    ["munger", "Biases & surprises", "הטיות והפתעות"],
     ["ladder", "Levels", "רמות מעלה/מטה"],
   ];
 
