@@ -1,6 +1,6 @@
 /* Shared top bar + statement footer for the UK–Russia site.
- * Plot, then the six angles: inline on a wide screen, “Choose your angle” on a narrow one.
- * List is the dated record. There is no separate Timeline control.
+ * Home and Plot, then the six angles: inline on a wide screen, “Choose your angle” on a narrow one.
+ * Home is the chooser. List is the dated record. There is no separate Timeline control.
  * Language changes the words only; the bar stays left to right.
  * Loaded after options-shared.js. Exposes window.UKRU_NAV.mount(opts). */
 (function () {
@@ -17,6 +17,7 @@
   }
 
   const PAGES = [
+    ["home", "./index.html", "home"],
     ["plot", "./uk-russia-plot.html", "plot"],
   ];
 
@@ -32,8 +33,8 @@
   const LOCK = `<svg class="lock" viewBox="0 0 24 24" fill="currentColor" role="img"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>`;
 
   const COPY = {
-    en: { plot: "Plot", statement: "Read the record.", angle: "Choose your angle", locked: "Locked" },
-    he: { plot: "תרשים", statement: "קראו את התיעוד.", angle: "בחרו זווית", locked: "נעול" },
+    en: { home: "Home", plot: "Plot", statement: "Read the record.", angle: "Choose your angle", locked: "Locked" },
+    he: { home: "בית", plot: "תרשים", statement: "קראו את התיעוד.", angle: "בחרו זווית", locked: "נעול" },
   };
 
   const FLAG = {
@@ -52,7 +53,7 @@
     header.className = "pill";
     header.id = "top";
     header.innerHTML = `<div class="pill__bar">
-      <a class="pill__brand" href="./uk-russia-plot.html#top" id="siteBrand"></a>
+      <a class="pill__brand" href="./index.html#top" id="siteBrand"></a>
       <div class="pill__group">
         <nav class="pill__links" id="siteLinks" aria-label="Pages"></nav>
         <nav class="pill__views" id="angleBar" aria-label="Angles"></nav>
@@ -106,7 +107,7 @@
       const hashed = (/^#view=([a-z]+)$/.exec(location.hash) || [])[1];
       const active = hashed || (here("timeline") ? "outline" : "");
       $("siteLinks").innerHTML = PAGES.map(([key, base, label]) => {
-        const current = key === "plot" && here("plot");
+        const current = here(key);
         return `<a href="${base}"${current ? ' aria-current="page"' : ""}>${esc(c[label])}</a>`;
       }).join("");
       $("siteSheetLinks").innerHTML = $("siteLinks").innerHTML;

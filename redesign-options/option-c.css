@@ -1079,7 +1079,8 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
 
 }
 
-@media (min-width: 64rem) {
+/* Inline angles need the full row. Below this, Home + Plot + six labels wrap and clip the language control. */
+@media (min-width: 70rem) {
   .pill__views {
     display: inline-flex;
     margin-inline-start: var(--space-2xs);
