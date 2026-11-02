@@ -644,6 +644,7 @@
   .munger-gate{
     position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
     background:var(--overlay);backdrop-filter:blur(8px);
+    padding:var(--nav-clearance, 5.5rem) var(--space-md) var(--space-lg);
     opacity:0;visibility:hidden;pointer-events:none;
     transition:opacity 260ms ease-out,visibility 0s linear 260ms;
   }
@@ -653,9 +654,10 @@
   }
   .munger-gate[hidden]{display:none}
   .munger-modal{
+    position:relative;
     background:var(--surface);border:var(--rule-hair) solid var(--rule);border-radius:var(--radius-md);
     box-shadow:var(--shadow-float);
-    padding:var(--space-lg) var(--space-lg) var(--space-md);width:min(320px,calc(100vw - 40px));text-align:center;
+    padding:calc(var(--tap-min) + var(--space-xs)) var(--space-lg) var(--space-md);width:min(320px,calc(100vw - 40px));text-align:center;
     transform:scale(0.96);opacity:0;
     transition:transform 260ms ease-out,opacity 260ms ease-out;
   }
@@ -758,30 +760,39 @@
     position:fixed;inset:0;z-index:40;
     background:var(--overlay);
     display:flex;align-items:center;justify-content:center;
-    padding:24px 16px;
+    padding:var(--nav-clearance, 5.5rem) var(--space-md) var(--space-lg);
   }
   .why-overlay[hidden]{display:none}
   .why-dialog{
+    position:relative;
     background:var(--surface);border:var(--rule-hair) solid var(--rule);border-radius:var(--radius-md);
-    max-width:520px;width:100%;max-height:min(80vh,640px);
+    max-width:520px;width:100%;
+    max-height:calc(100% - var(--nav-clearance, 5.5rem) - var(--space-lg));
+    min-height:0;
     overflow:auto;padding:var(--space-lg);
     box-shadow:var(--shadow-float);
   }
-  .why-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-sm);margin-bottom:var(--space-sm)}
+  .why-head{margin-bottom:var(--space-sm);padding-inline-end:var(--tap-min)}
   .why-kicker{
     font-family:var(--font-body);font-size:var(--text-xs);font-weight:600;letter-spacing:0;
     color:var(--yellow);margin:0 0 var(--space-2xs);
   }
   body[dir="rtl"] .why-kicker{letter-spacing:0;font-family:var(--font-body);font-size:11px;text-transform:none}
   .why-dialog h2{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;line-height:var(--leading-snug);margin:0;letter-spacing:-.01em}
-  .why-close{
-    display:inline-flex;align-items:center;min-height:var(--tap-min);
-    font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;letter-spacing:0;
-    color:var(--muted);background:transparent;border:var(--rule-hair) solid var(--rule);border-radius:var(--radius-pill);
-    padding:0 var(--space-md);cursor:pointer;flex:none;
+  /* Hallmark · component: popup close · genre: editorial · theme: uk-russia-tokens
+     states: default · hover · focus-visible · active · disabled · loading n/a · error n/a · success n/a */
+  .popup-x{
+    position:absolute;top:var(--space-xs);right:var(--space-xs);z-index:1;
+    width:var(--tap-min);height:var(--tap-min);padding:0;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:var(--muted);background:transparent;border:0;border-radius:var(--radius-pill);
+    cursor:pointer;
   }
-  .why-close:hover{color:var(--text)}
-  body[dir="rtl"] .why-close{letter-spacing:0;font-family:var(--font-body);text-transform:none}
+  .popup-x svg{width:var(--text-md);height:var(--text-md);display:block}
+  .popup-x:hover{color:var(--text);background:var(--color-paper)}
+  .popup-x:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+  .popup-x:active{transform:scale(0.97)}
+  .popup-x:disabled{opacity:0.4;cursor:not-allowed}
   .why-body{font-size:var(--text-base);color:var(--muted);line-height:var(--leading-body);margin:0 0 var(--space-sm)}
   .why-dialog .srcs{border-top:var(--rule-hair) solid var(--rule);padding-top:var(--space-sm)}
   .why-dialog .srcs:empty{display:none}
@@ -1112,7 +1123,10 @@
   </section>
 
   <div class="munger-gate" id="munger-gate" hidden>
-    <div class="munger-modal" id="munger-modal">
+    <div class="munger-modal" id="munger-modal" role="dialog" aria-modal="true" aria-labelledby="mungerGateTitle">
+      <button type="button" class="popup-x" id="munger-x" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
       <h3 id="mungerGateTitle"></h3>
       <p id="mungerGateHint"></p>
       <input class="munger-code" id="munger-code" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off" aria-label="Access code">
@@ -1142,12 +1156,12 @@
 
 <div class="why-overlay" id="whyOverlay" hidden>
   <div class="why-dialog" id="whyDialog" role="dialog" aria-modal="true" aria-labelledby="whyTitle">
+    <button type="button" class="popup-x" id="whyClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
     <div class="why-head">
-      <div>
-        <p class="why-kicker" id="whyKicker"></p>
-        <h2 id="whyTitle"></h2>
-      </div>
-      <button type="button" class="why-close" id="whyClose"></button>
+      <p class="why-kicker" id="whyKicker"></p>
+      <h2 id="whyTitle"></h2>
     </div>
     <p class="why-body" id="whyBody"></p>
     <div class="srcs" id="whySrcs"></div>
@@ -2212,7 +2226,7 @@ function openWhy(i){
   set("whyTitle", c.title);
   set("whyBody", c.why);
   set("whySrcs", sourceHtml(e, lang));
-  document.getElementById("whyClose").textContent = t.whyClose;
+  document.getElementById("whyClose").setAttribute("aria-label", t.whyClose);
   whyOverlay.hidden = false;
   document.body.classList.add("why-open");
   document.getElementById("whyClose").focus();
@@ -2225,7 +2239,7 @@ function openInfo(kicker, title, html){
   set("whyTitle", title);
   set("whyBody", html);
   set("whySrcs", "");
-  document.getElementById("whyClose").textContent = t.whyClose;
+  document.getElementById("whyClose").setAttribute("aria-label", t.whyClose);
   whyOverlay.hidden = false;
   document.body.classList.add("why-open");
   document.getElementById("whyClose").focus();
@@ -2496,6 +2510,8 @@ function renderMunger(code){
   document.getElementById("munger-err").textContent = t.mungerGateErr;
   document.getElementById("munger-submit").textContent = t.mungerGateSubmit;
   document.getElementById("munger-cancel").textContent = t.mungerGateCancel;
+  document.getElementById("munger-x").setAttribute("aria-label", t.whyClose);
+  document.getElementById("whyClose").setAttribute("aria-label", t.whyClose);
   document.getElementById("mungerGrid").innerHTML = cards.map(c =>
     '<article class="munger-card">' +
       '<p class="bias">' + c.bias + '</p>' +
@@ -2891,6 +2907,7 @@ function applyView(){
 
 document.getElementById("munger-submit").addEventListener("click", tryUnlockMunger);
 document.getElementById("munger-cancel").addEventListener("click", cancelMungerGate);
+document.getElementById("munger-x").addEventListener("click", cancelMungerGate);
 mungerCode.addEventListener("keydown", e => {
   if (e.key === "Enter") tryUnlockMunger();
   if (e.key === "Escape"){

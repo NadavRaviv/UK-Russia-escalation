@@ -51,6 +51,10 @@ test("the page keeps six view tabs and the Hebrew standfirst", () => {
   assert.match(html, /getElementById\("munger-cancel"\)\.addEventListener\("click", cancelMungerGate\)/);
   assert.match(html, /currentView\(\) === "munger" && mungerUnlocked\(\)/);
   assert.match(html, /sessionStorage\.getItem\("ukru-munger"\)/);
+  assert.match(html, /id="munger-x"/);
+  assert.match(html, /id="whyClose"/);
+  assert.equal((html.match(/class="popup-x"/g) || []).length, 2);
+  assert.match(html, /getElementById\("munger-x"\)\.addEventListener\("click", cancelMungerGate\)/);
   assert.equal((html.match(/date:"2026-/g) || []).length, 42);
   assert.equal(html.includes("COGNEE_API_KEY"), false);
 });
