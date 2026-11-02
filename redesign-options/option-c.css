@@ -3,7 +3,9 @@
  * nav: N5 Floating pill (desktop: six tracker views inline; mobile: Views dropdown + Menu sheet) · footer: Ft5 Statement · motion: dot scale + fade, reduced-motion safe
  * tokens: ../uk-russia-tokens.css [data-option="c"]
  */
-/* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5 · contrast: pass (40–41) · nav: N5 · footer: Ft5 · slop: pass (42–45) */
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5 · contrast: pass (40–41) · nav: N5 · footer: Ft5 · slop: pass (42–45)
+ * Stageshow pass: the plot is the hero and the detail card its one raised satellite; the time control sits on the ground;
+ * rows share one date lane; the card settles instead of swapping. */
 
 /* N5 · Floating pill ---------------------------------------------------- */
 .pill {
@@ -201,7 +203,7 @@
   border: var(--rule-hair) solid var(--color-rule);
   border-radius: var(--radius-md);
   background: var(--color-paper-2);
-  box-shadow: 0 12px 32px var(--color-shadow);
+  box-shadow: var(--shadow-float);
   animation: dd-in var(--dur-micro) var(--ease-out);
 }
 
@@ -582,11 +584,15 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   gap: var(--space-lg);
 }
 
-.plot-wrap {
+/* Axis lane, plot and time control share one grid, so the control's reading edge is the plot's. */
+.instrument__plot {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  grid-template-rows: auto auto;
-  gap: var(--space-xs) var(--space-xs);
+  gap: var(--space-xs);
+}
+
+.plot-wrap {
+  display: contents;
 }
 
 .axis-y {
@@ -698,14 +704,16 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   pointer-events: none;
 }
 
-/* Time control */
+/* Time control. A control strip under the plot, on the ground: a hairline above it, no second box
+   competing with the plot and the card for weight. */
 .timebar {
+  grid-row: 3;
+  grid-column: 2;
   display: grid;
   gap: var(--space-xs);
-  padding: var(--space-md);
-  border: var(--rule-hair) solid var(--color-rule);
-  border-radius: var(--radius-md);
-  background: var(--color-paper-2);
+  margin-block-start: var(--space-xs);
+  padding-block-start: var(--space-sm);
+  border-block-start: var(--rule-hair) solid var(--color-rule);
 }
 
 .timebar__top {
@@ -782,14 +790,23 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   color: var(--color-accent);
 }
 
-/* Detail card */
+/* Detail card: the one raised surface on the page, the satellite that carries the result.
+   A hairline on the light edge, one shadow, and its body settles in when the selection changes. */
 .card {
   display: grid;
   align-content: start;
   border: var(--rule-hair) solid var(--color-rule);
   border-radius: var(--radius-md);
   background: var(--color-paper-2);
+  box-shadow: var(--shadow-raised);
   overflow: clip;
+}
+
+@keyframes card-settle {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
 }
 
 .card__photo img {
@@ -806,6 +823,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   display: grid;
   gap: var(--space-sm);
   padding: var(--space-md);
+  animation: card-settle var(--dur-short) var(--ease-out) both;
 }
 
 .card__meta {
@@ -819,17 +837,26 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   font-size: var(--text-xl);
 }
 
+/* Three numbers, one strip. The title above is the big thing; these read as a row of
+   label-and-value pairs, each pair one item, separated by hairlines rather than air. */
 .card__nums {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-sm);
   margin: 0;
+  padding-block-start: var(--space-sm);
+  border-block-start: var(--rule-hair) solid var(--color-rule);
 }
 
 .card__nums div {
   display: flex;
   flex-direction: column-reverse;
   gap: var(--space-2xs);
+  padding-inline-end: var(--space-sm);
+}
+
+.card__nums div + div {
+  padding-inline-start: var(--space-sm);
+  border-inline-start: var(--rule-hair) solid var(--color-rule);
 }
 
 .card__nums dt {
@@ -840,7 +867,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
 .card__nums dd {
   margin: 0;
   font-family: var(--font-body);
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   font-weight: 700;
   line-height: 1;
 }
@@ -857,16 +884,25 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   border-block-start: var(--rule-hair) solid var(--color-rule);
 }
 
-/* Rows */
+/* Rows. Every row shares one grid: a date lane and a content lane, so the dates line up
+   as a column and the titles start on one reading edge. Narrow screens stack the lanes. */
 .rows {
   border-block-start: var(--rule-hair) solid var(--color-rule);
 }
 
 .rows li {
   display: grid;
-  gap: var(--space-2xs);
-  padding-block: var(--space-md);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2xs) var(--space-lg);
+  padding-block: var(--space-sm) 0;
   border-block-end: var(--rule-hair) solid var(--color-rule);
+}
+
+/* The Why control keeps its 44px target, but its words sit under the title; the target's
+   remaining height is the air before the next record, so the title and its note read as one item. */
+.rows .why summary {
+  align-items: flex-start;
+  line-height: var(--leading-body);
 }
 
 .row__date {
@@ -1008,6 +1044,22 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
     padding-block-end: var(--space-3xl);
   }
 
+  .rows li {
+    grid-template-columns: 11rem minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .row__date {
+    grid-column: 1;
+    grid-row: 1;
+    /* the date's line box is ~2px shorter than the title's first line; seat it on the same reading edge */
+    padding-block-start: 1px;
+  }
+
+  .rows li > :not(.row__date) {
+    grid-column: 2;
+  }
+
   .angles__label {
     flex-basis: auto;
     margin-inline-end: var(--space-xs);
@@ -1018,11 +1070,6 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   .instrument {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
     align-items: start;
-  }
-
-  .instrument__plot {
-    display: grid;
-    gap: var(--space-md);
   }
 
   .card {
@@ -1052,7 +1099,8 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .dd__menu {
+  .dd__menu,
+  .card__body {
     animation: none;
   }
 

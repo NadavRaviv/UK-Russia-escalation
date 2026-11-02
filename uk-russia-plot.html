@@ -248,6 +248,31 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     const at = order.findIndex((e) => e.id === sel.id);
     const prev = at > 0 ? order[at - 1] : null;
     const next = at >= 0 && at < order.length - 1 ? order[at + 1] : null;
+    // The card re-mounts (and settles in) only when what it shows has changed; expanding the
+    // list or nudging the slider past unrelated rows leaves it still.
+    const cardKey = [lang, sel.id, prev ? prev.id : "", next ? next.id : ""].join(":");
+    if ($("card").dataset.key !== cardKey) renderCard(sel, prev, next, cardKey);
+
+    const list = shown.slice().reverse();
+    const cut = state.expand ? list : list.slice(0, 8);
+    $("rows").innerHTML = cut
+      .map(
+        (e) => `<li>
+        <div class="row__date mono"><time datetime="${e.date}">${esc(ev(e).label)}</time>${sideTag(e)} ${ringMark(e)}</div>
+        <h3 class="row__title"><button type="button" data-pick="${e.id}" aria-label="${esc(c.onPlot + ": " + ev(e).title)}">${esc(ev(e).title)}</button></h3>
+        ${whyHtml(e)}
+      </li>`
+      )
+      .join("");
+    $("rows").querySelectorAll("[data-pick]").forEach((b) => b.addEventListener("click", () => select(Number(b.dataset.pick), true)));
+    $("more").innerHTML = list.length > 8 ? `<button type="button" class="chip" id="moreBtn">${esc(state.expand ? c.showLess : c.showAll + " (" + list.length + ")")}</button>` : "";
+    const mb = $("moreBtn");
+    if (mb) mb.addEventListener("click", () => { state.expand = !state.expand; update(); $("moreBtn").focus(); });
+  }
+
+  function renderCard(sel, prev, next, cardKey) {
+    const c = COPY[lang];
+    $("card").dataset.key = cardKey;
     $("card").innerHTML = `<div class="card__body">
         <div class="card__meta mono"><time datetime="${sel.date}">${esc(ev(sel).label)}</time>${sideTag(sel)}<span>${ringMark(sel)} ${esc(sel.direct ? t("direct") : t("indirect"))}</span></div>
         <h3>${esc(ev(sel).title)}</h3>
@@ -271,22 +296,6 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
         if (again && !again.disabled) again.focus();
       })
     );
-
-    const list = shown.slice().reverse();
-    const cut = state.expand ? list : list.slice(0, 8);
-    $("rows").innerHTML = cut
-      .map(
-        (e) => `<li>
-        <div class="row__date mono"><time datetime="${e.date}">${esc(ev(e).label)}</time>${sideTag(e)} ${ringMark(e)}</div>
-        <h3 class="row__title"><button type="button" data-pick="${e.id}" aria-label="${esc(c.onPlot + ": " + ev(e).title)}">${esc(ev(e).title)}</button></h3>
-        ${whyHtml(e)}
-      </li>`
-      )
-      .join("");
-    $("rows").querySelectorAll("[data-pick]").forEach((b) => b.addEventListener("click", () => select(Number(b.dataset.pick), true)));
-    $("more").innerHTML = list.length > 8 ? `<button type="button" class="chip" id="moreBtn">${esc(state.expand ? c.showLess : c.showAll + " (" + list.length + ")")}</button>` : "";
-    const mb = $("moreBtn");
-    if (mb) mb.addEventListener("click", () => { state.expand = !state.expand; update(); $("moreBtn").focus(); });
   }
 
   initLang((l) => {
