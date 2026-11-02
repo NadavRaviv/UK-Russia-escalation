@@ -989,7 +989,8 @@
             img.alt = "Charlie Munger seated at a table in 2010";
             return;
           }
-          if (/^#view=(kanban|domain|outline|ladder)$/.test(hash)) {
+          if (/^#view=danger$/.test(hash)) return;
+          if (hash === "" || hash === "#" || hash === "#top" || /^#view=(kanban|domain|outline|ladder)$/.test(hash)) {
             hero.classList.remove("hero--danger");
             img.dataset.hero = "westminster";
             img.src = "https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1920";
@@ -2639,7 +2640,7 @@ let viewOverride = null;
 let lang = "en";
 
 function defaultView(){
-  return "danger";
+  return "outline";
 }
 
 function currentView(){
@@ -2694,9 +2695,6 @@ function surfaceBiasHero(){
 }
 
 function dangerHero(){
-  const hash = window.location.hash || "";
-  if (/^#view=(kanban|domain|outline|ladder|munger)$/.test(hash)) return false;
-  if (hash === "" || hash === "#" || /^#view=danger$/.test(hash)) return true;
   return currentView() === "danger";
 }
 
@@ -2773,8 +2771,7 @@ function paintHero(){
 function chosenAngle(){
   const m = /^#view=([a-z]+)$/.exec(window.location.hash || "");
   if (m && ["danger", "kanban", "domain", "outline", "munger", "ladder"].includes(m[1])) return m[1];
-  const view = currentView();
-  return view === "munger" ? "munger" : (view || "danger");
+  return currentView() || "outline";
 }
 
 function angleHeadline(){
@@ -2806,10 +2803,10 @@ function applyView(){
   const isLadder = view === "ladder";
   // Only stamp an override class when the user picked a tab.
   // With neither class, CSS media queries show exactly one default layout.
-  overview.classList.toggle("layout-kanban", viewOverride === "kanban");
-  overview.classList.toggle("layout-outline", viewOverride === "outline");
-  overview.classList.toggle("layout-domain", viewOverride === "domain");
-  overview.classList.toggle("layout-danger", viewOverride === "danger" || (!viewOverride && defaultView() === "danger"));
+  overview.classList.toggle("layout-kanban", view === "kanban");
+  overview.classList.toggle("layout-outline", view === "outline");
+  overview.classList.toggle("layout-domain", view === "domain");
+  overview.classList.toggle("layout-danger", view === "danger");
   overview.classList.toggle("layout-munger", isMunger);
   overview.classList.toggle("layout-ladder", isLadder);
   const record = document.getElementById("record");
@@ -3088,6 +3085,7 @@ document.getElementById("askForm").addEventListener("submit", async (ev) => {
 });
 
 // Deep links: #view=danger|kanban|outline|domain|munger|ladder (Munger still asks for its code).
+// No hash is the dated list. Dangers opens only from #view=danger.
 // The top nav used to land on the overview, below the hero. Every angle opens at the top.
 function scrollPageTop(){
   const root = document.documentElement;
@@ -3098,8 +3096,7 @@ function scrollPageTop(){
 }
 function viewFromHash(){
   const m = /^#view=([a-z]+)$/.exec(window.location.hash || "");
-  if (!m) return;
-  const view = m[1];
+  const view = m ? m[1] : "outline";
   if (view === "munger"){
     requestMungerView();
     scrollPageTop();
