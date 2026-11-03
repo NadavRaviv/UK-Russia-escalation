@@ -33,8 +33,8 @@
   const LOCK = `<svg class="lock" viewBox="0 0 24 24" fill="currentColor" role="img"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>`;
 
   const COPY = {
-    en: { home: "Home", plot: "Plot", statement: "Read the record.", angle: "Choose your angle", locked: "Locked" },
-    he: { home: "בית", plot: "תרשים", statement: "קראו את התיעוד.", angle: "בחרו זווית", locked: "נעול" },
+    en: { home: "Home", plot: "Plot", statement: "Public events only — not a safety finding.", angle: "Views", locked: "Locked" },
+    he: { home: "בית", plot: "תרשים", statement: "אירועים פומביים בלבד — לא ממצא על בטיחות.", angle: "תצוגות", locked: "נעול" },
   };
 
   const FLAG = {
@@ -101,7 +101,7 @@
     function paint() {
       const lang = langOf();
       const c = COPY[lang];
-      $("siteBrand").textContent = lang === "he" ? "מיפוי הסלמת בריטניה–רוסיה" : "Mapping UK-Russia escalation";
+      $("siteBrand").textContent = lang === "he" ? "בריטניה–רוסיה" : "UK–Russia";
       $("siteMenuBtn").textContent = t("menu");
       // A bare timeline URL is the dated list. Dangers is only the Dangers control.
       const hashed = (/^#view=([a-z]+)$/.exec(location.hash) || [])[1];
@@ -125,8 +125,7 @@
       $("angleBar").innerHTML = angleLinks;
       $("angleMenu").innerHTML = angleLinks;
       $("siteSheetAngles").innerHTML = angleLinks;
-      $("siteFooter").innerHTML = `<p class="statement__line">${esc(c.statement)}</p>
-        <p class="statement__fine">Made by Grok Bot &amp; Cursor. Chef: <a href="https://www.nadav.agency" rel="noopener">Nadav Raviv</a></p>`;
+      $("siteFooter").innerHTML = `<p class="statement__line">${esc(c.statement)}</p>`;
       syncTheme();
     }
 

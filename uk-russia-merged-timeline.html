@@ -12,7 +12,7 @@
   } catch (e) {}
 })();
 </script>
-<title>UK–Russia escalation — merged timeline audit, Feb–Oct 2026</title>
+<title>UK–Russia escalation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Noto+Serif+Hebrew:wght@400;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -206,8 +206,7 @@
   .timeline-body{padding-block:var(--space-2xl) var(--space-3xl)}
   header.hero{padding-block-start:var(--nav-clearance)}
   .hero h1,
-  .hero .eyebrow,
-  .hero .standfirst,
+  .hero .tl-pace,
   .hero .chip,
   .hero .chip b,
   .hero .chip .count{color:var(--color-on-photo)}
@@ -216,8 +215,7 @@
     background:color-mix(in oklch, var(--color-hero-scrim) 45%, transparent);
   }
   .hero .chip:hover{border-color:var(--color-on-photo);color:var(--color-on-photo)}
-  .hero .eyebrow{font-size:var(--text-xs);margin:0}
-  .hero .standfirst{font-size:var(--text-md)}
+  .hero .tl-pace{font-size:var(--text-sm);color:var(--color-muted);margin:var(--space-xs) 0 0;line-height:var(--leading-snug)}
   .hero h1{font-weight:700}
   .hero .chip .ring.on,
   .hero .chip .ring.off{border-color:var(--color-on-photo)}
@@ -1019,9 +1017,8 @@
       </script>
     </div>
     <div class="wrap hero__inner">
-      <p class="eyebrow" id="eyebrow"></p>
       <h1 id="title"></h1>
-      <p class="standfirst" id="standfirst"></p>
+      <p class="tl-pace" id="tlPace"></p>
       <div class="chipbar">
         <span class="chip"><span class="ring on"></span><b id="k1"></b></span>
         <span class="chip"><span class="ring off"></span><b id="k2"></b></span>
@@ -1037,36 +1034,14 @@
 
   <div class="wrap timeline-body">
 
-  <div class="langbar">
-    <button type="button" class="theme-btn" id="btn-theme" aria-label="Switch to dark">
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="4"/>
-        <path d="M12 3v1.6M12 19.4V21M4.9 4.9l1.1 1.1M18 18l1.1 1.1M3 12h1.6M19.4 12H21M4.9 19.1 6 18M18 6l1.1-1.1"/>
-      </svg>
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/>
-      </svg>
-      <span id="themeName"></span>
-    </button>
-    <div class="toggle" role="group" aria-label="Language">
-      <button id="btn-en" aria-pressed="true">EN</button>
-      <button id="btn-he" aria-pressed="false">עברית</button>
-    </div>
-  </div>
-
   <section class="ask" id="ask" aria-labelledby="askTitle" data-state="idle" hidden>
     <h2 id="askTitle"></h2>
-    <p class="ask-note" id="askNote"></p>
     <form class="ask-form" id="askForm" action="#ask" novalidate>
-      <label class="ask-label" id="askLabel" for="askInput"></label>
       <div class="ask-row">
         <input class="ask-input" id="askInput" name="query" type="text" maxlength="300" autocomplete="off" enterkeyhint="send" aria-describedby="askHelp">
         <button class="ask-submit" id="askSubmit" type="submit"></button>
       </div>
-      <p class="ask-meta">
-        <span class="ask-help" id="askHelp"></span>
-        <span class="ask-count" id="askCount" aria-hidden="true">0 / 300</span>
-      </p>
+      <p class="ask-help" id="askHelp" role="alert" hidden></p>
     </form>
     <p class="ask-status" id="askStatus" role="status" aria-live="polite"></p>
     <div class="ask-answer" id="askAnswer" dir="auto" hidden></div>
@@ -1083,7 +1058,7 @@
     <div class="bands" id="bands" role="tabpanel" hidden></div>
     <div class="danger-pane" id="dangerPane" role="tabpanel">
       <div class="danger-bar">
-        <label class="povlab" for="dangerPov" id="povLabel"></label>
+        <label class="povlab visually-hidden" for="dangerPov" id="povLabel"></label>
         <span class="pov-wrap">
           <select class="pov" id="dangerPov">
             <option value="toRu"></option>
@@ -1114,7 +1089,6 @@
       <div class="danger-key" id="dangerKey"></div>
     </div>
     <div class="munger-panel" id="munger-panel" role="tabpanel" hidden>
-      <p class="intro" id="mungerIntro"></p>
       <div class="munger-grid" id="mungerGrid"></div>
     </div>
     <div class="ladder-panel" id="ladder-panel" role="tabpanel" hidden>
@@ -1147,7 +1121,6 @@
   </div>
 
   <footer class="narrow">
-    <p class="footline" id="footLine"></p>
     <button type="button" class="info-btn" id="btn-method"></button>
   </footer>
 
@@ -1160,7 +1133,6 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
     <div class="why-head">
-      <p class="why-kicker" id="whyKicker"></p>
       <h2 id="whyTitle"></h2>
     </div>
     <p class="why-body" id="whyBody"></p>
@@ -1175,9 +1147,8 @@
 const T = {
   en: {
     dir:"ltr", lang:"en",
-    eyebrow:"Open-source audit · Feb–Oct 2026",
     title:"UK–Russia escalation",
-    standfirst:"Events are landing 3.3 times faster since 15 August, and the Russian rows are drifting toward higher danger and higher stakes. Forty-two dated events, both sides.",
+    tlPace:"3.3× pace since 15 Aug · 42 events · Feb–Oct 2026",
     k1:'Direct <em class="count">33</em>',
     k1d:"<b>Direct link — solid ring.</b> Names Britain, or acts against British ships, staff, territory or equipment.",
     k2:'Indirect <em class="count">9</em>',
@@ -1194,33 +1165,22 @@ const T = {
     foot:"<b>Merging two grading schemes.</b> The British set coded for a link to the escalation thesis; the Russian set coded for whether a signal named Britain. Those are not the same question. This set uses the second, narrower rule throughout, which is the one that can be checked against a source rather than against a hypothesis.<br><br><b>Flag and ring.</b> The two encode different things and should be read separately: the flag is which side acted, the ring style is the grading — solid for a direct link, dashed for none. The grading deliberately carries no colour, so that red can mean Russia on this page and nothing else. The Union flag is drawn in simplified form at this size — the diagonal counterchange is not rendered. Neither is a claim about causation between adjacent rows.<br><br><b>Interval scale.</b> Gap heights use a square-root scale — a 34-day gap is drawn about six times the height of a 1-day gap, not thirty-four times. Without it the short intervals would be invisible. The day count inside each badge is exact.<br><br><b>Badge fill.</b> The tint, border and weight of each interval badge run inverse to its length: anything two days or under is bold on full gold, and longer gaps fade toward the page's slate grey. Gold carries time throughout the page. It encodes the same number as the label, so it adds emphasis rather than information.<br><br><b>Same-day intervals.</b> Four intervals are zero days and are badged as such. Ordering within a day follows the reporting, not a verified clock.<br><br><b>Approximate dates.</b> Three rows are dated to the month or to \u201caround\u201d a day (marked ~). Intervals touching them are approximate and marked as such. The ambassador's departure, carried as approximate in the earlier set, is now dated to 21 July on the Guardian's account.<br><br><b>Two rows dated to disclosure, not to the act.</b> The submarine operation ran for over a month before 9 April and sits on the day Britain revealed it. The drone strikes run the other way: dated to February, with the August disclosure logged as its own row. The two cannot be compared without that in mind.<br><br><b>Date conflicts, unresolved.</b> The Fedorov remark: CBS dates it 25 August, the Independent to around the 24th. The CIA trip: the Guardian says Tuesday, others Wednesday. The embassy warning: logged 17 August, carried by Reuters on the 18th. The Sarmat launch: Defense News 12 May, GlobalSecurity 13 May.<br><br><b>One unsourced row.</b> The 6 August defence talks have no online report found; the row is marked rather than linked to something adjacent.<br><br><b>Two candidates dropped.</b> A reported North Korean missile strike on Kyiv (19–20 Aug) and a GRU-signature explosive drone found near a Ukrainian cargo aircraft in Germany (27 Aug) were each carried by a single outlet at second hand. Neither is in the timeline.<br><br><b>Counter-signals are graded the same way.</b> On 1 September Moscow calls the ambassador's departure routine and says a successor is coming, which cuts against the reading placed on the 23 August row. It still codes red, because the rule asks whether Britain is the named object of a signal, not whether the signal points up or down. A red row is not on its own evidence of escalation.<br><br><b>Window.</b> Both sides run the full February–October window. The earlier trimmed Russian window, and the selection-effect note attached to it, do not carry over to these figures.",
     dayUnit:"d", sameDay:"same day", gapWord:"Gap",
     months:["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],
-    ovTitle:"Bands · how directly Britain is named",
-    ovNote:"A third axis, and the only one on this page that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — not how alarming its content is. The top band adds a second cut: the named object sits under a strike threat or a concealed act, so notified gunnery and diplomat rows stay routine. That is also why an unannounced nuclear exercise and an American trip to Moscow both sit in the first band. Flag and ring keep their meanings.",
-    ovTitleDomain:"Domains · the kind of object in play",
-    ovNoteDomain:"War versus civil, infrastructure versus zone, and money as its own card. War infra is army systems and the plants that make them. War zones are military geography — a front, a base, a stretch of water. Civil infra is the systems of ordinary life: airports, courts, energy plants. Civil zone is cities and diplomatic space. Money and sanctions is packages, asset freezes, designations, enforcement, and other financial measures between Britain and Russia. Nothing in this set is a strike on London buildings. Like the bands, this cut is a judgement. Flag and ring keep their meanings.",
-    ovViewLabel:"View",
-    ovKanban:"Bands", ovKanbanHint:"how direct",
-    ovOutline:"List", ovOutlineHint:"by date",
-    ovDomain:"Domain", ovDomainHint:"war / civil / money",
-    ovDanger:"Danger", ovDangerHint:"signal strength",
-    ovMunger:"Biases & surprises", ovMungerHint:"25 misjudgments · locked",
-    ovLadder:"Levels", ovLadderHint:"escalation ladder · UK–Russia vs three wars",
-    ovLadderNote:"Nine rungs from media to civilians harmed. Five lanes share one clock: UK–Russia on today; Russia–Ukraine, Israel–Iran, US–Iran and Israel–Hamas on each war's outbreak. Dashed marks are suspected, not attributed. Green rows stay off the line unless you switch them on inside the panel.",
-    mungerIntro:"Charlie Munger's psychology of human misjudgment, applied to this record. His insights surface the biases that distort how the timeline is read, and once the record is lined up against them you can see where the surprises can come from. Each card names a bias, a corrective, and a watch item that sits off the obvious UK–Russia thread. Not predictions — hypotheses designed to carry fewer built-in mistakes.",
+    ovTitle:"Bands",
+    ovTitleDomain:"Domains",
+    ovMunger:"Biases & surprises",
+    ovLadder:"Levels",
     mungerGateTitle:"Biases & surprises",
-    mungerGateHint:"Inspired by Charlie Munger, whose Psychology of Human Misjudgment named 25 standard causes of error that distort predictions. Those insights surface the biases in a reading; lined up against them, you can see where the surprises can come from.<br><br>Enter the 6-digit access code.",
+    mungerGateHint:"6-digit access code",
     mungerGateErr:"Incorrect code.",
     mungerGateSubmit:"Unlock",
     mungerGateCancel:"Cancel",
     mungerFix:"Fix",
     mungerWatch:"Watch",
-    ovTitleDanger:"Danger against impact",
-    ovNoteDanger:"A fourth cut, and a judgement like the bands. Vertical is how alarming the act is — high at the top. Horizontal is how large the stakes are if it lands — high to the right. The slider keeps every row up to the date you stop on, so the cloud can be read as a path. The cross marks the centre of the five most recent rows and the faint line behind it is where that centre has been. Drift compares those five rows with the five before them: positive means the recent cluster sits higher and further right. Blue is a British or western act, red is Russian; the two American rows are grey.",
+    ovTitleDanger:"Dangers",
     dangerHigh:"High danger", dangerLow:"Low danger",
     impactLow:"Low impact", impactHigh:"High impact",
     dangerCentre:n=>"last "+n,
     keyNewest:"newest", keySelected:"selected", keyHot:"danger 7+ · impact 7+",
-    selHint:"Select a point for its row.",
     selClose:"Clear", selDangerL:"Danger", selImpactL:"Impact", selBandL:"Band",
     dangerSlider:"Date",
     povLabel:"View",
@@ -1231,8 +1191,7 @@ const T = {
     tempoBtn:"Tempo", tempoTitle:"Interval compression",
     methodBtn:"Method", methodTitle:"Method and caveats",
     playLabel:"Play through the dates", pauseLabel:"Pause",
-    tlTitle:"Timeline", tlCount:"42 events · Feb – Oct 2026",
-    footLine:"Forty-two rows, February to October 2026. Every row carries its source.",
+    tlTitle:"Timeline", tlCount:"42 events · Feb–Oct 2026",
     metaFmt:(n,r,rng)=>(n===1?"1 row":n+" rows")+" &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
       {name:"Britain not named", def:"Background, structural, or deliberately concealed. Britain is not the object."},
@@ -1249,16 +1208,13 @@ const T = {
     ],
     sides:{uk:"UK", ru:"RU", ot:"US"},
     ago:(n,soft)=>n===0?"today":n===1?"yesterday":(soft?"~":"")+n+"d ago",
-    whyBtn:"Why", whyClose:"Close", whyKicker:"Note",
-    askTitle:"Ask the tracker",
-    askNote:"Answers are AI-generated from the tracker’s sources. Dated questions use the matching rows. Check the linked row first.",
-    askLabel:"Question",
+    whyBtn:"Why", whyClose:"Close",
+    askTitle:"Ask",
     askPlaceholder:"What happened on 29 September?",
     askSubmit:"Ask",
     askLoading:"Asking…",
     askLoadingStatus:"Asking the tracker…",
-    askHelp:"300 characters at most.",
-    askLinks:"Rows in the tracker",
+    askLinks:"Rows",
     askEmpty:"The question is empty. Type a question about the timeline.",
     askTooLong:"That question is longer than 300 characters. Shorten it and ask again.",
     askRate:"Too many questions from this connection. Wait a minute and try again.",
@@ -1266,15 +1222,11 @@ const T = {
     askUnconfigured:"Ask the tracker is not configured on this deploy yet.",
     askUpstream:"Cognee did not return an answer. Try again in a moment.",
     askOffline:"Ask the tracker is available on the Netlify site. This page cannot reach that function.",
-    themeToDark:"Switch to dark theme",
-    themeToLight:"Switch to light theme",
-    themeNameDark:"Dark", themeNameLight:"Light"
   },
   he: {
     dir:"rtl", lang:"he",
-    eyebrow:"בדיקת מקורות גלויים · פברואר–אוקטובר 2026",
     title:"הסלמה בין בריטניה לרוסיה",
-    standfirst:"קצב האירועים גדל פי 3.3 מאז 15 באוגוסט, והשורות הרוסיות נודדות לעבר סכנה גבוהה יותר ומחיר גבוה יותר. ארבעים ושניים אירועים מתוארכים, משני הצדדים.",
+    tlPace:"פי 3.3 מאז 15 באוגוסט · 42 אירועים · פבר׳–אוק׳ 2026",
     k1:'ישיר <em class="count">33</em>',
     k1d:"<b>קשר ישיר — טבעת מלאה.</b> נוקב בשם בריטניה, או פועל נגד כלי שיט, אנשי סגל, שטח או ציוד בריטיים.",
     k2:'עקיף <em class="count">9</em>',
@@ -1291,33 +1243,22 @@ const T = {
     foot:"<b>מיזוג שתי סכמות דירוג.</b> המערך הבריטי סימן לפי קשר לתזת ההסלמה; המערך הרוסי סימן לפי השאלה אם האיתות נוקב בשם בריטניה. אלה אינן אותה שאלה. המערך הזה משתמש בכלל השני, הצר יותר, לכל אורכו — זה שניתן לבדיקה מול מקור ולא מול השערה.<br><br><b>הדגל והטבעת.</b> השניים מקודדים דברים שונים ויש לקרוא אותם בנפרד: הדגל הוא הצד שפעל, וסגנון הטבעת הוא הדירוג — מלאה לקשר ישיר, מקווקוות כשאין. לדירוג אין צבע בכוונה, כדי שאדום יסמן רוסיה בדף הזה ולא שום דבר אחר. דגל בריטניה מצויר בגרסה מפושטת בגודל הזה — הקו האלכסוני המוסט אינו מיוצג. אף אחד מהם אינו טענה על סיבתיות בין שורות סמוכות.<br><br><b>קנה המידה של המרווחים.</b> גובה המרווחים מבוסס על שורש ריבועי — מרווח של 34 יום מצויר בגובה של פי שישה בערך ממרווח של יום אחד, ולא פי שלושים וארבעה. בלעדיו המרווחים הקצרים היו נעלמים. מספר הימים בתוך כל תג מדויק.<br><br><b>מילוי התגים.</b> הגוון, המסגרת והמשקל של כל תג מרווח פועלים הפוך לאורכו: כל מרווח של יומיים או פחות מוצג בזהב מלא ובהדגשה, ומרווחים ארוכים יותר דוהים לעבר האפור־כחלחל של הדף. הזהב מסמן זמן לכל אורך הדף. הוא מקודד בדיוק את אותו מספר שמופיע בתווית, ולכן הוא מוסיף הדגשה ולא מידע.<br><br><b>מרווחים של אותו יום.</b> ארבעה מרווחים הם אפס ימים ומסומנים ככאלה. הסדר בתוך יום נקבע לפי הדיווח ולא לפי שעון מאומת.<br><br><b>תאריכים משוערים.</b> שלוש שורות מתוארכות לרמת החודש או ל\u201dבערך\u201d יום מסוים (מסומן ~). מרווחים הנוגעים בהן משוערים ומסומנים ככאלה. עזיבת השגריר, שנשאה סימון משוער במערך הקודם, מתוארכת כעת ל-21 ביולי לפי הגרדיאן.<br><br><b>שתי שורות מתוארכות לחשיפה ולא למעשה.</b> מבצע הצוללות נמשך למעלה מחודש לפני 9 באפריל, והשורה יושבת על היום שבו בריטניה חשפה אותו. תקיפות המזל\u201dטים פועלות בכיוון ההפוך: מתוארכות לפברואר, כשהחשיפה של אוגוסט נרשמת כשורה נפרדת. אי אפשר להשוות ביניהן בלי לזכור זאת.<br><br><b>סתירות תאריכים שלא יושבו.</b> אמירת פדורוב: CBS מתארך ל-25 באוגוסט, האינדיפנדנט לסביבות ה-24. ביקור ראש ה-CIA: הגרדיאן אומר יום שלישי, אחרים יום רביעי. אזהרת השגרירות: נרשמה ב-17 באוגוסט, רויטרס פרסמה ב-18. שיגור הסרמט: Defense News ב-12 במאי, GlobalSecurity ב-13 במאי.<br><br><b>שורה אחת ללא מקור.</b> לשיחות ההגנה של 6 באוגוסט לא נמצא דיווח מקוון; השורה מסומנת ככזו ולא מקושרת למקור סמוך.<br><br><b>שני מועמדים הוסרו.</b> דיווח על תקיפת קייב בטילים צפון־קוריאניים (19–20 באוגוסט) ורחפן נפץ בחתימת GRU שנמצא ליד מטוס מטען אוקראיני בגרמניה (27 באוגוסט) הופיעו כל אחד בכלי תקשורת יחיד וממקור משני. שניהם אינם בציר הזמן.<br><br><b>איתותים נגדיים מדורגים באותה שיטה.</b> ב-1 בספטמבר מוסקבה מכנה את עזיבת השגריר שגרתית ומודיעה שמחליף בדרך, דבר הסותר את הקריאה שהוצמדה לשורה של 23 באוגוסט. השורה עדיין מסומנת באדום, משום שהכלל שואל אם בריטניה היא מושא האיתות ולא אם האיתות מצביע כלפי מעלה או מטה. שורה אדומה אינה כשלעצמה ראיה להסלמה.<br><br><b>חלון הזמן.</b> שני הצדדים פרוסים על חלון פברואר–אוקטובר המלא. החלון הרוסי המקוצר הקודם, וההערה על אפקט הבחירה שנלוותה אליו, אינם חלים על הנתונים כאן.",
     dayUnit:" ימים", sameDay:"אותו יום", gapWord:"פער",
     months:["ינו׳","פבר׳","מרץ","אפר׳","מאי","יוני","יולי","אוג׳","ספט׳","אוק׳","נוב׳","דצמ׳"],
-    ovTitle:"רמות · מידת הישירות שבה בריטניה נקובה",
-    ovNote:"ציר שלישי, והיחיד בדף הזה שהוא שיפוט ולא עובדה מתועדת. המבחן הוא עד כמה בריטניה היא במפורש מושא האיתות — לא עד כמה תוכנו מדאיג. הרמה העליונה דורשת גם איום תקיפה או מעשה מוסתר, ולכן ירי שהודיעו עליו מראש ושורות דיפלומטיות נשארים ברמה השגרתית. לכן גם תרגיל גרעיני ללא הודעה וביקור אמריקאי במוסקבה יושבים שניהם ברמה הראשונה. הדגל והטבעת שומרים על משמעותם.",
-    ovTitleDomain:"תחומים · סוג המושא",
-    ovNoteDomain:"מלחמה מול אזרחי, תשתיות מול זירה, וכסף בכרטיס משלו. תשתית מלחמה היא מערכות הצבא והמפעלים שמייצרים אותן. אזורי מלחמה הם גאוגרפיה צבאית — חזית, בסיס, מקטע מים. תשתית אזרחית היא מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה. אזור אזרחי הוא ערים ומרחב דיפלומטי. כסף וסנקציות הם חבילות, הקפאת נכסים, הכללה ברשימות, אכיפה, וצעדים כספיים אחרים בין בריטניה לרוסיה. אין במערך תקיפה על בניינים בלונדון. כמו הרמות, גם החיתוך הזה הוא שיפוט. הדגל והטבעת שומרים על משמעותם.",
-    ovViewLabel:"תצוגה",
-    ovKanban:"רמות", ovKanbanHint:"מידת הישירות",
-    ovOutline:"רשימה", ovOutlineHint:"לפי תאריך",
-    ovDomain:"תחום", ovDomainHint:"מלחמה / אזרחי / כסף",
-    ovDanger:"סכנה", ovDangerHint:"עוצמת האיתות",
-    ovMunger:"הטיות והפתעות", ovMungerHint:"25 שיפוטים שגויים · נעול",
-    ovLadder:"רמות מעלה/מטה", ovLadderHint:"סולם הסלמה · בריטניה–רוסיה מול שלוש מלחמות",
-    ovLadderNote:"תשע שלבים מכותרות ועד פגיעה באזרחים. חמישה צירים, שעון אחד: בריטניה–רוסיה על היום; אוקראינה, ישראל–אירן, ארה״ב–אירן וישראל–חמאס על יום פרוץ המלחמה. קווים מקווקווים = חשד. שורות ירוקות מחוץ לקו עד שמפעילים אותן בפאנל.",
-    mungerIntro:"פסיכולוגיית השיפוט השגוי של צ'ארלי מאנגר, כפי שהיא חלה על הרשומה הזו. התובנות שלו חושפות את ההטיות שמעוותות את קריאת הציר, וכשמתיישרים איתן אפשר לראות מאין ההפתעות יכולות לבוא. כל כרטיס מציין הטיה, תיקון, ונקודת מעקב מחוץ לציר הבריטניה–רוסיה הברור. לא תחזיות — השערות שנועדו לכלול פחות טעויות מובנות.",
+    ovTitle:"רמות",
+    ovTitleDomain:"תחומים",
+    ovMunger:"הטיות והפתעות",
+    ovLadder:"רמות מעלה/מטה",
     mungerGateTitle:"הטיות והפתעות",
-    mungerGateHint:"על שם צ'ארלי מאנגר, שב“פסיכולוגיה של השיפוט השגוי” מנה 25 גורמי טעות קבועים שמעוותים תחזיות. התובנות האלה חושפות את ההטיות בקריאה, וכשמתיישרים איתן אפשר לראות מאין ההפתעות יכולות לבוא.<br><br>הזינו קוד גישה בן 6 ספרות.",
+    mungerGateHint:"קוד גישה בן 6 ספרות",
     mungerGateErr:"קוד שגוי.",
     mungerGateSubmit:"פתח",
     mungerGateCancel:"ביטול",
     mungerFix:"תיקון",
     mungerWatch:"מעקב",
-    ovTitleDanger:"סכנה מול השפעה",
-    ovNoteDanger:"חיתוך רביעי, וגם הוא שיפוט כמו הרמות. הציר האנכי הוא עד כמה המעשה מדאיג — גבוה למעלה. האופקי הוא עד כמה גבוה המחיר אם הוא מתממש — גבוה לימין. הסרגל משאיר כל שורה עד התאריך שבו עוצרים, כך שאפשר לקרוא את ענן הנקודות כמסלול. הצלב מסמן את מרכז חמש השורות האחרונות, והקו הדהוי מאחוריו הוא המסלול שהמרכז הזה עבר. הנדידה משווה בין חמש השורות האחרונות לחמש שלפניהן: ערך חיובי אומר שהאשכול האחרון יושב גבוה יותר ורחוק יותר לימין. כחול הוא מהלך בריטי או מערבי, אדום הוא רוסי; שתי השורות האמריקאיות אפורות.",
+    ovTitleDanger:"סכנות",
     dangerHigh:"סכנה גבוהה", dangerLow:"סכנה נמוכה",
     impactLow:"השפעה נמוכה", impactHigh:"השפעה גבוהה",
     dangerCentre:n=>n+" האחרונות",
     keyNewest:"האחרון", keySelected:"נבחר", keyHot:"סכנה 7+ · השפעה 7+",
-    selHint:"בחרו נקודה כדי לראות את השורה.",
     selClose:"ניקוי", selDangerL:"סכנה", selImpactL:"השפעה", selBandL:"רמה",
     dangerSlider:"תאריך",
     povLabel:"תצוגה",
@@ -1328,8 +1269,7 @@ const T = {
     tempoBtn:"קצב", tempoTitle:"התכווצות המרווחים",
     methodBtn:"שיטה", methodTitle:"שיטה והסתייגויות",
     playLabel:"הרצה על פני התאריכים", pauseLabel:"עצירה",
-    tlTitle:"ציר הזמן", tlCount:"42 אירועים · פברואר–אוקטובר 2026",
-    footLine:"ארבעים ושתיים שורות, פברואר עד אוקטובר 2026. לכל שורה מצורף מקור.",
+    tlTitle:"ציר הזמן", tlCount:"42 אירועים · פבר׳–אוק׳ 2026",
     metaFmt:(n,r,rng)=>(n===1?"שורה אחת":n+" שורות")+" &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
       {name:"בריטניה אינה נקובה", def:"רקע, מהלך מבני, או פעולה שהוסתרה בכוונה. בריטניה אינה המושא."},
@@ -1346,26 +1286,20 @@ const T = {
     ],
     sides:{uk:"בריטניה", ru:"רוסיה", ot:"ארה\u05f4\u05d1"},
     ago:(n,soft)=>n===0?"היום":n===1?"אתמול":(!soft&&n===2)?"לפני יומיים":"לפני "+(soft?"~":"")+n+" ימים",
-    whyBtn:"פירוט", whyClose:"סגור", whyKicker:"הערה",
-    askTitle:"שאלו את המעקב",
-    askNote:"התשובות נוצרות בבינה מלאכותית ממקורות המעקב. שאלה עם תאריך נענית מהשורות. בדקו את השורה המקושרת.",
-    askLabel:"שאלה",
+    whyBtn:"פירוט", whyClose:"סגור",
+    askTitle:"שאלו",
     askPlaceholder:"מה קרה ב-29 בספטמבר?",
     askSubmit:"שאלו",
     askLoading:"שואלים…",
     askLoadingStatus:"שואלים את המעקב…",
-    askHelp:"עד 300 תווים.",
-    askLinks:"שורות במעקב",
+    askLinks:"שורות",
     askEmpty:"השאלה ריקה. כתבו שאלה על ציר הזמן.",
     askTooLong:"השאלה ארוכה מ-300 תווים. קצרו אותה ושאלו שוב.",
     askRate:"יותר מדי שאלות מהחיבור הזה. המתינו דקה ונסו שוב.",
     askTimeout:"קוגני לא ענה בתוך 15 שניות. נסו שוב.",
     askUnconfigured:"שאלו את המעקב עדיין לא מוגדר בפריסה הזו.",
     askUpstream:"קוגני לא החזיר תשובה. נסו שוב בעוד רגע.",
-    askOffline:"שאלו את המעקב זמין באתר בנטליפיי. הדף הזה לא מצליח להגיע לפונקציה.",
-    themeToDark:"מעבר לערכת נושא כהה",
-    themeToLight:"מעבר לערכת נושא בהירה",
-    themeNameDark:"כהה", themeNameLight:"בהיר"
+    askOffline:"שאלו את המעקב זמין באתר בנטליפיי. הדף הזה לא מצליח להגיע לפונקציה."
   }
 };
 
@@ -2161,14 +2095,6 @@ function applyTheme(theme){
   try { localStorage.setItem("uk-ru-theme", next); } catch (e) {}
   document.documentElement.setAttribute("data-theme", next);
   syncLadderTheme(next);
-  const btn = document.getElementById("btn-theme");
-  if (btn) {
-    const t = T[lang] || T.en;
-    const label = next === "dark" ? t.themeToLight : t.themeToDark;
-    btn.setAttribute("aria-label", label);
-    btn.setAttribute("title", label);
-    set("themeName", next === "dark" ? t.themeNameLight : t.themeNameDark);
-  }
 }
 
 // Gaps run toward the gold accent, which already carries time on this page.
@@ -2222,7 +2148,6 @@ function openWhy(i){
   const t = T[lang];
   const c = e[lang];
   whyLastFocus = document.activeElement;
-  set("whyKicker", t.whyKicker + " · " + c.label);
   set("whyTitle", c.title);
   set("whyBody", c.why);
   set("whySrcs", sourceHtml(e, lang));
@@ -2235,7 +2160,6 @@ function openWhy(i){
 function openInfo(kicker, title, html){
   const t = T[lang];
   whyLastFocus = document.activeElement;
-  set("whyKicker", kicker);
   set("whyTitle", title);
   set("whyBody", html);
   set("whySrcs", "");
@@ -2313,6 +2237,7 @@ function renderDanger(code){
   const shown = shownAt(dangerStep);
   if (dangerSelected !== null && !shown.some(x => x.i === dangerSelected)) dangerSelected = null;
   const newest = shown.length ? shown[shown.length - 1].i : -1;
+  if (dangerSelected === null && newest >= 0) dangerSelected = newest;
   // A single side has a third of the rows, so the window narrows with it —
   // otherwise drift would not resolve until the very end of the window.
   const RECENT = dangerPov === "all" ? 5 : 3;
@@ -2475,7 +2400,8 @@ function renderSelected(code){
   const e = dangerSelected === null ? null : EVENTS[dangerSelected];
   host.classList.toggle("on", !!e);
   if (!e){
-    host.innerHTML = '<p class="sel-hint">' + t.selHint + '</p>';
+    host.innerHTML = "";
+    host.classList.remove("on");
     return;
   }
   const c = e[code];
@@ -2504,7 +2430,6 @@ function renderSelected(code){
 function renderMunger(code){
   const t = T[code];
   const cards = code === "he" ? MUNGER_HE : MUNGER;
-  set("mungerIntro", t.mungerIntro);
   set("mungerGateTitle", t.mungerGateTitle);
   set("mungerGateHint", t.mungerGateHint);
   document.getElementById("munger-err").textContent = t.mungerGateErr;
@@ -2576,7 +2501,6 @@ function renderBands(code){
       '<div class="meter"><i style="width:' + ((bi + 1) / cards.length * 100) + '%"></i></div>' +
       '<span class="num">' + (bi + 1) + ' / ' + cards.length + '</span>' +
       '<h4>' + b.name + '</h4>' +
-      '<p class="def">' + b.def + '</p>' +
       '<div class="meta">' + t.metaFmt(rows.length, split, range) + '</div>' +
       '</summary>' +
       '<div class="band__events">' +
@@ -2599,9 +2523,8 @@ function render(code){
   document.body.dir = "ltr";
   syncAskCopy();
 
-  set("eyebrow", t.eyebrow);
   paintTitle();
-  set("standfirst", t.standfirst);
+  set("tlPace", t.tlPace);
   paintHero();
   set("k1", t.k1); set("k2", t.k2);
   set("f1", t.f1); set("f2", t.f2); set("f3", t.f3);
@@ -2609,7 +2532,6 @@ function render(code){
   set("btn-legend", t.legendBtn);
   set("tlTitle", t.tlTitle);
   set("tlCount", t.tlCount);
-  set("footLine", t.footLine);
   set("btn-method", t.methodBtn);
 
   set("povLabel", t.povLabel);
@@ -2627,8 +2549,6 @@ function render(code){
   play.setAttribute("aria-label", playing ? t.pauseLabel : t.playLabel);
   play.setAttribute("title", playing ? t.pauseLabel : t.playLabel);
 
-  document.getElementById("btn-en").setAttribute("aria-pressed", code === "en");
-  document.getElementById("btn-he").setAttribute("aria-pressed", code === "he");
   applyTheme(currentTheme());
 
   renderMunger(code);
@@ -2655,13 +2575,6 @@ function render(code){
     btn.addEventListener("click", () => openWhy(+btn.getAttribute("data-i")));
   });
 }
-
-document.getElementById("btn-en").addEventListener("click", () => render("en"));
-document.getElementById("btn-he").addEventListener("click", () => render("he"));
-document.getElementById("btn-theme").addEventListener("click", () => {
-  applyTheme(currentTheme() === "dark" ? "light" : "dark");
-  render(lang);
-});
 
 const overview = document.getElementById("overview");
 const ladderFrame = document.getElementById("ladderFrame");
@@ -2976,11 +2889,11 @@ dangerPlay.addEventListener("click", () => {
 
 document.getElementById("btn-legend").addEventListener("click", () => {
   const t = T[lang];
-  openInfo(t.whyKicker, t.legendTitle, [t.k1d, t.k2d, t.f1d, t.f2d, t.f3d].join("<br><br>"));
+  openInfo("", t.legendTitle, [t.k1d, t.k2d, t.f1d, t.f2d, t.f3d].join("<br><br>"));
 });
 document.getElementById("btn-method").addEventListener("click", () => {
   const t = T[lang];
-  openInfo(t.whyKicker, t.methodTitle, t.foot);
+  openInfo("", t.methodTitle, t.foot);
 });
 if (MOBILE_MQ.addEventListener) MOBILE_MQ.addEventListener("change", applyView);
 else if (MOBILE_MQ.addListener) MOBILE_MQ.addListener(applyView);
@@ -3076,19 +2989,17 @@ function syncAskCopy(){
   const title = document.getElementById("askTitle");
   if (!title) return;
   set("askTitle", t.askTitle);
-  set("askNote", t.askNote);
-  set("askLabel", t.askLabel);
   const input = document.getElementById("askInput");
   input.setAttribute("placeholder", t.askPlaceholder);
+  input.setAttribute("aria-label", t.askPlaceholder);
   const btn = document.getElementById("askSubmit");
   btn.textContent = btn.getAttribute("data-state") === "loading" ? t.askLoading : t.askSubmit;
   const status = document.getElementById("askStatus");
   if (status.dataset.code) status.textContent = askMessage(status.dataset.code, t);
   const help = document.getElementById("askHelp");
-  if (input.getAttribute("aria-invalid") === "true"){
-    help.textContent = input.value.trim() ? t.askTooLong : t.askEmpty;
-  } else {
-    help.textContent = t.askHelp;
+  if (input.getAttribute("aria-invalid") !== "true") {
+    help.textContent = "";
+    help.hidden = true;
   }
   renderAskLinks();
 }
@@ -3110,16 +3021,19 @@ function showAskFailure(code){
   renderAskLinks();
   if (code === "empty" || code === "too_long"){
     document.getElementById("askInput").setAttribute("aria-invalid", "true");
-    document.getElementById("askHelp").textContent = askMessage(code, t);
+    const help = document.getElementById("askHelp");
+    help.textContent = askMessage(code, t);
+    help.hidden = false;
   }
 }
 
 document.getElementById("askInput").addEventListener("input", () => {
   const input = document.getElementById("askInput");
-  document.getElementById("askCount").textContent = input.value.length + " / 300";
   if (input.getAttribute("aria-invalid") === "true" && input.value.trim() && input.value.length <= 300){
     input.removeAttribute("aria-invalid");
-    document.getElementById("askHelp").textContent = (T[lang] || T.en).askHelp;
+    const help = document.getElementById("askHelp");
+    help.textContent = "";
+    help.hidden = true;
   }
 });
 
@@ -3138,7 +3052,9 @@ document.getElementById("askForm").addEventListener("submit", async (ev) => {
     return;
   }
   input.removeAttribute("aria-invalid");
-  document.getElementById("askHelp").textContent = t.askHelp;
+  const help = document.getElementById("askHelp");
+  help.textContent = "";
+  help.hidden = true;
   askBusy = true;
   const btn = document.getElementById("askSubmit");
   btn.disabled = true;

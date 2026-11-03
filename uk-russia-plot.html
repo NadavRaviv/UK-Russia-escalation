@@ -25,9 +25,6 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
 
   <section class="section wrap" id="timeline" aria-labelledby="tl-h"></section>
 
-  <section class="section method" id="method" aria-labelledby="method-h">
-    <div class="wrap method__grid" id="methodBody"></div>
-  </section>
 </main>
 
 <script src="./redesign-options/options-data.js"></script>
@@ -44,31 +41,21 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
       plot: "Plot", timeline: "Timeline", method: "Method",
       views: "Views", viewsHint: "Open a view of the full tracker", locked: "locked", lockedHint: "Asks for a 6-digit access code",
       viewList: [["danger", "Dangers"], ["outline", "List"], ["kanban", "Bands"], ["domain", "Domain"], ["ladder", "Levels"], ["munger", "Biases & surprises"]],
-      heroLede: (n) => `${n} dated events in the UK–Russia escalation, both sides, each with sources. Each angle below cuts the same record a different way.`,
-      angles: "One record, six angles",
-      heroCta: "Explore the plot", plotTitle: "Every event, placed by danger and impact",
-      plotLede: "Each dot is one logged event. Higher means more dangerous, further right means more impact. Tap a dot to read it.",
+      plotTitle: "Danger and impact",
       domains: "Filter by domain", all: "All domains", showing: "Showing", through: "through", of: "of",
       slider: "Show events up to", play: "Play through the dates", pause: "Pause", prev: "Earlier", next: "Later", band: "Band",
       listTitle: "Events in date order", showAll: "Show all", showLess: "Show fewer", onPlot: "Show on plot",
-      statement: "Read the record, then ask it a question.", open: "Open the live tracker", ask: "Ask the tracker",
       yAxis: "Danger", xAxis: "Impact", selected: "Selected event",
-      fine: "Photographs by Unsplash contributors, credited beside each image; they are illustrative and do not depict the events listed.",
     },
     he: {
       plot: "תרשים", timeline: "ציר הזמן", method: "שיטה",
       views: "תצוגות", viewsHint: "פתיחת תצוגה במעקב המלא", locked: "נעול", lockedHint: "דורש קוד גישה בן 6 ספרות",
       viewList: [["danger", "סכנות"], ["outline", "רשימה"], ["kanban", "רמות"], ["domain", "תחום"], ["ladder", "רמות מעלה/מטה"], ["munger", "הטיות והפתעות"]],
-      heroLede: (n) => `${n} אירועים מתוארכים בהסלמה בין בריטניה לרוסיה, משני הצדדים, כל אחד עם מקורות. כל זווית למטה חותכת את אותו תיעוד אחרת.`,
-      angles: "תיעוד אחד, שש זוויות",
-      heroCta: "לחקור את התרשים", plotTitle: "כל האירועים, לפי סכנה והשפעה",
-      plotLede: "כל נקודה היא אירוע אחד ברישום. גבוה יותר משמעו מסוכן יותר, ימינה משמעו השפעה גדולה יותר. הקישו על נקודה כדי לקרוא.",
+      plotTitle: "סכנה והשפעה",
       domains: "סינון לפי תחום", all: "כל התחומים", showing: "מוצגים", through: "עד", of: "מתוך",
       slider: "הצג אירועים עד", play: "הרצה על פני התאריכים", pause: "עצירה", prev: "קודם", next: "הבא", band: "רמה",
       listTitle: "האירועים לפי תאריך", showAll: "הצג הכול", showLess: "הצג פחות", onPlot: "הצג בתרשים",
-      statement: "קראו את התיעוד, ואז שאלו אותו שאלה.", open: "למעקב החי", ask: "שאלו את המעקב",
       yAxis: "סכנה", xAxis: "השפעה", selected: "האירוע שנבחר",
-      fine: "צילומים של תורמי Unsplash, עם קרדיט ליד כל תמונה; הם להמחשה בלבד ואינם מתארים את האירועים ברשימה.",
     },
   };
 
@@ -106,9 +93,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     $("hero").innerHTML = `<div class="hero__bg">${img("destroyer", { w: 1280, ratio: 1.6, sizes: "100vw", eager: true })}</div>
       <div class="wrap hero__inner">
         <h1 id="h1">${esc(u.title)}</h1>
-        <p class="lede">${esc(c.heroLede(N))}</p>
-        <div class="hero__cta"><a class="btn" href="#plot">${esc(c.heroCta)}</a></div>
-        <p class="credit">${esc(t("illustrative"))} ${creditInner("destroyer", lang)}</p>
+        <p class="credit visually-hidden">${esc(t("illustrative"))} ${creditInner("destroyer", lang)}</p>
       </div>`;
 
     const tiles = [`<button type="button" class="tile" role="tab" data-domain="0" aria-selected="${state.domain === 0}" aria-pressed="${state.domain === 0}">${esc(c.all)} <span class="n">${N}</span></button>`]
@@ -120,8 +105,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
       .join("");
 
     $("plot").innerHTML = `<div class="section__head">
-        <h2 id="plot-h">${esc(c.plotTitle)}</h2>
-        <p>${esc(c.plotLede)}</p>
+        <h2 id="plot-h" class="visually-hidden">${esc(c.plotTitle)}</h2>
         <p class="legend">
           <span>${sideTag({ side: "ru" })}</span><span>${sideTag({ side: "uk" })}</span><span>${sideTag({ side: "ot" })}</span>
           <span><span class="ring"></span>${esc(u.k1)}</span><span><span class="ring ring--indirect"></span>${esc(u.k2)}</span>
@@ -150,16 +134,13 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
               </button>
               <input type="range" id="slider" min="0" max="${N - 1}" step="1" value="${state.upTo}">
             </div>
-            <p class="mono muted" id="sliderCount"></p>
           </div>
         </div>
         <article class="card" id="card" aria-live="polite" aria-label="${esc(c.selected)}"></article>
       </div>`;
 
-    $("timeline").innerHTML = `<div class="section__head"><h2 id="tl-h">${esc(c.listTitle)}</h2></div>
+    $("timeline").innerHTML = `<h2 id="tl-h" class="visually-hidden">${esc(c.listTitle)}</h2>
       <ol class="rows" id="rows"></ol><div class="more" id="more"></div>`;
-
-    $("methodBody").innerHTML = `<h2 id="method-h">${esc(t("method"))}</h2><p>${u.p0}</p><p>${u.p1}</p>`;
 
     $("tiles").addEventListener("click", (ev2) => {
       const b = ev2.target.closest("[data-domain]");
@@ -230,7 +211,6 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     const u = U.ui[lang];
     const c = COPY[lang];
     const e0 = U.events[state.upTo];
-    $("sliderOut").textContent = ev(e0).label;
 
     $("dots").innerHTML = U.events
       .map((e, idx) => {
@@ -241,7 +221,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
       .join("");
 
     const shown = U.events.filter((e, idx) => idx <= state.upTo && inDomain(e));
-    $("sliderCount").textContent = `${c.showing} ${shown.length} ${c.of} ${N} · ${c.through} ${ev(e0).label}`;
+    $("sliderOut").textContent = `${ev(e0).label} · ${shown.length}/${N}`;
 
     const sel = byId(state.sel);
     const order = shown;

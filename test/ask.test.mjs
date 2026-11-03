@@ -40,13 +40,13 @@ test("the shipped index is the 42 timeline rows, in order", () => {
   assert.ok(EVENTS.some((event) => event.date === "2026-10-14" && /Protector/i.test(event.en.title)));
 });
 
-test("the page keeps six view tabs and the Hebrew standfirst", () => {
+test("the page keeps six view tabs and the Hebrew pace line", () => {
   const html = fs.readFileSync("uk-russia-merged-timeline.html", "utf8");
   const nav = fs.readFileSync("site-nav.js", "utf8");
   for (const id of ["danger", "kanban", "domain", "outline", "munger", "ladder"]) {
     assert.equal(nav.includes('["' + id + '",'), true, id);
   }
-  assert.match(html, /קצב האירועים גדל פי 3\.3/);
+  assert.match(html, /פי 3\.3 מאז 15 באוגוסט/);
   assert.match(html, /function cancelMungerGate\(/);
   assert.match(html, /getElementById\("munger-cancel"\)\.addEventListener\("click", cancelMungerGate\)/);
   assert.match(html, /currentView\(\) === "munger" && mungerUnlocked\(\)/);
