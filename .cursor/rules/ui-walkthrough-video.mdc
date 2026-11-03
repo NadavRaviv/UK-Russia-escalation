@@ -1,0 +1,35 @@
+---
+description: After UI, layout, or visual design work, always attach a walkthrough video in the agent response.
+alwaysApply: true
+---
+# UI walkthrough video (required)
+
+When this run **changes or adds** user-visible design — new pages, redesigns, layout, typography, spacing, components, motion, or Hallmark polish — **finish with a short screen recording** so the user can see the result without deploying.
+
+## What to show
+
+- **Redesign / layout**: the affected route(s), both mobile and desktop if the change is responsive (one clip is OK if time is short; prefer two widths when layout shifts materially).
+- **New UI**: the primary happy path (open page → interact once → show the new state).
+- **Polish-only**: still record — scroll or toggle the control that proves the polish landed.
+
+## How to capture
+
+1. Serve the site locally (`python3 -m http.server` from repo root unless another port is already in use).
+2. Prefer **Playwright** context `recordVideo` when `computerUse` is unavailable (see `scripts/walkthrough-simplified.mjs` as a template — extend URLs/steps for the pages you touched).
+3. Export **MP4** when possible (`ffmpeg` from WebM) for easy playback in chat.
+4. Put files under `/opt/cursor/artifacts/` with a readable name (e.g. `uk-russia-home-redesign.mp4`).
+
+## Response format
+
+Embed the video in the final message:
+
+```html
+<video src="/opt/cursor/artifacts/your-name.mp4" controls></video>
+```
+
+Add a one-line caption of what the clip covers. Do **not** treat publish/merge as complete for UI work if the video is missing.
+
+## Scope
+
+- Applies to production pages under this repo (`index.html`, `uk-russia-*.html`, shared `site-nav.js`, token/CSS that affects shipped pages).
+- Does **not** require video for copy-only, data-only, or backend-only changes with no visual diff.
