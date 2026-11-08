@@ -74,8 +74,8 @@
   const N = U.events.length;
 
   const TITLES = {
-    en: ["Before 15 August", "15 to 27 August", "September", "October"],
-    he: ["לפני 15 באוגוסט", "15–27 באוגוסט", "ספטמבר", "אוקטובר"],
+    en: ["Before 15 August", "15 to 27 August", "September", "October–November"],
+    he: ["לפני 15 באוגוסט", "15–27 באוגוסט", "ספטמבר", "אוקטובר–נובמבר"],
   };
   const COPY = {
     en: {
@@ -140,8 +140,8 @@
     const uk = U.events.filter((e) => e.side === "uk").length;
     const unit = esc(u.unit.trim());
     $("strip").setAttribute("aria-label", c.figures);
-    $("strip").innerHTML = `<div><dt>${esc(u.s1)}</dt><dd>10.8 <small>${unit}</small></dd></div>
-      <div><dt>${esc(u.s2)}</dt><dd>3.3 <small>${unit}</small></dd></div>
+    $("strip").innerHTML = `<div><dt>${esc(u.s1)}</dt><dd>10.3 <small>${unit}</small></dd></div>
+      <div><dt>${esc(u.s2)}</dt><dd>3.1 <small>${unit}</small></dd></div>
       <div><dt>${esc(u.tlCount)}</dt><dd>${N}</dd></div>
       <div><dt>${esc(u.s4)}</dt><dd>${ru} / ${uk} / ${N - ru - uk}</dd></div>`;
 

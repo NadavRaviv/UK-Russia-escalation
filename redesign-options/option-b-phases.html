@@ -50,8 +50,8 @@
   const $ = (id) => document.getElementById(id);
 
   const TITLES = {
-    en: ["Before 15 August", "15 to 27 August", "September", "October"],
-    he: ["לפני 15 באוגוסט", "15–27 באוגוסט", "ספטמבר", "אוקטובר"],
+    en: ["Before 15 August", "15 to 27 August", "September", "October–November"],
+    he: ["לפני 15 באוגוסט", "15–27 באוגוסט", "ספטמבר", "אוקטובר–נובמבר"],
   };
   const COPY = {
     en: { hot: "Highest danger in this period", next: "Next", overview: "Overview", colophon: "Set in Source Serif 4 and Archivo." },
@@ -87,8 +87,8 @@
         <h1 class="hero-title" id="h1">${esc(u.title)}</h1>
         <p class="lede">${esc(u.standfirst)}</p>
         <dl class="stats">
-          <div><dt>${esc(u.s1)}</dt><dd>10.8<span class="muted" style="font-size:var(--text-sm);font-family:var(--font-body)"> ${esc(u.unit.trim())}</span></dd></div>
-          <div><dt>${esc(u.s2)}</dt><dd class="accent">3.3<span class="muted" style="font-size:var(--text-sm);font-family:var(--font-body)"> ${esc(u.unit.trim())}</span></dd></div>
+          <div><dt>${esc(u.s1)}</dt><dd>10.3<span class="muted" style="font-size:var(--text-sm);font-family:var(--font-body)"> ${esc(u.unit.trim())}</span></dd></div>
+          <div><dt>${esc(u.s2)}</dt><dd class="accent">3.1<span class="muted" style="font-size:var(--text-sm);font-family:var(--font-body)"> ${esc(u.unit.trim())}</span></dd></div>
           <div><dt>${esc(u.tlCount)}</dt><dd>${U.events.length}</dd></div>
           <div><dt>${esc(u.s4)}</dt><dd>${ru} / ${uk} / ${ot}</dd></div>
         </dl>

@@ -217,6 +217,24 @@
   },
   {
     "n": 13,
+    "date": "2026-07-14",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "14 JUL 2026",
+      "short": "Risk register and action plan",
+      "title": "Cabinet Office publishes the 2026 risk register and resilience report",
+      "why": "The Cabinet Office publishes the National Risk Register 2026, the public version of the National Security Risk Assessment, and the Resilience Action Plan implementation report. The report opens a call for views on the review of the Civil Contingencies Act 2004, puts a further £3.5m into the local resilience trailblazer programme for 2026/27, and targets a full upgrade of government emergency telecoms by the end of FY 2026/27. The same report, on the record, says the government is accelerating the Home Defence Programme, will update departmental war books, and will hold a national home defence exercise in 2027. The Security Minister's foreword cites a growing number of sub-threshold attacks from Russia among other drivers. Britain is not named as the object of a strike. Graded red because the document itself names those Russian attacks and the home-defence commitment; band 1 because no British object sits under a threat."
+    },
+    "he": {
+      "label": "14 ביולי 2026",
+      "short": "מרשם סיכונים ותוכנית חוסן",
+      "title": "משרד הקבינט מפרסם את מרשם הסיכונים 2026 ואת דוח יישום החוסן",
+      "why": "משרד הקבינט מפרסם את מרשם הסיכונים הלאומי 2026, הגרסה הפומבית של הערכת סיכוני הביטחון הלאומי, ואת דוח היישום של תוכנית הפעולה לחוסן. הדוח פותח קול קורא לקראת בחינת חוק מצבי החירום האזרחיים (Civil Contingencies Act) 2004, מוסיף 3.5 מיליון ליש״ט לתוכנית החלוץ של החוסן המקומי ל-2026/27, ומכוון להשלמת שדרוג התקשורת הממשלתית לחירום עד סוף שנת הכספים 2026/27. אותו דוח, בגלוי, אומר שהממשלה מאיצה את תוכנית ה-Home Defence, תעדכן את ספרי המלחמה המשרדיים, ותקיים תרגיל הגנה עורפית ארצי ב-2027. דבר הפתיחה של השר לביטחון מציין, בין שאר הגורמים, מספר גדל של תקיפות רוסיות מתחת לסף. בריטניה אינה נקובה כמושא של איום תקיפה. הסימון אדום כי המסמך עצמו נוקב בתקיפות הרוסיות ובהתחייבות להגנה העורפית; רמה 1 כי אין מושא בריטי תחת איום."
+    }
+  },
+  {
+    "n": 14,
     "date": "2026-07-20",
     "approx": false,
     "side": "ru",
@@ -234,7 +252,7 @@
     }
   },
   {
-    "n": 14,
+    "n": 15,
     "date": "2026-07-21",
     "approx": false,
     "side": "ru",
@@ -252,7 +270,7 @@
     }
   },
   {
-    "n": 15,
+    "n": 16,
     "date": "2026-07-27",
     "approx": false,
     "side": "uk",
@@ -270,7 +288,7 @@
     }
   },
   {
-    "n": 16,
+    "n": 17,
     "date": "2026-07-27",
     "approx": false,
     "side": "ru",
@@ -288,7 +306,7 @@
     }
   },
   {
-    "n": 17,
+    "n": 18,
     "date": "2026-08-06",
     "approx": false,
     "side": "uk",
@@ -306,7 +324,7 @@
     }
   },
   {
-    "n": 18,
+    "n": 19,
     "date": "2026-08-14",
     "approx": false,
     "side": "uk",
@@ -324,7 +342,7 @@
     }
   },
   {
-    "n": 19,
+    "n": 20,
     "date": "2026-08-15",
     "approx": false,
     "side": "uk",
@@ -342,7 +360,7 @@
     }
   },
   {
-    "n": 20,
+    "n": 21,
     "date": "2026-08-17",
     "approx": false,
     "side": "ru",
@@ -360,7 +378,7 @@
     }
   },
   {
-    "n": 21,
+    "n": 22,
     "date": "2026-08-23",
     "approx": false,
     "side": "ru",
@@ -378,7 +396,7 @@
     }
   },
   {
-    "n": 22,
+    "n": 23,
     "date": "2026-08-24",
     "approx": false,
     "side": "uk",
@@ -396,7 +414,7 @@
     }
   },
   {
-    "n": 23,
+    "n": 24,
     "date": "2026-08-24",
     "approx": false,
     "side": "ru",
@@ -414,7 +432,7 @@
     }
   },
   {
-    "n": 24,
+    "n": 25,
     "date": "2026-08-25",
     "approx": false,
     "side": "ru",
@@ -432,7 +450,7 @@
     }
   },
   {
-    "n": 25,
+    "n": 26,
     "date": "2026-08-25",
     "approx": false,
     "side": "ot",
@@ -450,7 +468,25 @@
     }
   },
   {
-    "n": 26,
+    "n": 27,
+    "date": "2026-08-25",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "25 AUG 2026",
+      "short": "War book accelerated",
+      "title": "Unconfirmed: Cabinet Office told to accelerate the home-defence war book",
+      "why": "Unconfirmed reporting, from unnamed sources in a single outlet. The Telegraph says the Cabinet Office was told to accelerate the home defence programme and the war book because of the threat from Russia, that some deadlines moved from 2035 to 2030, and that the largest-ever home defence exercise, Operation Albiston Shadow, is planned for 2027. The 14 July implementation report had already committed, on the record, to accelerating that programme, updating war books, and a national home defence exercise in 2027. What this row adds — the order to go faster, the 2035-to-2030 shift, and the exercise name — is not confirmed elsewhere in this set. Band 2: Britain is named, and the claimed act is planning, not a strike threat."
+    },
+    "he": {
+      "label": "25 באוגוסט 2026",
+      "short": "דיווח לא מאומת: ספר המלחמה",
+      "title": "לא מאומת: משרד הקבינט הונחה להאיץ את ספר המלחמה להגנה העורפית",
+      "why": "דיווח לא מאומת, ממקורות שלא ננקבו בשמם ובכלי תקשורת אחד. הטלגרף מדווח שמשרד הקבינט הונחה להאיץ את תוכנית ההגנה העורפית ואת ספר המלחמה בגלל האיום מרוסיה, שחלק מלוחות הזמנים הוקדמו מ-2035 ל-2030, ושתרגיל ההגנה העורפית הגדול ביותר, מבצע אלביסטון שאדו, מתוכנן ל-2027. דוח היישום מ-14 ביולי כבר התחייב, בגלוי, להאצת התוכנית, לעדכון ספרי המלחמה, ולתרגיל הגנה עורפית ארצי ב-2027. מה שהשורה הזו מוסיפה — הוראה להאיץ עוד, ההזזה מ-2035 ל-2030, ושם התרגיל — לא אומת במקום אחר במערך הזה. רמה 2: בריטניה נקובה, והמעשה הנטען הוא תכנון ולא איום תקיפה."
+    }
+  },
+  {
+    "n": 28,
     "date": "2026-08-26",
     "approx": false,
     "side": "ru",
@@ -468,7 +504,7 @@
     }
   },
   {
-    "n": 27,
+    "n": 29,
     "date": "2026-08-27",
     "approx": false,
     "side": "ru",
@@ -486,7 +522,7 @@
     }
   },
   {
-    "n": 28,
+    "n": 30,
     "date": "2026-09-01",
     "approx": false,
     "side": "ru",
@@ -504,7 +540,7 @@
     }
   },
   {
-    "n": 29,
+    "n": 31,
     "date": "2026-09-02",
     "approx": false,
     "side": "ru",
@@ -522,7 +558,7 @@
     }
   },
   {
-    "n": 30,
+    "n": 32,
     "date": "2026-09-06",
     "approx": false,
     "side": "ru",
@@ -540,7 +576,7 @@
     }
   },
   {
-    "n": 31,
+    "n": 33,
     "date": "2026-09-08",
     "approx": false,
     "side": "uk",
@@ -558,7 +594,7 @@
     }
   },
   {
-    "n": 32,
+    "n": 34,
     "date": "2026-09-10",
     "approx": false,
     "side": "ru",
@@ -576,7 +612,7 @@
     }
   },
   {
-    "n": 33,
+    "n": 35,
     "date": "2026-09-13",
     "approx": false,
     "side": "ru",
@@ -594,7 +630,7 @@
     }
   },
   {
-    "n": 34,
+    "n": 36,
     "date": "2026-09-16",
     "approx": false,
     "side": "uk",
@@ -612,7 +648,7 @@
     }
   },
   {
-    "n": 35,
+    "n": 37,
     "date": "2026-09-16",
     "approx": false,
     "side": "uk",
@@ -630,7 +666,7 @@
     }
   },
   {
-    "n": 36,
+    "n": 38,
     "date": "2026-09-26",
     "approx": false,
     "side": "ru",
@@ -648,7 +684,7 @@
     }
   },
   {
-    "n": 37,
+    "n": 39,
     "date": "2026-09-28",
     "approx": false,
     "side": "ru",
@@ -666,7 +702,7 @@
     }
   },
   {
-    "n": 38,
+    "n": 40,
     "date": "2026-09-29",
     "approx": false,
     "side": "ru",
@@ -684,7 +720,7 @@
     }
   },
   {
-    "n": 39,
+    "n": 41,
     "date": "2026-10-01",
     "approx": false,
     "side": "uk",
@@ -702,7 +738,7 @@
     }
   },
   {
-    "n": 40,
+    "n": 42,
     "date": "2026-10-14",
     "approx": false,
     "side": "uk",
@@ -720,7 +756,7 @@
     }
   },
   {
-    "n": 41,
+    "n": 43,
     "date": "2026-10-22",
     "approx": false,
     "side": "ru",
@@ -738,7 +774,43 @@
     }
   },
   {
-    "n": 42,
+    "n": 44,
+    "date": "2026-10-22",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "22 OCT 2026",
+      "short": "Powers over undersea cables",
+      "title": "Ministers propose emergency powers over undersea cables",
+      "why": "A policy paper, reported by the BBC, proposes emergency powers over undersea cables: orders to telecoms firms to hand over information or to change or disable services, and entry to sites including cable landing stations. Deliberate tampering would carry up to 14 years in prison; a firm that refused an order could be fined up to £17m or 10% of global turnover. The powers need legislation. The consultation closes in January. The BBC reports the paper is driven by fears of Russian interference, including the April submarine operation and ships accused of mapping cables. A legal measure, not a strike threat — band 2. The proposed powers do not cover energy pipelines, which the paper says are being considered separately."
+    },
+    "he": {
+      "label": "22 באוקטובר 2026",
+      "short": "סמכויות על כבלים תת-ימיים",
+      "title": "הממשלה מציעה סמכויות חירום על כבלים תת-ימיים",
+      "why": "מסמך מדיניות, לפי ה-BBC, מציע סמכויות חירום על כבלים תת-ימיים: הוראות לחברות תקשורת למסור מידע או לשנות או לנתק שירותים, וכניסה לאתרים ובהם תחנות נחיתה של כבלים. שיבוש מכוון יישא עד 14 שנות מאסר; חברה שתסרב להוראה תוכל להיקנס עד 17 מיליון ליש״ט או 10% מהמחזור העולמי. הסמכויות דורשות חקיקה. ההתייעצות נסגרת בינואר. ה-BBC מדווח שהמסמך מונע מחשש להתערבות רוסית, ובכלל זה מבצע הצוללות מאפריל ואוניות שהואשמו במיפוי כבלים. צעד משפטי, לא איום תקיפה — רמה 2. הסמכויות המוצעות אינן חלות על צינורות אנרגיה, שהמסמך אומר שנבחנים בנפרד."
+    }
+  },
+  {
+    "n": 45,
+    "date": "2026-10-22",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "22 OCT 2026",
+      "short": "Be Ready: three days",
+      "title": "The Be Ready campaign asks every household to cope for three days",
+      "why": "The government launches the Be Ready campaign. The checklist asks each household to cope for three days: 3 litres of water per person per day, non-perishable food, a torch, an FM radio, cash, and a charged power bank. Security minister Dan Jarvis says the advice lets emergency services prioritise people who need more support. Defence secretary Wes Streeting, asked if it is scaremongering, says there is not a specific thing in mind — alert, but not alarmed. Graded green: ministers do not tie the launch to a named threat. The same BBC report notes hostile-state cyber and last year's national security strategy, which is context, not the driver of this row. Band 1."
+    },
+    "he": {
+      "label": "22 באוקטובר 2026",
+      "short": "Be Ready: שלושה ימים",
+      "title": "מסע Be Ready מבקש מכל משק בית להחזיק מעמד שלושה ימים",
+      "why": "הממשלה משיקה את מסע Be Ready. הרשימה מבקשת מכל משק בית להחזיק מעמד שלושה ימים: 3 ליטר מים לאדם ליום, מזון שאינו מתקלקל, פנס, רדיו FM, מזומן, וסוללת גיבוי טעונה. השר לביטחון דן ג׳ארוויס אומר שהעצה מאפשרת לשירותי החירום לתעדף את מי שזקוק ליותר תמיכה. שר ההגנה וס סטריטינג, שנשאל אם זו הפחדה, אומר שאין דבר מסוים לנגד עיניהם — ערניים, לא מבוהלים. מסומן ירוק: השרים אינם קושרים את ההשקה לאיום נקוב. אותו דיווח ב-BBC מזכיר סייבר של מדינות עוינות ואת אסטרטגיית הביטחון הלאומי מאשתקד; זה הקשר, לא הגורם של השורה הזו. רמה 1."
+    }
+  },
+  {
+    "n": 46,
     "date": "2026-10-30",
     "approx": false,
     "side": "ru",
@@ -753,6 +825,24 @@
       "short": "טענת יירוט Storm Shadow",
       "title": "משרד ההגנה הרוסי טוען ליירוט שני טילי Storm Shadow בריטיים",
       "why": "הסיכום השבועי של משרד ההגנה הרוסי טען שכוחות ההגנה האווירית יירטו בשבוע החולף שני טילי שיוט בריטיים מדגם Storm Shadow, לצד שישה טילי נפטון, טיל SCALP צרפתי אחד ו-6,900 מזל״טים. לא נמסרו תאריכים או מיקומים ליירוטי ה-Storm Shadow. טענה רוסית שלא אומתה; לא אושרה בכלי תקשורת מערביים."
+    }
+  },
+  {
+    "n": 47,
+    "date": "2026-11-07",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "7 NOV 2026",
+      "short": "Black Sky radio plan",
+      "title": "The BBC discloses its Black Sky emergency radio plan",
+      "why": "Disclosure of an existing plan, dated to the BBC report rather than to when the plan was written. About 100 staff would run an emergency FM studio with secure lines that do not depend on the internet, and with fuel, water and food for at least three days without resupply. It would broadcast pre-scripted government messages. Transmission sites hold diesel tanks of between 5,000 and 40,000 litres, enough for about three days of FM. The government says there is no specific threat to the grid. Graded green: the documented driver is a general blackout — the 2015 Lancaster flood and the 2025 Iberian outage are the examples — not a named Russian act. Band 1."
+    },
+    "he": {
+      "label": "7 בנובמבר 2026",
+      "short": "תוכנית הרדיו Black Sky",
+      "title": "ה-BBC חושף את תוכנית הרדיו לחירום Black Sky",
+      "why": "חשיפה של תוכנית קיימת, מתוארכת לדיווח ה-BBC ולא ליום שבו נכתבה התוכנית. כ-100 אנשי צוות יפעילו אולפן רדיו FM לחירום עם קווים מאובטחים שאינם תלויים באינטרנט, ועם דלק, מים ומזון לשלושה ימים לפחות בלי אספקה נוספת. השידור יישא מסרים ממשלתיים שנכתבו מראש. באתרי השידור מכלי דיזל של 5,000 עד 40,000 ליטר, בערך לשלושה ימי FM. הממשלה אומרת שאין איום מסוים על הרשת. מסומן ירוק: הגורם המתועד הוא האפלה כללית — השיטפון בלנקסטר ב-2015 וההאפלה בחצי האי האיברי ב-2025 הם הדוגמאות — ולא מעשה רוסי נקוב. רמה 1."
     }
   }
 ]
