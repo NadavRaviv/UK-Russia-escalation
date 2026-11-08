@@ -66,8 +66,8 @@
   let side = "all";
 
   const PHASE_TITLE = {
-    en: ["Before 15 August", "15 to 27 August", "September", "October"],
-    he: ["לפני 15 באוגוסט", "15–27 באוגוסט", "ספטמבר", "אוקטובר"],
+    en: ["Before 15 August", "15 to 27 August", "September", "October–November"],
+    he: ["לפני 15 באוגוסט", "15–27 באוגוסט", "ספטמבר", "אוקטובר–נובמבר"],
   };
   const SIDES = ["all", "uk", "ru", "ot"];
 
@@ -164,8 +164,8 @@
         <p class="key muted"><span>${ringMark({ direct: true })} ${esc(u.k1)}</span><span>${ringMark({ direct: false })} ${esc(u.k2)}</span></p>
       </div>
       <dl class="figures">
-        <div><dt>${esc(u.s1)}</dt><dd class="figure__n">10.8<span class="figure__u">${esc(u.unit.trim())}</span></dd></div>
-        <div><dt>${esc(u.s2)}</dt><dd class="figure__n figure__n--accent">3.3<span class="figure__u">${esc(u.unit.trim())}</span></dd></div>
+        <div><dt>${esc(u.s1)}</dt><dd class="figure__n">10.3<span class="figure__u">${esc(u.unit.trim())}</span></dd></div>
+        <div><dt>${esc(u.s2)}</dt><dd class="figure__n figure__n--accent">3.1<span class="figure__u">${esc(u.unit.trim())}</span></dd></div>
         <div><dt>${esc(u.tlCount)}</dt><dd class="figure__n">${U.events.length}</dd></div>
         <div><dt>${esc(u.s4)}</dt><dd class="figure__n">${mid} / ${U.events.filter((e) => e.side === "uk").length} / ${U.events.filter((e) => e.side === "ot").length}</dd></div>
       </dl>`;
