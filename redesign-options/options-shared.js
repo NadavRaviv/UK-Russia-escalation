@@ -64,7 +64,7 @@
     { id: "p1", from: "2026-01-01", to: "2026-08-14", photo: "refinery", range: [[0, 1], [7, 14]] },
     { id: "p2", from: "2026-08-15", to: "2026-08-27", photo: "kremlin", range: [[7, 15], [7, 27]] },
     { id: "p3", from: "2026-09-01", to: "2026-09-30", photo: "destroyer", range: [[8, 1], [8, 30]] },
-    { id: "p4", from: "2026-10-01", to: "2026-11-30", photo: "wind", range: [[9, 1], [10, 7]] },
+    { id: "p4", from: "2026-10-01", to: "2026-11-30", photo: "wind", range: [[9, 1], [10, 10]] },
   ];
 
   function phaseRows(p) {
