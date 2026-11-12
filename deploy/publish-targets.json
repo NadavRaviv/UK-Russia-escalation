@@ -2,5 +2,5 @@
   "project": "UK-Russia-escalation",
   "netlify_production_url": "https://russia-uk-escalation.netlify.app",
   "github_pages_url": "https://nadavraviv.github.io/UK-Russia-escalation/",
-  "notes": "Set netlify_production_url to your Netlify Site settings → Domain management → Primary domain (e.g. https://your-site.netlify.app). Agents read this file after every publish to send you a Netlify URL approval message."
+  "notes": "Set netlify_production_url to your Netlify Site settings → Domain management → Primary domain (e.g. https://your-site.netlify.app)."
 }

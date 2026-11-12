@@ -43,7 +43,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
           if [ -n "$URL" ]; then echo "netlify_production_url=$URL" >> "$GITHUB_OUTPUT"; fi
 
-      - name: Note skipped Netlify (for publish approval)
+      - name: Note skipped Netlify
         if: ${{ env.NETLIFY_AUTH_TOKEN == '' || env.NETLIFY_SITE_ID == '' }}
         run: |
           {
