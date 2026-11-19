@@ -26,13 +26,13 @@ function post(body, ip = "203.0.113.10") {
   );
 }
 
-test("the shipped index is the 49 timeline rows, in order", () => {
+test("the shipped index is the 58 timeline rows, in order", () => {
   const html = fs.readFileSync("uk-russia-merged-timeline.html", "utf8");
   const start = html.indexOf("const EVENTS = ");
   const end = html.indexOf("\n];\n", start);
   const pageEvents = Function(html.slice(start, end + 3) + "\nreturn EVENTS;")();
-  assert.equal(pageEvents.length, 49);
-  assert.equal(EVENTS.length, 49);
+  assert.equal(pageEvents.length, 58);
+  assert.equal(EVENTS.length, 58);
   assert.deepEqual(EVENTS.map((event) => event.date), pageEvents.map((event) => event.date));
   assert.equal(EVENTS.filter((event) => event.date === "2026-09-29").length, 1);
   assert.ok(EVENTS.some((event) => event.date === "2026-09-29" && /nuclear/i.test(event.en.title)));
@@ -46,7 +46,7 @@ test("the page keeps six view tabs and the Hebrew standfirst", () => {
   for (const id of ["danger", "kanban", "domain", "outline", "munger", "ladder"]) {
     assert.equal(nav.includes('["' + id + '",'), true, id);
   }
-  assert.match(html, /קצב האירועים גדל פי 3\.3/);
+  assert.match(html, /קצב האירועים גדל פי 2\.6/);
   assert.match(html, /function cancelMungerGate\(/);
   assert.match(html, /getElementById\("munger-cancel"\)\.addEventListener\("click", cancelMungerGate\)/);
   assert.match(html, /currentView\(\) === "munger" && mungerUnlocked\(\)/);
@@ -55,7 +55,7 @@ test("the page keeps six view tabs and the Hebrew standfirst", () => {
   assert.match(html, /id="whyClose"/);
   assert.equal((html.match(/class="popup-x"/g) || []).length, 2);
   assert.match(html, /getElementById\("munger-x"\)\.addEventListener\("click", cancelMungerGate\)/);
-  assert.equal((html.match(/date:"2026-/g) || []).length, 49);
+  assert.equal((html.match(/date:"2026-/g) || []).length, 58);
   assert.equal(html.includes("COGNEE_API_KEY"), false);
 });
 

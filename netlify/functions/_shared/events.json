@@ -37,6 +37,24 @@
   },
   {
     "n": 3,
+    "date": "2026-02-12",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "12 FEB 2026",
+      "short": "£500m air defence",
+      "title": "Over £500m air defence: 1,000 missiles and Rapid Ranger production",
+      "why": "At the 33rd Ukraine Defence Contact Group in Brussels, the MoD announces more than £500 million in air defence. £150 million goes to NATO’s PURL list for interceptors; a further 1,000 Lightweight Multirole Missiles are made in Belfast; a £390 million deal transfers production and support of Rapid Ranger launchers and command vehicles to Ukraine. The coming months also bring 1,200 more air-defence missiles and 200,000 artillery rounds through the Air Defence Consortium. The release names Putin’s attacks on energy sites and homes."
+    },
+    "he": {
+      "label": "12 בפברואר 2026",
+      "short": "הגנה אווירית, מעל 500 מ׳",
+      "title": "מעל 500 מיליון ליש״ט להגנה אווירית: 1,000 טילים והעברת ייצור Rapid Ranger",
+      "why": "במפגש ה-33 של קבוצת הקשר להגנת אוקראינה בבריסל משרד ההגנה מכריז על יותר מ-500 מיליון ליש״ט להגנה אווירית. 150 מיליון ליש״ט הולכים לרשימת הדרישות של נאט״ו (PURL) עבור מיירטים; עוד 1,000 טילים רב-משימתיים קלים (LMM) מיוצרים בבלפסט; עסקה של 390 מיליון ליש״ט מעבירה לאוקראינה את הייצור והתמיכה במשגרי Rapid Ranger וברכבי פיקוד. בחודשים הבאים גם 1,200 טילי הגנה אווירית נוספים ו-200,000 פגזי ארטילריה, דרך קונסורציום ההגנה האווירית. ההודעה נוקבת בתקיפות של פוטין על אתרי אנרגיה ועל בתים."
+    }
+  },
+  {
+    "n": 4,
     "date": "2026-02-17",
     "approx": false,
     "side": "ru",
@@ -54,7 +72,25 @@
     }
   },
   {
-    "n": 4,
+    "n": 5,
+    "date": "2026-02-24",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "24 FEB 2026",
+      "short": "Helicopter instructors for Ukraine",
+      "title": "UK starts helicopter-instructor training and military medical mentoring",
+      "why": "On the fourth anniversary of the full-scale invasion, Ukrainian pilots begin training at a UK air base as helicopter flying instructors, the first rotary-wing instructor course Britain has offered Ukraine, and British military surgeons, nurses and physiotherapists mentor Ukrainian clinicians in battlefield surgery. The same release’s £20 million energy grant and £5.7 million humanitarian cash are not this row. It names Putin’s invasion. The 5 June row is the later decision to gather this specialist training under Operation Interflex."
+    },
+    "he": {
+      "label": "24 בפברואר 2026",
+      "short": "מדריכי מסוקים לאוקראינה",
+      "title": "בריטניה פותחת הכשרת מדריכי מסוקים וחונכות רפואית צבאית",
+      "why": "ביום השנה הרביעי לפלישה הכוללת, טייסים אוקראינים מתחילים להתאמן בבסיס אוויר בריטי כמדריכי טיסה במסוקים. זה הקורס הראשון מסוג זה שבריטניה מציעה לאוקראינה. במקביל, מנתחים, אחיות ופיזיותרפיסטים מהצבא הבריטי חונכים רופאים אוקראינים בניתוחי שדה. מענק האנרגיה של 20 מיליון ליש״ט והסיוע ההומניטרי של 5.7 מיליון ליש״ט באותה הודעה אינם השורה הזו. ההודעה נוקבת בפלישה של פוטין. שורת 5 ביוני היא ההחלטה המאוחרת יותר לאגד את אימון המומחים הזה תחת מבצע אינטרפלקס."
+    }
+  },
+  {
+    "n": 6,
     "date": "2026-03-15",
     "approx": true,
     "side": "ru",
@@ -72,7 +108,25 @@
     }
   },
   {
-    "n": 5,
+    "n": 7,
+    "date": "2026-03-27",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "27 MAR 2026",
+      "short": "£100m more air defence",
+      "title": "A further £100m for Ukraine’s air defence",
+      "why": "At the Joint Expeditionary Force summit in Helsinki, the Prime Minister commits another £100 million to be deployed quickly for air defence, taking two months of such commitments to £600 million. The release names Russia’s attacks on cities and homes. The missiles and artillery rounds it lists are the February package, not new weapons inside this £100 million."
+    },
+    "he": {
+      "label": "27 במרץ 2026",
+      "short": "עוד 100 מ׳ להגנה אווירית",
+      "title": "עוד 100 מיליון ליש״ט להגנה האווירית של אוקראינה",
+      "why": "בפסגת כוח המשימה המשותף בהלסינקי ראש הממשלה מתחייב לעוד 100 מיליון ליש״ט, שייפרסו במהירות להגנה אווירית, וכך מגיע סך ההתחייבויות האלה בחודשיים ל-600 מיליון ליש״ט. ההודעה נוקבת בתקיפות של רוסיה על ערים ועל בתים. הטילים ופגזי הארטילריה שמפורטים בה הם חבילת פברואר, לא חימוש חדש בתוך 100 המיליון האלה."
+    }
+  },
+  {
+    "n": 8,
     "date": "2026-03-30",
     "approx": false,
     "side": "ru",
@@ -90,7 +144,7 @@
     }
   },
   {
-    "n": 6,
+    "n": 9,
     "date": "2026-04-09",
     "approx": false,
     "side": "ru",
@@ -108,25 +162,25 @@
     }
   },
   {
-    "n": 7,
+    "n": 10,
     "date": "2026-04-15",
     "approx": false,
     "side": "uk",
     "en": {
       "label": "15 APR 2026",
-      "short": "£752m drone package",
-      "title": "£752m package: at least 120,000 drones for Ukraine",
-      "why": "Announced by the MoD ahead of the 34th Ukraine Defence Contact Group. Includes long-range strike drones. No Russian response is logged in this set within the following month."
+      "short": "120,000 drones for Ukraine",
+      "title": "At least 120,000 drones for Ukraine, including long-range strike",
+      "why": "Announced by the MoD as the Defence Secretary co-chairs the 34th Ukraine Defence Contact Group in Berlin. Thousands of long-range strike drones, plus reconnaissance, logistics and maritime drones; deliveries had already started. The £752 million figure is the 18 June package, not this one. No Russian response is logged in this set within the following month."
     },
     "he": {
       "label": "15 באפריל 2026",
-      "short": "חבילת מזל”טים בת 752 מ׳",
-      "title": "חבילה של 752 מיליון ליש”ט: לפחות 120,000 מזל”טים לאוקראינה",
-      "why": "הוכרזה על ידי משרד ההגנה הבריטי לקראת המפגש ה-34 של קבוצת הקשר להגנת אוקראינה. כוללת מזל”טי תקיפה ארוכי טווח. במערך הזה לא נרשמה תגובה רוסית בחודש שלאחר מכן."
+      "short": "120,000 מזל״טים לאוקראינה",
+      "title": "לפחות 120,000 מזל״טים לאוקראינה, ובהם מזל״טי תקיפה ארוכי טווח",
+      "why": "משרד ההגנה מכריז על כך כששר ההגנה יושב בראש המפגש ה-34 של קבוצת הקשר להגנת אוקראינה בברלין. אלפי מזל״טי תקיפה ארוכי טווח, וגם מזל״טי מודיעין, לוגיסטיקה ויכולת ימית; המשלוחים כבר החלו. סכום 752 מיליון ליש״ט שייך לחבילת 18 ביוני, לא לזו. במערך הזה לא נרשמה תגובה רוסית בחודש שלאחר מכן."
     }
   },
   {
-    "n": 8,
+    "n": 11,
     "date": "2026-04-30",
     "approx": false,
     "side": "uk",
@@ -144,7 +198,7 @@
     }
   },
   {
-    "n": 9,
+    "n": 12,
     "date": "2026-05-13",
     "approx": false,
     "side": "ru",
@@ -162,7 +216,7 @@
     }
   },
   {
-    "n": 10,
+    "n": 13,
     "date": "2026-05-19",
     "approx": false,
     "side": "ru",
@@ -180,7 +234,7 @@
     }
   },
   {
-    "n": 11,
+    "n": 14,
     "date": "2026-06-01",
     "approx": true,
     "side": "uk",
@@ -198,7 +252,25 @@
     }
   },
   {
-    "n": 12,
+    "n": 15,
+    "date": "2026-06-05",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "5 JUN 2026",
+      "short": "Interflex specialist training",
+      "title": "Operation Interflex turns to specialist training for Ukraine",
+      "why": "The MoD says the fifth year of Operation Interflex will leave mass infantry training for specialist work: helicopter instructor training, pilots, medicine, engineering and logistics. More than 63,000 Ukrainians have already passed through, including 11,000 instructors. The release names Putin’s invasion as the reason the programme exists. The helicopter course itself was announced on 24 February; this row is the decision to bring that kind of training under one framework."
+    },
+    "he": {
+      "label": "5 ביוני 2026",
+      "short": "אימון מומחים באינטרפלקס",
+      "title": "מבצע אינטרפלקס עובר לאימון מומחים לאוקראינה",
+      "why": "משרד ההגנה אומר שהשנה החמישית של מבצע אינטרפלקס תעזוב את אימון החי״ר ההמוני לטובת מומחיות: הכשרת מדריכי מסוקים, טייסים, רפואה, הנדסה ולוגיסטיקה. יותר מ-63,000 אוקראינים כבר עברו בו, ובהם 11,000 מדריכים. ההודעה נוקבת בפלישה של פוטין כסיבה לקיום התוכנית. קורס המסוקים עצמו הוכרז ב-24 בפברואר; השורה הזו היא ההחלטה לאגד אימון כזה במסגרת אחת."
+    }
+  },
+  {
+    "n": 16,
     "date": "2026-06-16",
     "approx": false,
     "side": "ru",
@@ -216,7 +288,25 @@
     }
   },
   {
-    "n": 13,
+    "n": 17,
+    "date": "2026-06-18",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "18 JUN 2026",
+      "short": "£752m drones and missiles",
+      "title": "£752m: 150,000 Ukrainian drones and 350 air-defence missiles",
+      "why": "Defence Secretary Dan Jarvis announces it at the 35th Ukraine Defence Contact Group in Brussels, funded from the UK’s ERA loan, which is repaid from profits on immobilised Russian sovereign assets. 150,000 Ukrainian-produced drones by the end of 2026, and more than 350 air-defence missiles and radars, including Lightweight Multirole Missiles and ground-based radars. The release names Putin’s air attacks on civilian targets. This is a separate package from the 120,000 drones announced on 15 April."
+    },
+    "he": {
+      "label": "18 ביוני 2026",
+      "short": "752 מ׳: מזל״טים וטילים",
+      "title": "752 מיליון ליש״ט: 150,000 מזל״טים אוקראיניים ו-350 טילי הגנה אווירית",
+      "why": "שר ההגנה דן ג׳ארוויס מכריז על כך במפגש ה-35 של קבוצת הקשר להגנת אוקראינה בבריסל. המימון הוא מהלוואת ERA הבריטית, שנפרעת מרווחים על נכסי מדינה רוסיים שהוקפאו. 150,000 מזל״טים מתוצרת אוקראינה עד סוף 2026, ויותר מ-350 טילי הגנה אווירית ומכ״מים, ובהם טילים רב-משימתיים קלים (LMM) ומכ״מים קרקעיים. ההודעה נוקבת בתקיפות האוויר של פוטין על יעדים אזרחיים. זו חבילה נפרדת מ-120,000 המזל״טים שהוכרזו ב-15 באפריל."
+    }
+  },
+  {
+    "n": 18,
     "date": "2026-07-14",
     "approx": false,
     "side": "uk",
@@ -234,7 +324,25 @@
     }
   },
   {
-    "n": 14,
+    "n": 19,
+    "date": "2026-07-16",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "16 JUL 2026",
+      "short": "€300m for 16 Gripens",
+      "title": "€300m toward 16 Gripen jets for Ukraine, in service by 2029",
+      "why": "On a visit to President Zelenskyy, the Prime Minister says the UK will invest €300 million to help field a squadron of 16 Gripen E fighters by 2029, with pilot and engineer training, simulators and spares. The release says the jets can fight in the air, strike ground targets and reconnoitre, against Russian attacks. More than 50 UK companies supply the programme, and about 5,000 jobs depend on it. The aircraft are not expected before 2029."
+    },
+    "he": {
+      "label": "16 ביולי 2026",
+      "short": "300 מיליון אירו ל-16 גריפן",
+      "title": "300 מיליון אירו ל-16 מטוסי גריפן לאוקראינה, בשירות עד 2029",
+      "why": "בביקור אצל הנשיא זלנסקי ראש הממשלה אומר שבריטניה תשקיע 300 מיליון אירו כדי לסייע בהצבת טייסת של 16 מטוסי גריפן E עד 2029, עם הכשרת טייסים ומהנדסים, סימולטורים וחלקי חילוף. ההודעה אומרת שהמטוסים יכולים ללחום באוויר, לתקוף מטרות קרקע ולאסוף מודיעין, מול תקיפות רוסיות. יותר מ-50 חברות בריטיות מספקות את התוכנית, וכ-5,000 משרות תלויות בה. המטוסים אינם צפויים לפני 2029."
+    }
+  },
+  {
+    "n": 20,
     "date": "2026-07-20",
     "approx": false,
     "side": "ru",
@@ -252,7 +360,7 @@
     }
   },
   {
-    "n": 15,
+    "n": 21,
     "date": "2026-07-21",
     "approx": false,
     "side": "ru",
@@ -270,7 +378,7 @@
     }
   },
   {
-    "n": 16,
+    "n": 22,
     "date": "2026-07-27",
     "approx": false,
     "side": "uk",
@@ -288,7 +396,7 @@
     }
   },
   {
-    "n": 17,
+    "n": 23,
     "date": "2026-07-27",
     "approx": false,
     "side": "ru",
@@ -306,7 +414,7 @@
     }
   },
   {
-    "n": 18,
+    "n": 24,
     "date": "2026-08-06",
     "approx": false,
     "side": "uk",
@@ -324,7 +432,7 @@
     }
   },
   {
-    "n": 19,
+    "n": 25,
     "date": "2026-08-14",
     "approx": false,
     "side": "uk",
@@ -342,7 +450,7 @@
     }
   },
   {
-    "n": 20,
+    "n": 26,
     "date": "2026-08-15",
     "approx": false,
     "side": "uk",
@@ -355,12 +463,12 @@
     "he": {
       "label": "15 באוגוסט 2026",
       "short": "המערכה נחשפת",
-      "title": "הסאנדיי טיימס חושף את שישה חודשי התקיפות",
+      "title": "הסאנדיי טיימס חושף שישה חודשים של תקיפות",
       "why": "שישה חודשים של תקיפות מזל”טים מתוצרת בריטניה על בתי זיקוק רוסיים, שנחשפו בדיעבד. המהלך הבריטי הראשון במערך הזה שמושך תגובה רוסית בתוך שבוע."
     }
   },
   {
-    "n": 21,
+    "n": 27,
     "date": "2026-08-17",
     "approx": false,
     "side": "ru",
@@ -378,7 +486,7 @@
     }
   },
   {
-    "n": 22,
+    "n": 28,
     "date": "2026-08-23",
     "approx": false,
     "side": "ru",
@@ -396,7 +504,7 @@
     }
   },
   {
-    "n": 23,
+    "n": 29,
     "date": "2026-08-24",
     "approx": false,
     "side": "uk",
@@ -414,7 +522,7 @@
     }
   },
   {
-    "n": 24,
+    "n": 30,
     "date": "2026-08-24",
     "approx": false,
     "side": "ru",
@@ -432,7 +540,7 @@
     }
   },
   {
-    "n": 25,
+    "n": 31,
     "date": "2026-08-25",
     "approx": false,
     "side": "ru",
@@ -450,7 +558,7 @@
     }
   },
   {
-    "n": 26,
+    "n": 32,
     "date": "2026-08-25",
     "approx": false,
     "side": "ot",
@@ -468,7 +576,7 @@
     }
   },
   {
-    "n": 27,
+    "n": 33,
     "date": "2026-08-25",
     "approx": false,
     "side": "uk",
@@ -486,7 +594,7 @@
     }
   },
   {
-    "n": 28,
+    "n": 34,
     "date": "2026-08-26",
     "approx": false,
     "side": "ru",
@@ -498,13 +606,13 @@
     },
     "he": {
       "label": "26 באוגוסט 2026",
-      "short": "הסלמה מסומנת",
-      "title": "מקורות בקרמלין: השיחות מתות וההסלמה בדרך",
+      "short": "הסלמה בדרך",
+      "title": "מקורות בקרמלין: השיחות גוועו וההסלמה בדרך",
       "why": "שלושה גורמים המקורבים לקרמלין מתארים תקיפות בליסטיות כבדות יותר על קייב, כולל מרכז העיר. המשפט המהותי לציר הזמן הזה: מוסקבה מתייחסת יותר ויותר לתקיפות אוקראיניות כאל תקיפות של מדינות נאט”ו, בטענה שאותן מדינות מספקות את הנשק ואת המודיעין. מקורות אנונימיים, כלי תקשורת מקורי אחד."
     }
   },
   {
-    "n": 29,
+    "n": 35,
     "date": "2026-08-27",
     "approx": false,
     "side": "ru",
@@ -522,7 +630,7 @@
     }
   },
   {
-    "n": 30,
+    "n": 36,
     "date": "2026-09-01",
     "approx": false,
     "side": "ru",
@@ -540,7 +648,7 @@
     }
   },
   {
-    "n": 31,
+    "n": 37,
     "date": "2026-09-02",
     "approx": false,
     "side": "ru",
@@ -558,7 +666,7 @@
     }
   },
   {
-    "n": 32,
+    "n": 38,
     "date": "2026-09-06",
     "approx": false,
     "side": "ru",
@@ -576,7 +684,7 @@
     }
   },
   {
-    "n": 33,
+    "n": 39,
     "date": "2026-09-08",
     "approx": false,
     "side": "uk",
@@ -594,7 +702,25 @@
     }
   },
   {
-    "n": 34,
+    "n": 40,
+    "date": "2026-09-08",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "8 SEP 2026",
+      "short": "£100m Patriots and artillery",
+      "title": "£100m for Patriot missiles, and tens of thousands of artillery rounds",
+      "why": "At his first Ukraine Defence Contact Group, Defence Secretary Wes Streeting commits £100 million to NATO’s PURL list for Patriot missiles and other air defence, to be delivered before winter. Britain will also deliver tens of thousands of long-range artillery rounds in the coming months, with funding from Britain, Germany, Denmark, Lithuania, the Netherlands, Norway and Sweden. Of the year’s pledge of more than 120,000 drones, 25,000 had been delivered by this date; that is progress on the April package, not a new one. The release names Putin’s attacks on civilian and energy targets."
+    },
+    "he": {
+      "label": "8 בספטמבר 2026",
+      "short": "100 מ׳ לפטריוט ולארטילריה",
+      "title": "100 מיליון ליש״ט לטילי פטריוט, ועשרות אלפי פגזי ארטילריה",
+      "why": "במפגש הראשון שלו עם קבוצת הקשר להגנת אוקראינה, שר ההגנה ווס סטריטינג מתחייב ל-100 מיליון ליש״ט לרשימת הדרישות של נאט״ו (PURL) עבור טילי פטריוט וציוד הגנה אווירית נוסף, שיסופקו לפני החורף. בריטניה גם תספק עשרות אלפי פגזי ארטילריה ארוכי טווח בחודשים הבאים, במימון בריטניה, גרמניה, דנמרק, ליטא, הולנד, נורווגיה ושוודיה. מתוך התחייבות השנה ליותר מ-120,000 מזל״טים נמסרו 25,000 עד התאריך הזה; זהו דיווח התקדמות על חבילת אפריל, לא חבילה חדשה. ההודעה נוקבת בתקיפות של פוטין על יעדים אזרחיים ועל אנרגיה."
+    }
+  },
+  {
+    "n": 41,
     "date": "2026-09-10",
     "approx": false,
     "side": "ru",
@@ -612,7 +738,7 @@
     }
   },
   {
-    "n": 35,
+    "n": 42,
     "date": "2026-09-13",
     "approx": false,
     "side": "ru",
@@ -630,7 +756,7 @@
     }
   },
   {
-    "n": 36,
+    "n": 43,
     "date": "2026-09-16",
     "approx": false,
     "side": "uk",
@@ -643,12 +769,12 @@
     "he": {
       "label": "16 בספטמבר 2026",
       "short": "ראש מטה ההגנה: נקודת משבר",
-      "title": "נייטון ממסגר נקודת משבר תחת תוקפנות רוסית",
+      "title": "נייטון מתאר נקודת משבר תחת תוקפנות רוסית",
       "why": "ראש מטה ההגנה, מרשל האוויר סר ריצ׳רד נייטון, בראיון ”This Is Why” / Defence Insider של סקיי ניוז עם ניאל פטרסון בסביבות 16:18 BST, מתאר את בריטניה בנקודת משבר תחת תוקפנות רוסית וכוח ש”רוקן מתוכן” במשך עשורים, ולוחץ להגדלת ההוצאה הצבאית. הוא מכנה זאת הרגע המסוכן ביותר ב-35 שנות הקריירה שלו. TASS, בכתבה מלונדון ב-17 בספטמבר, מצטט אותו אומר לסקיי ש”רוסיה חזקה יותר צבאית כעת מזה זמן רב” ושהמצב הביטחוני ”נעשה מסוכן יותר”. נבדל מהרצאתו ב-RUSI בדצמבר 2025. במערך הזה לא נרשמה תגובה רוסית."
     }
   },
   {
-    "n": 37,
+    "n": 44,
     "date": "2026-09-16",
     "approx": false,
     "side": "uk",
@@ -666,7 +792,7 @@
     }
   },
   {
-    "n": 38,
+    "n": 45,
     "date": "2026-09-26",
     "approx": false,
     "side": "ru",
@@ -679,12 +805,12 @@
     "he": {
       "label": "26 בספטמבר 2026",
       "short": "רחפנים מעל אתרי גרעין",
-      "title": "משרד ההגנה: 100 תצפיות רחפנים מעל אתרי גרעין בריטיים בשמונה חודשים",
+      "title": "משרד ההגנה: 100 תצפיות של רחפנים מעל אתרי גרעין בריטיים בשמונה חודשים",
       "why": "משרד ההגנה מסר למייל און סאנדיי על 100 תצפיות רחפנים מעל מתקני גרעין או נכסים גרעיניים כמו צוללות בין ינואר לאוגוסט 2026 — 100 בשמונה חודשים, לעומת 69 בכל 2025 — מתוך 340 אירועי רחפנים באתרי משרד ההגנה או בסמוך להם בשנה שעד אוגוסט. פאסליין נזכר בשמו. מומחה הביטחון פרופ׳ אנתוני גליז אומר שההסבר המתבקש הוא איסוף מודיעין רוסי לתכנון תקיפה; זו הערכת מומחה ולא ייחוס רשמי. משרד ההגנה מוציא 790 מיליון ליש״ט על הגנה מפני רחפנים וטילים, עם מרחב אווירי מוגבל מעל 44 אתרי הגנה קריטיים ועוד יותר מ-160 בסתיו."
     }
   },
   {
-    "n": 39,
+    "n": 46,
     "date": "2026-09-28",
     "approx": false,
     "side": "ru",
@@ -702,7 +828,7 @@
     }
   },
   {
-    "n": 40,
+    "n": 47,
     "date": "2026-09-29",
     "approx": false,
     "side": "ru",
@@ -715,12 +841,12 @@
     "he": {
       "label": "29 בספטמבר 2026",
       "short": "כל האמצעים, כולל גרעין",
-      "title": "השגרירות בלונדון: פעולה נגד שטח רוסי תיענה גם בנשק גרעיני",
+      "title": "השגרירות בלונדון: פעולה נגד שטח רוסי תיענה בכל האמצעים, ובהם נשק גרעיני",
       "why": "בסביבות 08:20 BST עולה פוסט בחשבון ה-X המאומת של שגרירות רוסיה בלונדון: כל פעולה צבאית בריטית או של נאט”ו נגד שטח רוסי תיענה ב”כל האמצעים... כולל נשק גרעיני”. הפוסט מציין את הסיקור של The i Paper על קלינינגרד ואת משחק המלחמה הטלוויזיוני של סקיי, The Wargame. TASS, LBC ו-Newsweek מפרסמים את האזהרה; TASS מביא את אותו נוסח כהודעה בטלגרם, והשגרירות מוסיפה שרוסיה אינה מבקשת עימות ואינה מתכוונת לתקוף את נאט”ו או את אירופה. קיר ג׳יילס כותב ב-The i Paper שזו תגובת רפלקס: איתות גרעיני, לא תוכנית תקיפה חדשה על אתר בריטי מסוים. הפוסט אינו נוקב בדבר בריטי מסוים."
     }
   },
   {
-    "n": 41,
+    "n": 48,
     "date": "2026-10-01",
     "approx": false,
     "side": "uk",
@@ -738,7 +864,7 @@
     }
   },
   {
-    "n": 42,
+    "n": 49,
     "date": "2026-10-14",
     "approx": false,
     "side": "uk",
@@ -756,7 +882,7 @@
     }
   },
   {
-    "n": 43,
+    "n": 50,
     "date": "2026-10-22",
     "approx": false,
     "side": "ru",
@@ -774,7 +900,7 @@
     }
   },
   {
-    "n": 44,
+    "n": 51,
     "date": "2026-10-22",
     "approx": false,
     "side": "uk",
@@ -792,7 +918,7 @@
     }
   },
   {
-    "n": 45,
+    "n": 52,
     "date": "2026-10-22",
     "approx": false,
     "side": "uk",
@@ -806,11 +932,11 @@
       "label": "22 באוקטובר 2026",
       "short": "Be Ready: שלושה ימים",
       "title": "מסע Be Ready מבקש מכל משק בית להחזיק מעמד שלושה ימים",
-      "why": "הממשלה משיקה את מסע Be Ready. הרשימה מבקשת מכל משק בית להחזיק מעמד שלושה ימים: 3 ליטר מים לאדם ליום, מזון שאינו מתקלקל, פנס, רדיו FM, מזומן, וסוללת גיבוי טעונה. השר לביטחון דן ג׳ארוויס אומר שהעצה מאפשרת לשירותי החירום לתעדף את מי שזקוק ליותר תמיכה. שר ההגנה וס סטריטינג, שנשאל אם זו הפחדה, אומר שאין דבר מסוים לנגד עיניהם — ערניים, לא מבוהלים. מסומן ירוק: השרים אינם קושרים את ההשקה לאיום נקוב. אותו דיווח ב-BBC מזכיר סייבר של מדינות עוינות ואת אסטרטגיית הביטחון הלאומי מאשתקד; זה הקשר, לא הגורם של השורה הזו. רמה 1."
+      "why": "הממשלה משיקה את מסע Be Ready. הרשימה מבקשת מכל משק בית להחזיק מעמד שלושה ימים: 3 ליטר מים לאדם ליום, מזון שאינו מתקלקל, פנס, רדיו FM, מזומן, וסוללת גיבוי טעונה. השר לביטחון דן ג׳ארוויס אומר שהעצה מאפשרת לשירותי החירום לתעדף את מי שזקוק ליותר תמיכה. שר ההגנה ווס סטריטינג, שנשאל אם זו הפחדה, אומר שאין דבר מסוים לנגד עיניהם — ערניים, לא מבוהלים. מסומן ירוק: השרים אינם קושרים את ההשקה לאיום נקוב. אותו דיווח ב-BBC מזכיר סייבר של מדינות עוינות ואת אסטרטגיית הביטחון הלאומי מאשתקד; זה הקשר, לא הגורם של השורה הזו. רמה 1."
     }
   },
   {
-    "n": 46,
+    "n": 53,
     "date": "2026-10-30",
     "approx": false,
     "side": "ru",
@@ -828,7 +954,7 @@
     }
   },
   {
-    "n": 47,
+    "n": 54,
     "date": "2026-11-07",
     "approx": false,
     "side": "uk",
@@ -846,7 +972,7 @@
     }
   },
   {
-    "n": 48,
+    "n": 55,
     "date": "2026-11-10",
     "approx": false,
     "side": "uk",
@@ -864,7 +990,7 @@
     }
   },
   {
-    "n": 49,
+    "n": 56,
     "date": "2026-11-12",
     "approx": false,
     "side": "uk",
@@ -879,6 +1005,42 @@
       "short": "סנקציות על יצרניות הנפט",
       "title": "בריטניה מטילה סנקציות על יצרניות הנפט הגדולות של רוסיה ועל צי הצללים וה-LNG",
       "why": "ב-12 בנובמבר משרד החוץ ודאונינג 10 מבצעים 20 הכללות חדשות ושינוי אחד לפי תקנות הסנקציות על רוסיה. תשעה גופים: Slavneft, Sibur Holding, Nipigazpererabotka, SUEK, Kuzbassrazrezugol, מיזם Vostok Oil הארקטי של Rosneft, וסוחרי איחוד האמירויות Forteza Trading DMCC, Patera FZCO ו-Novus Energy DMCC. אחת־עשרה אוניות: חמש מכליות LNG (Melicertes, Neleus, Perle, Aeolus, Oneiroi), חמש מכליות נפט (Apeks, Sara Sky, Balu 6, Yvika, Alma) ויחידת האחסון הצפה Koryak. הצעדים הם הקפאת נכסים, איסור שירותי נאמנות ואיסור כהונת דירקטורים, ואיסור כניסה לנמלים עם סמכות מעצר לאוניות. דאונינג 10 אומר שבריטניה היא המדינה הראשונה שמטילה סנקציות על כל עשר יצרניות הנפט הגדולות של רוסיה. ההודעה ניתנת עם הגעת ראש הממשלה לפסגת הקהילה הפוליטית האירופית בדבלין. צעד משפטי, לא איום תקיפה — רמה 2."
+    }
+  },
+  {
+    "n": 57,
+    "date": "2026-11-17",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "17 NOV 2026",
+      "short": "£240m air-defence missiles",
+      "title": "£240m air defence: 1,000+ short-range missiles and a dozen radars",
+      "why": "Defence Secretary Wes Streeting announces it while co-chairing the Ukraine Defence Contact Group in Brussels. More than 1,000 short-range air-defence missiles and launchers, already proven against the jet-powered Shahed drones Russia is using, plus more than a dozen radars. Deliveries begin in mid-December. The missiles come from Thales Belfast; the radars from the UK and Europe. It is part of the £500 million winter sum named at the Budget; the rest is the 18 November package. The release names Putin’s attacks."
+    },
+    "he": {
+      "label": "17 בנובמבר 2026",
+      "short": "240 מ׳ לטילי הגנה אווירית",
+      "title": "240 מיליון ליש״ט להגנה אווירית: מעל 1,000 טילים קצרי טווח ולמעלה מתריסר מכ״מים",
+      "why": "שר ההגנה ווס סטריטינג מכריז על כך כשהוא יושב בראש קבוצת הקשר להגנת אוקראינה בבריסל. יותר מ-1,000 טילי הגנה אווירית קצרי טווח ומשגרים, שכבר הוכחו מול מזל״טי השאהד הסילוניים שרוסיה מפעילה, ועוד למעלה מתריסר מכ״מים. האספקה מתחילה באמצע דצמבר. הטילים מתאלס בלפסט; המכ״מים מבריטניה ומאירופה. זה חלק מ-500 מיליון ליש״ט לחורף שנקבו בהם בתקציב; היתרה היא חבילת 18 בנובמבר. ההודעה נוקבת בתקיפות של פוטין."
+    }
+  },
+  {
+    "n": 58,
+    "date": "2026-11-18",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "18 NOV 2026",
+      "short": "£260m long-range strike drones",
+      "title": "£260m: 1,000+ long-range strike drones, some beyond 1,000 km",
+      "why": "No 10 announces it as the Prime Minister co-chairs the Coalition of the Willing in Berlin. More than 1,000 long-range strike drones, some able to fly beyond 1,000 km, with heavy warheads, so Ukraine can hit military production sites and other military targets far behind the front. Also maritime, logistics and surveillance drones. More than 80% of the money is spent in the UK. Deliveries of extra Lightweight Multirole Missiles, announced earlier, have started. The release names Russia’s attacks and Putin’s use of winter as a weapon. It is the remainder of the £500 million Budget sum, after the £240 million air-defence package of 17 November."
+    },
+    "he": {
+      "label": "18 בנובמבר 2026",
+      "short": "260 מ׳ למזל״טי תקיפה ארוכי טווח",
+      "title": "260 מיליון ליש״ט: מעל 1,000 מזל״טי תקיפה ארוכי טווח, חלקם מעבר ל-1,000 ק״מ",
+      "why": "דאונינג 10 מכריז על כך כשראש הממשלה יושב בראש קואליציית המוכנים בברלין. יותר מ-1,000 מזל״טי תקיפה ארוכי טווח, חלקם מסוגלים לטוס מעבר ל-1,000 ק״מ, עם ראשי נפץ כבדים, כדי שאוקראינה תוכל לפגוע באתרי ייצור צבאי וביעדים צבאיים אחרים הרחק מאחורי החזית. גם מזל״טים ימיים, לוגיסטיים ומזל״טי איסוף. יותר מ-80% מהכסף מושקע בבריטניה. אספקה של טילי LMM נוספים, שהוכרזו קודם, כבר החלה. ההודעה נוקבת בתקיפות של רוסיה ובשימוש של פוטין בחורף כנשק. זו היתרה של 500 מיליון ליש״ט מהתקציב, אחרי חבילת ההגנה האווירית של 240 מיליון ליש״ט מ-17 בנובמבר."
     }
   }
 ]
