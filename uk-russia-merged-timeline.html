@@ -240,8 +240,9 @@
   header.hero.hero--munger .hero__bg img{object-position:50% 20%}
   header.hero.hero--danger .hero__bg img{object-position:8% 42%}
 
-  /* Events, Bands and Domain each have their own photograph.
+  /* Events, Bands, Domain and Levels each have their own photograph.
      Events: a diary cover. Bands: empty lanes. Domain: a train on a viaduct.
+     Levels: a wood fire, the logs glowing red.
      Domain: five labelled boxes with a hairline between them. */
   .hero__draw{display:none}
   header.hero.hero--drawn{
@@ -1125,11 +1126,13 @@
           if (hash === "" || hash === "#" || hash === "#top" || hash === "#view=outline") drawn = "list";
           else if (hash === "#view=kanban") drawn = "bands";
           else if (hash === "#view=domain") drawn = "domain";
+          else if (hash === "#view=ladder") drawn = "ladder";
           if (drawn) {
             var srcs = {
               list: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/2019_diary.jpg/1920px-2019_diary.jpg",
               bands: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Athletics_tracks_finish_line.jpg",
-              domain: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Glenfinnan_Viaduct_-_Jacobite_Express.jpg/1920px-Glenfinnan_Viaduct_-_Jacobite_Express.jpg"
+              domain: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Glenfinnan_Viaduct_-_Jacobite_Express.jpg/1920px-Glenfinnan_Viaduct_-_Jacobite_Express.jpg",
+              ladder: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Open_wood_fire.JPG/1920px-Open_wood_fire.JPG"
             };
             hero.classList.remove("hero--danger", "hero--drawn");
             hero.classList.add("hero--" + drawn);
@@ -1140,7 +1143,7 @@
             img.height = 1280;
             return;
           }
-          if (hash === "" || hash === "#" || hash === "#top" || /^#view=(kanban|domain|outline|ladder)$/.test(hash)) {
+          if (hash === "" || hash === "#" || hash === "#top" || /^#view=(kanban|domain|outline)$/.test(hash)) {
             hero.classList.remove("hero--danger");
             img.dataset.hero = "westminster";
             img.src = "https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1920";
@@ -3155,7 +3158,7 @@ function tryUnlockMunger(){
   mungerCode.select();
 }
 
-const DRAWN_VIEW = { outline: "list", kanban: "bands", domain: "domain" };
+const DRAWN_VIEW = { outline: "list", kanban: "bands", domain: "domain", ladder: "ladder" };
 const HERO_TAB_PHOTOS = {
   list: {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/2019_diary.jpg/1920px-2019_diary.jpg",
@@ -3185,6 +3188,16 @@ const HERO_TAB_PHOTOS = {
     credit: {
       en: 'Photo: <a href="https://commons.wikimedia.org/wiki/File:Glenfinnan_Viaduct_-_Jacobite_Express.jpg" rel="noopener">Eric Kilby</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>',
       he: 'צילום: <a href="https://commons.wikimedia.org/wiki/File:Glenfinnan_Viaduct_-_Jacobite_Express.jpg" rel="noopener">אריק קילבי</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>',
+    },
+  },
+  ladder: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Open_wood_fire.JPG/1920px-Open_wood_fire.JPG",
+    pos: "50% 62%",
+    alt: "A wood fire in a hearth, the logs glowing red",
+    altHe: "אש עצים באח, והבולי עץ זוהרים באדום",
+    credit: {
+      en: 'Photo: <a href="https://commons.wikimedia.org/wiki/File:Open_wood_fire.JPG" rel="noopener">Edoddridge</a> / <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>',
+      he: 'צילום: <a href="https://commons.wikimedia.org/wiki/File:Open_wood_fire.JPG" rel="noopener">Edoddridge</a> / <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>',
     },
   },
 };
@@ -3286,6 +3299,7 @@ function paintHero(){
   hero.classList.toggle("hero--list", kind === "list");
   hero.classList.toggle("hero--bands", kind === "bands");
   hero.classList.toggle("hero--domain", kind === "domain");
+  hero.classList.toggle("hero--ladder", kind === "ladder");
   img.style.objectPosition = "";
   if (kind){
     hero.classList.remove("hero--munger", "hero--danger");
