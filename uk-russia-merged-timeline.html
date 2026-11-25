@@ -240,6 +240,119 @@
   header.hero.hero--munger .hero__bg img{object-position:50% 20%}
   header.hero.hero--danger .hero__bg img{object-position:8% 42%}
 
+  /* Events, Bands, Domain and Levels each have their own photograph.
+     Events: a wall calendar. Bands: empty lanes. Domain: a train on a viaduct.
+     Levels: bright flames around logs in a fireplace.
+     Domain: five labelled boxes with a hairline between them. */
+  .hero__draw{display:none}
+  header.hero.hero--drawn{
+    display:grid;
+    grid-template-areas:"fig" "copy";
+    align-items:end;
+    min-height:0;
+    background:var(--color-paper);
+    padding-block:var(--nav-clearance) var(--space-xl);
+  }
+  header.hero.hero--drawn::after{display:none}
+  header.hero.hero--drawn .hero__bg{display:none}
+  header.hero.hero--drawn .hero__draw{
+    display:block;
+    grid-area:fig;
+    margin:var(--space-md) var(--page-gutter) 0;
+  }
+  header.hero.hero--drawn .hero__inner{grid-area:copy}
+  header.hero.hero--drawn h1,
+  header.hero.hero--drawn .eyebrow,
+  header.hero.hero--drawn .standfirst,
+  header.hero.hero--drawn .chip,
+  header.hero.hero--drawn .chip b,
+  header.hero.hero--drawn .chip .count,
+  header.hero.hero--drawn .info-btn{color:var(--color-ink)}
+  header.hero.hero--drawn .chip{
+    border-color:var(--color-rule);
+    background:var(--color-paper-2);
+  }
+  header.hero.hero--drawn .chip:hover{border-color:var(--color-ink);color:var(--color-ink)}
+  header.hero.hero--drawn .chip .ring.on,
+  header.hero.hero--drawn .chip .ring.off{border-color:var(--color-ink)}
+  header.hero.hero--drawn .chip .flag{border-color:var(--color-rule)}
+  header.hero.hero--drawn .chip-rule{background:var(--color-rule)}
+  header.hero.hero--drawn .info-btn{border-color:var(--color-rule)}
+  header.hero.hero--drawn .info-btn:hover,
+  header.hero.hero--drawn .info-btn:focus-visible{color:var(--color-ink);border-color:var(--color-ink)}
+  header.hero.hero--drawn .credit,
+  header.hero.hero--drawn .credit a{color:var(--color-muted)}
+  .draw{display:none}
+  header.hero.hero--list .draw--list,
+  header.hero.hero--bands .draw--bands,
+  header.hero.hero--domain .draw--domain{display:block}
+  .slips{
+    position:relative;height:11.5rem;border-radius:var(--radius-md);
+    background:var(--color-paper-2);overflow:hidden;direction:ltr;
+  }
+  .cardstack i{display:block;font-style:normal}
+  .slip{
+    position:absolute;left:var(--x);top:var(--y);
+    padding:0.3rem 0.5rem;border:var(--rule-hair) solid var(--color-rule);
+    border-radius:2px;background:var(--color-paper);color:var(--color-ink);
+    font-family:var(--font-display);font-size:var(--text-sm);font-weight:600;
+    line-height:1.2;letter-spacing:0.01em;white-space:nowrap;
+    transform:rotate(var(--r));
+  }
+  .cardstack{position:relative;height:13rem}
+  .cardstack i{
+    position:absolute;inset-inline:14%;height:1.15rem;
+    border:var(--rule-hair) solid var(--color-rule);border-block-end:0;
+    border-radius:var(--radius-md) var(--radius-md) 0 0;
+    background:var(--color-paper-3);
+    inset-block-end:calc(7.4rem + var(--i) * 0.85rem);
+  }
+  .cardstack .front{
+    position:absolute;inset-inline:0;inset-block-end:0;height:7.6rem;
+    border:var(--rule-hair) solid var(--color-ink);border-radius:var(--radius-md);
+    background:var(--color-paper);
+    box-shadow:var(--shadow-raised);
+  }
+  .cardstack .front::before{
+    content:"";display:block;height:1px;margin:var(--space-lg) var(--space-md) 0;
+    background:var(--color-rule);
+  }
+  .dom5{
+    display:grid;grid-template-columns:repeat(5, minmax(0, 1fr));
+    margin:0;padding:0;list-style:none;
+    border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md);overflow:hidden;
+  }
+  .dom5 li{
+    min-width:0;margin:0;padding:var(--space-md) var(--space-sm);
+    border-inline-start:var(--rule-hair) solid var(--color-rule);
+    color:var(--color-ink);font-family:var(--font-body);font-size:var(--text-sm);
+    font-weight:600;line-height:var(--leading-snug);
+  }
+  .dom5 li:first-child{border-inline-start:0}
+  .dom5 b{
+    display:block;margin-block-end:var(--space-2xs);
+    font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;font-style:normal;
+  }
+  @media (max-width: 40rem){
+    .dom5{grid-template-columns:minmax(0, 1fr)}
+    .dom5 li{border-inline-start:0;border-block-start:var(--rule-hair) solid var(--color-rule)}
+    .dom5 li:first-child{border-block-start:0}
+  }
+  @media (min-width: 60rem){
+    header.hero.hero--drawn{
+      grid-template-areas:"copy fig";
+      grid-template-columns:minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+      align-items:end;
+      padding-inline:max(var(--page-gutter), calc((100% - var(--page-max)) / 2));
+    }
+    body[dir="rtl"] header.hero.hero--drawn{grid-template-areas:"fig copy"}
+    header.hero.hero--drawn .hero__inner{
+      width:auto;max-width:none;margin:0;padding-inline:0;
+    }
+    header.hero.hero--drawn .hero__draw{margin:0}
+    .slips{height:14rem}
+  }
+
   /* --- info buttons --- */
   .info-btn{
     display:inline-flex;align-items:center;min-height:var(--tap-min);
@@ -370,6 +483,9 @@
 
   /* --- overview: kanban / outline / domain / danger --- */
   .overview{margin:0 0 var(--space-2xl);width:100%}
+  /* Events is the dated timeline. The band cards belong on Bands, not above this list. */
+  .overview.layout-outline{display:none;margin:0}
+  .overview.layout-outline ~ .record{margin-top:0}
   .ovhead{
     display:flex;align-items:center;justify-content:space-between;
     gap:var(--space-sm) var(--space-md);flex-wrap:wrap;margin-bottom:var(--space-md);
@@ -1006,7 +1122,28 @@
             hash = "#view=outline";
           }
           if (/^#view=danger$/.test(hash)) return;
-          if (hash === "" || hash === "#" || hash === "#top" || /^#view=(kanban|domain|outline|ladder)$/.test(hash)) {
+          var drawn = "";
+          if (hash === "" || hash === "#" || hash === "#top" || hash === "#view=outline") drawn = "list";
+          else if (hash === "#view=kanban") drawn = "bands";
+          else if (hash === "#view=domain") drawn = "domain";
+          else if (hash === "#view=ladder") drawn = "ladder";
+          if (drawn) {
+            var srcs = {
+              list: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/WallCalendar.jpg/1920px-WallCalendar.jpg",
+              bands: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Athletics_tracks_finish_line.jpg",
+              domain: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Glenfinnan_Viaduct_-_Jacobite_Express.jpg/1920px-Glenfinnan_Viaduct_-_Jacobite_Express.jpg",
+              ladder: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Fire%2C_Fireplace%2C_Rostov-on-Don%2C_Russia.jpg/1920px-Fire%2C_Fireplace%2C_Rostov-on-Don%2C_Russia.jpg"
+            };
+            hero.classList.remove("hero--danger", "hero--drawn");
+            hero.classList.add("hero--" + drawn);
+            img.dataset.hero = drawn;
+            img.src = srcs[drawn];
+            img.removeAttribute("srcset");
+            img.width = 1920;
+            img.height = 1280;
+            return;
+          }
+          if (hash === "" || hash === "#" || hash === "#top" || /^#view=(kanban|domain|outline)$/.test(hash)) {
             hero.classList.remove("hero--danger");
             img.dataset.hero = "westminster";
             img.src = "https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1920";
@@ -1017,6 +1154,35 @@
           }
         })();
       </script>
+    </div>
+    <div class="hero__draw" id="heroDraw">
+      <div class="draw draw--list" aria-hidden="true">
+        <div class="slips" id="slipField">
+          <span class="slip" style="--x:6%;--y:58%;--r:-2deg">~ FEB</span>
+          <span class="slip" style="--x:24%;--y:26%;--r:1.5deg">15 APR</span>
+          <span class="slip" style="--x:44%;--y:48%;--r:-1deg">15 AUG</span>
+          <span class="slip" style="--x:49%;--y:66%;--r:2deg">24 AUG</span>
+          <span class="slip" style="--x:66%;--y:22%;--r:-1.5deg">29 SEP</span>
+          <span class="slip" style="--x:80%;--y:46%;--r:1deg">24 NOV</span>
+        </div>
+      </div>
+      <div class="draw draw--bands" aria-hidden="true">
+        <div class="cardstack">
+          <i style="--i:3"></i>
+          <i style="--i:2"></i>
+          <i style="--i:1"></i>
+          <div class="front"></div>
+        </div>
+      </div>
+      <div class="draw draw--domain" aria-hidden="true">
+        <ol class="dom5" id="domainBoxes">
+          <li><b>1</b> War systems</li>
+          <li><b>2</b> War geography</li>
+          <li><b>3</b> Ordinary systems</li>
+          <li><b>4</b> Cities</li>
+          <li><b>5</b> Money</li>
+        </ol>
+      </div>
     </div>
     <div class="wrap hero__inner">
       <p class="eyebrow" id="eyebrow"></p>
@@ -1200,7 +1366,7 @@ const T = {
     ovNoteDomain:"War versus civil, infrastructure versus zone, and money as its own card. War infra is army systems and the plants that make them. War zones are military geography — a front, a base, a stretch of water. Civil infra is the systems of ordinary life: airports, courts, energy plants. Civil zone is cities and diplomatic space. Money and sanctions is packages, asset freezes, designations, enforcement, and other financial measures between Britain and Russia. Nothing in this set is a strike on London buildings. Like the bands, this cut is a judgement. Flag and ring keep their meanings.",
     ovViewLabel:"View",
     ovKanban:"Bands", ovKanbanHint:"how direct",
-    ovOutline:"List", ovOutlineHint:"by date",
+    ovOutline:"Events", ovOutlineHint:"by date",
     ovDomain:"Domain", ovDomainHint:"war / civil / money",
     ovDanger:"Danger", ovDangerHint:"signal strength",
     ovMunger:"Biases & surprises", ovMungerHint:"25 misjudgments · locked",
@@ -1297,7 +1463,7 @@ const T = {
     ovNoteDomain:"מלחמה מול אזרחי, תשתיות מול זירה, וכסף בכרטיס משלו. תשתית מלחמה היא מערכות הצבא והמפעלים שמייצרים אותן. אזורי מלחמה הם גאוגרפיה צבאית — חזית, בסיס, מקטע מים. תשתית אזרחית היא מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה. אזור אזרחי הוא ערים ומרחב דיפלומטי. כסף וסנקציות הם חבילות, הקפאת נכסים, הכללה ברשימות, אכיפה, וצעדים כספיים אחרים בין בריטניה לרוסיה. אין במערך תקיפה על בניינים בלונדון. כמו הרמות, גם החיתוך הזה הוא שיפוט. הדגל והטבעת שומרים על משמעותם.",
     ovViewLabel:"תצוגה",
     ovKanban:"רמות", ovKanbanHint:"מידת הישירות",
-    ovOutline:"רשימה", ovOutlineHint:"לפי תאריך",
+    ovOutline:"אירועים", ovOutlineHint:"לפי תאריך",
     ovDomain:"תחום", ovDomainHint:"מלחמה / אזרחי / כסף",
     ovDanger:"סכנה", ovDangerHint:"עוצמת האיתות",
     ovMunger:"הטיות והפתעות", ovMungerHint:"25 שיפוטים שגויים · נעול",
@@ -2797,11 +2963,12 @@ function renderBands(code){
   const dangerView = view === "danger";
   const mungerView = view === "munger";
   const ladderView = view === "ladder";
-  host.hidden = dangerView || mungerView || ladderView;
+  const outlineView = view === "outline";
+  host.hidden = dangerView || mungerView || ladderView || outlineView;
   dangerPane.hidden = !dangerView;
   mungerPanel.hidden = !mungerView;
   ladderPanel.hidden = !ladderView;
-  if (mungerView || ladderView){
+  if (mungerView || ladderView || outlineView){
     host.innerHTML = "";
     return;
   }
@@ -2991,6 +3158,104 @@ function tryUnlockMunger(){
   mungerCode.select();
 }
 
+const DRAWN_VIEW = { outline: "list", kanban: "bands", domain: "domain", ladder: "ladder" };
+const HERO_TAB_PHOTOS = {
+  list: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/WallCalendar.jpg/1920px-WallCalendar.jpg",
+    pos: "50% 50%",
+    alt: "A wall calendar open on October, the days set out in a grid",
+    altHe: "לוח שנה על הקיר, פתוח על אוקטובר, והימים במערך",
+    credit: {
+      en: 'Photo: <a href="https://commons.wikimedia.org/wiki/File:WallCalendar.jpg" rel="noopener">Claudio Elias</a> / public domain',
+      he: 'צילום: <a href="https://commons.wikimedia.org/wiki/File:WallCalendar.jpg" rel="noopener">קלאודיו אליאס</a> / נחלת הכלל',
+    },
+  },
+  bands: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Athletics_tracks_finish_line.jpg",
+    pos: "50% 18%",
+    alt: "Empty numbered lanes on a running track, with no runners",
+    altHe: "מסלולי ריצה ממוספרים וריקים, בלי רצים",
+    credit: {
+      en: 'Photo: <a href="https://commons.wikimedia.org/wiki/File:Athletics_tracks_finish_line.jpg" rel="noopener">Petey21</a> / public domain',
+      he: 'צילום: <a href="https://commons.wikimedia.org/wiki/File:Athletics_tracks_finish_line.jpg" rel="noopener">Petey21</a> / נחלת הכלל',
+    },
+  },
+  domain: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Glenfinnan_Viaduct_-_Jacobite_Express.jpg/1920px-Glenfinnan_Viaduct_-_Jacobite_Express.jpg",
+    pos: "50% 55%",
+    alt: "A steam train crossing the Glenfinnan Viaduct in Scotland",
+    altHe: "רכבת קיטור חוצה את גשר גלנפינן בסקוטלנד",
+    credit: {
+      en: 'Photo: <a href="https://commons.wikimedia.org/wiki/File:Glenfinnan_Viaduct_-_Jacobite_Express.jpg" rel="noopener">Eric Kilby</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>',
+      he: 'צילום: <a href="https://commons.wikimedia.org/wiki/File:Glenfinnan_Viaduct_-_Jacobite_Express.jpg" rel="noopener">אריק קילבי</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>',
+    },
+  },
+  ladder: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Fire%2C_Fireplace%2C_Rostov-on-Don%2C_Russia.jpg/1920px-Fire%2C_Fireplace%2C_Rostov-on-Don%2C_Russia.jpg",
+    pos: "50% 42%",
+    alt: "Bright flames around logs stacked in a fireplace",
+    altHe: "להבות בהירות סביב בולי עץ מונחים באח",
+    credit: {
+      en: 'Photo: <a href="https://commons.wikimedia.org/wiki/File:Fire,_Fireplace,_Rostov-on-Don,_Russia.jpg" rel="noopener">Vyacheslav Argenberg</a> / <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>',
+      he: 'צילום: <a href="https://commons.wikimedia.org/wiki/File:Fire,_Fireplace,_Rostov-on-Don,_Russia.jpg" rel="noopener">ויאצ׳סלב ארגנברג</a> / <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>',
+    },
+  },
+};
+
+function tabPhotoUrl(id){
+  return "https://images.unsplash.com/photo-" + id + "?auto=format&q=70&w=1920";
+}
+
+function tabPhotoSrcset(id){
+  return [480, 800, 1280, 1920].map((w) =>
+    "https://images.unsplash.com/photo-" + id + "?auto=format&q=70&w=" + w + " " + w + "w"
+  ).join(", ");
+}
+
+function unsplashCredit(code){
+  const photo = code === "he" ? "צילום" : "Photo";
+  return photo + ': <a href="https://unsplash.com/" rel="noopener">Unsplash</a>';
+}
+const HERO_SLIPS = [
+  { en: "~ FEB", he: "~ פבר׳", x: "6%", y: "58%", r: "-2deg" },
+  { en: "15 APR", he: "15 אפר׳", x: "24%", y: "26%", r: "1.5deg" },
+  { en: "15 AUG", he: "15 אוג׳", x: "44%", y: "48%", r: "-1deg" },
+  { en: "24 AUG", he: "24 אוג׳", x: "49%", y: "66%", r: "2deg" },
+  { en: "29 SEP", he: "29 ספט׳", x: "66%", y: "22%", r: "-1.5deg" },
+  { en: "24 NOV", he: "24 נוב׳", x: "80%", y: "46%", r: "1deg" },
+];
+const HERO_DOMAINS = {
+  en: ["War systems", "War geography", "Ordinary systems", "Cities", "Money"],
+  he: ["מערכות מלחמה", "גאוגרפיה", "מערכות אזרחיות", "ערים", "כסף"],
+};
+
+function drawnKind(){
+  return DRAWN_VIEW[currentView()] || "";
+}
+
+function paintDrawnBits(){
+  const field = document.getElementById("slipField");
+  if (field && field.childElementCount !== HERO_SLIPS.length){
+    field.innerHTML = HERO_SLIPS.map((slip) =>
+      `<span class="slip" style="--x:${slip.x};--y:${slip.y};--r:${slip.r}"></span>`
+    ).join("");
+  }
+  if (field){
+    Array.from(field.children).forEach((el, i) => {
+      el.textContent = lang === "he" ? HERO_SLIPS[i].he : HERO_SLIPS[i].en;
+    });
+  }
+  const boxes = document.getElementById("domainBoxes");
+  if (boxes){
+    const names = HERO_DOMAINS[lang] || HERO_DOMAINS.en;
+    boxes.innerHTML = names.map((name, i) => `<li><b>${i + 1}</b> ${name}</li>`).join("");
+  }
+}
+
+function drawnCredit(code){
+  return code === "he" ? "ציור לזווית הזו. לא צילום." : "Drawn for this view. Not a photograph.";
+}
+
 const HERO_WESTMINSTER_SRC = "https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1920";
 const HERO_WESTMINSTER_SRCSET = "https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=480 480w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=800 800w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1280 1280w, https://images.unsplash.com/photo-1750872310330-80191a871b36?auto=format&q=70&w=1920 1920w";
 const HERO_MUNGER_SRC = "./images/charlie-munger.jpg";
@@ -3029,6 +3294,29 @@ function paintHero(){
   const hero = document.querySelector("header.hero");
   const creditEl = document.getElementById("contextCredit");
   if (!img || !hero) return;
+  const kind = drawnKind();
+  hero.classList.remove("hero--drawn");
+  hero.classList.toggle("hero--list", kind === "list");
+  hero.classList.toggle("hero--bands", kind === "bands");
+  hero.classList.toggle("hero--domain", kind === "domain");
+  hero.classList.toggle("hero--ladder", kind === "ladder");
+  img.style.objectPosition = "";
+  if (kind){
+    hero.classList.remove("hero--munger", "hero--danger");
+    const photo = HERO_TAB_PHOTOS[kind];
+    if (img.dataset.hero !== kind){
+      img.dataset.hero = kind;
+      img.src = photo.src || tabPhotoUrl(photo.id);
+      if (photo.src) img.removeAttribute("srcset");
+      else img.srcset = tabPhotoSrcset(photo.id);
+      img.width = 1920;
+      img.height = 1280;
+    }
+    img.alt = lang === "he" ? photo.altHe : photo.alt;
+    img.style.objectPosition = photo.pos;
+    if (creditEl) creditEl.innerHTML = (photo.credit && photo.credit[lang]) || unsplashCredit(lang);
+    return;
+  }
   const munger = surfaceBiasHero();
   const danger = !munger && dangerHero();
   hero.classList.toggle("hero--munger", munger);
