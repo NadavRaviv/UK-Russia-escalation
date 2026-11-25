@@ -175,9 +175,21 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
 .choice h3 {
   display: flex;
   align-items: center;
-  gap: var(--space-2xs);
+  gap: var(--space-xs);
   font-size: var(--text-xl);
   font-weight: 600;
+}
+
+.choice__icon,
+.choice h3 .lock {
+  flex: none;
+  width: 1.15em;
+  height: 1.15em;
+}
+
+.choice h3 .lock {
+  width: 0.85em;
+  height: 0.85em;
 }
 
 .choice p {
@@ -306,6 +318,14 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
 (function () {
   const { esc, initLang, PHOTOS, url, creditInner } = window.UKRU_UI;
   const LOCK = `<svg class="lock" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>`;
+  const ICONS = {
+    outline: `<svg class="choice__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h8M4 6h.01M4 12h.01M4 18h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+    kanban: `<svg class="choice__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 11h12M4 16h8M4 20h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+    domain: `<svg class="choice__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>`,
+    danger: `<svg class="choice__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="8" r="2.2" fill="currentColor"/></svg>`,
+    ladder: `<svg class="choice__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19h5v-4h5v-4h5V7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></svg>`,
+    munger: `<svg class="choice__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12c2.2-4 5-6 8-6s5.8 2 8 6c-2.2 4-5 6-8 6s-5.8-2-8-6z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.1" fill="currentColor"/></svg>`,
+  };
 
   const COPY = {
     en: {
@@ -416,7 +436,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
       const lock = a.locked ? LOCK : "";
       const locked = a.locked ? ` choice--locked" title="${esc(c.locked)}"` : `"`;
       return `<a class="choice${locked} href="./uk-russia-merged-timeline.html#view=${a.view}">
-        <h3>${esc(name)}${lock}</h3>
+        <h3>${ICONS[a.view]}${esc(name)}${lock}</h3>
         <p>${esc(why)}</p>
         <span class="choice__go">${esc(c.open)}</span>
       </a>`;
