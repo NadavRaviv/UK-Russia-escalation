@@ -1124,7 +1124,7 @@
           else if (hash === "#view=domain") drawn = "domain";
           if (drawn) {
             var srcs = {
-              list: "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&q=70&w=1920",
+              list: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/2019_diary.jpg/1920px-2019_diary.jpg",
               bands: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Athletics_tracks_finish_line.jpg",
               domain: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Glenfinnan_Viaduct_-_Jacobite_Express.jpg/1920px-Glenfinnan_Viaduct_-_Jacobite_Express.jpg"
             };
@@ -1132,11 +1132,7 @@
             hero.classList.add("hero--" + drawn);
             img.dataset.hero = drawn;
             img.src = srcs[drawn];
-            if (drawn === "list") {
-              img.srcset = [480, 800, 1280, 1920].map(function (w) {
-                return "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&q=70&w=" + w + " " + w + "w";
-              }).join(", ");
-            } else img.removeAttribute("srcset");
+            img.removeAttribute("srcset");
             img.width = 1920;
             img.height = 1280;
             return;
@@ -1364,7 +1360,7 @@ const T = {
     ovNoteDomain:"War versus civil, infrastructure versus zone, and money as its own card. War infra is army systems and the plants that make them. War zones are military geography — a front, a base, a stretch of water. Civil infra is the systems of ordinary life: airports, courts, energy plants. Civil zone is cities and diplomatic space. Money and sanctions is packages, asset freezes, designations, enforcement, and other financial measures between Britain and Russia. Nothing in this set is a strike on London buildings. Like the bands, this cut is a judgement. Flag and ring keep their meanings.",
     ovViewLabel:"View",
     ovKanban:"Bands", ovKanbanHint:"how direct",
-    ovOutline:"List", ovOutlineHint:"by date",
+    ovOutline:"Events", ovOutlineHint:"by date",
     ovDomain:"Domain", ovDomainHint:"war / civil / money",
     ovDanger:"Danger", ovDangerHint:"signal strength",
     ovMunger:"Biases & surprises", ovMungerHint:"25 misjudgments · locked",
@@ -1461,7 +1457,7 @@ const T = {
     ovNoteDomain:"מלחמה מול אזרחי, תשתיות מול זירה, וכסף בכרטיס משלו. תשתית מלחמה היא מערכות הצבא והמפעלים שמייצרים אותן. אזורי מלחמה הם גאוגרפיה צבאית — חזית, בסיס, מקטע מים. תשתית אזרחית היא מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה. אזור אזרחי הוא ערים ומרחב דיפלומטי. כסף וסנקציות הם חבילות, הקפאת נכסים, הכללה ברשימות, אכיפה, וצעדים כספיים אחרים בין בריטניה לרוסיה. אין במערך תקיפה על בניינים בלונדון. כמו הרמות, גם החיתוך הזה הוא שיפוט. הדגל והטבעת שומרים על משמעותם.",
     ovViewLabel:"תצוגה",
     ovKanban:"רמות", ovKanbanHint:"מידת הישירות",
-    ovOutline:"רשימה", ovOutlineHint:"לפי תאריך",
+    ovOutline:"אירועים", ovOutlineHint:"לפי תאריך",
     ovDomain:"תחום", ovDomainHint:"מלחמה / אזרחי / כסף",
     ovDanger:"סכנה", ovDangerHint:"עוצמת האיתות",
     ovMunger:"הטיות והפתעות", ovMungerHint:"25 שיפוטים שגויים · נעול",
@@ -3158,10 +3154,14 @@ function tryUnlockMunger(){
 const DRAWN_VIEW = { outline: "list", kanban: "bands", domain: "domain" };
 const HERO_TAB_PHOTOS = {
   list: {
-    id: "1568667256549-094345857637",
-    pos: "50% 45%",
-    alt: "Bookshelves curving away inside a library, lit from above, the floor in shade",
-    altHe: "מדפי ספרים מתעקלים בתוך ספרייה, מוארים מלמעלה, והרצפה בצל",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/2019_diary.jpg/1920px-2019_diary.jpg",
+    pos: "50% 50%",
+    alt: "The cover of a diary, with the year 2019 on it",
+    altHe: "כריכת יומן, ועליה השנה 2019",
+    credit: {
+      en: 'Photo: <a href="https://commons.wikimedia.org/wiki/File:2019_diary.jpg" rel="noopener">RR2019</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>',
+      he: 'צילום: <a href="https://commons.wikimedia.org/wiki/File:2019_diary.jpg" rel="noopener">RR2019</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>',
+    },
   },
   bands: {
     src: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Athletics_tracks_finish_line.jpg",

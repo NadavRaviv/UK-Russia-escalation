@@ -1,6 +1,6 @@
 /* Shared top bar + statement footer for the UK–Russia site.
  * Home and Plot, then the six angles: inline on a wide screen, “Choose your angle” on a narrow one.
- * Home is the chooser. List is the dated record. There is no separate Timeline control.
+ * Home is the chooser. Events is the dated record. There is no separate Timeline control.
  * Language changes the words only; the bar stays left to right.
  * Loaded after options-shared.js. Exposes window.UKRU_NAV.mount(opts). */
 (function () {
@@ -22,7 +22,7 @@
   ];
 
   const ANGLES = [
-    ["outline", "List", "רשימה"],
+    ["outline", "Events", "אירועים"],
     ["kanban", "Bands", "רמות"],
     ["domain", "Domain", "תחום"],
     ["danger", "Dangers", "סכנות"],
