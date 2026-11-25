@@ -482,6 +482,9 @@
 
   /* --- overview: kanban / outline / domain / danger --- */
   .overview{margin:0 0 var(--space-2xl);width:100%}
+  /* Events is the dated timeline. The band cards belong on Bands, not above this list. */
+  .overview.layout-outline{display:none;margin:0}
+  .overview.layout-outline ~ .record{margin-top:0}
   .ovhead{
     display:flex;align-items:center;justify-content:space-between;
     gap:var(--space-sm) var(--space-md);flex-wrap:wrap;margin-bottom:var(--space-md);
@@ -2957,11 +2960,12 @@ function renderBands(code){
   const dangerView = view === "danger";
   const mungerView = view === "munger";
   const ladderView = view === "ladder";
-  host.hidden = dangerView || mungerView || ladderView;
+  const outlineView = view === "outline";
+  host.hidden = dangerView || mungerView || ladderView || outlineView;
   dangerPane.hidden = !dangerView;
   mungerPanel.hidden = !mungerView;
   ladderPanel.hidden = !ladderView;
-  if (mungerView || ladderView){
+  if (mungerView || ladderView || outlineView){
     host.innerHTML = "";
     return;
   }
