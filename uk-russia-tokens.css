@@ -71,6 +71,28 @@
   --z-modal: 400;
 }
 
+/* Calm typography (redesign-options A/B). Enable with html[data-typography="calm"]. */
+html[data-typography="calm"] {
+  --type-section: var(--text-2xl);
+  --type-card-title: var(--text-lg);
+  --type-card-body: var(--text-sm);
+  --type-page-body: var(--text-md);
+  --type-button: var(--text-sm);
+
+  --weight-body: 400;
+  --weight-title: 500;
+  --weight-ui: 500;
+
+  --track-display: -0.035em;
+  --track-section: -0.025em;
+  --track-card: -0.015em;
+  --track-ui: 0;
+  --track-body: 0;
+
+  --leading-display: 1.08;
+  --section-pad-block: var(--space-4xl);
+}
+
 /* Index · neutral chooser page */
 [data-option="index"] {
   --color-paper: oklch(96.5% 0.008 95);
