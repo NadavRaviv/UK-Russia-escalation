@@ -22,7 +22,12 @@
   }
 
   function mode() {
-    return readQuery() || readSaved() || "default";
+    const q = readQuery();
+    if (q) return q;
+    const saved = readSaved();
+    if (saved) return saved;
+    /* Better Typography: calm is default; ?typography=default forces Current. */
+    return "calm";
   }
 
   function apply(m) {
