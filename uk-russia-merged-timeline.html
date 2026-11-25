@@ -1125,18 +1125,18 @@
           if (drawn) {
             var srcs = {
               list: "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&q=70&w=1920",
-              bands: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&q=70&w=1920",
+              bands: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Athletics_tracks_finish_line.jpg",
               domain: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Glenfinnan_Viaduct_-_Jacobite_Express.jpg/1920px-Glenfinnan_Viaduct_-_Jacobite_Express.jpg"
             };
             hero.classList.remove("hero--danger", "hero--drawn");
             hero.classList.add("hero--" + drawn);
             img.dataset.hero = drawn;
             img.src = srcs[drawn];
-            if (drawn === "domain") img.removeAttribute("srcset");
-            else img.srcset = [480, 800, 1280, 1920].map(function (w) {
-              var id = drawn === "list" ? "1568667256549-094345857637" : "1470229722913-7c0e2dbbafd3";
-              return "https://images.unsplash.com/photo-" + id + "?auto=format&q=70&w=" + w + " " + w + "w";
-            }).join(", ");
+            if (drawn === "list") {
+              img.srcset = [480, 800, 1280, 1920].map(function (w) {
+                return "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&q=70&w=" + w + " " + w + "w";
+              }).join(", ");
+            } else img.removeAttribute("srcset");
             img.width = 1920;
             img.height = 1280;
             return;
@@ -3164,10 +3164,14 @@ const HERO_TAB_PHOTOS = {
     altHe: "מדפי ספרים מתעקלים בתוך ספרייה, מוארים מלמעלה, והרצפה בצל",
   },
   bands: {
-    id: "1470229722913-7c0e2dbbafd3",
-    pos: "50% 62%",
-    alt: "A night crowd, one person standing above the rest with arms raised, the others in shadow",
-    altHe: "קהל בלילה, אדם אחד עומד מעל השאר בידיים מורמות, והאחרים בצל",
+    src: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Athletics_tracks_finish_line.jpg",
+    pos: "50% 18%",
+    alt: "Empty numbered lanes on a running track, with no runners",
+    altHe: "מסלולי ריצה ממוספרים וריקים, בלי רצים",
+    credit: {
+      en: 'Photo: <a href="https://commons.wikimedia.org/wiki/File:Athletics_tracks_finish_line.jpg" rel="noopener">Petey21</a> / public domain',
+      he: 'צילום: <a href="https://commons.wikimedia.org/wiki/File:Athletics_tracks_finish_line.jpg" rel="noopener">Petey21</a> / נחלת הכלל',
+    },
   },
   domain: {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Glenfinnan_Viaduct_-_Jacobite_Express.jpg/1920px-Glenfinnan_Viaduct_-_Jacobite_Express.jpg",
