@@ -1123,8 +1123,21 @@
           else if (hash === "#view=kanban") drawn = "bands";
           else if (hash === "#view=domain") drawn = "domain";
           if (drawn) {
-            hero.classList.remove("hero--danger");
-            hero.classList.add("hero--drawn", "hero--" + drawn);
+            var pics = {
+              list: "1568667256549-094345857637",
+              bands: "1470229722913-7c0e2dbbafd3",
+              domain: "1494412651409-8963ce7935a7"
+            };
+            var id = pics[drawn];
+            hero.classList.remove("hero--danger", "hero--drawn");
+            hero.classList.add("hero--" + drawn);
+            img.dataset.hero = drawn;
+            img.src = "https://images.unsplash.com/photo-" + id + "?auto=format&q=70&w=1920";
+            img.srcset = [480, 800, 1280, 1920].map(function (w) {
+              return "https://images.unsplash.com/photo-" + id + "?auto=format&q=70&w=" + w + " " + w + "w";
+            }).join(", ");
+            img.width = 1920;
+            img.height = 1280;
             return;
           }
           if (hash === "" || hash === "#" || hash === "#top" || /^#view=(kanban|domain|outline|ladder)$/.test(hash)) {
@@ -3142,6 +3155,41 @@ function tryUnlockMunger(){
 }
 
 const DRAWN_VIEW = { outline: "list", kanban: "bands", domain: "domain" };
+const HERO_TAB_PHOTOS = {
+  list: {
+    id: "1568667256549-094345857637",
+    pos: "50% 45%",
+    alt: "Bookshelves curving away inside a library, lit from above, the floor in shade",
+    altHe: "מדפי ספרים מתעקלים בתוך ספרייה, מוארים מלמעלה, והרצפה בצל",
+  },
+  bands: {
+    id: "1470229722913-7c0e2dbbafd3",
+    pos: "50% 62%",
+    alt: "A night crowd, one person standing above the rest with arms raised, the others in shadow",
+    altHe: "קהל בלילה, אדם אחד עומד מעל השאר בידיים מורמות, והאחרים בצל",
+  },
+  domain: {
+    id: "1494412651409-8963ce7935a7",
+    pos: "50% 40%",
+    alt: "Aerial view of a container port: cranes, roads, ships and a city edge",
+    altHe: "מבט אווירי על נמל מכולות: עגורנים, כבישים, אוניות ושולי עיר",
+  },
+};
+
+function tabPhotoUrl(id){
+  return "https://images.unsplash.com/photo-" + id + "?auto=format&q=70&w=1920";
+}
+
+function tabPhotoSrcset(id){
+  return [480, 800, 1280, 1920].map((w) =>
+    "https://images.unsplash.com/photo-" + id + "?auto=format&q=70&w=" + w + " " + w + "w"
+  ).join(", ");
+}
+
+function unsplashCredit(code){
+  const photo = code === "he" ? "צילום" : "Photo";
+  return photo + ': <a href="https://unsplash.com/" rel="noopener">Unsplash</a>';
+}
 const HERO_SLIPS = [
   { en: "~ FEB", he: "~ פבר׳", x: "6%", y: "58%", r: "-2deg" },
   { en: "15 APR", he: "15 אפר׳", x: "24%", y: "26%", r: "1.5deg" },
@@ -3221,14 +3269,24 @@ function paintHero(){
   const creditEl = document.getElementById("contextCredit");
   if (!img || !hero) return;
   const kind = drawnKind();
-  hero.classList.toggle("hero--drawn", !!kind);
+  hero.classList.remove("hero--drawn");
   hero.classList.toggle("hero--list", kind === "list");
   hero.classList.toggle("hero--bands", kind === "bands");
   hero.classList.toggle("hero--domain", kind === "domain");
+  img.style.objectPosition = "";
   if (kind){
     hero.classList.remove("hero--munger", "hero--danger");
-    paintDrawnBits();
-    if (creditEl) creditEl.textContent = drawnCredit(lang);
+    const photo = HERO_TAB_PHOTOS[kind];
+    if (img.dataset.hero !== kind){
+      img.dataset.hero = kind;
+      img.src = tabPhotoUrl(photo.id);
+      img.srcset = tabPhotoSrcset(photo.id);
+      img.width = 1920;
+      img.height = 1280;
+    }
+    img.alt = lang === "he" ? photo.altHe : photo.alt;
+    img.style.objectPosition = photo.pos;
+    if (creditEl) creditEl.innerHTML = unsplashCredit(lang);
     return;
   }
   const munger = surfaceBiasHero();
