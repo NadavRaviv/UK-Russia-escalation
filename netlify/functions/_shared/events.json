@@ -1060,5 +1060,23 @@
       "title": "הסכמים בין בריטניה לאוקראינה לייצור מזל״טי תקיפה אוקראיניים בבריטניה",
       "why": "בביקור בקייב חותם שר ההגנה ווס סטריטינג על הסכמים חדשים, כדי שמזל״טי תקיפה שתוכננו באוקראינה ייוצרו בבריטניה עבור הכוחות המזוינים של אוקראינה, וכדי שאוקראינה תוכל להקים אתרי ייצור משלה בבריטניה. לא הוכרזו סכום חדש או כמויות, ולא נקבו באתרים, בחברות או במועד התחלה."
     }
+  },
+  {
+    "n": 60,
+    "date": "2026-11-24",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "24 NOV 2026",
+      "short": "More RapidRanger launchers",
+      "title": "UK to send Ukraine more RapidRanger air defence launchers",
+      "why": "On the first visit to Kharkiv by a UK Defence Secretary, about 20 km from the front, Wes Streeting says the UK will give Ukraine more RapidRanger launchers, made by Thales in Belfast, at President Zelenskyy’s request. They protect civilians, cities and infrastructure from Shahed drones. No number or value is given."
+    },
+    "he": {
+      "label": "24 בנובמבר 2026",
+      "short": "עוד משגרי RapidRanger",
+      "title": "בריטניה תשלח לאוקראינה עוד משגרי הגנה אווירית RapidRanger",
+      "why": "בביקור הראשון של שר הגנה בריטי בחרקיב, כ-20 ק״מ מהחזית, אומר ווס סטריטינג שבריטניה תיתן לאוקראינה עוד משגרי RapidRanger, מתוצרת תאלס בבלפסט, לבקשת הנשיא זלנסקי. הם מגינים על אזרחים, ערים ותשתיות מפני מזל״טי שאהד. לא נמסרו מספר או שווי."
+    }
   }
 ]

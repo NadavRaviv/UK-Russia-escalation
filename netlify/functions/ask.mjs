@@ -8,8 +8,8 @@
  */
 import events from "./_shared/events.json" with { type: "json" };
 
-if (!Array.isArray(events) || events.length !== 59) {
-  throw new Error("events.json must contain the 59 timeline rows");
+if (!Array.isArray(events) || events.length !== 60) {
+  throw new Error("events.json must contain the 60 timeline rows");
 }
 
 export const EVENTS = events;
