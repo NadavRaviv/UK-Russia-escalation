@@ -1123,17 +1123,18 @@
           else if (hash === "#view=kanban") drawn = "bands";
           else if (hash === "#view=domain") drawn = "domain";
           if (drawn) {
-            var pics = {
-              list: "1568667256549-094345857637",
-              bands: "1470229722913-7c0e2dbbafd3",
-              domain: "1494412651409-8963ce7935a7"
+            var srcs = {
+              list: "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&q=70&w=1920",
+              bands: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&q=70&w=1920",
+              domain: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Glenfinnan_Viaduct_-_Jacobite_Express.jpg/1920px-Glenfinnan_Viaduct_-_Jacobite_Express.jpg"
             };
-            var id = pics[drawn];
             hero.classList.remove("hero--danger", "hero--drawn");
             hero.classList.add("hero--" + drawn);
             img.dataset.hero = drawn;
-            img.src = "https://images.unsplash.com/photo-" + id + "?auto=format&q=70&w=1920";
-            img.srcset = [480, 800, 1280, 1920].map(function (w) {
+            img.src = srcs[drawn];
+            if (drawn === "domain") img.removeAttribute("srcset");
+            else img.srcset = [480, 800, 1280, 1920].map(function (w) {
+              var id = drawn === "list" ? "1568667256549-094345857637" : "1470229722913-7c0e2dbbafd3";
               return "https://images.unsplash.com/photo-" + id + "?auto=format&q=70&w=" + w + " " + w + "w";
             }).join(", ");
             img.width = 1920;
@@ -3169,10 +3170,14 @@ const HERO_TAB_PHOTOS = {
     altHe: "קהל בלילה, אדם אחד עומד מעל השאר בידיים מורמות, והאחרים בצל",
   },
   domain: {
-    id: "1494412651409-8963ce7935a7",
-    pos: "50% 40%",
-    alt: "Aerial view of a container port: cranes, roads, ships and a city edge",
-    altHe: "מבט אווירי על נמל מכולות: עגורנים, כבישים, אוניות ושולי עיר",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Glenfinnan_Viaduct_-_Jacobite_Express.jpg/1920px-Glenfinnan_Viaduct_-_Jacobite_Express.jpg",
+    pos: "50% 55%",
+    alt: "A steam train crossing the Glenfinnan Viaduct in Scotland",
+    altHe: "רכבת קיטור חוצה את גשר גלנפינן בסקוטלנד",
+    credit: {
+      en: 'Photo: <a href="https://commons.wikimedia.org/wiki/File:Glenfinnan_Viaduct_-_Jacobite_Express.jpg" rel="noopener">Eric Kilby</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>',
+      he: 'צילום: <a href="https://commons.wikimedia.org/wiki/File:Glenfinnan_Viaduct_-_Jacobite_Express.jpg" rel="noopener">אריק קילבי</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>',
+    },
   },
 };
 
@@ -3279,14 +3284,15 @@ function paintHero(){
     const photo = HERO_TAB_PHOTOS[kind];
     if (img.dataset.hero !== kind){
       img.dataset.hero = kind;
-      img.src = tabPhotoUrl(photo.id);
-      img.srcset = tabPhotoSrcset(photo.id);
+      img.src = photo.src || tabPhotoUrl(photo.id);
+      if (photo.src) img.removeAttribute("srcset");
+      else img.srcset = tabPhotoSrcset(photo.id);
       img.width = 1920;
       img.height = 1280;
     }
     img.alt = lang === "he" ? photo.altHe : photo.alt;
     img.style.objectPosition = photo.pos;
-    if (creditEl) creditEl.innerHTML = unsplashCredit(lang);
+    if (creditEl) creditEl.innerHTML = (photo.credit && photo.credit[lang]) || unsplashCredit(lang);
     return;
   }
   const munger = surfaceBiasHero();
