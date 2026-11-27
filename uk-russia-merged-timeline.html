@@ -180,6 +180,13 @@
     font-family:var(--serif);max-width:24ch;
   }
   .standfirst{color:var(--muted);font-size:var(--text-base);margin:0;max-width:var(--measure);line-height:var(--leading-body)}
+  html[lang="he"] header.hero .hero__inner{
+    direction:rtl;text-align:right;justify-items:right;
+  }
+  html[lang="he"] header.hero .hero__inner > *{
+    justify-self:right;text-align:right;margin-left:auto;margin-right:0;
+  }
+  html[lang="he"] header.hero .standfirst{max-width:28rem}
 
   /* --- inline legend chips --- */
   .chipbar{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-xs) var(--space-sm);margin-top:var(--space-xs)}

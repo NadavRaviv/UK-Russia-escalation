@@ -399,10 +399,24 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   color: var(--color-on-photo);
 }
 
-/* Hebrew heroes read from the right. The bar above stays left to right. */
+/* Hebrew heroes read from the right. The bar above stays left to right.
+   Physical right, not the inline end, so a right-to-left box is not pushed back to the left. */
 html[lang="he"] .hero .hero__inner {
   direction: rtl;
   text-align: right;
+  justify-items: right;
+}
+
+html[lang="he"] .hero .hero__inner > * {
+  justify-self: right;
+  text-align: right;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+html[lang="he"] .hero .standfirst,
+html[lang="he"] .hero .lede {
+  max-width: 28rem;
 }
 
 .hero h1 {
