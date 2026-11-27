@@ -80,9 +80,10 @@
 }
 
 /* The hairline sits between the wordmark and Home.
-   The bar gap is cancelled, so the only spaces left are the wordmark's end padding and Home's own start padding, which are the same size. */
+   Home's pill is inset from that line by the same start padding Events uses, so the grey shape does not sit on the rule. */
 .pill__links {
   border-inline-start: var(--rule-hair) solid var(--color-rule);
+  padding-inline-start: var(--space-2xs);
 }
 
 .pill__bar > .pill__brand + * {
