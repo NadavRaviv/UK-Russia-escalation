@@ -140,7 +140,7 @@
     const uk = U.events.filter((e) => e.side === "uk").length;
     const unit = esc(u.unit.trim());
     $("strip").setAttribute("aria-label", c.figures);
-    $("strip").innerHTML = `<div><dt>${esc(u.s1)}</dt><dd>7.8 <small>${unit}</small></dd></div>
+    $("strip").innerHTML = `<div><dt>${esc(u.s1)}</dt><dd>7.0 <small>${unit}</small></dd></div>
       <div><dt>${esc(u.s2)}</dt><dd>3.0 <small>${unit}</small></dd></div>
       <div><dt>${esc(u.tlCount)}</dt><dd>${N}</dd></div>
       <div><dt>${esc(u.s4)}</dt><dd>${ru} / ${uk} / ${N - ru - uk}</dd></div>`;
