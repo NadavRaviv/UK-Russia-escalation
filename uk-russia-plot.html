@@ -220,6 +220,13 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     playTimer = setInterval(tick, 420);
   }
 
+  /* A leading right-to-left mark keeps the day on the right of a Hebrew date. */
+  function dateLabel(s) {
+    if (lang !== "he" || !s) return s;
+    const raw = String(s).replace(/^\u200F+/, "");
+    return /^~?[\s\u00a0]*\d/.test(raw) ? "\u200F" + raw : raw;
+  }
+
   function select(id, scroll) {
     stopPlay();
     state.sel = id;
@@ -234,7 +241,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     const sentence = $("sliderSentence");
     sentence.lang = lang;
     sentence.dir = lang === "he" ? "rtl" : "ltr";
-    sentence.textContent = `${c.slider} ${ev(e0).label}`;
+    sentence.textContent = `${c.slider} ${dateLabel(ev(e0).label)}`;
 
     $("dots").innerHTML = U.events
       .map((e, idx) => {
@@ -245,7 +252,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
       .join("");
 
     const shown = U.events.filter((e, idx) => idx <= state.upTo && inDomain(e));
-    $("sliderCount").textContent = `${c.showing} ${shown.length} ${c.of} ${N} · ${c.through} ${ev(e0).label}`;
+    $("sliderCount").textContent = `${c.showing} ${shown.length} ${c.of} ${N} · ${c.through} ${dateLabel(ev(e0).label)}`;
 
     const sel = byId(state.sel);
     const order = shown;
@@ -262,7 +269,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     $("rows").innerHTML = cut
       .map(
         (e) => `<li>
-        <div class="row__date mono"><time datetime="${e.date}">${esc(ev(e).label)}</time>${sideTag(e)} ${ringMark(e)}</div>
+        <div class="row__date mono"><time datetime="${e.date}" dir="${lang === "he" ? "rtl" : "ltr"}">${esc(dateLabel(ev(e).label))}</time>${sideTag(e)} ${ringMark(e)}</div>
         <h3 class="row__title"><button type="button" data-pick="${e.id}" aria-label="${esc(c.onPlot + ": " + ev(e).title)}">${esc(ev(e).title)}</button></h3>
         ${whyHtml(e)}
       </li>`
@@ -278,7 +285,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     const c = COPY[lang];
     $("card").dataset.key = cardKey;
     $("card").innerHTML = `<div class="card__body">
-        <div class="card__meta mono"><time datetime="${sel.date}">${esc(ev(sel).label)}</time>${sideTag(sel)}<span>${ringMark(sel)} ${esc(sel.direct ? t("direct") : t("indirect"))}</span></div>
+        <div class="card__meta mono"><time datetime="${sel.date}" dir="${lang === "he" ? "rtl" : "ltr"}">${esc(dateLabel(ev(sel).label))}</time>${sideTag(sel)}<span>${ringMark(sel)} ${esc(sel.direct ? t("direct") : t("indirect"))}</span></div>
         <h3>${esc(ev(sel).title)}</h3>
         <dl class="card__nums">
           <div><dt>${esc(t("danger"))}</dt><dd>${sel.danger}</dd></div>

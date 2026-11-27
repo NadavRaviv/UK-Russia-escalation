@@ -2735,7 +2735,15 @@ const set = (id, html) => { document.getElementById(id).innerHTML = html; };
 function shortDate(iso, t, approx){
   const d = new Date(iso);
   // Non-breaking spaces keep a date from wrapping between the day and the month.
-  return (approx ? "~\u00a0" : "") + d.getUTCDate() + "\u00a0" + t.months[d.getUTCMonth()];
+  const body = (approx ? "~\u00a0" : "") + d.getUTCDate() + "\u00a0" + t.months[d.getUTCMonth()];
+  return t.lang === "he" ? dateText(body) : body;
+}
+
+/* A leading right-to-left mark keeps the day on the right: 2026 בספטמבר 2. */
+function dateText(s){
+  if (lang !== "he" || s == null) return s == null ? "" : s;
+  const raw = String(s).replace(/^\u200F+/, "");
+  return /^~?[\s\u00a0]*\d/.test(raw) ? "\u200F" + raw : raw;
 }
 
 function sourceHtml(e, code){
@@ -2765,7 +2773,7 @@ function openWhy(i){
   const t = T[lang];
   const c = e[lang];
   whyLastFocus = document.activeElement;
-  set("whyKicker", t.whyKicker + " · " + c.label);
+  set("whyKicker", t.whyKicker + " · " + dateText(c.label));
   set("whyTitle", c.title);
   set("whyBody", c.why);
   set("whySrcs", sourceHtml(e, lang));
@@ -3025,7 +3033,7 @@ function renderSelected(code){
   host.innerHTML =
     '<span class="sel-flag">' + FLAGS[e.side] + '</span>'
     + '<div class="sel-main">'
-      + '<p class="sel-meta">' + t.sides[e.side] + ' · ' + c.label + '</p>'
+      + '<p class="sel-meta">' + t.sides[e.side] + ' · ' + dateText(c.label) + '</p>'
       + '<p class="sel-title">' + c.title + '</p>'
       + '<div class="sel-nums">'
         + '<span class="sel-num">' + t.selDangerL + '<b>' + e.danger + '</b></span>'
@@ -3191,7 +3199,7 @@ function render(code){
     row.className = "row";
     row.id = "ev-" + (i + 1);
     row.innerHTML =
-      '<p class="row-meta"><time datetime="' + e.date + '">' + c.label + "</time>" +
+      '<p class="row-meta"><time datetime="' + e.date + '" dir="' + (code === "he" ? "rtl" : "ltr") + '">' + dateText(c.label) + "</time>" +
       '<span class="side side--' + e.side + '">' + t.sides[e.side] + "</span>" +
       '<span class="ring' + (direct ? "" : " ring--indirect") + '"></span></p>' +
       "<h2>" + c.title + "</h2>" +
@@ -3361,7 +3369,7 @@ function paintDrawnBits(){
   }
   if (field){
     Array.from(field.children).forEach((el, i) => {
-      el.textContent = lang === "he" ? HERO_SLIPS[i].he : HERO_SLIPS[i].en;
+      el.textContent = lang === "he" ? dateText(HERO_SLIPS[i].he) : HERO_SLIPS[i].en;
     });
   }
   const boxes = document.getElementById("domainBoxes");
@@ -3710,7 +3718,7 @@ function renderAskLinks(){
     const li = document.createElement("li");
     const a = document.createElement("a");
     a.href = "#ev-" + event.n;
-    a.textContent = (lang === "he" ? "אירוע " : "Event ") + event.n + " · " + (copy ? copy.label : (event.label || event.date));
+    a.textContent = (lang === "he" ? "אירוע " : "Event ") + event.n + " · " + (copy ? dateText(copy.label) : (event.label || event.date));
     a.addEventListener("click", () => highlightEvent(event.n));
     li.appendChild(a);
     list.appendChild(li);
