@@ -245,7 +245,6 @@
      a tall phone crop; the desktop frame matches the photo. */
   .hero__bg img{object-position:50% 40%}
   header.hero.hero--munger .hero__bg img{object-position:50% 20%}
-  header.hero.hero--munger .standfirst{display:none}
   header.hero.hero--danger .hero__bg img{object-position:8% 42%}
 
   /* Events, Bands, Domain and Levels each have their own photograph.
@@ -1358,6 +1357,14 @@ const T = {
     eyebrow:"Open-source audit · Feb–Nov 2026",
     title:"UK–Russia escalation",
     standfirst:"Since 15 August, events have been coming 2.3 times faster. The Russian rows are getting more dangerous, and the stakes are getting higher. Sixty-four dated events, from both sides.",
+    ledes:{
+      outline:"Since 15 August, events have been coming 2.3 times faster. The Russian rows are getting more dangerous, and the stakes are getting higher. Sixty-four dated events, from both sides.",
+      kanban:"This screen asks how clearly Britain is named, not how scary the event is. The top band is only for a named British thing under a strike threat or a hidden act. Navy and diplomat rows stay in the routine band.",
+      domain:"This screen sorts each event by its subject: army kit, a place in the war, ordinary systems such as airports and cables, cities and diplomacy, or money and sanctions. The cut is about the subject, not about how dangerous it is.",
+      danger:"This screen places every event by two scores. Higher means more danger. Further right means bigger stakes if it happens. Blue is a British or western act, red is Russian, and the two American events are grey.",
+      ladder:"This screen puts each event on a ladder, from a news story up to civilians getting hurt. The UK–Russia line is set to today. The other wars are set to the day they started, so the shapes can be compared.",
+      munger:"This screen uses Charlie Munger's list of common mistakes in judgement. Each card names a bias, a way to correct it, and something to watch off the obvious UK–Russia story. These are not predictions."
+    },
     k1:'Direct <em class="count">53</em>',
     k1d:"<b>Direct link — solid ring.</b> Names Britain, or acts against British ships, staff, territory or equipment.",
     k2:'Indirect <em class="count">11</em>',
@@ -1455,6 +1462,14 @@ const T = {
     eyebrow:"בדיקת מקורות גלויים · פברואר–נובמבר 2026",
     title:"הסלמה בין בריטניה לרוסיה",
     standfirst:"מאז 15 באוגוסט האירועים מגיעים פי 2.3 יותר מהר. השורות הרוסיות נעשות מסוכנות יותר, והמחיר שלהן עולה. שישים וארבעה אירועים עם תאריך, משני הצדדים.",
+    ledes:{
+      outline:"מאז 15 באוגוסט האירועים מגיעים פי 2.3 יותר מהר. השורות הרוסיות נעשות מסוכנות יותר, והמחיר שלהן עולה. שישים וארבעה אירועים עם תאריך, משני הצדדים.",
+      kanban:"המסך הזה שואל עד כמה בריטניה נקובה בשם, לא עד כמה האירוע מפחיד. הרמה העליונה היא רק כשדבר בריטי מסוים נמצא תחת איום תקיפה או מעשה מוסתר. שורות של צי ודיפלומטיה נשארות ברמה הרגילה.",
+      domain:"המסך הזה ממיין כל אירוע לפי הנושא: ציוד צבאי, מקום במלחמה, מערכות רגילות כמו נמלי תעופה וכבלים, ערים ודיפלומטיה, או כסף וסנקציות. החיתוך הוא על הנושא, לא על מידת הסכנה.",
+      danger:"המסך הזה ממקם כל אירוע לפי שני ציונים. למעלה פירושו יותר סכנה. ימינה פירושו מחיר גדול יותר אם זה קורה. כחול הוא מהלך בריטי או מערבי, אדום הוא רוסי, ושני האירועים האמריקאיים אפורים.",
+      ladder:"המסך הזה שם כל אירוע על סולם, מכתבה בעיתון ועד פגיעה באזרחים. הקו של בריטניה ורוסיה יושב על היום. המלחמות האחרות יושבות על היום שבו פרצו, כדי להשוות את הצורה.",
+      munger:"המסך הזה משתמש ברשימה של צ'ארלי מאנגר לטעויות שיפוט נפוצות. כל כרטיס מציין הטיה, דרך לתקן אותה, ומשהו לעקוב אחריו מחוץ לסיפור הברור של בריטניה ורוסיה. אלה לא תחזיות."
+    },
     k1:'ישיר <em class="count">53</em>',
     k1d:"<b>קשר ישיר — טבעת מלאה.</b> נוקב בשם בריטניה, או פועל נגד כלי שיט, אנשי סגל, שטח או ציוד בריטיים.",
     k2:'עקיף <em class="count">11</em>',
@@ -3010,7 +3025,7 @@ function renderSelected(code){
 function renderMunger(code){
   const t = T[code];
   const cards = code === "he" ? MUNGER_HE : MUNGER;
-  set("mungerIntro", t.standfirst);
+  set("mungerIntro", t.mungerIntro);
   set("mungerGateTitle", t.mungerGateTitle);
   set("mungerGateHint", t.mungerGateHint);
   document.getElementById("munger-err").textContent = t.mungerGateErr;
@@ -3108,7 +3123,6 @@ function render(code){
 
   set("eyebrow", t.eyebrow);
   paintTitle();
-  set("standfirst", t.standfirst);
   paintHero();
   set("k1", t.k1); set("k2", t.k2);
   set("f1", t.f1); set("f2", t.f2); set("f3", t.f3);
@@ -3457,6 +3471,9 @@ function angleHeadline(){
 
 function paintTitle(){
   set("title", angleHeadline());
+  const t = T[lang] || T.en;
+  const id = chosenAngle();
+  set("standfirst", (t.ledes && t.ledes[id]) || t.standfirst);
 }
 
 function sameOriginReferrer(){
