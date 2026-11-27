@@ -287,9 +287,35 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
   .choices {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  /* Short reading sections run across the page instead of down one column. */
+  .prose {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .prose .section__head {
+    grid-column: 1 / -1;
+    margin-block-end: 0;
+  }
+
+  .prose p,
+  .marks {
+    max-width: none;
+  }
+
+  .marks {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    column-gap: var(--space-xl);
+  }
+
+  .marks > div {
+    align-content: start;
+  }
 }
 
-@media (min-width: 70rem) {
+@media (min-width: 60rem) {
   .choices {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
