@@ -443,6 +443,8 @@
     font-family:var(--font-body);font-size:10.5px;
   }
   .row h2{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;margin:0;line-height:var(--leading-tight)}
+  /* Hebrew titles use the same face as the date beside them. Weight and size stay. */
+  html[lang="he"] .row h2{font-family:var(--font-body)}
   .why-btn{
     font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;letter-spacing:0;
     color:var(--muted);background:transparent;border:var(--rule-hair) solid var(--rule);border-radius:var(--radius-sm);
