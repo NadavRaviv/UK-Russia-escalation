@@ -56,7 +56,8 @@
   color: var(--color-ink);
   text-decoration: none;
   white-space: normal;
-  padding-inline-end: var(--space-2xs);
+  /* Room after the wordmark, matching the Home label's own padding, so the rule sits in the middle. */
+  padding-inline-end: var(--space-sm);
 }
 
 /* Page links and angles share one flex item, so the bar cannot open a gap between them. */
@@ -78,11 +79,10 @@
   gap: var(--space-2xs);
 }
 
-/* Section anchors sit behind a hairline so they read as secondary to the views.
-   Cancel the bar gap in front of that line so the brand sits against it.
-   The link's own padding keeps Plot off the stroke. */
+/* The hairline stays in the gap between the wordmark and Home.
+   The bar gap is cancelled so only the wordmark's end padding and Home's own padding remain, equal on both sides.
+   Home's padding keeps the label off the stroke. */
 .pill__links {
-  padding-inline-start: var(--space-xs);
   border-inline-start: var(--rule-hair) solid var(--color-rule);
 }
 
