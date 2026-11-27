@@ -367,7 +367,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   isolation: isolate;
   display: flex;
   align-items: flex-end;
-  min-height: min(82svh, 46rem);
+  min-height: min(64svh, 36rem);
   padding-block: var(--space-5xl) var(--space-xl);
   overflow: clip;
 }
