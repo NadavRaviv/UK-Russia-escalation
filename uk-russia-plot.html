@@ -295,9 +295,9 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
         <p class="card__why">${esc(ev(sel).why)}</p>
         ${sourcesHtml(sel)}
       </div>
-      <div class="card__nav">
-        <button type="button" class="chip" data-step="${prev ? prev.id : ""}" ${prev ? "" : "disabled"}>← ${esc(c.prev)}</button>
-        <button type="button" class="chip" data-step="${next ? next.id : ""}" ${next ? "" : "disabled"}>${esc(c.next)} →</button>
+      <div class="card__nav" dir="${lang === "he" ? "rtl" : "ltr"}">
+        <button type="button" class="chip" dir="ltr" data-step="${prev ? prev.id : ""}" ${prev ? "" : "disabled"}>${lang === "he" ? esc(c.prev) + " →" : "← " + esc(c.prev)}</button>
+        <button type="button" class="chip" dir="ltr" data-step="${next ? next.id : ""}" ${next ? "" : "disabled"}>${lang === "he" ? "← " + esc(c.next) : esc(c.next) + " →"}</button>
       </div>`;
     $("card").querySelectorAll("[data-step]").forEach((b, i) =>
       b.addEventListener("click", () => {
