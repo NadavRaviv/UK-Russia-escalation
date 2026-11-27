@@ -1,12 +1,15 @@
-/* Hallmark · editorial · design-system: uk-russia-tokens.css · UK–Russia audit UI */
+/* Hallmark · technical-briefing · design-system: uk-russia-tokens.css · UK–Russia OSINT audit UI
+ * Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 · contrast: pass · slop: pass
+ */
 :root {
-  /* Serif for headlines, sans for buttons and running text.
-     Latin headlines use Source Serif 4. Hebrew headlines use Noto Serif Hebrew,
-     a current screen serif, because Source Serif 4 has no Hebrew letters. */
-  --font-display: "Source Serif 4", "Noto Serif Hebrew", serif;
-  --font-body: Archivo, Arial, sans-serif;
-  --font-mono: var(--font-body);
-  --font-he: var(--font-body);
+  /* Zero-serif technical pairing (2+1 rule):
+     Display: Geist (Latin) + IBM Plex Sans Hebrew (Hebrew).
+     Body: IBM Plex Sans (Latin) + IBM Plex Sans Hebrew (Hebrew), designed together for unified metrics.
+     Mono: IBM Plex Mono for ISO dates, gap telemetry, counts, and axis readouts. */
+  --font-display: "Geist", "IBM Plex Sans Hebrew", ui-sans-serif, sans-serif;
+  --font-body: "IBM Plex Sans", "IBM Plex Sans Hebrew", ui-sans-serif, sans-serif;
+  --font-mono: "IBM Plex Mono", "IBM Plex Sans Hebrew", ui-monospace, monospace;
+  --font-he: "IBM Plex Sans Hebrew", "IBM Plex Sans", ui-sans-serif, sans-serif;
 
   /* Major third (1.25) — one ratio for the whole site */
   --text-xs: 0.75rem;       /* 12px labels */
@@ -19,10 +22,12 @@
   --text-3xl: clamp(1.625rem, 2.6vw, 2.0625rem); /* ~26–33px page title */
   --text-display: clamp(1.75rem, 3.2vw, 2.375rem); /* hero numbers on ladder */
 
-  --leading-tight: 1.15;
-  --leading-snug: 1.35;
-  --leading-body: 1.55;
-  --measure: 62ch;
+  --leading-tight: 1.14;
+  --leading-snug: 1.36;
+  --leading-body: 1.58;
+  --tracking-display: -0.025em;
+  --tracking-heading: -0.015em;
+  --measure: 64ch;
 
   --space-2xs: 0.25rem;
   --space-xs: 0.5rem;
@@ -35,6 +40,18 @@
 
   --page-gutter: clamp(1rem, 4vw, 1.25rem);
   --page-max: 1180px;
+}
+
+/* Hebrew script carries higher vertical density and zero-tracking word shapes;
+   prioritise IBM Plex Sans Hebrew and open line-height slightly without breaking scale. */
+html[lang="he"] {
+  --font-display: "IBM Plex Sans Hebrew", "Geist", ui-sans-serif, sans-serif;
+  --font-body: "IBM Plex Sans Hebrew", "IBM Plex Sans", ui-sans-serif, sans-serif;
+  --leading-tight: 1.2;
+  --leading-snug: 1.44;
+  --leading-body: 1.64;
+  --tracking-display: 0;
+  --tracking-heading: 0;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────

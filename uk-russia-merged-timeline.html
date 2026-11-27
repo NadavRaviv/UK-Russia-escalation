@@ -12,10 +12,10 @@
   } catch (e) {}
 })();
 </script>
-<title>UK–Russia escalation — merged timeline audit, Feb–Nov 2026</title>
+<title>UK–Russia Escalation Audit — OSINT Monitor, Feb–Nov 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Noto+Serif+Hebrew:wght@400;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./uk-russia-tokens.css">
 <link rel="stylesheet" href="./redesign-options/options-base.css">
 <link rel="stylesheet" href="./redesign-options/option-c.css">
@@ -34,7 +34,7 @@
     --uk-dot:#2f62b5;--ru-dot:var(--l5);--ot-dot:var(--l1);
     --overlay:rgba(29,38,48,0.46);
     --grade-on:var(--ink);--grade-off:var(--l0);
-    --serif:var(--font-display);
+    --display:var(--font-display);
     --sans:var(--font-body);
     --mono:var(--font-mono);
   }
@@ -48,7 +48,7 @@
     --uk-dot:#7eaaea;--ru-dot:var(--l5);--ot-dot:#c0c6ce;
     --overlay:rgba(8,11,14,0.72);
     --grade-on:var(--ink);--grade-off:var(--l1);
-    --serif:var(--font-display);
+    --display:var(--font-display);
     --sans:var(--font-body);
     --mono:var(--font-mono);
   }
@@ -61,10 +61,10 @@
     --base:var(--color-paper);--surface:var(--color-paper-2);--text:var(--color-ink);--muted:var(--color-muted);
     --faint:var(--color-muted);--red:var(--l5);--uk-dot:var(--color-uk);--ru-dot:var(--color-ru);--ot-dot:var(--color-ot);
     --overlay:var(--color-overlay);--grade-on:var(--color-ink);--grade-off:var(--color-rule);
-    --serif:var(--font-display);--sans:var(--font-body);--mono:var(--font-body);
+    --display:var(--font-display);--sans:var(--font-body);--mono:var(--font-mono);
   }
-  h1{font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;font-size:var(--text-3xl);color:var(--color-ink)}
-  h2,h3{font-family:var(--font-display);letter-spacing:-.01em}
+  h1{font-family:var(--font-display);font-weight:700;letter-spacing:var(--tracking-display, -0.025em);font-size:var(--text-3xl);color:var(--color-ink)}
+  h2,h3{font-family:var(--font-display);letter-spacing:var(--tracking-heading, -0.015em)}
   .eyebrow{color:var(--color-accent)}
   .standfirst{font-size:var(--text-md);color:var(--color-ink)}
   .ask{background:var(--color-paper-2);border:var(--rule-hair) solid var(--color-rule);border-radius:var(--radius-md);padding:var(--space-lg)}
@@ -87,11 +87,11 @@
   }
   .wrap{padding-inline:var(--page-gutter)}
   /* Every piece of UI text below sits on the token scale (12px and up), so no floor rule is needed. */
-  body[dir="rtl"]{font-family:var(--font-body)}
+  body[dir="rtl"]{font-family:var(--font-he)}
   :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
   h1{
-    font-family:var(--serif);font-weight:600;
-    font-size:var(--text-3xl);letter-spacing:-.02em;line-height:var(--leading-tight);
+    font-family:var(--display);font-weight:700;
+    font-size:var(--text-3xl);letter-spacing:var(--tracking-display, -0.025em);line-height:var(--leading-tight);
     color:var(--ink);
   }
   html[data-theme="light"]:not(:has(body[data-option])) .standfirst{
@@ -102,11 +102,11 @@
   html[data-theme="light"]:not(:has(body[data-option])) .why-dialog h2,
   html[data-theme="light"]:not(:has(body[data-option])) .munger-modal h3,
   html[data-theme="light"]:not(:has(body[data-option])) .munger-card h4{
-    font-family:var(--serif);font-weight:600;color:var(--ink);
+    font-family:var(--display);font-weight:700;color:var(--ink);
   }
   html[data-theme="light"]:not(:has(body[data-option])) .ovhead h3{font-size:calc(var(--text-sm) * 2);font-family:var(--font-display);font-weight:700}
   html[data-theme="light"]:not(:has(body[data-option])) .tlhead h3{font-size:var(--text-sm);font-family:var(--font-display);font-weight:600}
-  html[data-theme="light"]:not(:has(body[data-option])) .row h2{font-family:var(--serif);font-weight:600;font-size:var(--text-sm);line-height:var(--leading-snug)}
+  html[data-theme="light"]:not(:has(body[data-option])) .row h2{font-family:var(--display);font-weight:700;font-size:var(--text-sm);line-height:var(--leading-snug)}
   html[data-theme="light"]:not(:has(body[data-option])) .band,
   html[data-theme="light"]:not(:has(body[data-option])) .munger-card,
   html[data-theme="light"]:not(:has(body[data-option])) .why-dialog,
@@ -171,13 +171,17 @@
 
   header.context{padding:0;border:0}
   .eyebrow{
-    font-family:var(--font-body);font-size:var(--text-xs);font-weight:600;letter-spacing:0;
+    font-family:var(--font-mono);font-size:var(--text-xs);font-weight:500;letter-spacing:0.06em;text-transform:uppercase;
     color:var(--soft);margin:0 0 var(--space-xs);
   }
+  html[lang="he"] .eyebrow,
+  body[dir="rtl"] .eyebrow{
+    font-family:var(--font-he);font-weight:600;letter-spacing:0;text-transform:none;
+  }
   h1{
-    margin:0 0 var(--space-xs);font-weight:600;letter-spacing:-.02em;
+    margin:0 0 var(--space-xs);font-weight:700;letter-spacing:var(--tracking-display, -0.025em);
     line-height:var(--leading-tight);font-size:var(--text-3xl);
-    font-family:var(--serif);max-width:24ch;
+    font-family:var(--display);max-width:24ch;
   }
   .standfirst{color:var(--muted);font-size:var(--text-base);margin:0;max-width:var(--measure);line-height:var(--leading-body)}
   html[lang="he"] header.hero .hero__inner{
@@ -204,9 +208,9 @@
   }
   .chip .flag svg{display:block;width:100%;height:100%}
   .chip b{font-weight:400;color:var(--muted)}
-  .chip .count{font-style:normal;font-weight:700;color:var(--text);margin-inline-start:5px}
+  .chip .count{font-family:var(--font-mono);font-style:normal;font-weight:600;color:var(--text);margin-inline-start:5px}
   .chip-rule{width:1px;height:14px;background:var(--rule);flex:none}
-  body[dir="rtl"] .chip{letter-spacing:0;font-family:var(--font-body);font-size:12px}
+  body[dir="rtl"] .chip{letter-spacing:0;font-family:var(--font-he);font-size:var(--text-sm)}
 
   /* Full-bleed hero, same fold as the plot. Page ink colours lose to on-photo type.
      Top padding tracks the pill so a wrapped bar cannot cover the eyebrow. */
@@ -386,7 +390,7 @@
   }
   .tlcount{font-family:var(--font-body);font-size:var(--text-sm);letter-spacing:0;color:var(--soft)}
   body[dir="rtl"] .tlhead h3{letter-spacing:0;font-family:var(--font-display)}
-  body[dir="rtl"] .tlcount{letter-spacing:0;font-family:var(--font-body);font-size:11.5px}
+  body[dir="rtl"] .tlcount{letter-spacing:0;font-family:var(--font-he);font-size:var(--text-sm)}
   /* The record is one ruled list, not an inventory of cards: every row shares a date lane and a
      content lane, so dates read as a column and titles start on one edge. Phones stack the lanes. */
   .timeline{
@@ -403,13 +407,16 @@
     border-bottom:var(--rule-hair) solid var(--color-rule);
   }
   @media (min-width: 48rem){
-    .row{grid-template-columns:11rem minmax(0,1fr)}
+    .row{grid-template-columns:12rem minmax(0,1fr)}
+    html[lang="he"] .row{grid-template-columns:13.5rem minmax(0,1fr)}
     .row > .row-meta{grid-column:1;grid-row:1;padding-block-start:2px}
     .row > :not(.row-meta){grid-column:2}
   }
   .row-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-xs) var(--space-sm);margin:0;color:var(--color-muted);font-size:var(--text-sm)}
-  .row-meta time{font-family:var(--font-body);font-size:var(--text-sm);letter-spacing:0;color:var(--color-muted);margin:0}
-  .row-meta .side{display:inline-flex;align-items:center;gap:var(--space-2xs);margin:0;padding:0;border:0;border-radius:0;background:none;color:var(--color-ink);font-family:var(--font-body);font-size:var(--text-sm);font-weight:700;letter-spacing:0.04em}
+  .row-meta time{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.02em;color:var(--color-muted);margin:0}
+  html[lang="he"] .row-meta time{font-family:var(--font-he);font-size:var(--text-sm);letter-spacing:0}
+  .row-meta .side{display:inline-flex;align-items:center;gap:var(--space-2xs);margin:0;padding:0;border:0;border-radius:0;background:none;color:var(--color-ink);font-family:var(--font-mono);font-size:var(--text-xs);font-weight:600;letter-spacing:0.04em}
+  html[lang="he"] .row-meta .side{font-family:var(--font-he);font-size:var(--text-sm);font-weight:600;letter-spacing:0}
   .row-meta .ring{color:var(--color-ink);flex:none}
   /* The words sit under the title at 12px row padding; the 44px target is an invisible halo, not a void. */
   .row .why-btn{position:relative;justify-self:start;display:inline-flex;align-items:center;min-height:0;margin:0;padding:0;border:0;background:none;color:var(--color-accent);font-family:var(--font-body);font-size:var(--text-sm);font-weight:700;letter-spacing:0;text-transform:none;line-height:var(--leading-body)}
@@ -447,13 +454,20 @@
   }
   body[dir="rtl"] .side{
     margin-right:0;margin-left:9px;letter-spacing:0;
-    font-family:var(--font-body);font-size:10.5px;
+    font-family:var(--font-he);font-size:var(--text-xs);
   }
   .row h2{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;margin:0;line-height:var(--leading-tight)}
-  /* Hebrew titles use the same face as the date beside them. Weight and size stay.
-     The line is right-aligned because the wording is right to left. */
-  html[lang="he"] .row h2{font-family:var(--font-body);direction:rtl;text-align:right}
-  html[lang="he"] .row .why-btn{justify-self:end}
+  /* Hebrew content containers flow natively RTL while keeping the top pill bar LTR and SVG chart axes intact. */
+  html[lang="he"] .record,
+  html[lang="he"] .tlhead,
+  html[lang="he"] .row-meta,
+  html[lang="he"] .bands,
+  html[lang="he"] .munger-panel,
+  html[lang="he"] .ask,
+  html[lang="he"] .why-dialog,
+  html[lang="he"] footer.narrow{direction:rtl;text-align:right}
+  html[lang="he"] .row h2{font-family:var(--font-display);direction:rtl;text-align:right;letter-spacing:0}
+  html[lang="he"] .row .why-btn{justify-self:start}
   .why-btn{
     font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;letter-spacing:0;
     color:var(--muted);background:transparent;border:var(--rule-hair) solid var(--rule);border-radius:var(--radius-sm);
@@ -463,7 +477,7 @@
   .why-btn:hover{color:var(--text);border-color:rgba(148,163,184,0.4);background:rgba(148,163,184,0.08)}
   body[dir="rtl"] .why-btn{
     margin-right:0;margin-left:8px;letter-spacing:0;
-    font-family:var(--font-body);font-size:11px;text-transform:none;
+    font-family:var(--font-he);font-size:var(--text-sm);text-transform:none;
   }
   .srcs{display:flex;flex-wrap:wrap;align-items:center;gap:0}
   .src{
@@ -548,7 +562,7 @@
     color:var(--color-ink);
   }
   body[dir="rtl"] .povlab{
-    letter-spacing:0;font-family:var(--font-body);text-transform:none;font-size:11px;
+    letter-spacing:0;font-family:var(--font-he);text-transform:none;font-size:var(--text-sm);
   }
   .pov-wrap{position:relative;display:inline-flex;color:var(--muted)}
   .pov-wrap::after{
@@ -567,7 +581,7 @@
   }
   select.pov:hover{border-color:rgba(148,163,184,0.45)}
   select.pov:focus-visible{outline:1px solid var(--yellow);outline-offset:2px}
-  body[dir="rtl"] select.pov{letter-spacing:0;font-family:var(--font-body);font-size:12.5px}
+  body[dir="rtl"] select.pov{letter-spacing:0;font-family:var(--font-he);font-size:var(--text-sm)}
   /* Stat strip on the ground: a band between two hairlines, not a fourth box. Each stat is a
      label-and-value pair that reads as one item. */
   .danger-head{
@@ -579,8 +593,8 @@
   }
   .ro{min-width:0}
   .ro-n{
-    font-family:var(--font-body);font-size:var(--text-2xl);font-weight:700;line-height:1;
-    display:block;letter-spacing:-0.01em;
+    font-family:var(--font-mono);font-size:var(--text-2xl);font-weight:600;line-height:1;
+    display:block;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;
   }
   .ro-l{
     font-family:var(--font-body);font-size:var(--text-xs);letter-spacing:0;
@@ -588,7 +602,7 @@
   }
   body[dir="rtl"] .danger-head{direction:rtl}
   body[dir="rtl"] .ro-l{
-    letter-spacing:0;font-family:var(--font-body);text-transform:none;font-size:10.5px;
+    letter-spacing:0;font-family:var(--font-he);text-transform:none;font-size:var(--text-xs);
   }
   .ro.up .ro-n{color:var(--red)}
   .ro.down .ro-n{color:var(--green)}
@@ -646,7 +660,7 @@
     border:1px solid var(--rule);background:var(--base);
   }
   .danger-tip .tip-flag svg{display:block;width:100%;height:100%}
-  body[dir="rtl"] .danger-tip .tip-meta{letter-spacing:0;font-family:var(--font-body);font-size:11px}
+  body[dir="rtl"] .danger-tip .tip-meta{letter-spacing:0;font-family:var(--font-he);font-size:var(--text-xs)}
 
   /* --- selected point --- */
   /* The selected row is the one raised surface under the plot; its accent is the kicker, not an outline. */
@@ -660,7 +674,7 @@
   .sel-hint{
     font-family:var(--font-body);font-size:var(--text-sm);letter-spacing:0;color:var(--color-muted);margin:0;
   }
-  body[dir="rtl"] .sel-hint{letter-spacing:0;font-family:var(--font-body);font-size:11.5px}
+  body[dir="rtl"] .sel-hint{letter-spacing:0;font-family:var(--font-he);font-size:var(--text-sm)}
   .sel-flag{
     width:19px;height:19px;border-radius:50%;overflow:hidden;flex:none;margin-top:2px;
     border:1px solid var(--rule);background:var(--base);
@@ -672,14 +686,14 @@
     color:var(--yellow);margin:0 0 var(--space-2xs);
   }
   body[dir="rtl"] .sel-meta{
-    letter-spacing:0;font-family:var(--font-body);text-transform:none;font-size:11px;
+    letter-spacing:0;font-family:var(--font-he);text-transform:none;font-size:var(--text-xs);
   }
-  .sel-title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;line-height:var(--leading-snug);margin:0;letter-spacing:-.01em}
+  .sel-title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;line-height:var(--leading-snug);margin:0;letter-spacing:var(--tracking-heading, -0.015em)}
   .sel-nums{display:flex;flex-wrap:wrap;gap:var(--space-xs) var(--space-md);margin-top:var(--space-xs)}
   .sel-num{font-family:var(--font-body);font-size:var(--text-xs);letter-spacing:0;color:var(--color-muted)}
-  .sel-num b{color:var(--text);font-weight:700;margin-inline-start:var(--space-2xs)}
+  .sel-num b{color:var(--text);font-family:var(--font-mono);font-weight:600;margin-inline-start:var(--space-2xs)}
   body[dir="rtl"] .sel-num{
-    letter-spacing:0;font-family:var(--font-body);text-transform:none;font-size:11px;
+    letter-spacing:0;font-family:var(--font-he);text-transform:none;font-size:var(--text-xs);
   }
   .sel-acts{display:flex;align-items:center;gap:7px;flex:none;margin-inline-start:auto}
 
@@ -719,7 +733,7 @@
     font-family:var(--mono);font-size:var(--text-sm);letter-spacing:.02em;color:var(--text);
     flex:none;min-width:74px;text-align:end;font-weight:600;
   }
-  body[dir="rtl"] .danger-cut{letter-spacing:0;font-family:var(--font-body);font-size:12.5px}
+  body[dir="rtl"] .danger-cut{letter-spacing:0;font-family:var(--font-he);font-size:var(--text-sm)}
   .danger-key{
     display:flex;flex-wrap:wrap;gap:var(--space-xs) var(--space-md);margin:var(--space-sm) 0 0;
     font-family:var(--font-body);font-size:var(--text-sm);letter-spacing:0;
@@ -733,7 +747,7 @@
   .danger-key i.hot{width:12px;height:9px;border-radius:2px;background:var(--red);opacity:.28}
   .danger-key .km{width:11px;height:11px;display:block;flex:none}
   body[dir="rtl"] .danger-key{
-    letter-spacing:0;font-family:var(--font-body);text-transform:none;font-size:11.5px;
+    letter-spacing:0;font-family:var(--font-he);text-transform:none;font-size:var(--text-xs);
   }
 
   /* --- Munger insights (5th tab) --- */
@@ -761,7 +775,7 @@
     font-family:var(--font-body);font-size:var(--text-xs);font-weight:600;letter-spacing:0;
     color:var(--yellow);margin:0 0 var(--space-2xs);
   }
-  body[dir="rtl"] .munger-card .bias{letter-spacing:0;font-family:var(--font-body);text-transform:none;font-size:10.5px}
+  body[dir="rtl"] .munger-card .bias{letter-spacing:0;font-family:var(--font-he);text-transform:none;font-size:var(--text-xs)}
   .munger-card h4{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;margin:0 0 var(--space-xs);line-height:var(--leading-snug)}
   .munger-card p{font-size:var(--text-sm);color:var(--muted);margin:0 0 var(--space-xs);line-height:var(--leading-body)}
   .munger-card .watch{
@@ -838,7 +852,7 @@
     border-top:var(--rule-hair) solid var(--rule);padding-top:var(--space-xs);margin-bottom:var(--space-2xs);
   }
   .band .meta .rng{white-space:nowrap}
-  body[dir="rtl"] .band .meta,body[dir="rtl"] .band .num{letter-spacing:0;font-family:var(--font-body);font-size:10.5px}
+  body[dir="rtl"] .band .meta,body[dir="rtl"] .band .num{letter-spacing:0;font-family:var(--font-he);font-size:var(--text-xs)}
   /* Dense list: 8px rows, the flag disc 6px clear of the words, the date riding under its title. */
   .ev{display:flex;gap:var(--space-xs);align-items:flex-start;padding:var(--space-xs) 0;border-top:1px solid rgba(148,163,184,0.07)}
   .ev:first-of-type{border-top:0}
@@ -856,7 +870,7 @@
     .overview.layout-outline .ev .d{display:inline;margin:0 0 0 var(--space-sm)}
     .overview.layout-outline .ev .d::before{content:" "} /* keeps title and date separate words for readers */
   }
-  body[dir="rtl"] .ev .d{letter-spacing:0;font-family:var(--font-body);font-size:10px}
+  body[dir="rtl"] .ev .d{letter-spacing:0;font-family:var(--font-he);font-size:var(--text-xs)}
 
   footer{
     margin-top:var(--space-3xl);padding-top:var(--space-md);border-top:var(--rule-hair) solid var(--rule);
@@ -866,17 +880,17 @@
     font-family:var(--font-body);font-size:var(--text-sm);letter-spacing:0;
     color:var(--soft);margin:0;
   }
-  body[dir="rtl"] .footline{letter-spacing:0;font-family:var(--font-body);font-size:11.5px}
+  body[dir="rtl"] .footline{letter-spacing:0;font-family:var(--font-he);font-size:var(--text-sm)}
 
   /* --- RTL --- */
   body[dir="rtl"] .timeline{padding:0}
   body[dir="rtl"] .timeline:before{content:none}
   body[dir="rtl"] .row{padding:var(--space-md)}
-  body[dir="rtl"] h1{letter-spacing:0;line-height:1.16}
+  body[dir="rtl"] h1{letter-spacing:0;line-height:1.18}
   body[dir="rtl"] .eyebrow,
-  body[dir="rtl"] .ovhead h3{letter-spacing:.06em}
-  body[dir="rtl"] time{letter-spacing:0;font-family:var(--font-body);font-size:11.5px}
-  body[dir="rtl"] .gap .days{letter-spacing:0;font-family:var(--font-body);font-size:11px}
+  body[dir="rtl"] .ovhead h3{letter-spacing:0}
+  body[dir="rtl"] time{letter-spacing:0;font-family:var(--font-he);font-size:var(--text-xs)}
+  body[dir="rtl"] .gap .days{letter-spacing:0;font-family:var(--font-he);font-size:var(--text-xs)}
   body[dir="rtl"] .ro-n,
   body[dir="rtl"] .chip .count{direction:ltr;display:inline-block}
 
@@ -906,8 +920,8 @@
     font-family:var(--font-body);font-size:var(--text-xs);font-weight:600;letter-spacing:0;
     color:var(--yellow);margin:0 0 var(--space-2xs);
   }
-  body[dir="rtl"] .why-kicker{letter-spacing:0;font-family:var(--font-body);font-size:11px;text-transform:none}
-  .why-dialog h2{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;line-height:var(--leading-snug);margin:0;letter-spacing:-.01em}
+  body[dir="rtl"] .why-kicker{letter-spacing:0;font-family:var(--font-he);font-size:var(--text-xs);text-transform:none}
+  .why-dialog h2{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;line-height:var(--leading-snug);margin:0;letter-spacing:var(--tracking-heading, -0.015em)}
   /* Hallmark · component: popup close · genre: editorial · theme: uk-russia-tokens
      states: default · hover · focus-visible · active · disabled · loading n/a · error n/a · success n/a */
   .popup-x{
@@ -1189,11 +1203,11 @@
       </div>
       <div class="draw draw--domain" aria-hidden="true">
         <ol class="dom5" id="domainBoxes">
-          <li><b>1</b> War systems</li>
-          <li><b>2</b> War geography</li>
-          <li><b>3</b> Ordinary systems</li>
-          <li><b>4</b> Cities</li>
-          <li><b>5</b> Money</li>
+          <li><b>1</b> Military &amp; DIB</li>
+          <li><b>2</b> Operational theatre</li>
+          <li><b>3</b> Critical infrastructure</li>
+          <li><b>4</b> Civil &amp; diplomatic</li>
+          <li><b>5</b> Sanctions &amp; finance</li>
         </ol>
       </div>
     </div>
@@ -1354,212 +1368,212 @@
 const T = {
   en: {
     dir:"ltr", lang:"en",
-    eyebrow:"Open-source audit · Feb–Nov 2026",
-    title:"UK–Russia escalation",
-    standfirst:"Since 15 August, events have been coming 2.3 times faster. The Russian rows are getting more dangerous, and the stakes are getting higher. Sixty-four dated events, from both sides.",
+    eyebrow:"OSINT Escalation Audit · Feb–Nov 2026",
+    title:"UK–Russia Escalation Audit",
+    standfirst:"Operational tempo has accelerated 2.3× since 15 August, with Russian actions and signals trending higher in both escalatory severity and strategic impact. Sixty-four dated OSINT events across both sides.",
     ledes:{
-      outline:"Since 15 August, events have been coming 2.3 times faster. The Russian rows are getting more dangerous, and the stakes are getting higher. Sixty-four dated events, from both sides.",
-      kanban:"This screen asks how clearly Britain is named, not how scary the event is. The top band is only for a named British thing under a strike threat or a hidden act. Navy and diplomat rows stay in the routine band.",
-      domain:"This screen sorts each event by its subject: army kit, a place in the war, ordinary systems such as airports and cables, cities and diplomacy, or money and sanctions. The cut is about the subject, not about how dangerous it is.",
-      danger:"This screen places every event by two scores. Higher means more danger. Further right means bigger stakes if it happens. Blue is a British or western act, red is Russian, and the two American events are grey.",
-      ladder:"This screen puts each event on a ladder, from a news story up to civilians getting hurt. The UK–Russia line is set to today. The other wars are set to the day they started, so the shapes can be compared.",
-      munger:"This screen uses Charlie Munger's list of common mistakes in judgement. Each card names a bias, a way to correct it, and something to watch off the obvious UK–Russia story. These are not predictions."
+      outline:"Operational tempo has accelerated 2.3× since 15 August, with Russian actions and signals trending higher in both escalatory severity and strategic impact. Sixty-four dated OSINT events across both sides.",
+      kanban:"Classifies each event by targeting specificity toward the United Kingdom rather than rhetoric intensity. Tier 4 isolates named UK assets, facilities, or maritime zones under strike threat or covert action; routine naval and diplomatic friction remains in lower tiers.",
+      domain:"Segments the record across five operational domains: military systems and defence industrial base, active theatre and maritime zones, critical national infrastructure, civil and diplomatic space, and financial sanctions. Categorisation reflects target type, not severity.",
+      danger:"Maps every event by escalatory severity (vertical) against strategic impact (horizontal). Blue marks UK/Western actions, red marks Russian actions or signals, and grey marks the two US strategic events.",
+      ladder:"Plots each event on a nine-rung escalation ladder from open-source signalling to civilian casualties. The UK–Russia series anchors to the current reporting window; comparative wars anchor to outbreak day (Day 0) for trajectory analysis.",
+      munger:"Applies Charlie Munger’s taxonomy of cognitive biases to red-team the dataset. Each card pairs an analytic failure mode with a structured corrective and an off-axis watch indicator — stress-test hypotheses, not forecasts."
     },
-    k1:'Direct <em class="count">53</em>',
-    k1d:"<b>Direct link — solid ring.</b> Names Britain, or acts against British ships, staff, territory or equipment.",
+    k1:'Direct nexus <em class="count">53</em>',
+    k1d:"<b>Direct UK nexus — solid ring.</b> Explicitly names the UK, or targets UK vessels, personnel, territory, or defence industrial assets.",
     k2:'Indirect <em class="count">11</em>',
-    k2d:"<b>No direct link — dashed ring.</b> Documented driver lies elsewhere — Ukraine broadly, NATO, Washington, or domestic. Any British connection is inferred, not stated.",
-    f1:'UK / west <em class="count">36</em>', f1d:"<b>British or western act.</b> Union flag, and a blue dot on the Danger plot.",
-    f2:'Russia <em class="count">26</em>', f2d:"<b>Russian act or statement.</b> Russian tricolour, and a red dot on the Danger plot. Red carries no other meaning on this page.",
-    f3:'US <em class="count">2</em>', f3d:"<b>Third party — 2 US events.</b> New START expiring on 5 February, and the CIA director's Moscow trip on 25 August.",
+    k2d:"<b>Indirect / contextual — dashed ring.</b> Documented driver sits outside the bilateral UK axis — wider Ukraine theatre, NATO, Washington, or domestic. Any UK linkage is inferred rather than stated.",
+    f1:'UK / Allied <em class="count">36</em>', f1d:"<b>UK or Allied action.</b> Union flag, plotted as a blue marker on the Risk Plot.",
+    f2:'Russia <em class="count">26</em>', f2d:"<b>Russian action or signal.</b> Russian tricolour, plotted as a red marker on the Risk Plot. Red carries no other meaning on this page.",
+    f3:'US <em class="count">2</em>', f3d:"<b>Third-party strategic actor — 2 US events.</b> New START expiration (5 Feb) and CIA Director visit to Moscow (25 Aug).",
     unit:"d",
-    s1:"Mean gap to 15 Aug", s2:"Mean gap since 15 Aug",
-    s3:"Longest → shortest", s4:"RU / UK / other",
-    p0:"<b>One rule, both sides.</b> The two source sets graded on different definitions. The merged set applies the stricter, target-based rule throughout. No row changed grade under it.",
-    p1:"<b>Read the compression with care.</b> Part of it is method. Early rows are month-level estimates; late rows are statements logged the day they were made. Attention rose after 15 August, and the observation rate with it.",
-    p2:"<b>What the merge adds.</b> Reply time — from 15 August, sixteen of thirty-six rows are Russian. Through 24 August each British move drew a response within two days; the 16 September statements have no Russian reply logged in this set. Target — threats name objects in Ukraine until 23 August, on British soil from the 24th. Rank — a former diplomat on the 25th, the foreign ministry on the 27th, Putin on 2 September.",
-    foot:"<b>Merging two grading schemes.</b> The British set coded for a link to the escalation thesis; the Russian set coded for whether a signal named Britain. Those are not the same question. This set uses the second, narrower rule throughout, which is the one that can be checked against a source rather than against a hypothesis.<br><br><b>Flag and ring.</b> The two encode different things and should be read separately: the flag is which side acted, the ring style is the grading — solid for a direct link, dashed for none. The grading deliberately carries no colour, so that red can mean Russia on this page and nothing else. The Union flag is drawn in simplified form at this size — the diagonal counterchange is not rendered. Neither is a claim about causation between adjacent rows.<br><br><b>Interval scale.</b> Gap heights use a square-root scale — a 34-day gap is drawn about six times the height of a 1-day gap, not thirty-four times. Without it the short intervals would be invisible. The day count inside each badge is exact.<br><br><b>Badge fill.</b> The tint, border and weight of each interval badge run inverse to its length: anything two days or under is bold on full gold, and longer gaps fade toward the page's slate grey. Gold carries time throughout the page. It encodes the same number as the label, so it adds emphasis rather than information.<br><br><b>Same-day intervals.</b> Eight intervals are zero days and are badged as such. Ordering within a day follows the reporting, not a verified clock.<br><br><b>Approximate dates.</b> Three rows are dated to the month or to \u201caround\u201d a day (marked ~). Intervals touching them are approximate and marked as such. The ambassador's departure, carried as approximate in the earlier set, is now dated to 21 July on the Guardian's account.<br><br><b>Three rows dated to disclosure, not to the act.</b> The submarine operation ran for over a month before 9 April and sits on the day Britain revealed it. The drone strikes run the other way: dated to February, with the August disclosure logged as its own row. The two cannot be compared without that in mind. The 7 November Black Sky row sits on the BBC report of a plan that already existed.<br><br><b>Date conflicts, unresolved.</b> The Fedorov remark: CBS dates it 25 August, the Independent to around the 24th. The CIA trip: the Guardian says Tuesday, others Wednesday. The embassy warning: logged 17 August, carried by Reuters on the 18th. The Sarmat launch: Defense News 12 May, GlobalSecurity 13 May.<br><br><b>One unsourced row.</b> The 6 August defence talks have no online report found; the row is marked rather than linked to something adjacent.<br><br><b>Two candidates dropped.</b> A reported North Korean missile strike on Kyiv (19–20 Aug) and a GRU-signature explosive drone found near a Ukrainian cargo aircraft in Germany (27 Aug) were each carried by a single outlet at second hand. Neither is in the timeline.<br><br><b>Counter-signals are graded the same way.</b> On 1 September Moscow calls the ambassador's departure routine and says a successor is coming, which cuts against the reading placed on the 23 August row. It still codes red, because the rule asks whether Britain is the named object of a signal, not whether the signal points up or down. A red row is not on its own evidence of escalation.<br><br><b>Window.</b> Both sides run the full February–November window. The earlier trimmed Russian window, and the selection-effect note attached to it, do not carry over to these figures.",
-    dayUnit:"d", sameDay:"same day", gapWord:"Gap",
+    s1:"Mean interval pre-15 Aug", s2:"Mean interval post-15 Aug",
+    s3:"Max → min interval", s4:"RU / UK / US",
+    p0:"<b>Unified target-based coding rule.</b> Earlier UK and Russian source sets applied different inclusion criteria. This merged dataset enforces one stricter, target-based rule across every record; no entry changed classification under the unified schema.",
+    p1:"<b>Collection and observation bias.</b> Tempo compression reflects both operational acceleration and collection granularity. Early entries include month-level disclosures; post-15 August entries log statements on the day issued as media and OSINT monitoring intensified.",
+    p2:"<b>Analytical delta from merging both sides.</b> Response latency — from 15 August onward, 16 of 36 entries are Russian. Through 24 August every UK move drew a response within 48 hours; the 16 September UK statements have no logged Russian reply. Target shift — Russian threats reference assets in Ukraine through 23 August, shifting to UK territory from 24 August. Escalation in speaker seniority — former diplomat (25 Aug), MFA (27 Aug), Putin (2 Sep).",
+    foot:"<b>Unifying two coding schemas.</b> The original UK dataset coded against an escalation hypothesis; the Russian dataset coded whether a signal explicitly named Britain. Those answer different analytical questions. This merged audit enforces the narrower target-based rule throughout — verifiable against primary sources rather than an interpretive thesis.<br><br><b>Symbology: actor flag vs. nexus ring.</b> The two visual channels encode orthogonal dimensions: the flag identifies the originating actor; the ring encodes UK nexus (solid for direct, dashed for indirect/contextual). Nexus deliberately carries no colour so crimson remains reserved strictly for Russian actors. The Union flag is simplified at icon scale. Chronological adjacency is not a claim of causality.<br><br><b>Interval scaling.</b> Gap heights use a square-root scale — a 34-day interval renders roughly 6× taller than a 1-day interval rather than 34×, keeping high-tempo clusters legible while badge labels display exact day counts.<br><br><b>Interval badge encoding.</b> Badge fill, border, and weight invert interval duration: gaps ≤ 2 days highlight in full accent tone while longer quiet windows recede into slate neutral. Colour reinforces the numeric badge rather than introducing a separate variable.<br><br><b>Same-day clustering.</b> Eight intervals measure zero days and are labelled accordingly. Intra-day ordering follows reporting sequence rather than verified UTC timestamps.<br><br><b>Approximate timestamps.</b> Three rows are dated to month level or “around” a day (marked ~); adjacent intervals inherit the approximate marker. The UK ambassador’s departure, previously approximate, is now anchored to 21 July per The Guardian.<br><br><b>Disclosure-dated vs. activity-dated entries.</b> Three entries sit on public disclosure rather than operational start. The submarine tracking operation ran for over a month prior to its 9 April MoD announcement; conversely, UK-supplied drone strikes are anchored to February operational onset with the August disclosure logged separately. The 7 November Black Sky entry sits on the BBC report of a pre-existing contingency plan.<br><br><b>Unresolved source-date variance.</b> Fedorov remarks: CBS (25 Aug) vs. Independent (~24 Aug). CIA Director Moscow visit: Guardian (Tuesday) vs. other outlets (Wednesday). Embassy warning: logged 17 Aug, Reuters wire 18 Aug. Sarmat test: Defense News (12 May) vs. GlobalSecurity (13 May).<br><br><b>Unverified single entry.</b> The 6 August defence consultations lack a live open-source URL and are explicitly flagged rather than substituted with an adjacent citation.<br><br><b>Excluded single-source reports.</b> A reported North Korean missile strike on Kyiv (19–20 Aug) and a GRU-linked explosive drone near a Ukrainian cargo aircraft in Germany (27 Aug) rested on single secondary reports and were excluded under multi-source verification rules.<br><br><b>De-escalatory counter-signals.</b> On 1 September Moscow termed the ambassador’s departure routine and stated a successor was pending — countering the 23 August framing. It still codes as a direct Russian nexus entry because the rule tests whether Britain is the named object, not escalation polarity. A Russian direct entry is not standalone evidence of escalation.<br><br><b>Reporting window.</b> Both actors span the complete February–November 2026 window; earlier Russian-window trimming caveats no longer apply.",
+    dayUnit:"d", sameDay:"same day", gapWord:"Interval",
     months:["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],
-    ovTitle:"Bands · how directly Britain is named",
-    ovNote:"A third axis, and the only one on this page that is a judgement rather than a fact on the record. The test is how explicitly Britain is the object of a signal — not how alarming its content is. The top band adds a second cut: the named object sits under a strike threat or a concealed act, so notified gunnery and diplomat rows stay routine. That is also why an unannounced nuclear exercise and an American trip to Moscow both sit in the first band. Flag and ring keep their meanings.",
-    ovTitleDomain:"Domains · the kind of object in play",
-    ovNoteDomain:"War versus civil, infrastructure versus zone, and money as its own card. War infra is army systems and the plants that make them. War zones are military geography — a front, a base, a stretch of water. Civil infra is the systems of ordinary life: airports, courts, energy plants. Civil zone is cities and diplomatic space. Money and sanctions is packages, asset freezes, designations, enforcement, and other financial measures between Britain and Russia. Nothing in this set is a strike on London buildings. Like the bands, this cut is a judgement. Flag and ring keep their meanings.",
+    ovTitle:"Targeting tiers · specificity of UK nexus",
+    ovNote:"An analyst-coded axis measuring how explicitly the United Kingdom is the object of a signal or action — independent of rhetoric volume. Tier 4 adds a hostility/covert gate: the named UK object faces an explicit strike threat or covert operation, keeping notified naval gunnery and routine diplomatic friction in Tier 2. Unannounced strategic nuclear drills and US bilateral engagements sit in Tier 1. Actor flags and nexus rings retain their standard meanings.",
+    ovTitleDomain:"Operational domains · target class",
+    ovNoteDomain:"Segments entries across five operational domains: military systems and defence industrial base (DIB), active theatre and maritime zones, critical national infrastructure (CNI), civil and diplomatic space, and financial sanctions and enforcement. No event in this dataset represents a kinetic strike on London. Like targeting tiers, domain assignment is an analyst judgement; primary sources remain attached to every row.",
     ovViewLabel:"View",
-    ovKanban:"Bands", ovKanbanHint:"how direct",
-    ovOutline:"Events", ovOutlineHint:"by date",
-    ovDomain:"Domain", ovDomainHint:"war / civil / money",
-    ovDanger:"Danger", ovDangerHint:"signal strength",
-    ovMunger:"Biases & surprises", ovMungerHint:"25 misjudgments · locked",
-    ovLadder:"Levels", ovLadderHint:"escalation ladder · UK–Russia vs three wars",
-    ovLadderNote:"Nine rungs from media to civilians harmed. Five lanes share one clock: UK–Russia on today; Russia–Ukraine, Israel–Iran, US–Iran and Israel–Hamas on each war's outbreak. Dashed marks are suspected, not attributed. Green rows stay off the line unless you switch them on inside the panel.",
-    mungerIntro:"Charlie Munger's psychology of human misjudgment, applied to this record. His insights surface the biases that distort how the timeline is read, and once the record is lined up against them you can see where the surprises can come from. Each card names a bias, a corrective, and a watch item that sits off the obvious UK–Russia thread. Not predictions — hypotheses designed to carry fewer built-in mistakes.",
-    mungerGateTitle:"Biases & surprises",
-    mungerGateHint:"Inspired by Charlie Munger, whose Psychology of Human Misjudgment named 25 standard causes of error that distort predictions. Those insights surface the biases in a reading; lined up against them, you can see where the surprises can come from.<br><br>Enter the 6-digit access code.",
-    mungerGateErr:"Incorrect code.",
-    mungerGateSubmit:"Unlock",
+    ovKanban:"Targeting", ovKanbanHint:"specificity tier",
+    ovOutline:"Event Log", ovOutlineHint:"chronological",
+    ovDomain:"Domains", ovDomainHint:"military / CNI / sanctions",
+    ovDanger:"Risk Plot", ovDangerHint:"severity vs. impact",
+    ovMunger:"Red-Team", ovMungerHint:"25 cognitive biases · restricted",
+    ovLadder:"Ladder", ovLadderHint:"escalation ladder · UK–Russia vs. four baselines",
+    ovLadderNote:"Nine rungs from open-source signalling to civilian casualties. Five lanes share one clock: UK–Russia anchored to the current reporting window; Russia–Ukraine, Israel–Iran, US–Iran, and Israel–Hamas anchored to outbreak day (Day 0). Dashed rings mark suspected, unattributed incidents.",
+    mungerIntro:"Charlie Munger’s taxonomy of cognitive misjudgments applied to red-team this OSINT record. Lining the timeline against known analytical failure modes exposes collection bias and off-axis contingencies. Each card names a bias, an analytical corrective, and a watch indicator outside the main UK–Russia thread — diagnostic hypotheses, not forecasts.",
+    mungerGateTitle:"Red-Team · Cognitive Biases",
+    mungerGateHint:"Structured around Charlie Munger’s 25 causes of human misjudgment to audit analytical blind spots and identify off-axis escalation vectors.<br><br>Enter the 6-digit access code.",
+    mungerGateErr:"Invalid access code.",
+    mungerGateSubmit:"Authenticate",
     mungerGateCancel:"Cancel",
-    mungerFix:"Fix",
-    mungerWatch:"Watch",
-    ovTitleDanger:"Danger against impact",
-    ovNoteDanger:"A fourth cut, and a judgement like the bands. Vertical is how alarming the act is — high at the top. Horizontal is how large the stakes are if it lands — high to the right. The slider keeps every row up to the date you stop on, so the cloud can be read as a path. The cross marks the centre of the five most recent rows and the faint line behind it is where that centre has been. Drift compares those five rows with the five before them: positive means the recent cluster sits higher and further right. Blue is a British or western act, red is Russian; the two American rows are grey.",
-    dangerHigh:"High danger", dangerLow:"Low danger",
+    mungerFix:"Corrective",
+    mungerWatch:"Watch indicator",
+    ovTitleDanger:"Escalatory severity vs. strategic impact",
+    ovNoteDanger:"An analyst-coded risk matrix. Vertical axis measures escalatory severity (high at top); horizontal axis measures strategic impact if realized (high at right). Scrubbing the date slider reveals trajectory and cluster drift over time. The crosshair tracks the centroid of the five most recent events, with a faint trail showing prior positions; drift compares the latest five events against the preceding five (positive = upward and rightward shift). Blue = UK/Allied, red = Russian, grey = US.",
+    dangerHigh:"High severity", dangerLow:"Low severity",
     impactLow:"Low impact", impactHigh:"High impact",
     dangerCentre:n=>"last "+n,
-    keyNewest:"newest", keySelected:"selected", keyHot:"danger 7+ · impact 7+",
-    selHint:"Select a point for its row.",
-    selClose:"Clear", selDangerL:"Danger", selImpactL:"Impact", selBandL:"Band",
+    keyNewest:"latest", keySelected:"selected", keyHot:"severity 7+ · impact 7+",
+    selHint:"Select any marker to inspect its event dossier.",
+    selClose:"Clear", selDangerL:"Severity", selImpactL:"Impact", selBandL:"Tier",
     dangerSlider:"Date",
-    povLabel:"View",
-    povAll:"All events", povToUk:"Danger to UK", povToRu:"Danger to Russia",
-    roDangerL:"Mean danger", roImpactL:"Mean impact",
-    roDriftL:n=>"Drift, last "+n, roCountL:"Events shown",
-    legendBtn:"Key", legendTitle:"Reading the marks",
+    povLabel:"Filter",
+    povAll:"All actors", povToUk:"Risk to UK", povToRu:"Risk to Russia",
+    roDangerL:"Mean severity", roImpactL:"Mean impact",
+    roDriftL:n=>"Centroid drift, last "+n, roCountL:"Events in window",
+    legendBtn:"Symbology", legendTitle:"Symbology & coding key",
     tempoBtn:"Tempo", tempoTitle:"Interval compression",
-    methodBtn:"Method", methodTitle:"Method and caveats",
-    playLabel:"Play through the dates", pauseLabel:"Pause",
-    tlTitle:"Timeline", tlCount:"64 events · Feb – Nov 2026",
-    footLine:"Sixty-four rows, February to November 2026. Every row carries its source.",
-    metaFmt:(n,r,rng)=>(n===1?"1 row":n+" rows")+" &nbsp;·&nbsp; "+rng+"<br>"+r,
+    methodBtn:"Methodology", methodTitle:"Methodology & analytical caveats",
+    playLabel:"Play chronological sequence", pauseLabel:"Pause",
+    tlTitle:"Chronological event log", tlCount:"64 events · Feb – Nov 2026",
+    footLine:"Sixty-four dated OSINT records, Feb–Nov 2026. Primary sources attached to every row.",
+    metaFmt:(n,r,rng)=>(n===1?"1 event":n+" events")+" &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
-      {name:"Britain not named", def:"Background, structural, or deliberately concealed. Britain is not the object."},
-      {name:"Britain named, routine", def:"Diplomatic and naval friction, inside the ordinary run of statecraft."},
-      {name:"A consequence is stated", def:"Britain is warned it will pay, but nothing specific is named as the thing at risk."},
-      {name:"A specific object, hostile or concealed", def:"A particular British thing is named as the object — a factory, a military site, or a stretch of UK water — and the act is a strike threat or concealment."}
+      {name:"UK not targeted", def:"Contextual, structural, or unattributed background activity where the UK is not the named object."},
+      {name:"UK named — routine friction", def:"Diplomatic démarches, expulsions, and notified naval or airspace friction within standard statecraft."},
+      {name:"Explicit retaliatory warning", def:"The UK is explicitly warned of retaliatory consequences without naming a specific physical asset."},
+      {name:"Named UK target — threat or covert act", def:"A specific UK asset, defence facility, vessel, or maritime zone is named under strike threat or targeted via covert/sub-threshold action."}
     ],
     domains:[
-      {name:"War infra", def:"Army systems and the plants that make them — nuclear forces, drones, jammers, weapons production."},
-      {name:"War zones", def:"War actions in a military geography: a front, a base, or a stretch of naval water."},
-      {name:"Civil infra", def:"The systems of ordinary life: airports, courts, energy plants, cables and emergency radio. The NATS outage and the Swindon court case sit here."},
-      {name:"Civil zone", def:"Civilian geography: cities, capitals, diplomatic space. No strike on London buildings is in this set."},
-      {name:"Money & sanctions", def:"Sanctions packages, asset freezes, designations, enforcement, and other financial measures between Britain and Russia."}
+      {name:"Military & DIB", def:"Armed forces capabilities, strategic nuclear posture, UAVs, EW/jammers, and defence industrial base production."},
+      {name:"Operational theatre", def:"Kinetic operations, force deployments, patrols, and grey-zone maritime activity across active theatres and approaches."},
+      {name:"Critical infrastructure", def:"National civil infrastructure: aviation control (NATS), judiciary, energy grids, subsea cables, and emergency comms."},
+      {name:"Civil & diplomatic", def:"Population centres, capitals, diplomatic missions, and sovereign legal/political space. No kinetic strike on London is in this set."},
+      {name:"Sanctions & finance", def:"Sanctions designations, asset freezes, shadow-fleet interdiction, export-control enforcement, and financial countermeasures."}
     ],
     sides:{uk:"UK", ru:"RU", ot:"US"},
     ago:(n,soft)=>n===0?"today":n===1?"yesterday":(soft?"~":"")+n+"d ago",
-    whyBtn:"Why", whyClose:"Close", whyKicker:"Note",
-    askTitle:"Ask the tracker",
-    askNote:"Answers are AI-generated from the tracker’s sources. Dated questions use the matching rows. Check the linked row first.",
-    askLabel:"Question",
+    whyBtn:"Brief", whyClose:"Close", whyKicker:"Operational brief",
+    askTitle:"Query the dataset",
+    askNote:"AI-synthesized answers grounded in the tracker’s primary sources. Date-specific queries resolve directly from logged records; verify the linked row first.",
+    askLabel:"Query",
     askPlaceholder:"What happened on 29 September?",
-    askSubmit:"Ask",
-    askLoading:"Asking…",
-    askLoadingStatus:"Asking the tracker…",
-    askHelp:"300 characters at most.",
-    askLinks:"Rows in the tracker",
-    askEmpty:"The question is empty. Type a question about the timeline.",
-    askTooLong:"That question is longer than 300 characters. Shorten it and ask again.",
-    askRate:"Too many questions from this connection. Wait a minute and try again.",
-    askTimeout:"Cognee did not answer within 15 seconds. Try again.",
-    askUnconfigured:"Ask the tracker is not configured on this deploy yet.",
-    askUpstream:"Cognee did not return an answer. Try again in a moment.",
-    askOffline:"Ask the tracker is available on the Netlify site. This page cannot reach that function.",
-    themeToDark:"Switch to dark theme",
-    themeToLight:"Switch to light theme",
+    askSubmit:"Query",
+    askLoading:"Querying…",
+    askLoadingStatus:"Querying the dataset…",
+    askHelp:"Maximum 300 characters.",
+    askLinks:"Referenced records",
+    askEmpty:"Enter a query about the event log.",
+    askTooLong:"Query exceeds 300 characters. Shorten and retry.",
+    askRate:"Rate limit reached for this connection. Retry in one minute.",
+    askTimeout:"Upstream query engine timed out after 15 seconds. Retry.",
+    askUnconfigured:"Dataset query endpoint is not configured on this deployment.",
+    askUpstream:"Upstream query engine returned no answer. Retry shortly.",
+    askOffline:"Dataset query is active on the Netlify deployment; unavailable offline.",
+    themeToDark:"Switch to dark mode",
+    themeToLight:"Switch to light mode",
     themeNameDark:"Dark", themeNameLight:"Light"
   },
   he: {
     dir:"rtl", lang:"he",
-    eyebrow:"בדיקת מקורות גלויים · פברואר–נובמבר 2026",
-    title:"הסלמה בין בריטניה לרוסיה",
-    standfirst:"מאז 15 באוגוסט האירועים מגיעים פי 2.3 יותר מהר. השורות הרוסיות נעשות מסוכנות יותר, והמחיר שלהן עולה. שישים וארבעה אירועים עם תאריך, משני הצדדים.",
+    eyebrow:"ביקורת מודיעין גלוי (OSINT) · פברואר–נובמבר 2026",
+    title:"ביקורת הסלמה: בריטניה–רוסיה",
+    standfirst:"מאז 15 באוגוסט קצב האירועים האיץ פי 2.3, עם עלייה בחומרת ההסלמה ובהשפעה האסטרטגית של הפעולות והאיתותים הרוסיים. 64 אירועי OSINT מתוארכים משני הצדדים.",
     ledes:{
-      outline:"מאז 15 באוגוסט האירועים מגיעים פי 2.3 יותר מהר. השורות הרוסיות נעשות מסוכנות יותר, והמחיר שלהן עולה. שישים וארבעה אירועים עם תאריך, משני הצדדים.",
-      kanban:"המסך הזה שואל עד כמה בריטניה נקובה בשם, לא עד כמה האירוע מפחיד. הרמה העליונה היא רק כשדבר בריטי מסוים נמצא תחת איום תקיפה או מעשה מוסתר. שורות של צי ודיפלומטיה נשארות ברמה הרגילה.",
-      domain:"המסך הזה ממיין כל אירוע לפי הנושא: ציוד צבאי, מקום במלחמה, מערכות רגילות כמו נמלי תעופה וכבלים, ערים ודיפלומטיה, או כסף וסנקציות. החיתוך הוא על הנושא, לא על מידת הסכנה.",
-      danger:"המסך הזה ממקם כל אירוע לפי שני ציונים. למעלה פירושו יותר סכנה. ימינה פירושו מחיר גדול יותר אם זה קורה. כחול הוא מהלך בריטי או מערבי, אדום הוא רוסי, ושני האירועים האמריקאיים אפורים.",
-      ladder:"המסך הזה שם כל אירוע על סולם, מכתבה בעיתון ועד פגיעה באזרחים. הקו של בריטניה ורוסיה יושב על היום. המלחמות האחרות יושבות על היום שבו פרצו, כדי להשוות את הצורה.",
-      munger:"המסך הזה משתמש ברשימה של צ'ארלי מאנגר לטעויות שיפוט נפוצות. כל כרטיס מציין הטיה, דרך לתקן אותה, ומשהו לעקוב אחריו מחוץ לסיפור הברור של בריטניה ורוסיה. אלה לא תחזיות."
+      outline:"מאז 15 באוגוסט קצב האירועים האיץ פי 2.3, עם עלייה בחומרת ההסלמה ובהשפעה האסטרטגית של הפעולות והאיתותים הרוסיים. 64 אירועי OSINT מתוארכים משני הצדדים.",
+      kanban:"מסך זה מסווג כל אירוע לפי מידת המיקוד בבריטניה, ולא לפי עוצמת הרטוריקה. דרג 4 מבודד נכסים, מתקנים ביטחוניים או מרחבים ימיים בריטיים תחת איום תקיפה או פעולה חשאית; חיכוך ימי ודיפלומטי שגרתי נשאר בדרגים הנמוכים.",
+      domain:"מסך זה מפלח את התיעוד לחמישה תחומי פעולה: מערכות צבאיות ותעשייה ביטחונית, זירות לחימה ותווך ימי, תשתיות לאומיות קריטיות, מרחב אזרחי ודיפלומטי, וסנקציות פיננסיות. הסיווג משקף את סוג היעד ולא את רמת הסיכון.",
+      danger:"מסך זה ממקם כל אירוע לפי חומרת הסלמה (ציר אנכי) מול השפעה אסטרטגית (ציר אופקי). כחול מסמן פעולות בריטיות או של בעלות ברית, אדום מסמן פעולות ואיתותים רוסיים, ואפור מסמן את שני האירועים האסטרטגיים של ארה״ב.",
+      ladder:"מסך זה ממקם כל אירוע על סולם הסלמה בן תשעה שלבים — מאיתות תקשורתי ועד פגיעה באזרחים. ציר בריטניה–רוסיה מעוגן למועד הדיווח הנוכחי; עימותי עבר מעוגנים ליום הפרוץ (יום 0) לצורך ניתוח מגמות.",
+      munger:"מסך זה מיישם את טקסונומיית ההטיות הקוגניטיביות של צ׳ארלי מאנגר לטובת ״צוות אדום״ על הנתונים. כל כרטיס מצמיד כשל אנליטי לתיקון מובנה ולאינדיקטור מעקב מחוץ לציר המרכזי — השערות לבחינת רגישות, לא תחזיות."
     },
-    k1:'ישיר <em class="count">53</em>',
-    k1d:"<b>קשר ישיר — טבעת מלאה.</b> נוקב בשם בריטניה, או פועל נגד כלי שיט, אנשי סגל, שטח או ציוד בריטיים.",
+    k1:'זיקה ישירה <em class="count">53</em>',
+    k1d:"<b>זיקה ישירה לבריטניה — טבעת מלאה.</b> נוקב בשם בריטניה במפורש, או מכוון לכלי שיט, לסגל, לשטח או לתעשייה ביטחונית בריטית.",
     k2:'עקיף <em class="count">11</em>',
-    k2d:"<b>אין קשר ישיר — טבעת מקווקוות.</b> הגורם המתועד נמצא במקום אחר — אוקראינה בכללותה, נאט\u201dו, וושינגטון או זירה פנימית. כל קשר בריטי הוא הסקה ולא אמירה.",
-    f1:'בריטניה / המערב <em class="count">36</em>', f1d:"<b>מהלך בריטי או מערבי.</b> דגל בריטניה, ונקודה כחולה בתרשים הסכנה.",
-    f2:'רוסיה <em class="count">26</em>', f2d:"<b>מהלך או הצהרה רוסיים.</b> דגל רוסיה, ונקודה אדומה בתרשים הסכנה. לאדום אין משמעות אחרת בדף הזה.",
-    f3:'ארה\u05f4\u05d1 <em class="count">2</em>', f3d:"<b>צד שלישי — 2 אירועים אמריקאיים.</b> פקיעת ניו סטארט ב-5 בפברואר, וביקור ראש ה-CIA במוסקבה ב-25 באוגוסט.",
+    k2d:"<b>עקיף / הקשרי — טבעת מקווקוות.</b> המניע המתועד יושב מחוץ לציר הדו־צדדי — זירת אוקראינה בכללותה, נאט״ו, וושינגטון או זירה פנימית. כל זיקה בריטית מוסקת ולא נקובה.",
+    f1:'בריטניה / בעלות ברית <em class="count">36</em>', f1d:"<b>פעולה בריטית או של בעלות ברית.</b> דגל בריטניה, ונקודה כחולה במפת הסיכון.",
+    f2:'רוסיה <em class="count">26</em>', f2d:"<b>פעולה או איתות רוסיים.</b> דגל רוסיה, ונקודה אדומה במפת הסיכון. לאדום אין כל משמעות אחרת בדף זה.",
+    f3:'ארה״ב <em class="count">2</em>', f3d:"<b>שחקן אסטרטגי שלישי — 2 אירועי ארה״ב.</b> פקיעת אמנת New START (5 בפברואר) וביקור ראש ה־CIA במוסקבה (25 באוגוסט).",
     unit:" ימים",
-    s1:"מרווח ממוצע עד 15 באוג׳", s2:"מרווח ממוצע מ-15 באוג׳",
-    s3:"מהארוך ביותר לקצר", s4:"רוסיה / בריטניה / אחר",
-    p0:"<b>כלל אחד, לשני הצדדים.</b> שני המערכים המקוריים דירגו לפי הגדרות שונות. המערך הממוזג מחיל את הכלל המחמיר יותר, זה שמבוסס על המטרה, על כל השורות — ואף שורה לא שינתה דירוג.",
-    p1:"<b>יש לקרוא את ההתכווצות בזהירות.</b> חלק ממנה נובע מהשיטה. הרשומות המוקדמות הן הערכות ברמת החודש; המאוחרות הן הצהרות שנרשמו ביום שנאמרו. תשומת הלב עלתה אחרי 15 באוגוסט, ואיתה שיעור התצפיות.",
-    p2:"<b>מה שהמיזוג מוסיף.</b> זמן תגובה — מ-15 באוגוסט שש־עשרה משלושים ושש השורות רוסיות. עד 24 באוגוסט כל מהלך בריטי משך תגובה בתוך יומיים; להצהרות 16 בספטמבר לא נרשמה כאן תגובה רוסית. מטרה — האיומים נוקבים ביעדים באוקראינה עד 23 באוגוסט, ועל אדמת בריטניה מה-24. דרג — דיפלומט לשעבר ב-25, משרד החוץ ב-27, פוטין ב-2 בספטמבר.",
-    foot:"<b>מיזוג שתי סכמות דירוג.</b> המערך הבריטי סימן לפי קשר לתזת ההסלמה; המערך הרוסי סימן לפי השאלה אם האיתות נוקב בשם בריטניה. אלה אינן אותה שאלה. המערך הזה משתמש בכלל השני, הצר יותר, לכל אורכו — זה שניתן לבדיקה מול מקור ולא מול השערה.<br><br><b>הדגל והטבעת.</b> השניים מקודדים דברים שונים ויש לקרוא אותם בנפרד: הדגל הוא הצד שפעל, וסגנון הטבעת הוא הדירוג — מלאה לקשר ישיר, מקווקוות כשאין. לדירוג אין צבע בכוונה, כדי שאדום יסמן רוסיה בדף הזה ולא שום דבר אחר. דגל בריטניה מצויר בגרסה מפושטת בגודל הזה — הקו האלכסוני המוסט אינו מיוצג. אף אחד מהם אינו טענה על סיבתיות בין שורות סמוכות.<br><br><b>קנה המידה של המרווחים.</b> גובה המרווחים מבוסס על שורש ריבועי — מרווח של 34 יום מצויר בגובה של פי שישה בערך ממרווח של יום אחד, ולא פי שלושים וארבעה. בלעדיו המרווחים הקצרים היו נעלמים. מספר הימים בתוך כל תג מדויק.<br><br><b>מילוי התגים.</b> הגוון, המסגרת והמשקל של כל תג מרווח פועלים הפוך לאורכו: כל מרווח של יומיים או פחות מוצג בזהב מלא ובהדגשה, ומרווחים ארוכים יותר דוהים לעבר האפור־כחלחל של הדף. הזהב מסמן זמן לכל אורך הדף. הוא מקודד בדיוק את אותו מספר שמופיע בתווית, ולכן הוא מוסיף הדגשה ולא מידע.<br><br><b>מרווחים של אותו יום.</b> שמונה מרווחים הם אפס ימים ומסומנים ככאלה. הסדר בתוך יום נקבע לפי הדיווח ולא לפי שעון מאומת.<br><br><b>תאריכים משוערים.</b> שלוש שורות מתוארכות לרמת החודש או ל\u201dבערך\u201d יום מסוים (מסומן ~). מרווחים הנוגעים בהן משוערים ומסומנים ככאלה. עזיבת השגריר, שנשאה סימון משוער במערך הקודם, מתוארכת כעת ל-21 ביולי לפי הגרדיאן.<br><br><b>שלוש שורות מתוארכות לחשיפה ולא למעשה.</b> מבצע הצוללות נמשך למעלה מחודש לפני 9 באפריל, והשורה יושבת על היום שבו בריטניה חשפה אותו. תקיפות המזל\u201dטים פועלות בכיוון ההפוך: מתוארכות לפברואר, כשהחשיפה של אוגוסט נרשמת כשורה נפרדת. אי אפשר להשוות ביניהן בלי לזכור זאת. שורת Black Sky ב-7 בנובמבר יושבת על דיווח ה-BBC על תוכנית שכבר הייתה קיימת.<br><br><b>סתירות תאריכים שלא יושבו.</b> אמירת פדורוב: CBS מתארך ל-25 באוגוסט, האינדיפנדנט לסביבות ה-24. ביקור ראש ה-CIA: הגרדיאן אומר יום שלישי, אחרים יום רביעי. אזהרת השגרירות: נרשמה ב-17 באוגוסט, רויטרס פרסמה ב-18. שיגור הסרמט: Defense News ב-12 במאי, GlobalSecurity ב-13 במאי.<br><br><b>שורה אחת ללא מקור.</b> לשיחות ההגנה של 6 באוגוסט לא נמצא דיווח מקוון; השורה מסומנת ככזו ולא מקושרת למקור סמוך.<br><br><b>שני מועמדים הוסרו.</b> דיווח על תקיפת קייב בטילים צפון־קוריאניים (19–20 באוגוסט) ורחפן נפץ בחתימת GRU שנמצא ליד מטוס מטען אוקראיני בגרמניה (27 באוגוסט) הופיעו כל אחד בכלי תקשורת יחיד וממקור משני. שניהם אינם בציר הזמן.<br><br><b>איתותים נגדיים מדורגים באותה שיטה.</b> ב-1 בספטמבר מוסקבה מכנה את עזיבת השגריר שגרתית ומודיעה שמחליף בדרך, דבר הסותר את הקריאה שהוצמדה לשורה של 23 באוגוסט. השורה עדיין מסומנת באדום, משום שהכלל שואל אם בריטניה היא מושא האיתות ולא אם האיתות מצביע כלפי מעלה או מטה. שורה אדומה אינה כשלעצמה ראיה להסלמה.<br><br><b>חלון הזמן.</b> שני הצדדים פרוסים על חלון פברואר–נובמבר המלא. החלון הרוסי המקוצר הקודם, וההערה על אפקט הבחירה שנלוותה אליו, אינם חלים על הנתונים כאן.",
-    dayUnit:" ימים", sameDay:"אותו יום", gapWord:"פער",
+    s1:"מרווח ממוצע לפני 15 באוג׳", s2:"מרווח ממוצע מאז 15 באוג׳",
+    s3:"מרווח מרבי → מזערי", s4:"רוסיה / בריטניה / ארה״ב",
+    p0:"<b>כלל קידוד אחיד וממוקד־יעד.</b> מערכי המקור המוקדמים דירגו צדדים לפי הגדרות שונות. המערך הממוזג אוכף כלל מחמיר ואחיד לכל אורכו — אף רשומה לא שינתה סיווג תחת הסכמה האחידה.",
+    p1:"<b>הטיית איסוף ותצפית.</b> דחיסת הקצב משקפת הן האצה מבצעית והן רזולוציית איסוף. רשומות מוקדמות כוללות חשיפות ברמת חודש; רשומות לאחר 15 באוגוסט מתועדות ביום הפרסום עם התעצמות הסיקור והניטור הגלוי.",
+    p2:"<b>תובנות מהמיזוג הדו־צדדי.</b> זמן תגובה — מ־15 באוגוסט, 16 מתוך 36 רשומות הן רוסיות. עד 24 באוגוסט כל מהלך בריטי נענה תוך 48 שעות; להצהרות 16 בספטמבר לא תועדה תגובה רוסית. הסטת יעד — האיומים נוקבים ביעדים באוקראינה עד 23 באוגוסט ועוברים לשטח בריטניה מ־24 באוגוסט. עליית דרג — דיפלומט לשעבר (25 באוג׳), משרד החוץ (27 באוג׳), פוטין (2 בספט׳).",
+    foot:"<b>איחוד שתי סכמות קידוד.</b> המערך הבריטי קודד מול תזת הסלמה; המערך הרוסי קודד לפי השאלה אם האיתות נקב בשם בריטניה. אלה שאלות אנליטיות שונות. ביקורת זו אוכפת לכל אורכה את הכלל הצר וממוקד־היעד, שניתן לאימות ישיר מול מקור ראשוני.<br><br><b>סימבולוגיה: דגל שחקן מול טבעת זיקה.</b> שני הערוצים מקודדים ממדים בלתי תלויים: הדגל מזהה את השחקן המבצע; הטבעת מקודדת זיקה לבריטניה (מלאה לזיקה ישירה, מקווקוות לעקיפה/הקשרית). לטבעת אין צבע בכוונה כדי שהצבע האדום יישמר אך ורק לרוסיה. דגל בריטניה מוצג בגרסה מופשטת בקנה מידה אייקוני. סמיכות כרונולוגית אינה טענת סיבתיות.<br><br><b>קנה מידה של מרווחי זמן.</b> גובה הפערים מבוסס על שורש ריבועי — פער של 34 ימים מוצג בגובה של כ־פי 6 מפער של יום אחד במקום פי 34, כדי שצבירות בקצב גבוה יישארו קריאות בעוד התגיות מציגות את מספר הימים המדויק.<br><br><b>קידוד תגיות מרווח.</b> עוצמת הרקע, המסגרת והמשקל של כל תגית פועלים הפוך למשך הפער: מרווחים של עד יומיים מודגשים בגוון ההדגשה המלא, ומרווחים ארוכים נסוגים לאפור ניטרלי.<br><br><b>צבירות באותו יום.</b> שמונה מרווחים עומדים על אפס ימים ומסומנים בהתאם. הסדר הפנימי באותו יום עוקב אחר רצף הדיווחים ולא אחר חותמות זמן מאומתות ב־UTC.<br><br><b>תאריכים משוערים.</b> שלוש רשומות מתוארכות לרמת חודש או ״סביב״ תאריך (מסומן ~), והמרווחים הצמודים להן מסומנים כמשוערים. עזיבת השגריר הבריטי, שסומנה קודם כמשוערת, מעוגנת כעת ל־21 ביולי לפי הגרדיאן.<br><br><b>תיארוך לחשיפה מול תיארוך לביצוע.</b> שלוש רשומות מעוגנות למועד החשיפה הציבורית ולא למועד הפעילות. מבצע מעקב הצוללות נמשך מעל חודש לפני חשיפת משרד ההגנה הבריטי ב־9 באפריל; תקיפות הכטב״מים מתוארכות לפברואר עם החשיפה באוגוסט כרשומה נפרדת; שורת Black Sky ב־7 בנובמבר מעוגנת לדיווח ה־BBC על תוכנית מגירה קיימת.<br><br><b>פערי תאריך בין מקורות.</b> דברי פדורוב: CBS (25 באוג׳) מול האינדיפנדנט (~24 באוג׳). ביקור ראש ה־CIA במוסקבה: הגרדיאן (שלישי) מול מקורות אחרים (רביעי). אזהרת השגרירות: נרשמה ב־17 באוג׳, רויטרס ב־18 באוג׳. ניסוי הסרמט: Defense News (12 במאי) מול GlobalSecurity (13 במאי).<br><br><b>רשומה יחידה ללא קישור חי.</b> לשיחות הביטחון ב־6 באוגוסט לא אותר קישור גלוי זמין, והשורה מסומנת בהתאם במקום הצמדת מקור חלופי.<br><br><b>דיווחים שהוחרגו.</b> דיווח על תקיפת קייב בטילים צפון־קוריאניים (19–20 באוג׳) ורחפן נפץ בחתימת GRU ליד מטוס מטען אוקראיני בגרמניה (27 באוג׳) נשענו על מקור משני יחיד והוחרגו תחת כלל אימות מרובה־מקורות.<br><br><b>איתותי דה־אסקלציה.</b> ב־1 בספטמבר כינתה מוסקבה את עזיבת השגריר שגרתית והודיעה על מחליף — מסר הסותר את הפרשנות ל־23 באוגוסט. הרשומה עדיין מקודדת כזיקה ישירה רוסית משום שהכלל בוחן אם בריטניה היא היעד הנקוב, לא את כיוון האיתות.<br><br><b>חלון הדיווח.</b> שני הצדדים מכסים את חלון פברואר–נובמבר 2026 המלא; הסתייגויות קיצוץ החלון הרוסי מגרסאות קודמות אינן חלות כאן.",
+    dayUnit:" ימים", sameDay:"אותו יום", gapWord:"מרווח",
     months:["ינו׳","פבר׳","מרץ","אפר׳","מאי","יוני","יולי","אוג׳","ספט׳","אוק׳","נוב׳","דצמ׳"],
-    ovTitle:"רמות · מידת הישירות שבה בריטניה נקובה",
-    ovNote:"ציר שלישי, והיחיד בדף הזה שהוא שיפוט ולא עובדה מתועדת. המבחן הוא עד כמה בריטניה היא במפורש מושא האיתות — לא עד כמה תוכנו מדאיג. הרמה העליונה דורשת גם איום תקיפה או מעשה מוסתר, ולכן ירי שהודיעו עליו מראש ושורות דיפלומטיות נשארים ברמה השגרתית. לכן גם תרגיל גרעיני ללא הודעה וביקור אמריקאי במוסקבה יושבים שניהם ברמה הראשונה. הדגל והטבעת שומרים על משמעותם.",
-    ovTitleDomain:"תחומים · סוג המושא",
-    ovNoteDomain:"מלחמה מול אזרחי, תשתיות מול זירה, וכסף בכרטיס משלו. תשתית מלחמה היא מערכות הצבא והמפעלים שמייצרים אותן. אזורי מלחמה הם גאוגרפיה צבאית — חזית, בסיס, מקטע מים. תשתית אזרחית היא מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה. אזור אזרחי הוא ערים ומרחב דיפלומטי. כסף וסנקציות הם חבילות, הקפאת נכסים, הכללה ברשימות, אכיפה, וצעדים כספיים אחרים בין בריטניה לרוסיה. אין במערך תקיפה על בניינים בלונדון. כמו הרמות, גם החיתוך הזה הוא שיפוט. הדגל והטבעת שומרים על משמעותם.",
+    ovTitle:"דרגי ייחוס · מידת המיקוד בבריטניה",
+    ovNote:"ציר בשיפוט אנליטי המודד עד כמה בריטניה היא היעד המפורש של הפעולה או האיתות — ללא תלות בעוצמת הרטוריקה. דרג 4 מוסיף תנאי סף של איום תקיפה או פעולה חשאית, כך שירי ימי מתואם וחיכוך דיפלומטי שגרתי נשארים בדרג 2. תרגילי גרעין לא מוכרזים ומהלכים אמריקאיים יושבים בדרג 1. הדגל והטבעת שומרים על משמעותם התקנית.",
+    ovTitleDomain:"תחומי פעולה · סיווג יעד",
+    ovNoteDomain:"פילוח לחמישה תחומי פעולה: מערכות צבאיות ותעשייה ביטחונית, זירות לחימה ותווך ימי, תשתיות לאומיות קריטיות, מרחב אזרחי ודיפלומטי, וסנקציות פיננסיות ואכיפה. אין במערך תקיפה קינטית על לונדון. בדומה לדרגי הייחוס, סיווג התחום הוא שיפוט אנליטי; המקורות הראשוניים נשארים צמודים לכל רשומה.",
     ovViewLabel:"תצוגה",
-    ovKanban:"רמות", ovKanbanHint:"מידת הישירות",
-    ovOutline:"אירועים", ovOutlineHint:"לפי תאריך",
-    ovDomain:"תחום", ovDomainHint:"מלחמה / אזרחי / כסף",
-    ovDanger:"סכנה", ovDangerHint:"עוצמת האיתות",
-    ovMunger:"הטיות והפתעות", ovMungerHint:"25 שיפוטים שגויים · נעול",
-    ovLadder:"רמות מעלה/מטה", ovLadderHint:"סולם הסלמה · בריטניה–רוסיה מול שלוש מלחמות",
-    ovLadderNote:"תשע שלבים מכותרות ועד פגיעה באזרחים. חמישה צירים, שעון אחד: בריטניה–רוסיה על היום; אוקראינה, ישראל–אירן, ארה״ב–אירן וישראל–חמאס על יום פרוץ המלחמה. קווים מקווקווים = חשד. שורות ירוקות מחוץ לקו עד שמפעילים אותן בפאנל.",
-    mungerIntro:"פסיכולוגיית השיפוט השגוי של צ'ארלי מאנגר, כפי שהיא חלה על הרשומה הזו. התובנות שלו חושפות את ההטיות שמעוותות את קריאת הציר, וכשמתיישרים איתן אפשר לראות מאין ההפתעות יכולות לבוא. כל כרטיס מציין הטיה, תיקון, ונקודת מעקב מחוץ לציר הבריטניה–רוסיה הברור. לא תחזיות — השערות שנועדו לכלול פחות טעויות מובנות.",
-    mungerGateTitle:"הטיות והפתעות",
-    mungerGateHint:"על שם צ'ארלי מאנגר, שב“פסיכולוגיה של השיפוט השגוי” מנה 25 גורמי טעות קבועים שמעוותים תחזיות. התובנות האלה חושפות את ההטיות בקריאה, וכשמתיישרים איתן אפשר לראות מאין ההפתעות יכולות לבוא.<br><br>הזינו קוד גישה בן 6 ספרות.",
-    mungerGateErr:"קוד שגוי.",
-    mungerGateSubmit:"פתח",
+    ovKanban:"ייחוס", ovKanbanHint:"דרג מיקוד",
+    ovOutline:"יומן אירועים", ovOutlineHint:"כרונולוגי",
+    ovDomain:"תחומים", ovDomainHint:"צבא / תשתיות / סנקציות",
+    ovDanger:"מפת סיכון", ovDangerHint:"חומרה מול השפעה",
+    ovMunger:"הטיות מודיעין", ovMungerHint:"25 הטיות קוגניטיביות · מוגבל",
+    ovLadder:"סולם הסלמה", ovLadderHint:"סולם הסלמה · בריטניה–רוסיה מול ארבעה עימותים",
+    ovLadderNote:"תשעה שלבים מאיתות גלוי ועד פגיעה באזרחים. חמישה מסלולים על שעון אחיד: בריטניה–רוסיה במועד הדיווח הנוכחי; רוסיה–אוקראינה, ישראל–איראן, ארה״ב–איראן וישראל–חמאס ביום הפרוץ (יום 0). טבעות מקווקוות מסמנות אירועים חשודים ללא ייחוס רשמי.",
+    mungerIntro:"טקסונומיית כשלי השיפוט של צ׳ארלי מאנגר מיושמת לטובת ״צוות אדום״ על מערך ה־OSINT. העמדת ציר הזמן מול הטיות קוגניטיביות חושפת נקודות עיוורון באיסוף ותרחישי הפתעה מחוץ לציר הדו־צדדי. כל כרטיס מציין הטיה, תיקון אנליטי ואינדיקטור מעקב — השערות עבודה, לא תחזיות.",
+    mungerGateTitle:"צוות אדום · הטיות מודיעין",
+    mungerGateHint:"מבוסס על 25 גורמי הטעות של צ׳ארלי מאנגר לאיתור כשלי הערכה ווקטורי הסלמה מחוץ לציר המרכזי.<br><br>הזינו קוד גישה בן 6 ספרות.",
+    mungerGateErr:"קוד גישה שגוי.",
+    mungerGateSubmit:"אימות",
     mungerGateCancel:"ביטול",
-    mungerFix:"תיקון",
-    mungerWatch:"מעקב",
-    ovTitleDanger:"סכנה מול השפעה",
-    ovNoteDanger:"חיתוך רביעי, וגם הוא שיפוט כמו הרמות. הציר האנכי הוא עד כמה המעשה מדאיג — גבוה למעלה. האופקי הוא עד כמה גבוה המחיר אם הוא מתממש — גבוה לימין. הסרגל משאיר כל שורה עד התאריך שבו עוצרים, כך שאפשר לקרוא את ענן הנקודות כמסלול. הצלב מסמן את מרכז חמש השורות האחרונות, והקו הדהוי מאחוריו הוא המסלול שהמרכז הזה עבר. הנדידה משווה בין חמש השורות האחרונות לחמש שלפניהן: ערך חיובי אומר שהאשכול האחרון יושב גבוה יותר ורחוק יותר לימין. כחול הוא מהלך בריטי או מערבי, אדום הוא רוסי; שתי השורות האמריקאיות אפורות.",
-    dangerHigh:"סכנה גבוהה", dangerLow:"סכנה נמוכה",
+    mungerFix:"תיקון אנליטי",
+    mungerWatch:"אינדיקטור מעקב",
+    ovTitleDanger:"חומרת הסלמה מול השפעה אסטרטגית",
+    ovNoteDanger:"מטריצת סיכון בשיפוט אנליטי. הציר האנכי מודד חומרת הסלמה (גבוהה למעלה); הציר האופקי מודד השפעה אסטרטגית במקרה מימוש (גבוהה לימין). הזזת ציר הזמן מציגה מגמה ותנועת אשכול. הצלב מסמן את מרכז הכובד של חמש הרשומות האחרונות והקו מאחוריו מציג מיקומים קודמים; הסחף משווה את 5 האירועים האחרונים ל־5 שלפניהם (חיובי = תזוזה למעלה ולימין). כחול = בריטניה/בעלות ברית, אדום = רוסיה, אפור = ארה״ב.",
+    dangerHigh:"חומרה גבוהה", dangerLow:"חומרה נמוכה",
     impactLow:"השפעה נמוכה", impactHigh:"השפעה גבוהה",
-    dangerCentre:n=>n+" האחרונות",
-    keyNewest:"האחרון", keySelected:"נבחר", keyHot:"סכנה 7+ · השפעה 7+",
-    selHint:"בחרו נקודה כדי לראות את השורה.",
-    selClose:"ניקוי", selDangerL:"סכנה", selImpactL:"השפעה", selBandL:"רמה",
+    dangerCentre:n=>n+" אחרונים",
+    keyNewest:"אחרון", keySelected:"נבחר", keyHot:"חומרה 7+ · השפעה 7+",
+    selHint:"בחרו נקודה במטריצה לצפייה בתיק האירוע.",
+    selClose:"ניקוי", selDangerL:"חומרה", selImpactL:"השפעה", selBandL:"דרג",
     dangerSlider:"תאריך",
-    povLabel:"תצוגה",
-    povAll:"כל האירועים", povToUk:"סכנה לבריטניה", povToRu:"סכנה לרוסיה",
-    roDangerL:"סכנה ממוצעת", roImpactL:"השפעה ממוצעת",
-    roDriftL:n=>"נדידה, "+n+" אחרונות", roCountL:"אירועים מוצגים",
-    legendBtn:"מקרא", legendTitle:"קריאת הסימנים",
-    tempoBtn:"קצב", tempoTitle:"התכווצות המרווחים",
-    methodBtn:"שיטה", methodTitle:"שיטה והסתייגויות",
-    playLabel:"הרצה על פני התאריכים", pauseLabel:"עצירה",
-    tlTitle:"ציר הזמן", tlCount:"64 אירועים · פברואר–נובמבר 2026",
-    footLine:"שישים וארבע שורות, פברואר עד נובמבר 2026. לכל שורה מצורף מקור.",
-    metaFmt:(n,r,rng)=>(n===1?"שורה אחת":n+" שורות")+" &nbsp;·&nbsp; "+rng+"<br>"+r,
+    povLabel:"סינון",
+    povAll:"כל השחקנים", povToUk:"סיכון לבריטניה", povToRu:"סיכון לרוסיה",
+    roDangerL:"חומרה ממוצעת", roImpactL:"השפעה ממוצעת",
+    roDriftL:n=>"סחף מרכז, "+n+" אחרונים", roCountL:"אירועים בחלון",
+    legendBtn:"סימבולוגיה", legendTitle:"מקרא סימבולוגיה וקידוד",
+    tempoBtn:"קצב", tempoTitle:"דחיסת מרווחים",
+    methodBtn:"מתודולוגיה", methodTitle:"מתודולוגיה והסתייגויות",
+    playLabel:"הרצת רצף כרונולוגי", pauseLabel:"עצירה",
+    tlTitle:"יומן אירועים כרונולוגי", tlCount:"64 אירועים · פברואר–נובמבר 2026",
+    footLine:"64 רשומות OSINT מתוארכות, פברואר–נובמבר 2026. מקורות ראשוניים צמודים לכל שורה.",
+    metaFmt:(n,r,rng)=>(n===1?"אירוע אחד":n+" אירועים")+" &nbsp;·&nbsp; "+rng+"<br>"+r,
     bands:[
-      {name:"בריטניה אינה נקובה", def:"רקע, מהלך מבני, או פעולה שהוסתרה בכוונה. בריטניה אינה המושא."},
-      {name:"בריטניה נקובה, שגרתי", def:"חיכוך דיפלומטי וימי, בתוך ההתנהלות המדינית הרגילה."},
-      {name:"נאמרת השלכה", def:"בריטניה מוזהרת שתשלם מחיר, אך לא ננקב דבר מסוים כמה שנמצא בסיכון."},
-      {name:"מושא מסוים, עוין או מוסתר", def:"דבר בריטי מסוים נקוב כמושא — מפעל, אתר צבאי או מקטע מים — והמעשה הוא איום תקיפה או הסתרה."}
+      {name:"ללא מיקוד בבריטניה", def:"אירועי רקע, מבניים או בלתי מיוחסים שבהם בריטניה אינה היעד הנקוב."},
+      {name:"בריטניה נקובה — חיכוך שגרתי", def:"מחאות דיפלומטיות, גירוש נספחים וחיכוך ימי או אווירי בתוך ההתנהלות המדינית הרגילה."},
+      {name:"אזהרת תגמול מפורשת", def:"אזהרה מפורשת כלפי בריטניה מפני השלכות תגמול ללא נקיבה בנכס פיזי ספציפי."},
+      {name:"יעד בריטי נקוב — איום או פעולה חשאית", def:"נכס בריטי מסוים — מתקן תעשייה ביטחונית, כלי שיט או מרחב ימי — נתון לאיום תקיפה או לפעולה חשאית."}
     ],
     domains:[
-      {name:"תשתית מלחמה", def:"מערכות הצבא והמפעלים שמייצרים אותן — כוחות גרעין, מזל״טים, משבשים, ייצור נשק."},
-      {name:"אזורי מלחמה", def:"פעולות מלחמה בגאוגרפיה צבאית: חזית, בסיס, או מקטע מים ימי."},
-      {name:"תשתית אזרחית", def:"מערכות החיים הרגילים: נמלי תעופה, בתי משפט, מתקני אנרגיה, כבלים ורדיו חירום. תקלת NATS ותיק סווינדון יושבים כאן."},
-      {name:"אזור אזרחי", def:"גאוגרפיה אזרחית: ערים, בירות, מרחב דיפלומטי. אין במערך תקיפה על בניינים בלונדון."},
-      {name:"כסף וסנקציות", def:"חבילות סנקציות, הקפאת נכסים, הכללה ברשימות, אכיפה, וצעדים כספיים אחרים בין בריטניה לרוסיה."}
+      {name:"מערכות צבאיות ותעשייה", def:"יכולות צבאיות, תנוחה גרעינית, כטב״מים, לוחמה אלקטרונית/משבשים ובסיס התעשייה הביטחונית (DIB)."},
+      {name:"זירות לחימה ותווך ימי", def:"פעולות קינטיות, פריסות כוחות, סיורים ופעילות ימית באזור האפור בזירות מבצעיות ובמבואות."},
+      {name:"תשתיות קריטיות", def:"תשתיות לאומיות אזרחיות: בקרה אווירית (NATS), בתי משפט, רשתות אנרגיה, כבלים תת־ימיים ותקשורת חירום."},
+      {name:"מרחב אזרחי ודיפלומטי", def:"מרכזי אוכלוסייה, בירות, נציגויות דיפלומטיות ומרחב משפטי־מדיני. אין במערך תקיפה קינטית על לונדון."},
+      {name:"סנקציות ופיננסים", def:"חבילות סנקציות, הקפאת נכסים, סיכול צי הצללים, אכיפת בקרת יצוא וצעדי־נגד פיננסיים."}
     ],
     sides:{uk:"בריטניה", ru:"רוסיה", ot:"ארה\u05f4\u05d1"},
     ago:(n,soft)=>n===0?"היום":n===1?"אתמול":(!soft&&n===2)?"לפני יומיים":"לפני "+(soft?"~":"")+n+" ימים",
-    whyBtn:"פירוט", whyClose:"סגור", whyKicker:"הערה",
-    askTitle:"שאלו את המעקב",
-    askNote:"התשובות נוצרות בבינה מלאכותית ממקורות המעקב. שאלה עם תאריך נענית מהשורות. בדקו את השורה המקושרת.",
-    askLabel:"שאלה",
-    askPlaceholder:"מה קרה ב-29 בספטמבר?",
-    askSubmit:"שאלו",
-    askLoading:"שואלים…",
-    askLoadingStatus:"שואלים את המעקב…",
+    whyBtn:"פירוט", whyClose:"סגור", whyKicker:"תקציר מבצעי",
+    askTitle:"תשאול מערך הנתונים",
+    askNote:"תשובות מסונתזות בבינה מלאכותית על בסיס מקורות המעקב. שאלות עם תאריך נענות ישירות מהרשומות; אמתו תחילה מול השורה המקושרת.",
+    askLabel:"שאילתה",
+    askPlaceholder:"מה קרה ב־29 בספטמבר?",
+    askSubmit:"תשאול",
+    askLoading:"מתשאל…",
+    askLoadingStatus:"מתשאל את מערך הנתונים…",
     askHelp:"עד 300 תווים.",
-    askLinks:"שורות במעקב",
-    askEmpty:"השאלה ריקה. כתבו שאלה על ציר הזמן.",
-    askTooLong:"השאלה ארוכה מ-300 תווים. קצרו אותה ושאלו שוב.",
-    askRate:"יותר מדי שאלות מהחיבור הזה. המתינו דקה ונסו שוב.",
-    askTimeout:"קוגני לא ענה בתוך 15 שניות. נסו שוב.",
-    askUnconfigured:"שאלו את המעקב עדיין לא מוגדר בפריסה הזו.",
-    askUpstream:"קוגני לא החזיר תשובה. נסו שוב בעוד רגע.",
-    askOffline:"שאלו את המעקב זמין באתר בנטליפיי. הדף הזה לא מצליח להגיע לפונקציה.",
-    themeToDark:"מעבר לערכת נושא כהה",
-    themeToLight:"מעבר לערכת נושא בהירה",
+    askLinks:"רשומות מקושרות",
+    askEmpty:"הזינו שאילתה על יומן האירועים.",
+    askTooLong:"השאילתה חורגת מ־300 תווים. קצרו ונסו שוב.",
+    askRate:"חריגה ממכסת השאילתות מחיבור זה. נסו שוב בעוד דקה.",
+    askTimeout:"מנוע התשאול לא השיב בתוך 15 שניות. נסו שוב.",
+    askUnconfigured:"ממשק התשאול אינו מוגדר בפריסה זו.",
+    askUpstream:"מנוע התשאול לא החזיר תשובה. נסו שוב בעוד רגע.",
+    askOffline:"ממשק התשאול פעיל בפריסת Netlify ואינו זמין במצב מקומי.",
+    themeToDark:"מעבר למצב כהה",
+    themeToLight:"מעבר למצב בהיר",
     themeNameDark:"כהה", themeNameLight:"בהיר"
   }
 };
@@ -3317,8 +3331,8 @@ const HERO_SLIPS = [
   { en: "24 NOV", he: "24 נוב׳", x: "80%", y: "46%", r: "1deg" },
 ];
 const HERO_DOMAINS = {
-  en: ["War systems", "War geography", "Ordinary systems", "Cities", "Money"],
-  he: ["מערכות מלחמה", "גאוגרפיה", "מערכות אזרחיות", "ערים", "כסף"],
+  en: ["Military & DIB", "Operational theatre", "Critical infrastructure", "Civil & diplomatic", "Sanctions & finance"],
+  he: ["מערכות צבאיות ותעשייה", "זירות לחימה ותווך ימי", "תשתיות קריטיות", "מרחב אזרחי ודיפלומטי", "סנקציות ופיננסים"],
 };
 
 function drawnKind(){

@@ -7,12 +7,12 @@
 try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentElement.setAttribute("data-theme", "dark"); } catch (e) {}
 </script>
 <meta name="color-scheme" content="light">
-<title>UK–Russia escalation</title>
-<meta name="description" content="Sixty-four dated UK–Russia events placed by danger and impact, with a date slider, domain filters and sources.">
+<title>Risk Matrix — UK–Russia Escalation Audit</title>
+<meta name="description" content="Sixty-four dated UK–Russia OSINT events mapped by escalatory severity and strategic impact, with domain filters, date playback, and primary sources.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Noto+Serif+Hebrew:wght@400;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./uk-russia-tokens.css">
 <link rel="stylesheet" href="./redesign-options/options-base.css">
 <link rel="stylesheet" href="./redesign-options/option-c.css">
@@ -41,34 +41,34 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
 
   const COPY = {
     en: {
-      plot: "Plot", timeline: "Timeline", method: "Method",
-      views: "Views", viewsHint: "Open a view of the full tracker", locked: "locked", lockedHint: "Asks for a 6-digit access code",
-      viewList: [["danger", "Dangers"], ["outline", "Events"], ["kanban", "Bands"], ["domain", "Domain"], ["ladder", "Levels"], ["munger", "Biases & surprises"]],
-      heroLede: (n) => `${n} dated events in the UK–Russia escalation, both sides, each with sources. Each angle below cuts the same record a different way.`,
-      angles: "One record, six angles",
-      heroCta: "Explore the plot", plotTitle: "Every event, placed by danger and impact",
-      plotLede: "Each dot is one logged event. Higher means more dangerous, further right means more impact. Tap a dot to read it.",
-      domains: "Filter by domain", all: "All domains", showing: "Showing", through: "through", of: "of",
-      slider: "Show events up to", play: "Play through the dates", pause: "Pause", prev: "Earlier", next: "Later", band: "Band",
-      listTitle: "Events in date order", showAll: "Show all", showLess: "Show fewer", onPlot: "Show on plot",
-      statement: "Read the record, then ask it a question.", open: "Open the live tracker", ask: "Ask the tracker",
-      yAxis: "Danger", xAxis: "Impact", selected: "Selected event",
-      fine: "Photographs by Unsplash contributors, credited beside each image; they are illustrative and do not depict the events listed.",
+      plot: "Matrix", timeline: "Event Log", method: "Methodology",
+      views: "Views", viewsHint: "Open a view in the full monitor", locked: "restricted", lockedHint: "Requires a 6-digit access code",
+      viewList: [["danger", "Risk Plot"], ["outline", "Event Log"], ["kanban", "Targeting"], ["domain", "Domains"], ["ladder", "Ladder"], ["munger", "Red-Team"]],
+      heroLede: (n) => `${n} dated OSINT events across the UK–Russia escalation, covering both sides with primary source links. Filter by operational domain or scrub the chronology below.`,
+      angles: "One dataset, six views",
+      heroCta: "Inspect matrix", plotTitle: "Escalatory severity vs. strategic impact",
+      plotLede: "Each marker plots one verified event. Vertical position reflects escalatory severity; horizontal position reflects strategic impact. Select any marker to inspect its brief and primary sources.",
+      domains: "Filter by operational domain", all: "All domains", showing: "Showing", through: "through", of: "of",
+      slider: "Chronological cutoff", play: "Play chronological sequence", pause: "Pause", prev: "Earlier", next: "Later", band: "Tier",
+      listTitle: "Chronological event log", showAll: "Show all", showLess: "Show fewer", onPlot: "Highlight on matrix",
+      statement: "Verify the primary record, then query the dataset.", open: "Open full monitor", ask: "Query dataset",
+      yAxis: "Severity", xAxis: "Impact", selected: "Selected event dossier",
+      fine: "Photographs by Unsplash contributors, credited beside each image; imagery is illustrative and does not depict logged events.",
     },
     he: {
-      plot: "תרשים", timeline: "ציר הזמן", method: "שיטה",
-      views: "תצוגות", viewsHint: "פתיחת תצוגה במעקב המלא", locked: "נעול", lockedHint: "דורש קוד גישה בן 6 ספרות",
-      viewList: [["danger", "סכנות"], ["outline", "אירועים"], ["kanban", "רמות"], ["domain", "תחום"], ["ladder", "רמות מעלה/מטה"], ["munger", "הטיות והפתעות"]],
-      heroLede: (n) => `${n} אירועים מתוארכים בהסלמה בין בריטניה לרוסיה, משני הצדדים, כל אחד עם מקורות. כל זווית למטה חותכת את אותו תיעוד אחרת.`,
-      angles: "תיעוד אחד, שש זוויות",
-      heroCta: "לחקור את התרשים", plotTitle: "כל האירועים, לפי סכנה והשפעה",
-      plotLede: "כל נקודה היא אירוע אחד ברישום. גבוה יותר משמעו מסוכן יותר, ימינה משמעו השפעה גדולה יותר. הקישו על נקודה כדי לקרוא.",
-      domains: "סינון לפי תחום", all: "כל התחומים", showing: "מוצגים", through: "עד", of: "מתוך",
-      slider: "הצג אירועים עד", play: "הרצה על פני התאריכים", pause: "עצירה", prev: "קודם", next: "הבא", band: "רמה",
-      listTitle: "האירועים לפי תאריך", showAll: "הצג הכול", showLess: "הצג פחות", onPlot: "הצג בתרשים",
-      statement: "קראו את התיעוד, ואז שאלו אותו שאלה.", open: "למעקב החי", ask: "שאלו את המעקב",
-      yAxis: "סכנה", xAxis: "השפעה", selected: "האירוע שנבחר",
-      fine: "צילומים של תורמי Unsplash, עם קרדיט ליד כל תמונה; הם להמחשה בלבד ואינם מתארים את האירועים ברשימה.",
+      plot: "מטריצה", timeline: "יומן אירועים", method: "מתודולוגיה",
+      views: "תצוגות", viewsHint: "פתיחת תצוגה במעקב המלא", locked: "מוגבל", lockedHint: "דורש קוד גישה בן 6 ספרות",
+      viewList: [["danger", "סיכון"], ["outline", "יומן אירועים"], ["kanban", "ייחוס"], ["domain", "תחומים"], ["ladder", "סולם"], ["munger", "הטיות"]],
+      heroLede: (n) => `${n} אירועי OSINT מתוארכים בהסלמה בין בריטניה לרוסיה, משני הצדדים, בליווי מקורות ראשוניים. סננו לפי תחום פעולה או הריצו את ציר הזמן למטה.`,
+      angles: "מערך נתונים אחד, שש תצוגות",
+      heroCta: "למטריצת הסיכון", plotTitle: "חומרת הסלמה מול השפעה אסטרטגית",
+      plotLede: "כל נקודה מייצגת אירוע מתועד אחד. מיקום גבוה יותר משקף חומרת הסלמה גבוהה יותר; מיקום ימינה משקף השפעה אסטרטגית רחבה יותר. בחרו נקודה לצפייה בתקציר ובמקורות.",
+      domains: "סינון לפי תחום פעולה", all: "כל התחומים", showing: "מוצגים", through: "עד", of: "מתוך",
+      slider: "חיתוך כרונולוגי עד", play: "הרצת רצף כרונולוגי", pause: "עצירה", prev: "קודם", next: "הבא", band: "דרג",
+      listTitle: "יומן אירועים כרונולוגי", showAll: "הצג הכול", showLess: "הצג פחות", onPlot: "הדגשה במטריצה",
+      statement: "אמתו את המקור הראשוני, ואז תשאלו את הנתונים.", open: "למעקב המלא", ask: "תשאול נתונים",
+      yAxis: "חומרה", xAxis: "השפעה", selected: "תיק האירוע הנבחר",
+      fine: "צילומים של תורמי Unsplash עם קרדיט לצד כל תמונה; הצילומים להמחשה בלבד ואינם מתעדים את האירועים ברשומה.",
     },
   };
 

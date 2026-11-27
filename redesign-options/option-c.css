@@ -1,9 +1,9 @@
-/* Hallmark · genre: atmospheric · macrostructure: Map/Diagram · theme: Plot (graphite paper · signal-yellow accent · Source Serif 4 + Archivo)
- * tone: instrument panel, night desk · anchor hue: blue-grey 255° with one yellow accent · enrichment: photo tiles + hero photograph
+/* Hallmark · genre: technical-atmospheric · macrostructure: Map/Diagram · theme: Plot (slate paper · signal-amber accent · Geist + IBM Plex Sans / Hebrew + IBM Plex Mono)
+ * tone: defence intelligence console, operational briefing · anchor hue: blue-grey 255° with one amber accent · enrichment: photo tiles + hero photograph
  * nav: N5 Floating pill (desktop: six tracker views inline; mobile: Views dropdown + Menu sheet) · footer: Ft5 Statement · motion: dot scale + fade, reduced-motion safe
  * tokens: ../uk-russia-tokens.css [data-option="c"]
  */
-/* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5 · contrast: pass (40–41) · nav: N5 · footer: Ft5 · slop: pass (42–45)
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 · contrast: pass (40–41) · nav: N5 · footer: Ft5 · slop: pass (42–45)
  * Stageshow pass: the plot is the hero and the detail card its one raised satellite; the time control sits on the ground;
  * rows share one date lane; the card settles instead of swapping. */
 
@@ -52,6 +52,7 @@
   font-family: var(--font-display);
   font-size: var(--text-sm);
   font-weight: 700;
+  letter-spacing: var(--tracking-heading, -0.015em);
   line-height: var(--leading-snug);
   color: var(--color-ink);
   text-decoration: none;
@@ -418,10 +419,27 @@ html[lang="he"] .hero .lede {
   max-width: 28rem;
 }
 
+/* Hebrew body sections flow natively RTL while the top pill bar and plot axes keep LTR coordinates. */
+html[lang="he"] .section__head,
+html[lang="he"] .tiles,
+html[lang="he"] .card__body,
+html[lang="he"] .rows,
+html[lang="he"] .method__grid,
+html[lang="he"] .statement {
+  direction: rtl;
+  text-align: right;
+}
+
 .hero h1 {
   max-width: 18ch;
   font-size: var(--text-hero-s);
-  line-height: 1.04;
+  letter-spacing: var(--tracking-display, -0.025em);
+  line-height: 1.06;
+}
+
+html[lang="he"] .hero h1 {
+  letter-spacing: 0;
+  line-height: 1.16;
 }
 
 .hero .lede {
@@ -885,10 +903,11 @@ html[lang="he"] .hero .lede {
 
 .card__nums dd {
   margin: 0;
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   font-size: var(--text-xl);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
 
 .card__why {
