@@ -1013,6 +1013,17 @@ html[lang="he"] .hero .lede {
   text-underline-offset: 0.15em;
 }
 
+/* Hebrew reads from the right. The stop sits at the end of the line, on the left. */
+.statement[dir="rtl"] {
+  justify-items: start;
+  text-align: right;
+}
+
+.statement[dir="rtl"] .statement__line,
+.statement[dir="rtl"] .statement__fine {
+  text-align: right;
+}
+
 @media (min-width: 40rem) {
   .tiles {
     gap: var(--space-xs) var(--space-sm);

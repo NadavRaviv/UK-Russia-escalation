@@ -33,8 +33,15 @@
   const LOCK = `<svg class="lock" viewBox="0 0 24 24" fill="currentColor" role="img"><path d="M17 8V7a5 5 0 0 0-10 0v1H5v14h14V8h-2zm-8 0V7a3 3 0 0 1 6 0v1H9z"/></svg>`;
 
   const COPY = {
-    en: { home: "Home", plot: "Plot", statement: "Read the record.", angle: "Choose your angle", locked: "Locked" },
-    he: { home: "בית", plot: "תרשים", statement: "קראו את התיעוד.", angle: "בחרו זווית", locked: "נעול" },
+    en: {
+      home: "Home", plot: "Plot", statement: "Read the record.", angle: "Choose your angle", locked: "Locked",
+      credit: `Made by Grok Bot &amp; Cursor. Chef: <a href="https://www.nadav.agency" rel="noopener">Nadav Raviv</a>`,
+    },
+    he: {
+      home: "בית", plot: "תרשים", statement: "קראו את התיעוד.", angle: "בחרו זווית", locked: "נעול",
+      /* The mark before the stop keeps it at the end of the clause, on the left. */
+      credit: `נוצר על ידי Grok Bot ו־Cursor&#x200F;. שף: <a href="https://www.nadav.agency" rel="noopener">נדב רביב</a>`,
+    },
   };
 
   const FLAG = {
@@ -125,8 +132,11 @@
       $("angleBar").innerHTML = angleLinks;
       $("angleMenu").innerHTML = angleLinks;
       $("siteSheetAngles").innerHTML = angleLinks;
-      $("siteFooter").innerHTML = `<p class="statement__line">${esc(c.statement)}</p>
-        <p class="statement__fine">Made by Grok Bot &amp; Cursor. Chef: <a href="https://www.nadav.agency" rel="noopener">Nadav Raviv</a></p>`;
+      const footer = $("siteFooter");
+      footer.lang = he ? "he" : "en";
+      footer.dir = he ? "rtl" : "ltr";
+      footer.innerHTML = `<p class="statement__line">${esc(c.statement)}</p>
+        <p class="statement__fine">${c.credit}</p>`;
       syncTheme();
     }
 
