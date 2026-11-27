@@ -102,6 +102,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
   function shell(L) {
     const u = U.ui[lang];
     const c = COPY[lang];
+    document.title = u.title;
 
     $("hero").innerHTML = `<div class="hero__bg">${img("destroyer", { w: 1280, ratio: 1.6, sizes: "100vw", eager: true })}</div>
       <div class="wrap hero__inner">

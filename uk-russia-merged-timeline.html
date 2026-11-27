@@ -2677,6 +2677,17 @@ function syncLadderTheme(theme){
   } catch (e) {}
 }
 
+function syncLadderLang(code){
+  const frame = document.getElementById("ladderFrame");
+  if (!frame) return;
+  const next = code === "he" ? "he" : "en";
+  frame.title = next === "he" ? "רמות — השוואת סולם ההסלמה" : "Levels — escalation ladder comparison";
+  if (!frame.contentWindow) return;
+  try {
+    frame.contentWindow.postMessage({type:"uk-ru-lang", lang: next}, "*");
+  } catch (e) {}
+}
+
 function applyTheme(theme){
   const next = theme === "dark" ? "dark" : "light";
   try { localStorage.setItem("uk-ru-theme", next); } catch (e) {}
@@ -3032,6 +3043,7 @@ function renderMunger(code){
   document.getElementById("munger-submit").textContent = t.mungerGateSubmit;
   document.getElementById("munger-cancel").textContent = t.mungerGateCancel;
   document.getElementById("munger-x").setAttribute("aria-label", t.whyClose);
+  document.getElementById("munger-code").setAttribute("aria-label", code === "he" ? "קוד גישה" : "Access code");
   document.getElementById("whyClose").setAttribute("aria-label", t.whyClose);
   document.getElementById("mungerGrid").innerHTML = cards.map(c =>
     '<article class="munger-card">' +
@@ -3117,9 +3129,13 @@ function render(code){
   closeWhy();
   const t = T[code];
   document.documentElement.lang = t.lang;
+  document.title = code === "he"
+    ? "הסלמה בין בריטניה לרוסיה — ביקורת הציר הממוזג"
+    : "UK–Russia escalation — merged timeline audit, Feb–Nov 2026";
   document.documentElement.dir = "ltr";
   document.body.dir = "ltr";
   syncAskCopy();
+  syncLadderLang(code);
 
   set("eyebrow", t.eyebrow);
   paintTitle();
@@ -3857,8 +3873,20 @@ function viewFromHash(){
 window.addEventListener("hashchange", viewFromHash);
 
 applyView();
-render("en");
+(function(){
+  let boot = "en";
+  try {
+    const saved = localStorage.getItem("uk-ru-lang");
+    if (saved === "he" || saved === "en") boot = saved;
+  } catch (e) {}
+  render(boot);
+})();
 viewFromHash();
+const ladderFrameEl = document.getElementById("ladderFrame");
+if (ladderFrameEl) ladderFrameEl.addEventListener("load", () => {
+  syncLadderTheme(currentTheme());
+  syncLadderLang(lang);
+});
 </script>
 <script>
 UKRU_NAV.mount({ current: "timeline", lang: () => lang, onLang: (l) => { if (l !== lang) render(l); } });
