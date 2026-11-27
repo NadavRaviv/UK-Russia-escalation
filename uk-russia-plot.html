@@ -143,7 +143,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
             <div class="axis-x mono"><span>${esc(U.ui[lang].impactLow)}</span><span>${esc(U.ui[lang].impactHigh)}</span></div>
           </div>
           <div class="timebar">
-            <div class="timebar__top"><label for="slider">${esc(c.slider)}</label><output id="sliderOut" for="slider"></output></div>
+            <div class="timebar__top"><label class="timebar__sentence" for="slider" id="sliderSentence"></label></div>
             <div class="timebar__row">
               <button type="button" class="play" id="play" aria-pressed="false" aria-label="${esc(c.play)}" title="${esc(c.play)}">
                 <svg class="play__on" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5 20 12 7 19.5z"/></svg>
@@ -231,7 +231,10 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     const u = U.ui[lang];
     const c = COPY[lang];
     const e0 = U.events[state.upTo];
-    $("sliderOut").textContent = ev(e0).label;
+    const sentence = $("sliderSentence");
+    sentence.lang = lang;
+    sentence.dir = lang === "he" ? "rtl" : "ltr";
+    sentence.textContent = `${c.slider} ${ev(e0).label}`;
 
     $("dots").innerHTML = U.events
       .map((e, idx) => {
