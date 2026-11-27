@@ -900,6 +900,25 @@ html[lang="he"] .hero .lede {
   color: var(--color-muted);
 }
 
+/* Hebrew copy starts at the right. The plot, the slider track and the card's previous/next row stay left to right. */
+html[lang="he"] .section__head,
+html[lang="he"] .tiles,
+html[lang="he"] .legend,
+html[lang="he"] .timebar__top,
+html[lang="he"] .timebar .muted,
+html[lang="he"] .card__body,
+html[lang="he"] .rows,
+html[lang="he"] .method__grid {
+  direction: rtl;
+  text-align: right;
+}
+
+html[lang="he"] .instrument__plot,
+html[lang="he"] .plot,
+html[lang="he"] .timebar__row {
+  direction: ltr;
+}
+
 .card__nav {
   display: flex;
   justify-content: space-between;
