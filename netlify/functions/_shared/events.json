@@ -145,6 +145,24 @@
   },
   {
     "n": 9,
+    "date": "2026-04-07",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "7 APR 2026",
+      "short": "APT28 hijacks routers",
+      "title": "NCSC exposes GRU Unit 26165 hijacking routers to steal web and email credentials",
+      "why": "The NCSC, part of GCHQ, publishes an advisory on APT28. The advisory assesses that APT28 is almost certainly GRU Military Unit 26165, also tracked as Fancy Bear and Forest Blizzard. Since 2024, and into 2026, the group has exploited vulnerable routers so that DNS settings send traffic through attacker-controlled servers, and the group can harvest passwords and tokens for web and email services. The activity is described as opportunistic. No confirmed UK victim is named. An exposure of a continuing campaign, not a strike threat — band 2."
+    },
+    "he": {
+      "label": "7 באפריל 2026",
+      "short": "APT28 חוטף נתבים",
+      "title": "ה-NCSC חושף את יחידה 26165 של ה-GRU חוטפת נתבים כדי לגנוב סיסמאות לרשת ולדוא״ל",
+      "why": "ה-NCSC, חלק מ-GCHQ, מפרסם ייעוץ על APT28. הייעוץ מעריך ש-APT28 היא כמעט בוודאות יחידה צבאית 26165 של ה-GRU, המוכרת גם כ-Fancy Bear ו-Forest Blizzard. מאז 2024, ואל תוך 2026, הקבוצה ניצלה נתבים פגיעים כך שהגדרות ה-DNS שולחות תעבורה דרך שרתים בשליטת התוקף, והקבוצה יכולה לאסוף סיסמאות ואסימוני גישה לשירותי רשת ודוא״ל. הפעילות מתוארת כאופורטוניסטית. לא ננקב קורבן בריטי מאומת. חשיפה של מסע שנמשך, לא איום תקיפה — רמה 2."
+    }
+  },
+  {
+    "n": 10,
     "date": "2026-04-09",
     "approx": false,
     "side": "ru",
@@ -162,7 +180,7 @@
     }
   },
   {
-    "n": 10,
+    "n": 11,
     "date": "2026-04-15",
     "approx": false,
     "side": "uk",
@@ -180,7 +198,7 @@
     }
   },
   {
-    "n": 11,
+    "n": 12,
     "date": "2026-04-30",
     "approx": false,
     "side": "uk",
@@ -198,7 +216,7 @@
     }
   },
   {
-    "n": 12,
+    "n": 13,
     "date": "2026-05-13",
     "approx": false,
     "side": "ru",
@@ -216,7 +234,7 @@
     }
   },
   {
-    "n": 13,
+    "n": 14,
     "date": "2026-05-19",
     "approx": false,
     "side": "ru",
@@ -234,7 +252,7 @@
     }
   },
   {
-    "n": 14,
+    "n": 15,
     "date": "2026-06-01",
     "approx": true,
     "side": "uk",
@@ -252,7 +270,7 @@
     }
   },
   {
-    "n": 15,
+    "n": 16,
     "date": "2026-06-05",
     "approx": false,
     "side": "uk",
@@ -270,7 +288,7 @@
     }
   },
   {
-    "n": 16,
+    "n": 17,
     "date": "2026-06-16",
     "approx": false,
     "side": "ru",
@@ -288,7 +306,7 @@
     }
   },
   {
-    "n": 17,
+    "n": 18,
     "date": "2026-06-18",
     "approx": false,
     "side": "uk",
@@ -306,7 +324,25 @@
     }
   },
   {
-    "n": 18,
+    "n": 19,
+    "date": "2026-07-13",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "13 JUL 2026",
+      "short": "Joint cyber sanctions",
+      "title": "UK and EU issue a first joint cyber-sanctions package and attribute the Poland grid attack",
+      "why": "The NCSC, with 18 agencies in 12 countries, warns that FSB Centre 16 is scanning for routers that still use default or weak SNMP passwords and is targeting critical national infrastructure. Jonathon Ellison, NCSC Director of National Resilience, urges organisations that hold UK critical networks to apply the measures and secure that infrastructure. The same day the UK and the EU issue their first joint cyber-sanctions package: 24 individuals and entities, including senior GRU officers Vyacheslav Stafeyev, Ivan Senin and Ivan Kasyanenko, the company IMPULS linked to GRU Unit 29155, people behind Lumma Stealer, and ten people at Rybar. The National Crime Agency counts at least 2,100 Lumma Stealer victims in the UK in the previous six months. The UK and EU member states attribute the failed December 2025 attack on Poland's energy grid to FSB Centre 16; both releases say a success could have left 500,000 people without electricity. A legal measure and an advisory, not a strike threat — band 2."
+    },
+    "he": {
+      "label": "13 ביולי 2026",
+      "short": "סנקציות סייבר משותפות",
+      "title": "בריטניה והאיחוד האירופי מפרסמים חבילת סנקציות סייבר משותפת ראשונה ומייחסים את התקיפה על רשת החשמל בפולין",
+      "why": "ה-NCSC, עם 18 סוכנויות ב-12 מדינות, מזהיר שמרכז 16 של ה-FSB סורק נתבים שעדיין משתמשים בסיסמאות SNMP ברירת מחדל או חלשות, ומכוון לתשתית לאומית קריטית. ג׳ונתון אליסון, מנהל החוסן הלאומי ב-NCSC, קורא לארגונים שמחזיקים רשתות קריטיות בבריטניה ליישם את הצעדים ולאבטח את התשתית. באותו יום בריטניה והאיחוד האירופי מפרסמים את חבילת סנקציות הסייבר המשותפת הראשונה שלהם: 24 אנשים וגופים, ובהם קציני ה-GRU הבכירים ויאצ׳סלב סטאפייב, איוואן סנין ואיוואן קסיאננקו, חברת IMPULS המקושרת ליחידה 29155 של ה-GRU, אנשים מאחורי Lumma Stealer, ועשרה אנשים ב-Rybar. סוכנות הפשיעה הלאומית מונה לפחות 2,100 קורבנות של Lumma Stealer בבריטניה בששת החודשים שקדמו. בריטניה ומדינות האיחוד האירופי מייחסות למרכז 16 של ה-FSB את התקיפה הכושלת מדצמבר 2025 על רשת החשמל בפולין; שני הפרסומים אומרים שהצלחה הייתה יכולה להשאיר 500,000 איש בלי חשמל. צעד משפטי וייעוץ, לא איום תקיפה — רמה 2."
+    }
+  },
+  {
+    "n": 20,
     "date": "2026-07-14",
     "approx": false,
     "side": "uk",
@@ -324,7 +360,7 @@
     }
   },
   {
-    "n": 19,
+    "n": 21,
     "date": "2026-07-16",
     "approx": false,
     "side": "uk",
@@ -342,7 +378,7 @@
     }
   },
   {
-    "n": 20,
+    "n": 22,
     "date": "2026-07-20",
     "approx": false,
     "side": "ru",
@@ -360,7 +396,7 @@
     }
   },
   {
-    "n": 21,
+    "n": 23,
     "date": "2026-07-21",
     "approx": false,
     "side": "ru",
@@ -378,7 +414,25 @@
     }
   },
   {
-    "n": 22,
+    "n": 24,
+    "date": "2026-07-23",
+    "approx": false,
+    "side": "uk",
+    "en": {
+      "label": "23 JUL 2026",
+      "short": "LAUNDRY BEAR phishing",
+      "title": "NCSC and partners expose LAUNDRY BEAR's zero-click phishing of Zimbra",
+      "why": "The NCSC, with agencies in 15 countries, exposes LAUNDRY BEAR for a zero-click phishing campaign against Zimbra Collaboration Suite. The joint advisory assesses the group as almost certainly Russian state-supported, and names the vulnerability as CVE-2025-66376: viewing a malicious email in a vulnerable Zimbra webmail client is enough, and no click is required. The campaign has run since at least July 2025 against Western government and commercial organisations. The news release says organisations in the United States were targeted in defence, government, education, energy, law enforcement, media, NGOs and technology. The vulnerability was a zero-day when first used and was patched in November 2025. No confirmed UK victim is stated. An exposure, not a strike threat — band 2."
+    },
+    "he": {
+      "label": "23 ביולי 2026",
+      "short": "דיוג של LAUNDRY BEAR",
+      "title": "ה-NCSC ושותפים חושפים את LAUNDRY BEAR בדיוג ללא הקלקה נגד דוא״ל Zimbra",
+      "why": "ה-NCSC, עם סוכנויות ב-15 מדינות, חושף את LAUNDRY BEAR במסע דיוג ללא הקלקה נגד Zimbra Collaboration Suite. הייעוץ המשותף מעריך שהקבוצה נתמכת כמעט בוודאות על ידי המדינה הרוסית, ונוקב בחולשה CVE-2025-66376: די בצפייה בדוא״ל זדוני בלקוח הווב הפגיע של Zimbra, ואין צורך בהקלקה. המסע פועל לפחות מיולי 2025 נגד ארגונים ממשלתיים ומסחריים במערב. ההודעה אומרת שארגונים בארצות הברית היו מטרה בהגנה, בממשל, בחינוך, באנרגיה, באכיפת חוק, במדיה, בארגונים לא-ממשלתיים ובטכנולוגיה. החולשה הייתה חולשת יום־אפס כשנוצלה לראשונה, והתיקון פורסם בנובמבר 2025. לא נמסר קורבן בריטי מאומת. חשיפה, לא איום תקיפה — רמה 2."
+    }
+  },
+  {
+    "n": 25,
     "date": "2026-07-27",
     "approx": false,
     "side": "uk",
@@ -396,7 +450,7 @@
     }
   },
   {
-    "n": 23,
+    "n": 26,
     "date": "2026-07-27",
     "approx": false,
     "side": "ru",
@@ -414,7 +468,7 @@
     }
   },
   {
-    "n": 24,
+    "n": 27,
     "date": "2026-08-06",
     "approx": false,
     "side": "uk",
@@ -432,7 +486,7 @@
     }
   },
   {
-    "n": 25,
+    "n": 28,
     "date": "2026-08-14",
     "approx": false,
     "side": "uk",
@@ -450,7 +504,7 @@
     }
   },
   {
-    "n": 26,
+    "n": 29,
     "date": "2026-08-15",
     "approx": false,
     "side": "uk",
@@ -468,7 +522,7 @@
     }
   },
   {
-    "n": 27,
+    "n": 30,
     "date": "2026-08-17",
     "approx": false,
     "side": "ru",
@@ -486,7 +540,7 @@
     }
   },
   {
-    "n": 28,
+    "n": 31,
     "date": "2026-08-23",
     "approx": false,
     "side": "ru",
@@ -504,7 +558,7 @@
     }
   },
   {
-    "n": 29,
+    "n": 32,
     "date": "2026-08-24",
     "approx": false,
     "side": "uk",
@@ -522,7 +576,7 @@
     }
   },
   {
-    "n": 30,
+    "n": 33,
     "date": "2026-08-24",
     "approx": false,
     "side": "ru",
@@ -540,7 +594,7 @@
     }
   },
   {
-    "n": 31,
+    "n": 34,
     "date": "2026-08-25",
     "approx": false,
     "side": "ru",
@@ -558,7 +612,7 @@
     }
   },
   {
-    "n": 32,
+    "n": 35,
     "date": "2026-08-25",
     "approx": false,
     "side": "ot",
@@ -576,7 +630,7 @@
     }
   },
   {
-    "n": 33,
+    "n": 36,
     "date": "2026-08-25",
     "approx": false,
     "side": "uk",
@@ -594,7 +648,7 @@
     }
   },
   {
-    "n": 34,
+    "n": 37,
     "date": "2026-08-26",
     "approx": false,
     "side": "ru",
@@ -612,7 +666,7 @@
     }
   },
   {
-    "n": 35,
+    "n": 38,
     "date": "2026-08-27",
     "approx": false,
     "side": "ru",
@@ -630,7 +684,7 @@
     }
   },
   {
-    "n": 36,
+    "n": 39,
     "date": "2026-09-01",
     "approx": false,
     "side": "ru",
@@ -648,7 +702,7 @@
     }
   },
   {
-    "n": 37,
+    "n": 40,
     "date": "2026-09-02",
     "approx": false,
     "side": "ru",
@@ -666,7 +720,7 @@
     }
   },
   {
-    "n": 38,
+    "n": 41,
     "date": "2026-09-06",
     "approx": false,
     "side": "ru",
@@ -684,7 +738,7 @@
     }
   },
   {
-    "n": 39,
+    "n": 42,
     "date": "2026-09-08",
     "approx": false,
     "side": "uk",
@@ -702,7 +756,7 @@
     }
   },
   {
-    "n": 40,
+    "n": 43,
     "date": "2026-09-08",
     "approx": false,
     "side": "uk",
@@ -720,7 +774,7 @@
     }
   },
   {
-    "n": 41,
+    "n": 44,
     "date": "2026-09-10",
     "approx": false,
     "side": "ru",
@@ -738,7 +792,7 @@
     }
   },
   {
-    "n": 42,
+    "n": 45,
     "date": "2026-09-13",
     "approx": false,
     "side": "ru",
@@ -756,7 +810,7 @@
     }
   },
   {
-    "n": 43,
+    "n": 46,
     "date": "2026-09-16",
     "approx": false,
     "side": "uk",
@@ -774,7 +828,7 @@
     }
   },
   {
-    "n": 44,
+    "n": 47,
     "date": "2026-09-16",
     "approx": false,
     "side": "uk",
@@ -792,7 +846,7 @@
     }
   },
   {
-    "n": 45,
+    "n": 48,
     "date": "2026-09-26",
     "approx": false,
     "side": "ru",
@@ -810,7 +864,7 @@
     }
   },
   {
-    "n": 46,
+    "n": 49,
     "date": "2026-09-28",
     "approx": false,
     "side": "ru",
@@ -828,7 +882,7 @@
     }
   },
   {
-    "n": 47,
+    "n": 50,
     "date": "2026-09-29",
     "approx": false,
     "side": "ru",
@@ -846,7 +900,7 @@
     }
   },
   {
-    "n": 48,
+    "n": 51,
     "date": "2026-10-01",
     "approx": false,
     "side": "uk",
@@ -864,7 +918,7 @@
     }
   },
   {
-    "n": 49,
+    "n": 52,
     "date": "2026-10-14",
     "approx": false,
     "side": "uk",
@@ -882,7 +936,7 @@
     }
   },
   {
-    "n": 50,
+    "n": 53,
     "date": "2026-10-22",
     "approx": false,
     "side": "ru",
@@ -900,7 +954,7 @@
     }
   },
   {
-    "n": 51,
+    "n": 54,
     "date": "2026-10-22",
     "approx": false,
     "side": "uk",
@@ -918,7 +972,7 @@
     }
   },
   {
-    "n": 52,
+    "n": 55,
     "date": "2026-10-22",
     "approx": false,
     "side": "uk",
@@ -936,7 +990,7 @@
     }
   },
   {
-    "n": 53,
+    "n": 56,
     "date": "2026-10-30",
     "approx": false,
     "side": "ru",
@@ -954,7 +1008,7 @@
     }
   },
   {
-    "n": 54,
+    "n": 57,
     "date": "2026-11-07",
     "approx": false,
     "side": "uk",
@@ -972,7 +1026,7 @@
     }
   },
   {
-    "n": 55,
+    "n": 58,
     "date": "2026-11-10",
     "approx": false,
     "side": "uk",
@@ -990,7 +1044,7 @@
     }
   },
   {
-    "n": 56,
+    "n": 59,
     "date": "2026-11-12",
     "approx": false,
     "side": "uk",
@@ -1008,7 +1062,7 @@
     }
   },
   {
-    "n": 57,
+    "n": 60,
     "date": "2026-11-17",
     "approx": false,
     "side": "uk",
@@ -1026,7 +1080,7 @@
     }
   },
   {
-    "n": 58,
+    "n": 61,
     "date": "2026-11-18",
     "approx": false,
     "side": "uk",
@@ -1044,7 +1098,7 @@
     }
   },
   {
-    "n": 59,
+    "n": 62,
     "date": "2026-11-21",
     "approx": false,
     "side": "uk",
@@ -1062,7 +1116,7 @@
     }
   },
   {
-    "n": 60,
+    "n": 63,
     "date": "2026-11-24",
     "approx": false,
     "side": "uk",
@@ -1080,7 +1134,7 @@
     }
   },
   {
-    "n": 61,
+    "n": 64,
     "date": "2026-11-26",
     "approx": false,
     "side": "uk",
