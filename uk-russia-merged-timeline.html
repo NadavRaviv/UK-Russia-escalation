@@ -238,6 +238,7 @@
      a tall phone crop; the desktop frame matches the photo. */
   .hero__bg img{object-position:50% 40%}
   header.hero.hero--munger .hero__bg img{object-position:50% 20%}
+  header.hero.hero--munger .standfirst{display:none}
   header.hero.hero--danger .hero__bg img{object-position:8% 42%}
 
   /* Events, Bands, Domain and Levels each have their own photograph.
@@ -742,6 +743,8 @@
   .ladder-panel{display:none}
   .ladder-frame{width:100%;border:0;min-height:4200px;display:block;background:var(--base);border-radius:3px}
   .munger-panel .intro{font-size:var(--text-base);color:var(--muted);margin:0 0 var(--space-md);max-width:var(--measure);line-height:var(--leading-body)}
+  html[lang="he"] .ovhead,
+  html[lang="he"] .munger-panel .intro{direction:rtl;text-align:right}
   .munger-grid{display:grid;gap:var(--space-sm);grid-template-columns:minmax(0,1fr)}
   @media (min-width:721px){.munger-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
   .munger-card{
@@ -3000,7 +3003,7 @@ function renderSelected(code){
 function renderMunger(code){
   const t = T[code];
   const cards = code === "he" ? MUNGER_HE : MUNGER;
-  set("mungerIntro", t.mungerIntro);
+  set("mungerIntro", t.standfirst);
   set("mungerGateTitle", t.mungerGateTitle);
   set("mungerGateHint", t.mungerGateHint);
   document.getElementById("munger-err").textContent = t.mungerGateErr;

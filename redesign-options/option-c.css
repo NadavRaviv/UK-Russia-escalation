@@ -399,6 +399,12 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   color: var(--color-on-photo);
 }
 
+/* Hebrew heroes read from the right. The bar above stays left to right. */
+html[lang="he"] .hero .hero__inner {
+  direction: rtl;
+  text-align: right;
+}
+
 .hero h1 {
   max-width: 18ch;
   font-size: var(--text-hero-s);
