@@ -27,8 +27,11 @@ body {
   padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
   padding-bottom: env(safe-area-inset-bottom);
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+html[lang="he"] body,
 [dir="rtl"] body,
 body[dir="rtl"] {
   font-family: var(--font-he);
@@ -49,10 +52,17 @@ h4 {
   font-style: normal;
   font-weight: 700;
   line-height: var(--leading-tight);
-  letter-spacing: -0.02em;
+  letter-spacing: var(--tracking-heading, -0.015em);
   overflow-wrap: anywhere;
   min-width: 0;
   text-wrap: balance;
+}
+
+html[lang="he"] h1,
+html[lang="he"] h2,
+html[lang="he"] h3,
+html[lang="he"] h4 {
+  letter-spacing: 0;
 }
 
 p {
@@ -250,7 +260,14 @@ button {
 .mono {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "zero" 1;
+}
+
+html[lang="he"] .mono,
+html[lang="he"] .side {
+  letter-spacing: 0;
 }
 
 .muted {

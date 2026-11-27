@@ -49,7 +49,7 @@ test("the page keeps six view tabs and the Hebrew standfirst", () => {
   for (const id of ["danger", "kanban", "domain", "outline", "munger", "ladder"]) {
     assert.equal(nav.includes('["' + id + '",'), true, id);
   }
-  assert.match(html, /פי 2\.3 יותר מהר/);
+  assert.match(html, /האיץ פי 2\.3/);
   assert.match(html, /function cancelMungerGate\(/);
   assert.match(html, /getElementById\("munger-cancel"\)\.addEventListener\("click", cancelMungerGate\)/);
   assert.match(html, /currentView\(\) === "munger" && mungerUnlocked\(\)/);

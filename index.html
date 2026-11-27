@@ -7,11 +7,11 @@
 try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentElement.setAttribute("data-theme", "dark"); } catch (e) {}
 </script>
 <meta name="color-scheme" content="light">
-<title>Choose an angle — UK–Russia escalation</title>
-<meta name="description" content="A personal project for learning design, visualisation, UI, and UX. Public events only, not a finding about whether a situation is safe.">
+<title>UK–Russia Escalation Audit — OSINT Overview</title>
+<meta name="description" content="Unclassified OSINT escalation audit tracking 64 dated UK–Russia events across cyber, maritime, defence industrial, diplomatic, and sanctions domains.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Noto+Serif+Hebrew:wght@400;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./uk-russia-tokens.css">
 <link rel="stylesheet" href="./redesign-options/options-base.css">
 <link rel="stylesheet" href="./redesign-options/option-c.css">
@@ -329,92 +329,92 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
 
   const COPY = {
     en: {
-      title: "Choose where to read",
-      lede: "One dated record of the UK–Russia escalation, taken from public reporting. This page holds none of the rows. Pick an angle here, or from the bar.",
+      title: "UK–Russia Escalation Audit",
+      lede: "An unclassified OSINT record of UK–Russia escalation across cyber, maritime, defence-industrial, diplomatic, and sanctions domains. Select an analytical view below or from the top bar.",
       london: "Elizabeth Tower, London.",
       moscow: "Moscow Kremlin.",
-      warnH: "Not a finding about danger",
+      warnH: "Scope and analytical caveats",
       warn: [
-        "I do not work for MI6, and I do not have the full picture. What is here is a partial set of events that were already public.",
-        "This is a personal project for learning design, visualisation, UI, and UX. It does not decide whether a situation is safe. It is not a recommendation to feel in danger, or to feel that you are not.",
+        "This monitor compiles publicly reported events only (OSINT). It excludes classified intelligence, operational reporting, and closed-source indicators, and represents an incomplete operational picture.",
+        "Built as an independent analytical and visualization reference. Severity scores, targeting tiers, and domain classifications represent structured analyst judgements — not formal threat assessments or operational guidance.",
       ],
-      whatH: "What this is",
+      whatH: "Methodology",
       what: [
-        "An open-source audit. Each row is a dated event with a side, a grade, and a source you can open. Earlier sets graded the two sides on different questions. This set uses one rule throughout: whether Britain is the named object of the signal. That is the question a source can answer.",
-        "The angles do not add events. They cut the same rows. How alarming a row is, how directly Britain is named, and what kind of object is in play are judgements, and they are marked as judgements. The source stays on the row.",
+        "A unified open-source audit. Every entry logs a dated event, actor attribution, nexus classification, and verifiable primary source links. Earlier iterations coded UK and Russian entries under differing criteria; this dataset enforces a single target-based rule throughout: whether the United Kingdom is the named or direct object of the action or signal.",
+        "The six views do not introduce separate datasets — they slice the same 64 source-backed records across different analytical axes. Escalatory severity, targeting specificity, and operational domain are explicitly marked as analyst judgements, while primary reporting remains attached to each record.",
       ],
-      readH: "How to read a row",
+      readH: "Record schema and symbology",
       marks: [
-        ["Flag", "The flag is who acted. A Union flag is a British or western act. A Russian flag is a Russian act or statement, and red on these pages means Russia and nothing else. A third mark is a US event."],
-        ["Ring", "The ring is the grade, and it carries no colour. Solid means Britain is named, or the act is against British ships, staff, territory, or equipment. Dashed means the documented driver sits elsewhere — Ukraine broadly, NATO, Washington, or a domestic matter — and any British link is inferred, not stated."],
-        ["Date and Why", "The date comes first, then the sentence. Why holds the note and the sources. A row beside another row is not a claim that one caused the next. A tilde (~) on a date means the day is approximate."],
+        ["Actor flag", "Identifies the originating actor. A Union flag denotes a UK or Western action; a Russian tricolour denotes a Russian action or signal (crimson is reserved strictly for Russian actors across this monitor); a US flag marks third-party strategic US events."],
+        ["Nexus ring", "Encodes UK nexus without colour overload. A solid ring indicates a direct UK nexus — Britain is explicitly named, or the operation targets UK vessels, personnel, territory, or defence industrial assets. A dashed ring indicates an indirect or contextual driver (broader Ukraine theatre, NATO, Washington, or domestic) where UK linkage is inferred rather than documented."],
+        ["Timestamp and brief", "Each row leads with the event date and headline. Selecting Brief opens the operational summary and primary source links. Chronological adjacency does not establish causation; a tilde (~) indicates an approximate date."],
       ],
-      anglesH: "Six ways in",
-      anglesLead: "Same rows. A different question each time.",
-      open: "View",
-      locked: "Locked",
-      plot: `Plot, in the bar, opens the danger-and-impact cut on its own page: the chart and the row you select. <a href="./uk-russia-plot.html">Open Plot</a>`,
+      anglesH: "Six analytical views",
+      anglesLead: "One verified OSINT dataset, interrogated across six operational axes.",
+      open: "Open view",
+      locked: "Restricted",
+      plot: `Standalone risk matrix view with domain filtering, chronological playback, and full event dossiers. <a href="./uk-russia-plot.html">Open Risk Matrix</a>`,
     },
     he: {
-      title: "בחרו מאיפה לקרוא",
-      lede: "תיעוד מתוארך אחד של ההסלמה בין בריטניה לרוסיה, מתוך דיווח פומבי. בדף הזה אין שורות. בחרו זווית כאן, או מהסרגל.",
+      title: "ביקורת הסלמה: בריטניה–רוסיה",
+      lede: "יומן מודיעין גלוי (OSINT) מתוארך של ההסלמה בין בריטניה לרוסיה בתחומי הסייבר, התווך הימי, התעשייה הביטחונית, הדיפלומטיה והסנקציות. בחרו תצוגת ניתוח למטה או מהסרגל העליון.",
       london: "מגדל אליזבת, לונדון.",
       moscow: "הקרמלין, מוסקבה.",
-      warnH: "לא ממצא על סכנה",
+      warnH: "היקף והסתייגויות מתודולוגיות",
       warn: [
-        "אני לא עובד ב־MI6, ואין לי את התמונה המלאה. מה שמופיע כאן הוא חלק מהאירועים שכבר פורסמו בפומבי.",
-        "זה פרויקט אישי ללמידה של עיצוב, ויזואליזציה, UI ו־UX. הוא אינו קובע אם מצב בטוח או לא. הוא אינו המלצה להרגיש סכנה, או להרגיש שאין סכנה.",
+        "מערכת זו מרכזת אירועים ממקורות גלויים בלבד (OSINT). היא אינה כוללת מודיעין מסווג, דיווחים מבצעיים או אינדיקטורים סגורים, ולכן משקפת תמונת מצב חלקית בלבד.",
+        "הפרויקט נבנה ככלי ניתוח וויזואליזציה עצמאי. ציוני החומרה, דרגי הייחוס וסיווגי התחומים משקפים שיפוט אנליטי מובנה, ואינם מהווים הערכת איום רשמית או הנחיה מבצעית.",
       ],
-      whatH: "מה זה",
+      whatH: "מתודולוגיה",
       what: [
-        "ביקורת בקוד פתוח. כל שורה היא אירוע מתוארך עם צד, דירוג, ומקור שאפשר לפתוח. מערכים קודמים דירגו את שני הצדדים לפי שאלות שונות. המערך הזה מחיל כלל אחד לכל אורכו: האם בריטניה היא המושא הנקוב של האיתות. זו השאלה שמקור יכול לענות עליה.",
-        "הזוויות אינן מוסיפות אירועים. הן חותכות את אותן שורות. עד כמה שורה מדאיגה, עד כמה בריטניה נקובה במפורש, ואיזה סוג מושא עומד על הפרק — אלה שיפוטים, והם מסומנים כשיפוטים. המקור נשאר על השורה.",
+        "ביקורת מודיעין גלוי אחידה. כל רשומה מתעדת תאריך, שחקן מבצע, סיווג זיקה ומקורות ראשוניים הניתנים לאימות. גרסאות קודמות קודדו אירועים בריטיים ורוסיים לפי קריטריונים שונים; מערך זה מחיל כלל אחיד וממוקד־יעד לכל אורכו: האם בריטניה היא היעד הנקוב או הישיר של הפעולה או האיתות.",
+        "שש התצוגות אינן מוסיפות נתונים חדשים אלא מפלחות את אותן 64 רשומות מאומתות לאורך צירים אנליטיים שונים. חומרת ההסלמה, מידת המיקוד ותחום הפעולה מסומנים במפורש כשיפוט אנליטי, בעוד המקורות הראשוניים צמודים לכל רשומה.",
       ],
-      readH: "איך קוראים שורה",
+      readH: "מבנה רשומה וסימבולוגיה",
       marks: [
-        ["הדגל", "הדגל הוא מי פעל. דגל בריטניה הוא מהלך בריטי או מערבי. דגל רוסיה הוא מהלך או הצהרה רוסיים, ואדום בדפים האלה פירושו רוסיה ולא דבר אחר. סימן שלישי הוא אירוע אמריקאי."],
-        ["הטבעת", "הטבעת היא הדירוג, ואין לה צבע. טבעת מלאה: בריטניה נקובה, או שהמעשה מופנה לכלי שיט, לסגל, לשטח או לציוד בריטיים. טבעת מקווקוות: הגורם המתועד יושב במקום אחר — אוקראינה בכללותה, נאט״ו, וושינגטון, או עניין פנימי — וכל קשר בריטי הוא הסקה ולא אמירה."],
-        ["התאריך והפירוט", "קודם התאריך, אחר כך המשפט. ״פירוט״ מחזיק את ההערה ואת המקורות. שורה ליד שורה אינה טענה שאחת גרמה לבאה אחריה. טילדה (~) על תאריך פירושה שהיום משוער."],
+        ["דגל השחקן", "מזהה את השחקן הפועל. דגל בריטניה מסמן פעולה בריטית או מערבית; דגל רוסיה מסמן פעולה או איתות רוסיים (הצבע האדום שמור באתר אך ורק לרוסיה); דגל ארה״ב מסמן אירועים אסטרטגיים של צד שלישי."],
+        ["טבעת זיקה", "מקודדת את הזיקה לבריטניה ללא העמסת צבע. טבעת מלאה: זיקה ישירה — בריטניה נקובה במפורש, או שהפעולה מכוונת לכלי שיט, לסגל, לשטח או לתעשייה ביטחונית בריטית. טבעת מקווקוות: מניע עקיף או הקשרי (זירת אוקראינה בכללותה, נאט״ו, וושינגטון או זירה פנימית) שבו הזיקה לבריטניה מוסקת ולא מתועדת."],
+        ["תאריך ופירוט", "כל שורה נפתחת בתאריך האירוע ובכותרת המבצעית. לחיצה על ״פירוט״ פותחת את התקציר ואת קישורי המקור הראשוניים. סמיכות כרונולוגית אינה מהווה טענת סיבתיות; הסימן טילדה (~) מציין תאריך משוער."],
       ],
-      anglesH: "שש כניסות",
-      anglesLead: "אותן שורות. שאלה אחרת בכל פעם.",
+      anglesH: "שש תצוגות ניתוח",
+      anglesLead: "מערך OSINT מאומת אחד, נחתך לאורך שישה צירים אנליטיים.",
       open: "לצפייה",
-      locked: "נעול",
-      plot: `תרשים, בסרגל, פותח את חיתוך הסכנה וההשפעה בדף משלו: התרשים והשורה שבוחרים. <a href="./uk-russia-plot.html">לתרשים</a>`,
+      locked: "מוגבל",
+      plot: `תצוגת מטריצת סיכון עצמאית הכוללת סינון לפי תחום, הרצת ציר זמן וכרטיסי פירוט מלאים. <a href="./uk-russia-plot.html">למטריצת הסיכון</a>`,
     },
   };
 
   const ANGLES = [
     {
       view: "outline",
-      en: ["Events", "Read in date order. The gaps stay visible, so a run of days reads differently from a quiet month. The other angles are cuts of this record."],
-      he: ["אירועים", "לקרוא לפי תאריך. המרווחים נשארים גלויים, ולכן רצף של ימים נקרא אחרת מחודש שקט. שאר הזוויות הן חיתוכים של התיעוד הזה."],
+      en: ["Event Log", "Chronological ledger preserving inter-event day gaps so operational tempo shifts, rapid clustering, and quiet baselines remain directly legible."],
+      he: ["יומן אירועים", "רישום כרונולוגי השומר על מרווחי הימים בין אירועים, כך ששינויים בקצב המבצעי, צבירת אירועים ותקופות שקט נשארים ברורים לקריאה."],
     },
     {
       view: "kanban",
-      en: ["Bands", "Sort by how explicitly Britain is the object, not by how loud the row is. A routine diplomatic note and a named strike threat stop sharing a pile. The top band also asks whether that named object sits under a strike threat or a concealed act."],
-      he: ["רמות", "למיין לפי מידת המפורשות שבה בריטניה היא המושא, לא לפי עוצמת הרעש. פתק דיפלומטי שגרתי ואיום תקיפה נקוב מפסיקים לחלוק ערימה. הרמה העליונה שואלת גם אם המושא הנקוב יושב תחת איום תקיפה או מעשה מוסתר."],
+      en: ["Targeting", "Classifies entries by targeting specificity rather than rhetoric volume. Tier 4 isolates named UK assets, facilities, or maritime zones under strike threat or covert action."],
+      he: ["מיקוד וייחוס", "מסווג רשומות לפי מידת המיקוד ביעד בריטי ולא לפי עוצמת הרטוריקה. דרג 4 מבודד נכסים, מתקנים או מרחבים ימיים בריטיים תחת איום תקיפה או פעולה חשאית."],
     },
     {
       view: "domain",
-      en: ["Domain", "Sort by the kind of thing in play: military systems, a war zone, the systems of ordinary life, a city or diplomatic space, or money and sanctions. A sanctions package and a strike on a refinery stop looking like the same kind of event."],
-      he: ["תחום", "למיין לפי סוג הדבר שעומד על הפרק: מערכות צבאיות, זירת מלחמה, מערכות החיים הרגילים, עיר או מרחב דיפלומטי, או כסף וסנקציות. חבילת סנקציות ותקיפת בית זיקוק מפסיקות להיראות כאותו סוג אירוע."],
+      en: ["Domains", "Segments the dataset across five operational domains: military systems and defence industrial base, active theatre and maritime zones, critical national infrastructure, civil/diplomatic space, and financial sanctions."],
+      he: ["תחומי פעולה", "מפלח את התיעוד לחמישה תחומים: מערכות צבאיות ותעשייה ביטחונית, זירות לחימה ותווך ימי, תשתיות לאומיות קריטיות, מרחב אזרחי ודיפלומטי, וסנקציות פיננסיות."],
     },
     {
       view: "danger",
-      en: ["Dangers", "Watch danger and impact together. Up is more alarming. Right is larger stakes if it lands. Walking the dates moves the cloud, so a drift toward the top right reads as a path."],
-      he: ["סכנות", "לראות סכנה והשפעה יחד. למעלה — מדאיג יותר. ימינה — מחיר גדול יותר אם זה מתממש. הליכה בתאריכים מזיזה את הענן, וכך נדידה אל הפינה העליונה והימנית נקראת כמסלול."],
+      en: ["Risk Plot", "Correlates escalatory severity (vertical) against strategic impact (horizontal). Scrubbing the date slider tracks cluster drift and directional shift over time."],
+      he: ["מפת סיכון", "מצליב חומרת הסלמה (ציר אנכי) מול השפעה אסטרטגית (ציר אופקי). הזזת ציר הזמן מציגה את תנועת האשכול ואת מגמת ההסחפות לאורך החודשים."],
     },
     {
       view: "ladder",
-      en: ["Levels", "Set the record on an escalation ladder, from media attention up to civilians harmed, and put other wars on the same clock. “How high” becomes a comparison."],
-      he: ["רמות מעלה/מטה", "להניח את התיעוד על סולם הסלמה, מתשומת לב תקשורתית ועד פגיעה באזרחים, ולהעמיד מלחמות אחרות על אותו שעון. ״כמה גבוה״ הופך להשוואה."],
+      en: ["Ladder", "Plots the UK–Russia record on a nine-rung escalation ladder alongside four historical pre-conflict baselines aligned on a shared outbreak clock."],
+      he: ["סולם הסלמה", "ממקם את ציר בריטניה–רוסיה על סולם הסלמה בן תשעה שלבים לצד ארבעה עימותי עבר המיושרים על שעון אחיד ביחס ליום הפרוץ."],
     },
     {
       view: "munger",
       locked: true,
-      en: ["Biases & surprises", "Charlie Munger’s misjudgments, lined up against the record. They surface the biases in a reading, and show where a surprise can come from off the obvious UK–Russia thread. Not predictions. This angle asks for a 6-digit access code."],
-      he: ["הטיות והפתעות", "השיפוטים השגויים של צ׳ארלי מאנגר, מיושרים מול התיעוד. הם חושפים את ההטיות בקריאה, ומראים מאין הפתעה יכולה לבוא מחוץ לציר הבריטניה–רוסיה הברור. לא תחזיות. הזווית הזו מבקשת קוד גישה בן 6 ספרות."],
+      en: ["Red-Team", "Applies Charlie Munger’s cognitive-bias framework to stress-test the dataset, surface analytic blind spots, and identify off-axis contingencies. Requires a 6-digit access code."],
+      he: ["הטיות מודיעין", "מיישם את מודל ההטיות הקוגניטיביות של צ׳ארלי מאנגר ל״צוות אדום״ על הנתונים — חשיפת נקודות עיוורון אנליטיות ואינדיקטורים מחוץ לציר המרכזי. דורש קוד גישה בן 6 ספרות."],
     },
   ];
 
@@ -425,7 +425,7 @@ try { if (localStorage.getItem("uk-ru-theme") === "dark") document.documentEleme
     const home = document.getElementById("home");
     home.lang = lang;
     home.dir = lang === "he" ? "rtl" : "ltr";
-    document.title = lang === "he" ? "בחרו זווית — הסלמה בריטניה–רוסיה" : "Choose an angle — UK–Russia escalation";
+    document.title = lang === "he" ? "ביקורת הסלמה: בריטניה–רוסיה — סקירה" : "UK–Russia Escalation Audit — Overview";
 
     const marks = c.marks.map(([name, body]) =>
       `<div><dt>${esc(name)}</dt><dd>${esc(body)}</dd></div>`
